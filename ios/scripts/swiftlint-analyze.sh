@@ -4,7 +4,7 @@
 cd "$(dirname "$0")"
 
 echo "⚙️  Building project in order to obtain xcodebuild.log"
-xcodebuild -workspace ../DevStack.xcworkspace -scheme ../DevStack_Alpha > ../xcodebuild.log
+xcodebuild -workspace ../MateeStarter.xcworkspace -scheme ../MateeStarter_Alpha > ../xcodebuild.log
 
 echo "⚙️  Running SwiftLint Static Analyzer"
 swiftlint analyze --config ../swiftlint.yml --compiler-log-path ../xcodebuild.log

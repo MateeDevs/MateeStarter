@@ -1,6 +1,6 @@
-# Matee KMP DevStack
+# Matee Starter
 
-## Use Devstack as a base for a new project
+## Use Matee Starter as a base for a new project
 
 - Use this repository as a template when creating a new repository for your project
 - Rename the project (don't forget to change `rootProject.name` in `settings.gradle` and `id`

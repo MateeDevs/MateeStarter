@@ -1,6 +1,6 @@
 @Suppress("DSL_SCOPE_VIOLATION") // Remove after upgrading to gradle 8.1
 plugins {
-    alias(libs.plugins.devstack.kmm.library)
+    alias(libs.plugins.mateeStarter.kmm.library)
     alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.jetbrains.compose.compiler)
 }

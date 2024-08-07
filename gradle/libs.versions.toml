@@ -133,9 +133,9 @@ mokoResources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref
 jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "composePlugin" }
 jetbrains-compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 # Convention plugins
-devstack-android-application-compose = "android-application-compose:none"
-devstack-android-application-core = "android-application:none"
-devstack-android-library-compose = "android-library-compose:none"
-devstack-android-library-core = "android-library:none"
-devstack-kmm-library = "kmm-library:none"
-devstack-kmm-xcframework-library = "kmm-xcframework-library:none"
+mateeStarter-android-application-compose = "android-application-compose:none"
+mateeStarter-android-application-core = "android-application:none"
+mateeStarter-android-library-compose = "android-library-compose:none"
+mateeStarter-android-library-core = "android-library:none"
+mateeStarter-kmm-library = "kmm-library:none"
+mateeStarter-kmm-xcframework-library = "kmm-xcframework-library:none"

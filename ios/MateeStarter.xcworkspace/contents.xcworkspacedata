@@ -435,6 +435,6 @@
       </Group>
    </Group>
    <FileRef
-      location = "group:DevStack.xcodeproj">
+      location = "group:MateeStarter.xcodeproj">
    </FileRef>
 </Workspace>

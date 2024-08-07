@@ -15,9 +15,9 @@
                   <BuildableReference
                      BuildableIdentifier = "primary"
                      BlueprintIdentifier = "4558D30620FCC8FF005BC325"
-                     BuildableName = "DevStack.app"
-                     BlueprintName = "DevStack"
-                     ReferencedContainer = "container:DevStack.xcodeproj">
+                     BuildableName = "MateeStarter.app"
+                     BlueprintName = "MateeStarter"
+                     ReferencedContainer = "container:MateeStarter.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
@@ -31,9 +31,9 @@
                   <BuildableReference
                      BuildableIdentifier = "primary"
                      BlueprintIdentifier = "4558D30620FCC8FF005BC325"
-                     BuildableName = "DevStack.app"
-                     BlueprintName = "DevStack"
-                     ReferencedContainer = "container:DevStack.xcodeproj">
+                     BuildableName = "MateeStarter.app"
+                     BlueprintName = "MateeStarter"
+                     ReferencedContainer = "container:MateeStarter.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
@@ -41,6 +41,7 @@
       </PreActions>
       <BuildActionEntries>
          <BuildActionEntry
+            buildForMateeStartering = "YES"
             buildForTesting = "YES"
             buildForRunning = "YES"
             buildForProfiling = "YES"
@@ -49,29 +50,15 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4558D30620FCC8FF005BC325"
-               BuildableName = "DevStack.app"
-               BlueprintName = "DevStack"
-               ReferencedContainer = "container:DevStack.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "RocketToolkitTests"
-               BuildableName = "RocketToolkitTests"
-               BlueprintName = "RocketToolkitTests"
-               ReferencedContainer = "container:DataLayer/Toolkits/RocketToolkit">
+               BuildableName = "MateeStarter.app"
+               BlueprintName = "MateeStarter"
+               ReferencedContainer = "container:MateeStarter.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Alpha Debug"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
@@ -223,7 +210,7 @@
       </Testables>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Alpha Debug"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -237,9 +224,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4558D30620FCC8FF005BC325"
-            BuildableName = "DevStack.app"
-            BlueprintName = "DevStack"
-            ReferencedContainer = "container:DevStack.xcodeproj">
+            BuildableName = "MateeStarter.app"
+            BlueprintName = "MateeStarter"
+            ReferencedContainer = "container:MateeStarter.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
@@ -250,53 +237,54 @@
       </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Alpha Release"
+      buildConfiguration = "Release"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4558D30620FCC8FF005BC325"
-            BuildableName = "DevStack.app"
-            BlueprintName = "DevStack"
-            ReferencedContainer = "container:DevStack.xcodeproj">
+            BuildableName = "MateeStarter.app"
+            BlueprintName = "MateeStarter"
+            ReferencedContainer = "container:MateeStarter.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
-      buildConfiguration = "Alpha Debug">
+      buildConfiguration = "Debug">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Alpha Release"
+      buildConfiguration = "Release"
       revealArchiveInOrganizer = "YES">
       <PostActions>
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Remove nested frameworks"
-               scriptText = "# Prevent duplication of DevstackKmpShared.xcframework&#10;# https://stackoverflow.com/a/67127583/6947225&#10;rm -rf &quot;${ARCHIVE_PRODUCTS_PATH}/Applications/DevStack.app/PlugIns/DevStack Widget.appex/Frameworks&quot;&#10;">
+               scriptText = "# Prevent duplication of DevstackKmpShared.xcframework&#10;# https://stackoverflow.com/a/67127583/6947225&#10;rm -rf &quot;${ARCHIVE_PRODUCTS_PATH}/Applications/MateeStarter.app/PlugIns/MateeStarter Widget.appex/Frameworks&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
                      BlueprintIdentifier = "4558D30620FCC8FF005BC325"
-                     BuildableName = "DevStack.app"
-                     BlueprintName = "DevStack"
-                     ReferencedContainer = "container:DevStack.xcodeproj">
+                     BuildableName = "MateeStarter.app"
+                     BlueprintName = "MateeStarter"
+                     ReferencedContainer = "container:MateeStarter.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
          </ExecutionAction>
       </PostActions>
    </ArchiveAction>
-   <DevStackAction
+   <MateeStarterAction
       buildConfiguration = "buildConfiguration"
       selectedDebuggerIdentifier = "selectedDebuggerIdentifier"
       selectedLauncherIdentifier = "selectedLauncherIdentifier"
       shouldUseLaunchSchemeArgsEnv = "shouldUseLaunchSchemeArgsEnv">
-      <DevStackables>
-      </DevStackables>
+      <MateeStarterables>
+      </MateeStarterables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "BuildableIdentifier"
@@ -308,5 +296,5 @@
       </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
-   </DevStackAction>
+   </MateeStarterAction>
 </Scheme>

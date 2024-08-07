@@ -1,6 +1,6 @@
 @Suppress("DSL_SCOPE_VIOLATION") // Remove after upgrading to gradle 8.1
 plugins {
-    alias(libs.plugins.devstack.android.application.compose)
+    alias(libs.plugins.mateeStarter.android.application.compose)
 }
 
 android {

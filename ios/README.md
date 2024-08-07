@@ -1,11 +1,11 @@
-# Matee iOS DevStack
+# Matee Starter
 
 ## Dependencies
 
 - All code dependencies and tools are managed
   via [Swift Package Manager](https://swift.org/package-manager/)
 - You can use the `scripts/setup.sh` for quick setup of all required tools
-- There is also `scripts/rename.sh` for quick renaming from DevStack to YourProject
+- There is also `scripts/rename.sh` for quick renaming from MateeStarter to YourProject
 
 ## Kotlin Multiplatform
 

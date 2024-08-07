@@ -17,7 +17,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.buildFileName = "build.gradle.kts"
-rootProject.name = "devstack-native-app"
+rootProject.name = "MateeStarter"
 
 include(":android:app")
 include(":android:shared")

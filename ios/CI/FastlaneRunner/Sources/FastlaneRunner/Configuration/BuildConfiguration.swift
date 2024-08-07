@@ -15,28 +15,28 @@ struct BuildConfiguration {
 
 extension BuildConfiguration {
     static let alpha = BuildConfiguration(
-        workspace: "DevStack.xcworkspace",
-        scheme: "DevStack_Alpha",
-        outputName: "A-DevStack",
-        appIdentifier: "cz.matee.devstack.alpha",
+        workspace: "MateeStarter.xcworkspace",
+        scheme: "MateeStarter_Alpha",
+        outputName: "A-MateeStarter",
+        appIdentifier: "cz.matee.matee-starter.alpha",
         testFlightGroups: ["App Store Connect Users", "Public"],
         testFlightLink: "https://testflight.apple.com/join/ZdqgI57L",
         slackChannel: "#ci"
     )
     static let beta = BuildConfiguration(
-        workspace: "DevStack.xcworkspace",
-        scheme: "DevStack_Beta",
-        outputName: "B-DevStack",
-        appIdentifier: "cz.matee.devstack.beta",
+        workspace: "MateeStarter.xcworkspace",
+        scheme: "MateeStarter_Beta",
+        outputName: "B-MateeStarter",
+        appIdentifier: "cz.matee.matee-starter.beta",
         testFlightGroups: ["App Store Connect Users", "Public"],
         testFlightLink: "https://testflight.apple.com/join/aff9SFVc",
         slackChannel: "#ci"
     )
     static let production = BuildConfiguration(
-        workspace: "DevStack.xcworkspace",
-        scheme: "DevStack",
-        outputName: "DevStack",
-        appIdentifier: "cz.matee.devstack",
+        workspace: "MateeStarter.xcworkspace",
+        scheme: "MateeStarter",
+        outputName: "MateeStarter",
+        appIdentifier: "cz.matee.matee-starter",
         testFlightGroups: ["App Store Connect Users", "Public"],
         testFlightLink: "https://testflight.apple.com/join/lP4bFs1a",
         slackChannel: "#ci"

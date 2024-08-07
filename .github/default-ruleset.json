@@ -3,7 +3,7 @@
   "name": "default",
   "target": "branch",
   "source_type": "Repository",
-  "source": "MateeDevs/devstack-native-app",
+  "source": "MateeDevs/MateeStarter",
   "enforcement": "active",
   "conditions": {
     "ref_name": {
