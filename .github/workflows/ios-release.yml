@@ -1,0 +1,81 @@
+name: iOS - Release
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    name: Create new builds
+    runs-on: [self-hosted, ios-build]
+    timeout-minutes: 60
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        continue-on-error: true
+        with:
+          clean: false
+      - name: Build KMP
+        working-directory: ios
+        run: |
+          ./scripts/generate-error-messages.sh
+          ./scripts/build-kmp.sh release false true false
+      - name: Setup tools
+        working-directory: ios
+        run: ./scripts/setup.sh
+      - name: Generate build number
+        run: echo "BUILD_NUMBER=$(echo `date +"%y%m%d%H%M"`)" >> $GITHUB_ENV
+      - name: Prepare App Store Connect API key file
+        env:
+          APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_MATEE }}
+        working-directory: ios
+        run: echo "$APP_STORE_CONNECT_API_KEY_CONTENT" > AuthKey_Matee.p8
+      - name: Create builds
+        env:
+          BUILD_NUMBER: $(echo `date +"%y%m%d%H%M"`)
+        working-directory: ios
+        run: |
+          swift run --package-path CI/FastlaneRunner fastlaneRunner lane buildAlphaLane
+          swift run --package-path CI/FastlaneRunner fastlaneRunner lane buildBetaLane
+          swift run --package-path CI/FastlaneRunner fastlaneRunner lane buildProductionLane
+          swift run --package-path CI/FastlaneRunner fastlaneRunner lane tagProductionLane
+
+  deploy-alpha:
+    name: Deploy alpha
+    needs: build
+    runs-on: [self-hosted, ios-alpha]
+    timeout-minutes: 120
+    steps:
+      - name: Upload the Alpha build to the TestFlight
+        env:
+          APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_MATEE }}
+          SLACK_URL: ${{ secrets.FASTLANE_SLACK_URL }}
+          DISTRIBUTE_EXTERNAL: true
+        working-directory: ios
+        run: swift run --package-path CI/FastlaneRunner fastlaneRunner lane uploadTestFlightAlphaLane swiftServerPort 2002
+
+  deploy-beta:
+    name: Deploy beta
+    needs: build
+    runs-on: [self-hosted, ios-beta]
+    timeout-minutes: 120
+    steps:
+      - name: Upload the Beta build to the TestFlight
+        env:
+          APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_MATEE }}
+          SLACK_URL: ${{ secrets.FASTLANE_SLACK_URL }}
+          DISTRIBUTE_EXTERNAL: true
+        working-directory: ios
+        run: swift run --package-path CI/FastlaneRunner fastlaneRunner lane uploadTestFlightBetaLane swiftServerPort 2003
+
+  deploy-production:
+    name: Deploy production
+    needs: build
+    runs-on: [self-hosted, ios-prod]
+    timeout-minutes: 120
+    steps:
+      - name: Upload the Production build to the TestFlight
+        env:
+          APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_MATEE }}
+          SLACK_URL: ${{ secrets.FASTLANE_SLACK_URL }}
+          DISTRIBUTE_EXTERNAL: true
+        working-directory: ios
+        run: swift run --package-path CI/FastlaneRunner fastlaneRunner lane uploadTestFlightProductionLane swiftServerPort 2004

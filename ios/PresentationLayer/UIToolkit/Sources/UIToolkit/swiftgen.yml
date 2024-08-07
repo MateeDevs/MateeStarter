@@ -1,0 +1,20 @@
+output_dir: ${DERIVED_SOURCES_DIR}
+
+strings:
+  inputs:
+    - ${DERIVED_SOURCES_DIR}/../TwinePlugin/Base.lproj/Localizable.strings
+  outputs:
+    - templatePath: swiftgen-strings.stencil
+      output: Localizable.swift
+      params:
+        publicAccess: true
+
+xcassets:
+  inputs:
+    - Resources/Colors.xcassets
+    - Resources/Images.xcassets
+  outputs:
+    - templatePath: swiftgen-xcassets.stencil
+      output: Assets.swift
+      params:
+        publicAccess: true
