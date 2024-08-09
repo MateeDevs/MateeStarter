@@ -2,6 +2,7 @@
 sdk-min = "23"
 sdk-target = "34"
 sdk-compile = "34"
+java = "17"
 kotlin = "2.0.10"
 gradlePlugin = "8.3.2"
 coroutines = "1.8.1"

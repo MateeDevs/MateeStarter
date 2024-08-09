@@ -1,8 +1,8 @@
 package config
 
 import com.android.build.api.dsl.CommonExtension
-import constants.ProjectConstants
 import extensions.libs
+import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 
 internal fun Project.configureKotlinAndroid(
@@ -14,8 +14,10 @@ internal fun Project.configureKotlinAndroid(
         minSdk = libs.versions.sdk.min.get().toInt()
     }
 
+    val versionCode = libs.versions.java.get().toInt()
+    val javaVersion = JavaVersion.toVersion(versionCode)
     compileOptions {
-        sourceCompatibility = ProjectConstants.javaVersion
-        targetCompatibility = ProjectConstants.javaVersion
+        sourceCompatibility = javaVersion
+        targetCompatibility = javaVersion
     }
 }

@@ -1,10 +1,7 @@
 package constants
 
-import org.gradle.api.JavaVersion
-
 object ProjectConstants {
     const val iosShared = "KMPShared"
-    val javaVersion = JavaVersion.VERSION_17
 
     object Android {
         private const val root = ":android"

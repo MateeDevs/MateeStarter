@@ -8,13 +8,12 @@ plugins {
 group = "buildlogic"
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
-}
-
-kotlin {
-    kotlinDslPluginOptions {
-        jvmTarget.set(JavaVersion.VERSION_17.toString())
+    val versionCode = libs.versions.java.get().toInt()
+    val version = JavaVersion.toVersion(versionCode)
+    sourceCompatibility = version
+    targetCompatibility = version
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(versionCode))
     }
 }
 

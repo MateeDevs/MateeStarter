@@ -11,6 +11,7 @@ import constants.ProjectConstants
 import extensions.apply
 import extensions.libs
 import extensions.pluginManager
+import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -42,9 +43,11 @@ class KmmLibraryConventionPlugin : Plugin<Project> {
                     minSdk = libs.versions.sdk.min.get().toInt()
                 }
 
+                val versionCode = libs.versions.java.get().toInt()
+                val javaVersion = JavaVersion.toVersion(versionCode)
                 compileOptions {
-                    sourceCompatibility = ProjectConstants.javaVersion
-                    targetCompatibility = ProjectConstants.javaVersion
+                    sourceCompatibility = javaVersion
+                    targetCompatibility = javaVersion
                 }
                 configureBuildVariants()
 
