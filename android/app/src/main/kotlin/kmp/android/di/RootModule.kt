@@ -10,7 +10,6 @@ import org.koin.dsl.module
 fun ComponentActivity.initDependencyInjection() {
     initKoin {
         val contextModule = module { // Provide Android Context
-            factory<ComponentActivity> { this@initDependencyInjection }
             factory<Context> { this@initDependencyInjection }
         }
 

@@ -9,11 +9,11 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 
-public abstract class PermissionRequest(
+abstract class PermissionRequest(
     protected open val launcher: ActivityResultLauncher<String>,
-    public open val granted: State<Boolean>,
+    open val granted: State<Boolean>,
 ) {
-    public abstract fun requestPermission()
+    abstract fun requestPermission()
 }
 
 @Composable
@@ -34,14 +34,14 @@ private fun <T : PermissionRequest> rememberPermissionRequest(
 
 // === Specific permissions ===
 
-public class LocationPermissionRequest(
+class LocationPermissionRequest(
     launcher: ActivityResultLauncher<String>,
     granted: State<Boolean>,
 ) : PermissionRequest(launcher, granted) {
-    public override fun requestPermission(): Unit =
+    override fun requestPermission() =
         launcher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
 }
 
 @Composable
-public fun rememberLocationPermissionRequest(): LocationPermissionRequest =
+fun rememberLocationPermissionRequest(): LocationPermissionRequest =
     rememberPermissionRequest(::LocationPermissionRequest)

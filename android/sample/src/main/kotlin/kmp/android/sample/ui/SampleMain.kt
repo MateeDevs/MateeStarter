@@ -27,7 +27,7 @@ import kmp.android.sample.vm.SampleViewModel
 import kmp.android.shared.navigation.composableDestination
 import kmp.android.shared.style.Values
 import kotlinx.coroutines.flow.collectLatest
-import org.koin.androidx.compose.getViewModel
+import org.koin.androidx.compose.koinViewModel
 
 internal fun NavGraphBuilder.sampleMainRoute() {
     composableDestination(
@@ -39,7 +39,7 @@ internal fun NavGraphBuilder.sampleMainRoute() {
 
 @Composable
 internal fun SampleMainRoute(
-    viewModel: SampleViewModel = getViewModel(),
+    viewModel: SampleViewModel = koinViewModel(),
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
@@ -62,7 +62,7 @@ internal fun SampleMainRoute(
 
     SampleMainScreen(
         state = state,
-        onIntent = { viewModel.onIntent(it) },
+        onIntent = viewModel::onIntent,
     )
 }
 

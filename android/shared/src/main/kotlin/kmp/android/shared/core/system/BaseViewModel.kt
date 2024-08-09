@@ -30,11 +30,6 @@ public abstract class BaseViewModel(
         flow.collect(collector)
     }
 
-    @Deprecated("Use launch instead", ReplaceWith("launch(block)"))
-    protected fun launchOnIO(
-        block: suspend CoroutineScope.() -> Unit,
-    ): Job = launch(defaultDispatcher) { block() }
-
     /**
      * Launch coroutine in [viewModelScope] with [context]
      * @param context additional to [CoroutineScope.coroutineContext] context of the coroutine.

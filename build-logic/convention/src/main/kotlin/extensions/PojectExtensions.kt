@@ -49,8 +49,6 @@ fun Project.java(block: JavaPluginExtension.() -> Unit) {
 
 inline fun <reified T : Any> Project.extension(name: String, block: Action<T>) {
     extensions.configure(name, block)
-//    extensions.findByName(name)?.let { it as? T }?.apply(block)
-//        ?: error("Extension $name missing")
 }
 
 fun <BuildTypeT> NamedDomainObjectContainer<BuildTypeT>.demo(action: BuildTypeT.() -> Unit) {

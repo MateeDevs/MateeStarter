@@ -73,12 +73,7 @@ private object Twine {
             File(path).mkdirs()
             File(file).createNewFile()
 
-            "twine generate-localization-file $twineFile $file -f android --lang $language \n" +
-                // Replace occurrences of \" with just a quote
-                // https://github.com/icerockdev/moko-resources/issues/462
-                "sed -i '.bak' -e 's@\\\\\"@\"@g' \"$file\" \n" +
-                // Macos requires inplace backup file... remove it
-                "rm \"$file\".bak"
+            "twine generate-localization-file $twineFile $file -f android --lang $language"
         }
         scripts.forEach { script ->
             project.exec {
@@ -87,7 +82,7 @@ private object Twine {
                 val twinePath = project.findProperty("twinePath")
                 if (twinePath != null) {
                     environment["PATH"] =
-                        "${environment["PATH"]}${System.getProperty("path.separator")}$twinePath"
+                        "${environment["PATH"]}${File.pathSeparator}$twinePath"
                 }
 
                 if (OperatingSystem.current().isMacOsX || OperatingSystem.current().isLinux) {
