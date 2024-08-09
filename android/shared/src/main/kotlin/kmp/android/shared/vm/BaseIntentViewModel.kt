@@ -6,12 +6,14 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 abstract class BaseIntentViewModel<S : VmState, I : VmIntent, E : VmEvent>(initialState: S) :
     ViewModel() {
 
-    val state: MutableStateFlow<S> = MutableStateFlow(initialState)
+    private val _state = MutableStateFlow(initialState)
+    val state = MutableStateFlow(initialState).asStateFlow()
 
     protected val _events = MutableSharedFlow<E>()
     val events = _events.asSharedFlow()
@@ -23,7 +25,7 @@ abstract class BaseIntentViewModel<S : VmState, I : VmIntent, E : VmEvent>(initi
     }
 
     protected fun update(body: S.() -> S) {
-        state.value = body(state.value)
+        _state.value = body(state.value)
     }
 
     protected abstract suspend fun applyIntent(intent: I)
