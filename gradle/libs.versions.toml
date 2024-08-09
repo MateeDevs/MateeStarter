@@ -13,7 +13,7 @@ androidXCore = "1.13.1"
 material = "1.12.0"
 lifecycle = "2.8.4"
 paging = "3.3.1"
-compose = "1.6.8"
+composeBom = "2024.06.00"
 composePlugin = "1.6.11"
 activity = "1.9.1"
 navigation = "2.7.7"
@@ -64,12 +64,13 @@ lifecycle-viewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", v
 paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "paging" }
 paging-compose = { module = "androidx.paging:paging-compose", version.ref = "paging" }
 # Compose
-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
-compose-uiTooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
-compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
-compose-material = { module = "androidx.compose.material:material", version.ref = "compose" }
-compose-materialIconsCore = { module = "androidx.compose.material:material-icons-core", version.ref = "compose" }
-compose-uiTest = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "compose" }
+compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
+compose-ui = { module = "androidx.compose.ui:ui" }
+compose-uiTooling = { module = "androidx.compose.ui:ui-tooling" }
+compose-foundation = { module = "androidx.compose.foundation:foundation" }
+compose-material = { module = "androidx.compose.material:material" }
+compose-materialIconsCore = { module = "androidx.compose.material:material-icons-core" }
+compose-uiTest = { module = "androidx.compose.ui:ui-test-junit4" }
 # Activity
 activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity" }
 # Navigation

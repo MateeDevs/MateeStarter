@@ -25,6 +25,7 @@ internal fun Project.configureComposeCompiler(
 
 internal fun Project.configureComposeDependencies() {
     dependencies {
+        implementation(platform(libs.compose.bom))
         implementation(libs.androidX.core)
         implementation(libs.compose.ui)
         implementation(libs.compose.foundation)
