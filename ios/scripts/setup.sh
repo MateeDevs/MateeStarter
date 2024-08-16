@@ -25,9 +25,6 @@ if [ ! -d ../DomainLayer/KMPShared.xcframework ]; then
   ./build-kmp.sh
 fi
 
-echo "⚙️  Downloading GraphQL schemas and generating code from queries"
-./apollo.sh
-
 echo "⚙️  Checking whether Twine is installed"
 if command -v twine &> /dev/null; then
   echo "✅ Twine is installed"
