@@ -143,4 +143,10 @@ public enum AppTheme {
         public static let radiusXLarge: CGFloat = 24
         
     }
+    
+    public enum Images {
+        public static let person = UIImage(systemName: "person.fill")
+        public static let personCirle = UIImage(systemName: "person.circle.fill")
+        public static let personSquare = UIImage(systemName: "person.crop.square.fill")
+    }
 }

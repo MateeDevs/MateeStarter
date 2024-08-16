@@ -8,6 +8,8 @@
 
 // swiftlint:disable large_tuple
  
+// TODO: Class is a copy of the same file in Utilities package, remove
+
 public func ==<A: Equatable, B: Equatable>(
     lhs: [(A, B)],
     rhs: [(A, B)]

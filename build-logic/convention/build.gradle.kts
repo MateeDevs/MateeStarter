@@ -34,26 +34,18 @@ gradlePlugin {
             dependency = libs.plugins.mateeStarter.android.application.core,
             pluginName = "AndroidApplicationConventionPlugin",
         )
-    }
-    plugins {
         plugin(
             dependency = libs.plugins.mateeStarter.android.library.compose,
             pluginName = "AndroidLibraryComposeConventionPlugin",
         )
-    }
-    plugins {
         plugin(
             dependency = libs.plugins.mateeStarter.android.library.core,
             pluginName = "AndroidLibraryConventionPlugin",
         )
-    }
-    plugins {
         plugin(
             dependency = libs.plugins.mateeStarter.kmm.library,
             pluginName = "KmmLibraryConventionPlugin",
         )
-    }
-    plugins {
         plugin(
             dependency = libs.plugins.mateeStarter.kmm.xcframework.library,
             pluginName = "KmmXCFrameworkLibraryConventionPlugin",

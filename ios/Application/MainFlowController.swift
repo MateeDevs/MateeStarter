@@ -29,7 +29,7 @@ final class MainFlowController: FlowController {
         let sampleNC = BaseNavigationController(statusBarStyle: .lightContent)
         sampleNC.tabBarItem = UITabBarItem(
             title: L10n.bottom_bar_item_1,
-            image: UIImage(systemName: "person.fill"),
+            image: AppTheme.Images.person,
             tag: MainTab.sample.rawValue
         )
         let sampleFC = SampleFlowController(navigationController: sampleNC)
@@ -42,7 +42,7 @@ final class MainFlowController: FlowController {
         let sampleSharedViewModelNC = BaseNavigationController(statusBarStyle: .lightContent)
         sampleSharedViewModelNC.tabBarItem = UITabBarItem(
             title: L10n.bottom_bar_item_2,
-            image: UIImage(systemName: "person.circle.fill"),
+            image: AppTheme.Images.personCirle,
             tag: MainTab.sampleSharedViewModel.rawValue
         )
         let sampleSharedViewModelFC = SampleSharedViewModelFlowController(navigationController: sampleSharedViewModelNC)
@@ -55,7 +55,7 @@ final class MainFlowController: FlowController {
         let sampleComposeMultiplatformNC = BaseNavigationController(statusBarStyle: .lightContent)
         sampleComposeMultiplatformNC.tabBarItem = UITabBarItem(
             title: L10n.bottom_bar_item_3,
-            image: UIImage(systemName: "person.crop.square.fill"),
+            image: AppTheme.Images.personSquare,
             tag: MainTab.sampleComposeMultiplatform.rawValue
         )
         let sampleComposeMultiplatformFC = SampleComposeMultiplatformFlowController(navigationController: sampleComposeMultiplatformNC)
