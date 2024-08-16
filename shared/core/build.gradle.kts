@@ -1,7 +1,5 @@
-import constants.Application
 import constants.ProjectConstants
 
-@Suppress("DSL_SCOPE_VIOLATION") // Remove after upgrading to gradle 8.1
 plugins {
     alias(libs.plugins.mateeStarter.kmm.xcframework.library)
 }

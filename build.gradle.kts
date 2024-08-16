@@ -1,6 +1,5 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 
-@Suppress("DSL_SCOPE_VIOLATION") // Remove after upgrading to gradle 8.1
 plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.android.library) apply false
