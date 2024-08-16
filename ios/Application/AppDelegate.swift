@@ -10,7 +10,6 @@ import Atlantis
 import DependencyInjection
 import Factory
 import KeychainProvider
-import NetworkProvider
 import OSLog
 import SharedDomain
 import UIKit

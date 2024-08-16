@@ -43,14 +43,14 @@ final class SampleViewModel: UIToolkit.BaseViewModel, ViewModel, ObservableObjec
     // MARK: Intent
     enum Intent {
         case onButtonTapped
-        case onToastFinished
+        case onToastChanged(data: ToastData?)
     }
 
     func onIntent(_ intent: Intent) {
         executeTask(Task {
             switch intent {
             case .onButtonTapped: showToast(message: "Button was tapped")
-            case .onToastFinished: state.toast = nil
+            case .onToastChanged(let data): state.toast = data
             }
         })
     }

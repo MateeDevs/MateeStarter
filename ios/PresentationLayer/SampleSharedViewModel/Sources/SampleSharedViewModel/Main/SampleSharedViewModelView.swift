@@ -9,7 +9,7 @@ import UIToolkit
 
 struct SampleSharedViewModelView: View {
     
-    private var viewModel: KMPShared.SampleSharedViewModel
+    @Injected(\.sampleSharedViewModel) private var viewModel: KMPShared.SampleSharedViewModel
     @State private var state: SampleSharedState = .init(loading: false, sampleText: nil, error: nil)
     
     @State private var toastData: ToastData?
@@ -18,7 +18,6 @@ struct SampleSharedViewModelView: View {
     
     init(flowController: FlowController?) {
         self.flowController = flowController
-        self.viewModel = Container.shared.sampleSharedViewModel.resolve()
     }
     
     var body: some View {
@@ -28,13 +27,12 @@ struct SampleSharedViewModelView: View {
             } else {
                 VStack(spacing: AppTheme.Dimens.spaceMedium) {
                     Text("This is a sample with SwiftUI and shared VM")
+                    
                     Text(state.sampleText?.value ?? "")
-                    Button(
-                        action: { viewModel.onIntent(intent: SampleSharedIntentOnButtonTapped()) },
-                        label: {
-                            Text("Click me!")
-                        }
-                    )
+                    
+                    Button("Click me!") {
+                        viewModel.onIntent(intent: SampleSharedIntentOnButtonTapped())
+                    }
                 }
             }
         }

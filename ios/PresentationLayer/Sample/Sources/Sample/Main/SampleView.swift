@@ -21,22 +21,21 @@ struct SampleView: View {
             } else {
                 VStack(spacing: AppTheme.Dimens.spaceMedium) {
                     Text("This is a sample with SwiftUI and iOS VM")
+                    
                     Text(viewModel.state.sampleText?.value ?? "")
-                    Button(
-                        action: { viewModel.onIntent(.onButtonTapped) },
-                        label: {
-                            Text("Click me!")
-                        }
-                    )
+                    
+                    Button("Click me!") {
+                        viewModel.onIntent(.onButtonTapped)
+                    }
                 }
             }
         }
-        .lifecycle(viewModel)
         .navigationTitle(L10n.bottom_bar_item_1)
         .toastView(Binding<ToastData?>(
             get: { viewModel.state.toast },
-            set: { toast in viewModel.onIntent(.onToastFinished) }
+            set: { toast in viewModel.onIntent(.onToastChanged(data: toast)) }
         ))
+        .lifecycle(viewModel)
     }
 }
 
