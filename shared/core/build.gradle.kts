@@ -25,5 +25,5 @@ dependencies {
     commonMainApi(project(":shared:base"))
     commonMainApi(project(":shared:sample"))
     commonMainApi(project(":shared:samplesharedviewmodel"))
-    commonMainApi(project(":shared:sampleComposeMultiplatform"))
+    commonMainApi(project(":shared:samplecomposemultiplatform"))
 }
