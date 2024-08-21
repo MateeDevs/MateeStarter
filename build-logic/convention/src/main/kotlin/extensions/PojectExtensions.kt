@@ -9,6 +9,7 @@ import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.plugins.PluginManager
 import org.gradle.api.provider.Provider
+import org.gradle.kotlin.dsl.DependencyHandlerScope
 import org.gradle.kotlin.dsl.the
 import org.gradle.plugin.use.PluginDependency
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
@@ -54,3 +55,6 @@ inline fun <reified T : Any> Project.extension(name: String, block: Action<T>) {
 fun <BuildTypeT> NamedDomainObjectContainer<BuildTypeT>.demo(action: BuildTypeT.() -> Unit) {
     create("demo", action)
 }
+
+fun DependencyHandlerScope.coreLibraryDesugaring(dependencyNotation: Any) =
+    add("coreLibraryDesugaring", dependencyNotation)
