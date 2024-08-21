@@ -21,7 +21,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
 import kmp.android.samplesharedviewmodel.navigation.SampleSharedViewModelGraph
 import kmp.android.shared.navigation.composableDestination
-import kmp.android.shared.style.Values
+import kmp.android.shared.style.Space
 import kmp.shared.samplesharedviewmodel.vm.SampleSharedEvent
 import kmp.shared.samplesharedviewmodel.vm.SampleSharedIntent
 import kmp.shared.samplesharedviewmodel.vm.SampleSharedState
@@ -78,8 +78,8 @@ private fun SampleMainScreen(
             } else {
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(Values.Space.medium),
-                    modifier = Modifier.padding(Values.Space.medium),
+                    verticalArrangement = Arrangement.spacedBy(Space.medium),
+                    modifier = Modifier.padding(Space.medium),
                 ) {
                     Text(
                         text = "This is a sample with android compose UI and shared VM",

@@ -58,9 +58,9 @@ val typography = Typography(
 )
 
 val shapes = Shapes(
-    small = RoundedCornerShape(Values.Radius.large),
-    medium = RoundedCornerShape(Values.Radius.medium),
-    large = RoundedCornerShape(Values.Radius.small),
+    small = RoundedCornerShape(Radius.large),
+    medium = RoundedCornerShape(Radius.medium),
+    large = RoundedCornerShape(Radius.small),
 )
 
 @Composable

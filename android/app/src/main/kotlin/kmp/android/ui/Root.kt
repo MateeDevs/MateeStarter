@@ -29,7 +29,7 @@ import kmp.android.sample.navigation.SampleGraph
 import kmp.android.sample.navigation.sampleNavGraph
 import kmp.android.samplecomposemultiplatform.navigation.sampleComposeMultiplatformNavGraph
 import kmp.android.samplesharedviewmodel.navigation.sampleSharedViewModelNavGraph
-import kmp.android.shared.style.Values
+import kmp.android.shared.style.Elevation
 
 @Composable
 fun Root(modifier: Modifier = Modifier) {
@@ -60,7 +60,7 @@ private fun BottomBar(navController: NavHostController, modifier: Modifier = Mod
     val currentRoute = navBackStackEntry?.destination?.route
 
     Surface(
-        elevation = Values.Elevation.huge,
+        elevation = Elevation.huge,
         color = MaterialTheme.colors.primarySurface,
         modifier = modifier,
     ) {

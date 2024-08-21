@@ -25,7 +25,7 @@ import kmp.android.sample.vm.SampleIntent
 import kmp.android.sample.vm.SampleState
 import kmp.android.sample.vm.SampleViewModel
 import kmp.android.shared.navigation.composableDestination
-import kmp.android.shared.style.Values
+import kmp.android.shared.style.Space
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.koinViewModel
 
@@ -78,8 +78,8 @@ private fun SampleMainScreen(
             } else {
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(Values.Space.medium),
-                    modifier = Modifier.padding(Values.Space.medium),
+                    verticalArrangement = Arrangement.spacedBy(Space.medium),
+                    modifier = Modifier.padding(Space.medium),
                 ) {
                     Text(
                         text = "This is a sample with android compose UI and android VM",
