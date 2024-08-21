@@ -17,6 +17,7 @@ final class SampleViewModel: UIToolkit.BaseViewModel, ViewModel, ObservableObjec
     
     @Injected(\.getSampleTextUseCase) private(set) var getSampleTextUseCase
 
+    // MARK: Init
     init(flowController: FlowController?) {
         self.flowController = flowController
         super.init()
