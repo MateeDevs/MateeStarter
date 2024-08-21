@@ -6,8 +6,8 @@
 #if DEBUG
 import CoreLocation
 import DependencyInjection
-import KMPShared
 import Factory
+import KMPShared
 @testable import SharedDomain
 import SharedDomainMocks
 
@@ -18,7 +18,7 @@ public extension Container {
         trackAnalyticsEventUseCase.register { TrackAnalyticsEventUseCaseSpy() }
         
         // Sample
-        sampleSharedViewModel.register {  SampleSharedViewModel(getSampleText: GetSampleTextUseCaseMock()) }
+        sampleSharedViewModel.register { SampleSharedViewModel(getSampleText: GetSampleTextUseCaseMock()) }
     }
 }
 #endif

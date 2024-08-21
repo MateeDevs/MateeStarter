@@ -17,11 +17,6 @@ public final class ImagePickerViewController: BaseViewController {
 
     public weak var delegate: ImagePickerViewControllerDelegate?
 
-    // MARK: Lifecycle methods
-    override public func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
     // MARK: Additional methods
     // swiftlint:disable:next private_action
     @IBAction func addPicture(_ sender: UIButton) {

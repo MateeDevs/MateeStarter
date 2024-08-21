@@ -1,5 +1,5 @@
-import XCTest
 @testable import SampleComposeMultiplatform
+import XCTest
 
 final class SampleComposeMultiplatformTests: XCTestCase {
     func testExample() throws {

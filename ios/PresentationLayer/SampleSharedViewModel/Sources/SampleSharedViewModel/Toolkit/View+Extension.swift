@@ -13,8 +13,8 @@ public extension View {
         stateBinding: Binding<S>,
         onEvent: @escaping (E) -> Void
     ) -> some View {
-        var eventObservingTask: Task<(), Error>? = nil
-        var onFinishStateObserving: (() -> Void)? = nil
+        var eventObservingTask: Task<(), Error>?
+        var onFinishStateObserving: (() -> Void)?
         return self
             .onAppear {
                 onFinishStateObserving = viewModel.bindState(stateBinding: stateBinding)

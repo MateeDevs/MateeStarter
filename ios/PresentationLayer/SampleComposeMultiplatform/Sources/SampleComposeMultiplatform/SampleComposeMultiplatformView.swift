@@ -32,7 +32,7 @@ struct SampleComposeMultiplatformViewController: UIViewControllerRepresentable {
     }
 }
 
-struct SampleComposeMultiplatformView : View {
+struct SampleComposeMultiplatformView: View {
     
     @Injected(\.sampleSharedViewModel) private(set) var viewModel: KMPShared.SampleSharedViewModel
     private weak var flowController: FlowController?

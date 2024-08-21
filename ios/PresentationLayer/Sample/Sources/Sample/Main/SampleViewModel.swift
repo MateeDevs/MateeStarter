@@ -36,8 +36,8 @@ final class SampleViewModel: UIToolkit.BaseViewModel, ViewModel, ObservableObjec
 
     struct State {
         var isLoading: Bool = false
-        var sampleText: SampleText? = nil
-        var error: String? = nil
+        var sampleText: SampleText?
+        var error: String?
         var toast: ToastData?
     }
     

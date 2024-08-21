@@ -17,6 +17,7 @@ public extension Container {
     var networkProvider: Factory<NetworkProvider> { self { SystemNetworkProvider(
         readAuthToken: { try self.keychainProvider().read(.authToken) },
         delegate: UIApplication.shared.delegate as? NetworkProviderDelegate
-    )}}
+    )
+    }}
     var userDefaultsProvider: Factory<UserDefaultsProvider> { self { SystemUserDefaultsProvider() } }
 }

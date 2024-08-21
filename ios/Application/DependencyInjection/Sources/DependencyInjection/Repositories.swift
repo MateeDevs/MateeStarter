@@ -10,5 +10,6 @@ import SharedDomain
 public extension Container {
     var analyticsRepository: Factory<AnalyticsRepository> { self { AnalyticsRepositoryImpl(
         analyticsProvider: self.analyticsProvider()
-    )}}
+    )
+    }}
 }

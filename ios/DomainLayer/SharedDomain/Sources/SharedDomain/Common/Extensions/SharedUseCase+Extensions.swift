@@ -2,8 +2,8 @@
 // swiftlint:disable line_length
 // swiftlint:disable multiline_arguments
 
-import KMPShared
 import Foundation
+import KMPShared
 
 private class JobWrapper {
     var job: Kotlinx_coroutines_coreJob?

@@ -22,7 +22,7 @@ open class UseCaseResultMock: UseCaseResult {
     public init() {}
     
     public init(executeReturnValue: Result<AnyObject>) {
-        self.executeReturnValue = executeReturnValue 
+        self.executeReturnValue = executeReturnValue
     }
     
     // MARK: - execute

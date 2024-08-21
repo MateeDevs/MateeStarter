@@ -30,7 +30,7 @@ open class UseCaseFlowNoParamsMock<Out>: UseCaseFlowNoParams {
             return FlowTestHelper.shared.arrayToFlow(array: [])
         }
         
-        guard let executeReturnValue = executeReturnValue as? Array<Out> else {
+        guard let executeReturnValue = executeReturnValue as? [Out] else {
             return FlowTestHelper.shared.arrayToFlow(array: [executeReturnValue] as! [Out])
         }
         

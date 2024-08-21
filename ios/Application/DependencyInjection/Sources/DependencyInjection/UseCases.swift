@@ -10,5 +10,6 @@ public extension Container {
     // Analytics
     var trackAnalyticsEventUseCase: Factory<TrackAnalyticsEventUseCase> { self { TrackAnalyticsEventUseCaseImpl(
         analyticsRepository: self.analyticsRepository()
-    )}}
+    )
+    }}
 }
