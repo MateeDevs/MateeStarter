@@ -14,7 +14,7 @@ material = "1.12.0"
 lifecycle = "2.8.4"
 paging = "3.3.1"
 composeBom = "2024.06.00"
-composePlugin = "1.6.11"
+jetbrains-composePlugin = "1.6.11"
 activity = "1.9.1"
 navigation = "2.7.7"
 accompanist = "0.34.0"
@@ -134,7 +134,8 @@ versionCatalogUpdate = { id = "nl.littlerobots.version-catalog-update", version.
 versions = { id = "com.github.ben-manes.versions", version.ref = "versions" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktLint" }
 mokoResources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "mokoResources" }
-jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "composePlugin" }
+jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "jetbrains-composePlugin" }
+# Can be removed in case you do not use compose multiplatform
 jetbrains-compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 # Convention plugins
 mateeStarter-android-application-compose = "android-application-compose:none"
