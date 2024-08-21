@@ -1,6 +1,5 @@
 package kmp.android.shared.core.ui.util
 
-import android.Manifest
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -31,17 +30,3 @@ private fun <T : PermissionRequest> rememberPermissionRequest(
 
     return remember { factory(launcher, granted) }
 }
-
-// === Specific permissions ===
-
-class LocationPermissionRequest(
-    launcher: ActivityResultLauncher<String>,
-    granted: State<Boolean>,
-) : PermissionRequest(launcher, granted) {
-    override fun requestPermission() =
-        launcher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
-}
-
-@Composable
-fun rememberLocationPermissionRequest(): LocationPermissionRequest =
-    rememberPermissionRequest(::LocationPermissionRequest)
