@@ -73,7 +73,6 @@ class KmmLibraryConventionPlugin : Plugin<Project> {
                     }
 
                     val androidMain by getting {
-                        dependsOn(commonMain)
                         dependencies {
                             implementation(libs.ktor.android)
                             implementation(libs.lifecycle.viewModel)
