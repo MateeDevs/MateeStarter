@@ -7,6 +7,8 @@ import Foundation
 import KMPShared
 import SwiftUI
 
+// swiftlint:disable force_cast
+
 public extension BaseViewModelInt {
     func bindState<S: VmState>(stateBinding: Binding<S>) -> () -> Void {
         @Binding var state: S
@@ -40,5 +42,3 @@ public extension BaseViewModelInt {
         }
     }
 }
-
-

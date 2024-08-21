@@ -7,6 +7,8 @@ import KMPShared
 import SwiftUI
 import UIToolkit
 
+// swiftlint:disable force_cast
+
 struct SampleSharedViewModelView: View {
     
     @Injected(\.sampleSharedViewModel) private var viewModel: KMPShared.SampleSharedViewModel
@@ -66,4 +68,3 @@ import Factory
     return SampleSharedViewModelView(flowController: nil)
 }
 #endif
-

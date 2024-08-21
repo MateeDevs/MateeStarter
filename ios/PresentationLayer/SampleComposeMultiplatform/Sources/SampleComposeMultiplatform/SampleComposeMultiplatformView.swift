@@ -9,6 +9,8 @@ import KMPShared
 import SwiftUI
 import UIToolkit
 
+// swiftlint:disable force_cast
+
 struct SampleComposeMultiplatformViewController: UIViewControllerRepresentable {
     
     private var viewModel: KMPShared.SampleSharedViewModel

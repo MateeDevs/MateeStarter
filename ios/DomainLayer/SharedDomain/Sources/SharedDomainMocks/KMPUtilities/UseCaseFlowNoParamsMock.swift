@@ -6,6 +6,8 @@
 import Foundation
 import KMPShared
 
+// swiftlint:disable force_cast
+
 open class UseCaseFlowNoParamsMock<Out>: UseCaseFlowNoParams {
     
     public var executeCallsCount = 0
