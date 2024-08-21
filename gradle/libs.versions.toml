@@ -32,6 +32,7 @@ espressoCore = "3.6.1"
 appcompat = "1.7.0"
 versionCatalogueUpdate = "0.8.1"
 versions = "0.49.0"
+desugar = "2.0.3"
 
 [libraries]
 # Kotlin
@@ -40,6 +41,7 @@ kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", ve
 kotlinx-immutableCollections = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlinxImmutableCollections" }
 # Tools
 androidTools-gradle = { module = "com.android.tools.build:gradle", version.ref = "gradlePlugin" }
+androidTools-desugar = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar" }
 # Coroutines
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 # Date time
