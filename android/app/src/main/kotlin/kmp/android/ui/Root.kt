@@ -24,9 +24,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import kmp.android.navigation.NavBarFeature
 import kmp.android.sample.navigation.SampleGraph
 import kmp.android.sample.navigation.sampleNavGraph
-import kmp.android.navigation.NavBarFeature
 import kmp.android.samplecomposemultiplatform.navigation.sampleComposeMultiplatformNavGraph
 import kmp.android.samplesharedviewmodel.navigation.sampleSharedViewModelNavGraph
 import kmp.android.shared.style.Values
@@ -55,13 +55,14 @@ fun Root(modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun BottomBar(navController: NavHostController) {
+private fun BottomBar(navController: NavHostController, modifier: Modifier = Modifier) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
     Surface(
         elevation = Values.Elevation.huge,
         color = MaterialTheme.colors.primarySurface,
+        modifier = modifier,
     ) {
         BottomNavigation(
             Modifier.navigationBarsPadding(),
@@ -72,8 +73,15 @@ private fun BottomBar(navController: NavHostController) {
                     icon = {
                         when (screen) {
                             NavBarFeature.Sample -> Icon(Icons.Filled.Person, "")
-                            NavBarFeature.SampleSharedViewModel -> Icon(Icons.Filled.AccountCircle, "")
-                            NavBarFeature.SampleComposeMultiplatform -> Icon(Icons.Filled.AccountBox, "")
+                            NavBarFeature.SampleSharedViewModel -> Icon(
+                                Icons.Filled.AccountCircle,
+                                "",
+                            )
+
+                            NavBarFeature.SampleComposeMultiplatform -> Icon(
+                                Icons.Filled.AccountBox,
+                                "",
+                            )
                         }
                     },
                     label = { Text(stringResource(screen.titleRes)) },
