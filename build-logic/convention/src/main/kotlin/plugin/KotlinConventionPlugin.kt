@@ -1,6 +1,5 @@
 package plugin
 
-import extensions.android
 import extensions.apply
 import extensions.implementation
 import extensions.java
@@ -27,17 +26,8 @@ class KotlinConventionPlugin : Plugin<Project> {
             val javaVersion = JavaVersion.toVersion(versionCode)
 
             java {
-                sourceCompatibility = javaVersion
-                targetCompatibility = javaVersion
                 toolchain {
                     languageVersion.set(JavaLanguageVersion.of(versionCode))
-                }
-            }
-
-            android {
-                compileOptions {
-                    sourceCompatibility = javaVersion
-                    targetCompatibility = javaVersion
                 }
             }
 

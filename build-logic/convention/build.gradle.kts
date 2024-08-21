@@ -8,9 +8,6 @@ group = "buildlogic"
 
 java {
     val versionCode = libs.versions.java.get().toInt()
-    val version = JavaVersion.toVersion(versionCode)
-    sourceCompatibility = version
-    targetCompatibility = version
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(versionCode))
     }
