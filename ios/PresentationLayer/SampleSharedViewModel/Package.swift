@@ -16,11 +16,7 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(name: "UIToolkit", path: "../UIToolkit"),
-        .package(name: "Utilities", path: "../../DomainLayer/Utilities"),
-        .package(name: "SharedDomain", path: "../../DomainLayer/SharedDomain"),
-        .package(name: "DependencyInjection", path: "../../Application/DependencyInjection"),
-        .package(url: "https://github.com/hmlongco/Factory.git", .upToNextMajor(from: "2.3.0"))
+        .package(name: "PresentationDepsBundle", path: "../../Dependencies/PresentationDepsBundle")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -28,22 +24,14 @@ let package = Package(
         .target(
             name: "SampleSharedViewModel",
             dependencies: [
-                .product(name: "UIToolkit", package: "UIToolkit"),
-                .product(name: "Utilities", package: "Utilities"),
-                .product(name: "SharedDomain", package: "SharedDomain"),
-                .product(name: "DependencyInjection", package: "DependencyInjection"),
-                .product(name: "DependencyInjectionMocks", package: "DependencyInjection"),
-                .product(name: "Factory", package: "Factory")
+                .product(name: "PresentationDepsBundle", package: "PresentationDepsBundle")
             ]
         ),
         .testTarget(
             name: "SampleSharedViewModelTests",
             dependencies: [
                 "SampleSharedViewModel",
-                .product(name: "UIToolkit", package: "UIToolkit"),
-                .product(name: "SharedDomain", package: "SharedDomain"),
-                .product(name: "DependencyInjection", package: "DependencyInjection"),
-                .product(name: "Factory", package: "Factory")
+                .product(name: "PresentationTestsDepsBundle", package: "PresentationDepsBundle")
             ]
         )
     ]

@@ -69,6 +69,8 @@
 		45DEBE3427A400410075C7E2 /* Alpha.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Alpha.entitlements; sourceTree = "<group>"; };
 		45FF99D72842B0A600E32D9A /* AnalyticsToolkit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = AnalyticsToolkit; sourceTree = "<group>"; };
 		45FF99D92842B51800E32D9A /* Utilities */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Utilities; sourceTree = "<group>"; };
+		7E453DFD2C7742F600073B6A /* RemoteDependencies */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RemoteDependencies; sourceTree = "<group>"; };
+		7EE686992C774ACF0091C196 /* PresentationDepsBundle */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = PresentationDepsBundle; sourceTree = "<group>"; };
 		A3009BAA2C5A6E5800806BA3 /* UserDefaultsProvider */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UserDefaultsProvider; sourceTree = "<group>"; };
 		A350DE7C2C5A3103009B6F77 /* KMPShared.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = KMPShared.xcframework; sourceTree = "<group>"; };
 		A37BB4DC2C5CD658006C491D /* SampleSharedViewModel */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SampleSharedViewModel; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 		4558D2FE20FCC8FF005BC325 = {
 			isa = PBXGroup;
 			children = (
+				7E453DFC2C7742C600073B6A /* Dependencies */,
 				4558D30920FCC8FF005BC325 /* Application */,
 				453C8801283FA9CA0027BDFB /* PresentationLayer */,
 				453C8802283FA9D10027BDFB /* DomainLayer */,
@@ -224,6 +227,15 @@
 				45FF99D72842B0A600E32D9A /* AnalyticsToolkit */,
 			);
 			path = Toolkits;
+			sourceTree = "<group>";
+		};
+		7E453DFC2C7742C600073B6A /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				7EE686992C774ACF0091C196 /* PresentationDepsBundle */,
+				7E453DFD2C7742F600073B6A /* RemoteDependencies */,
+			);
+			path = Dependencies;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
