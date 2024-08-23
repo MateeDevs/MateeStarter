@@ -3,6 +3,7 @@
 //  Copyright © 2023 Matee. All rights reserved.
 //
 
+import SFSafeSymbols
 import SwiftUI
 
 public struct SlidingButton: View {
@@ -57,7 +58,7 @@ public struct SlidingButton: View {
     GeometryReader { geo in
         SlidingButton(
             title: "Zablokovat",
-            buttonIcon: Image(systemName: "xmark"),
+            buttonIcon: Image(systemSymbol: .xmark),
             color: AppTheme.Colors.primaryButtonBackground,
             isLoading: .constant(false),
             maxWidth: geo.size.width

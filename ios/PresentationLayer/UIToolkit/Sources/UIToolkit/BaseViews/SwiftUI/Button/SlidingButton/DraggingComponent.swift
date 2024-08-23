@@ -3,6 +3,7 @@
 //  Copyright © 2023 Matee. All rights reserved.
 //
 
+import SFSafeSymbols
 import SwiftUI
 
 struct DraggingComponent: View {
@@ -96,7 +97,7 @@ struct DraggingComponent: View {
 #Preview {
     GeometryReader { geo in
         DraggingComponent(
-            buttonIcon: Image(systemName: "xmark"),
+            buttonIcon: Image(systemSymbol: .xmark),
             color: AppTheme.Colors.primaryButtonBackground,
             isLoading: .constant(false),
             maxWidth: geo.size.width

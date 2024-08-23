@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import SFSafeSymbols
 import SwiftUI
 
 public struct ToastData: Equatable {
@@ -43,9 +44,9 @@ public enum ToastStyle {
     
     var image: Image {
         switch self {
-        case .info: Image(systemName: "info.circle")
-        case .success: Image(systemName: "checkmark.circle")
-        case .error: Image(systemName: "xmark.circle")
+        case .info: Image(systemSymbol: .infoCircle)
+        case .success: Image(systemSymbol: .checkmarkCircle)
+        case .error: Image(systemSymbol: .xmarkCircle)
         }
     }
 }

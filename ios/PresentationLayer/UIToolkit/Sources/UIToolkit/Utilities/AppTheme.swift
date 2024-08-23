@@ -3,9 +3,9 @@
 //  Copyright © 2019 Matee. All rights reserved.
 //
 
+import SFSafeSymbols
 import SwiftUI
 import UIKit
-import SFSafeSymbols
 
 public enum AppTheme {
 
