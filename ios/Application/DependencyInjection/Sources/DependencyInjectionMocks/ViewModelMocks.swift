@@ -18,7 +18,9 @@ public extension Container {
         trackAnalyticsEventUseCase.register { TrackAnalyticsEventUseCaseSpy() }
         
         // Sample
-        sampleSharedViewModel.register {  SampleSharedViewModel(getSampleText: GetSampleTextUseCaseMock()) }
+        sampleSharedViewModel.register {
+            SampleSharedViewModel(getSampleText: GetSampleTextUseCaseMock(executeReturnValue: ResultSuccess(data: SampleText(value: "Hello world!"))))
+        }
     }
 }
 #endif
