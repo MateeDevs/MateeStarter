@@ -5,6 +5,7 @@
 
 import SwiftUI
 import UIKit
+import SFSafeSymbols
 
 public enum AppTheme {
 
@@ -145,8 +146,8 @@ public enum AppTheme {
     }
     
     public enum Images {
-        public static let person = UIImage(systemName: "person.fill")
-        public static let personCirle = UIImage(systemName: "person.circle.fill")
-        public static let personSquare = UIImage(systemName: "person.crop.square.fill")
+        public static let person = UIImage(systemSymbol: .personFill)
+        public static let personCirle = UIImage(systemSymbol: .personCircleFill)
+        public static let personSquare = UIImage(systemSymbol: .personCropSquareFill)
     }
 }
