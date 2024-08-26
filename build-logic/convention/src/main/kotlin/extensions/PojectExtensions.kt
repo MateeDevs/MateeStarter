@@ -10,9 +10,11 @@ import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.plugins.PluginManager
 import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.DependencyHandlerScope
+import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.the
 import org.gradle.plugin.use.PluginDependency
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
 
 val Project.libs get() = the<org.gradle.accessors.dm.LibrariesForLibs>()
@@ -58,3 +60,8 @@ fun <BuildTypeT> NamedDomainObjectContainer<BuildTypeT>.demo(action: BuildTypeT.
 
 fun DependencyHandlerScope.coreLibraryDesugaring(dependencyNotation: Any) =
     add("coreLibraryDesugaring", dependencyNotation)
+
+fun Project.kotlin(configure: KotlinProjectExtension.() -> Unit) =
+    extensions.configure<KotlinProjectExtension> {
+        configure()
+    }

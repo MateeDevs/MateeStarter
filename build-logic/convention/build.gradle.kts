@@ -6,9 +6,9 @@ plugins {
 
 group = "buildlogic"
 
-java {
+kotlin {
     val versionCode = libs.versions.java.get().toInt()
-    toolchain {
+    jvmToolchain {
         languageVersion.set(JavaLanguageVersion.of(versionCode))
     }
 }

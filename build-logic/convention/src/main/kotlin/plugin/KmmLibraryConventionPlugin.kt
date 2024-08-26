@@ -6,14 +6,12 @@ import config.configureBuildVariants
 import config.configureKotlinAndroid
 import config.configureTests
 import extensions.apply
-import extensions.java
+import extensions.kotlin
 import extensions.libs
 import extensions.pluginManager
-import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.jvm.toolchain.JavaLanguageVersion
-import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.creating
 import org.gradle.kotlin.dsl.getValue
@@ -35,8 +33,8 @@ class KmmLibraryConventionPlugin : Plugin<Project> {
             }
 
             val versionCode = libs.versions.java.get().toInt()
-            java {
-                toolchain {
+            kotlin {
+                jvmToolchain {
                     languageVersion.set(JavaLanguageVersion.of(versionCode))
                 }
             }

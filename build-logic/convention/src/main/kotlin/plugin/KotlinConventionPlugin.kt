@@ -2,7 +2,7 @@ package plugin
 
 import extensions.apply
 import extensions.implementation
-import extensions.java
+import extensions.kotlin
 import extensions.libs
 import extensions.pluginManager
 import org.gradle.api.JavaVersion
@@ -25,8 +25,8 @@ class KotlinConventionPlugin : Plugin<Project> {
             val versionCode = libs.versions.java.get().toInt()
             val javaVersion = JavaVersion.toVersion(versionCode)
 
-            java {
-                toolchain {
+            kotlin {
+                jvmToolchain {
                     languageVersion.set(JavaLanguageVersion.of(versionCode))
                 }
             }
