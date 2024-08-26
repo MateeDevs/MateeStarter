@@ -5,13 +5,12 @@ import kmp.shared.base.error.ErrorMessageProvider
 import kmp.shared.base.error.ErrorMessageProviderImpl
 import kmp.shared.base.system.Config
 import kmp.shared.base.system.ConfigImpl
-import kmp.shared.base.system.Log
-import kmp.shared.base.system.Logger
+import org.koin.core.module.dsl.singleOf
+import org.koin.dsl.bind
 import org.koin.dsl.module
 
 actual val platformModule = module {
-    single<Config> { ConfigImpl() }
-    single<Logger> { Log }
+    singleOf(::ConfigImpl) bind Config::class
     single { Darwin.create() }
-    single<ErrorMessageProvider> { ErrorMessageProviderImpl() }
+    singleOf(::ErrorMessageProviderImpl) bind ErrorMessageProvider::class
 }
