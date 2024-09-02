@@ -11,7 +11,6 @@ import extensions.libs
 import extensions.pluginManager
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.jvm.toolchain.JavaLanguageVersion
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.invoke
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
@@ -31,9 +30,7 @@ class KmmLibraryConventionPlugin : Plugin<Project> {
 
             val versionCode = libs.versions.java.get().toInt()
             kotlin {
-                jvmToolchain {
-                    languageVersion.set(JavaLanguageVersion.of(versionCode))
-                }
+                jvmToolchain(versionCode)
             }
 
             extensions.configure<LibraryExtension> {

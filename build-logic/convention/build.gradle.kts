@@ -8,9 +8,7 @@ group = "buildlogic"
 
 kotlin {
     val versionCode = libs.versions.java.get().toInt()
-    jvmToolchain {
-        languageVersion.set(JavaLanguageVersion.of(versionCode))
-    }
+    jvmToolchain(versionCode)
 }
 
 dependencies {

@@ -94,7 +94,7 @@ abstract class Destination(parent: FeatureGraph?) {
             "The routeArgument count must match this destination argument count.\n" +
                 "If needed, pass null for default value of argument."
         }
-val args = routeArguments.zip(arguments).map { (routeArg, arg) ->
+        val args = routeArguments.zip(arguments).map { (routeArg, arg) ->
             if (routeArg is Iterable<*>) {
                 routeArg.mapNotNull { iterableRouteArg ->
                     val value = iterableRouteArg?.toString() ?: return@mapNotNull null
@@ -111,7 +111,6 @@ val args = routeArguments.zip(arguments).map { (routeArg, arg) ->
                 listOf(Pair(arg.name, value.toString()))
             }
         }.flatten()
-        }
 
         return createUri(
             path = "$parentPath$routeDefinition",
