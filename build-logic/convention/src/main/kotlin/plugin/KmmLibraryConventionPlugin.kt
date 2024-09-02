@@ -13,9 +13,6 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.jvm.toolchain.JavaLanguageVersion
 import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.creating
-import org.gradle.kotlin.dsl.getValue
-import org.gradle.kotlin.dsl.getting
 import org.gradle.kotlin.dsl.invoke
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
@@ -55,38 +52,28 @@ class KmmLibraryConventionPlugin : Plugin<Project> {
 
             extensions.configure<KotlinMultiplatformExtension> {
                 androidTarget()
+                // iOS targets
+                KmmConfig.getSupportedMobilePlatforms(this@configure, project)
 
                 sourceSets {
-                    val commonMain by getting {
-                        dependencies {
-                            api(libs.mokoResources)
-                            implementation(libs.coroutines.core)
-                            implementation(libs.atomicFu)
-                            implementation(libs.dateTime)
-                            implementation(libs.koin.core)
-                            implementation(libs.bundles.settings)
-                            implementation(libs.bundles.ktor.common)
-                            implementation(libs.kermit)
-                        }
+                    commonMain.dependencies {
+                        api(libs.mokoResources)
+                        implementation(libs.coroutines.core)
+                        implementation(libs.atomicFu)
+                        implementation(libs.dateTime)
+                        implementation(libs.koin.core)
+                        implementation(libs.bundles.settings)
+                        implementation(libs.bundles.ktor.common)
+                        implementation(libs.kermit)
                     }
 
-                    val androidMain by getting {
-                        dependencies {
-                            implementation(libs.ktor.android)
-                            implementation(libs.lifecycle.viewModel)
-                        }
+                    androidMain.dependencies {
+                        implementation(libs.ktor.android)
+                        implementation(libs.lifecycle.viewModel)
                     }
 
-                    val iosMain by creating {
-                        dependsOn(commonMain)
-                        dependencies {
-                            implementation(libs.ktor.ios)
-                        }
-                    }
-                    KmmConfig.getSupportedMobilePlatforms(this@configure, project).forEach {
-                        with(KmmConfig) {
-                            getByName(it.asMainSourceSetName).dependsOn(iosMain)
-                        }
+                    iosMain.dependencies {
+                        implementation(libs.ktor.ios)
                     }
                 }
             }
