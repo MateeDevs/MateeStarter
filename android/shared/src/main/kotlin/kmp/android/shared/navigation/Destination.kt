@@ -94,14 +94,23 @@ abstract class Destination(parent: FeatureGraph?) {
             "The routeArgument count must match this destination argument count.\n" +
                 "If needed, pass null for default value of argument."
         }
-        val args = routeArguments.zip(arguments).map { (routeArg, arg) ->
-            // Provided arg or default arg
-            val value = (routeArg ?: arg.argument.defaultValue)
+val args = routeArguments.zip(arguments).map { (routeArg, arg) ->
+            if (routeArg is Iterable<*>) {
+                routeArg.mapNotNull { iterableRouteArg ->
+                    val value = iterableRouteArg?.toString() ?: return@mapNotNull null
+                    Pair(arg.name, value)
+                }
+            } else {
+                // Provided arg or default arg
+                val value = (routeArg ?: arg.argument.defaultValue)
 
-            require(value != null || arg.argument.isNullable) {
-                "The argument ${arg.name} is null as well as it's default value, but it was not marked as nullable."
+                require(value != null || arg.argument.isNullable) {
+                    "The argument ${arg.name} is null as well as it's default value, but it was not marked as nullable."
+                }
+
+                listOf(Pair(arg.name, value.toString()))
             }
-            Pair(arg.name, value.toString())
+        }.flatten()
         }
 
         return createUri(
