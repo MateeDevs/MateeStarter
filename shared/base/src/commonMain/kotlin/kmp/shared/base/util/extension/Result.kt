@@ -49,14 +49,14 @@ inline fun <T : Any, R : Any> Result<T>.flatMap(transform: (T) -> Result<R>) =
  * Runs the [action] if the [Result] is s [Result.Success].
  * @return The original result
  */
-inline fun <T : Any> Result<T>.onSuccess(action: (T) -> Unit): Result<T> =
+inline fun <T : Any> Result<T>.alsoOnSuccess(action: (T) -> Unit): Result<T> =
     apply { if (this is Result.Success) action(data) }
 
 /**
  * Runs the [action] if the [Result] is an [Result.Error].
  * @return The original result
  */
-inline fun <T : Any> Result<T>.onError(action: (ErrorResult) -> Unit): Result<T> =
+inline fun <T : Any> Result<T>.alsoOnError(action: (ErrorResult) -> Unit): Result<T> =
     apply { if (this is Result.Error) action(error) }
 
 /**
