@@ -35,9 +35,7 @@ final class SampleViewModel: UIToolkit.BaseViewModel, ViewModel, ObservableObjec
     @Published private(set) var state: State = State()
 
     struct State {
-        var isLoading: Bool = false
-        var sampleText: SampleText?
-        var error: String?
+        var sampleText: ViewData<SampleText> = .loading(mock: .stub)
         var toast: ToastData?
     }
     
@@ -61,13 +59,10 @@ final class SampleViewModel: UIToolkit.BaseViewModel, ViewModel, ObservableObjec
     private func loadSampleText() async {
         await execute {
             // Do the business logic
-            state.isLoading = true
-            state.sampleText = try await getSampleTextUseCase.execute()
-            state.isLoading = false
+            state.sampleText = .data(try await getSampleTextUseCase.execute())
         } onError: { error in
             // Handle error
-            state.error = error.localizedMessage
-            state.isLoading = false
+            state.sampleText = .error(error)
         } onCancel: { _ in
             // Custom cancel handling
         }
