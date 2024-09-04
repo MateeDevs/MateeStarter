@@ -36,4 +36,18 @@ public extension View {
     func toastView(_ toastData: Binding<ToastData?>) -> some View {
         modifier(ToastViewModifier(toastData: toastData))
     }
+    
+    func snack(
+            _ snackState: SnackState<InfoErrorSnackVisuals>
+    ) -> some View {
+        self
+            .overlay(
+                VStack {
+                    Spacer()
+                    
+                    InfoErrorSnackHost(snackState: snackState)
+                        .padding(.bottom, 64)
+                }
+            )
+    }
 }
