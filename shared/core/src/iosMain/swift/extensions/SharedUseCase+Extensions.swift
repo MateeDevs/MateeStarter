@@ -5,7 +5,7 @@ import KMPShared
 
 private class JobWrapper {
     var job: Kotlinx_coroutines_coreJob?
-    
+
     func setJob(_ job: Kotlinx_coroutines_coreJob?) {
         self.job = job
     }
@@ -15,7 +15,7 @@ public extension UseCaseFlowNoParams {
     func execute<Out>() -> AsyncStream<Out> {
         let _: JobWrapper = JobWrapper()
         return AsyncStream<Out> { continuation in
-            let coroutineJob = SwiftCoroutinesKt.subscribe(self) { data in
+            let coroutineJob = subscribe { data in
                 let value: Out = data as! Out // swiftlint:disable:this force_cast
                 continuation.yield(value)
             } onComplete: {
@@ -35,7 +35,7 @@ public extension UseCaseFlowResult {
     func execute<In: Any, Out>(params: In) -> AsyncThrowingStream<Out, Error> {
         let _: JobWrapper = JobWrapper()
         return AsyncThrowingStream<Out, Error> { continuation in
-            let coroutineJob = SwiftCoroutinesKt.subscribe(self, params: params) { result in
+            let coroutineJob = subscribe(params: params) { result in
                 switch result {
                 case let resultSuccess as ResultSuccess<AnyObject>:
                     // if new possible type is needed, it can be added to this switch
@@ -70,7 +70,7 @@ public extension UseCaseFlowResult {
                 }
             } onComplete: {
                 continuation.finish()
-            } onThrow_: { error in
+            } onThrow: { error in
                 continuation.finish(throwing: error.asError())
             }
             continuation.onTermination = { _ in
@@ -86,9 +86,8 @@ public extension UseCaseResult {
         return try await withTaskCancellationHandler(
             operation: {
                 try await withCheckedThrowingContinuation { continuation in
-                    
-                    let coroutineJob = SwiftCoroutinesKt.subscribe(
-                        self,
+
+                    let coroutineJob = subscribe(
                         params: params,
                         onSuccess: { result in
                             // swiftlint:disable force_cast
@@ -119,15 +118,14 @@ public extension UseCaseResult {
             }
         )
     }
-    
+
     func execute<In: Any>(params: In) async throws {
         let jobWrapper: JobWrapper = JobWrapper()
         return try await withTaskCancellationHandler(
             operation: {
                 try await withCheckedThrowingContinuation { continuation in
-                    
-                    let coroutineJob = SwiftCoroutinesKt.subscribe(
-                        self,
+
+                    let coroutineJob = subscribe(
                         params: params,
                         onSuccess: { result in
                             guard result is ResultSuccess else {
@@ -163,9 +161,8 @@ public extension UseCaseResultNoParams {
         return try await withTaskCancellationHandler(
             operation: {
                 try await withCheckedThrowingContinuation { continuation in
-                    
-                    let coroutineJob = SwiftCoroutinesKt.subscribe(
-                        self,
+
+                    let coroutineJob = subscribe(
                         onSuccess: { result in
                             // swiftlint:disable force_cast
                             guard result is ResultSuccess else {
@@ -195,16 +192,15 @@ public extension UseCaseResultNoParams {
             }
         )
     }
-    
+
     // Void returining UC
     func execute() async throws {
         let jobWrapper: JobWrapper = JobWrapper()
         return try await withTaskCancellationHandler(
             operation: {
                 try await withCheckedThrowingContinuation { continuation in
-                    
-                    let coroutineJob = SwiftCoroutinesKt.subscribe(
-                        self,
+
+                    let coroutineJob = subscribe(
                         onSuccess: { result in
                             guard result is ResultSuccess else {
                                 let errorResult = (result as! ResultError).error // swiftlint:disable:this force_cast

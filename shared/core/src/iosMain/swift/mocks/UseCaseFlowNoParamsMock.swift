@@ -4,7 +4,6 @@
 //
 
 import Foundation
-import KMPShared
 
 open class UseCaseFlowNoParamsMock<Out>: UseCaseFlowNoParams {
     
@@ -21,7 +20,7 @@ open class UseCaseFlowNoParamsMock<Out>: UseCaseFlowNoParams {
     }
     
     // MARK: - execute
-    public func invoke() async throws -> Kotlinx_coroutines_coreFlow {
+    public func __invoke() async throws -> SkieSwiftFlow<Any> {
         executeCallsCount += 1
         
         guard let executeReturnValue else {

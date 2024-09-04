@@ -4,6 +4,5 @@
 //
 
 import Foundation
-import KMPShared
 
 public final class TestError: ErrorResult {}

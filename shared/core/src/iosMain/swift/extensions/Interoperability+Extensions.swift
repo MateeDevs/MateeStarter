@@ -1,6 +1,6 @@
-import KMPShared
+import Foundation
 
- public extension Optional where Wrapped == KotlinLong {
+public extension Optional where Wrapped == KotlinLong {
     var int: Int {
         Int(truncating: self ?? 0)
     }
