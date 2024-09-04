@@ -24,6 +24,7 @@ class KmmLibraryConventionPlugin : Plugin<Project> {
                 apply(libs.plugins.android.library)
                 apply(libs.plugins.kotlin.multiplatform)
                 apply(libs.plugins.serialization)
+                apply(libs.plugins.touchlabSkie)
                 apply(libs.plugins.ktlint)
                 apply(libs.plugins.mokoResources)
             }
