@@ -44,6 +44,7 @@ extension Fastfile {
         )
         if distributeExternal {
             slack(
+                // swiftlint:disable:next line_length
                 message: "[iOS \(configuration.outputName)] \(version) build \(build) uploaded to the TestFlight\nLink: \(configuration.testFlightLink)",
                 channel: .userDefined(configuration.slackChannel),
                 slackUrl: ProcessInfo.processInfo.environment["SLACK_URL"] ?? "",

@@ -7,8 +7,6 @@ import KMPShared
 import SwiftUI
 import UIToolkit
 
-// swiftlint:disable force_cast
-
 struct SampleSharedViewModelView: View {
     
     @Injected(\.sampleSharedViewModel) private var viewModel: KMPShared.SampleSharedViewModel
@@ -47,9 +45,8 @@ struct SampleSharedViewModelView: View {
             stateBinding: $state,
             onEvent: { event in
                 switch event {
-                case is SampleSharedEventShowMessage: do {
-                    toastData = ToastData((event as! SampleSharedEventShowMessage).message, hideAfter: 2)
-                }
+                case let event as SampleSharedEventShowMessage:
+                    toastData = ToastData(event.message, hideAfter: 2)
                 default: print("Event \(event) not recognized")
                 }
             }

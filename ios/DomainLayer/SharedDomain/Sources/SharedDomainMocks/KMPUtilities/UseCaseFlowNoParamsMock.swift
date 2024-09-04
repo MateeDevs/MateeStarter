@@ -6,8 +6,6 @@
 import Foundation
 import KMPShared
 
-// swiftlint:disable force_cast
-
 open class UseCaseFlowNoParamsMock<Out>: UseCaseFlowNoParams {
     
     public var executeCallsCount = 0
@@ -31,7 +29,7 @@ open class UseCaseFlowNoParamsMock<Out>: UseCaseFlowNoParams {
         }
         
         guard let executeReturnValue = executeReturnValue as? [Out] else {
-            return FlowTestHelper.shared.arrayToFlow(array: [executeReturnValue] as! [Out])
+            return FlowTestHelper.shared.arrayToFlow(array: [executeReturnValue] as! [Out]) // swiftlint:disable:this force_cast
         }
         
         return FlowTestHelper.shared.arrayToFlow(array: executeReturnValue)

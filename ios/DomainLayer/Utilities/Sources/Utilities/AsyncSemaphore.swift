@@ -1,3 +1,4 @@
+// swiftlint:disable file_length
 // Copyright (C) 2022 Gwendal Roué
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -44,6 +45,7 @@ import Foundation
 public final class AsyncSemaphore: @unchecked Sendable {
     /// "Waiting for a signal" is easily said, but several possible states exist.
     private class Suspension {
+        // swiftlint:disable:next nesting
         enum State {
             /// Initial state. Next is suspended, or cancelled.
             case pending

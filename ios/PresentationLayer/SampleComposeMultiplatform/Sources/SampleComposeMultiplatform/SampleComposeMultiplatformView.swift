@@ -9,8 +9,6 @@ import KMPShared
 import SwiftUI
 import UIToolkit
 
-// swiftlint:disable force_cast
-
 struct SampleComposeMultiplatformViewController: UIViewControllerRepresentable {
     
     private var viewModel: KMPShared.SampleSharedViewModel
@@ -48,7 +46,8 @@ struct SampleComposeMultiplatformView: View {
             viewModel: viewModel,
             onEvent: { event in
                 switch event {
-                case is SampleSharedEventShowMessage: toastData = ToastData((event as! SampleSharedEventShowMessage).message, hideAfter: 2)
+                case let event as SampleSharedEventShowMessage:
+                    toastData = ToastData(event.message, hideAfter: 2)
                 default: print("Event \(event) not recognized")
                 }
             }

@@ -7,14 +7,12 @@ import Foundation
 import KMPShared
 import SwiftUI
 
-// swiftlint:disable force_cast
-
 public extension BaseViewModelInt {
     func bindState<S: VmState>(stateBinding: Binding<S>) -> () -> Void {
         @Binding var state: S
         _state = stateBinding
         let coroutineJob = SwiftViewModelCoroutinesKt.subscribeToState(self) { data in
-            let value = data as! S
+            let value = data as! S // swiftlint:disable:this force_cast
             state = value
         } onComplete: {
             // do nothing
@@ -29,7 +27,7 @@ public extension BaseViewModelInt {
     func asyncStreamFromEvents<E: VmEvent>() -> AsyncStream<E> {
         return AsyncStream<E> { continuation in
             let coroutineJob = SwiftViewModelCoroutinesKt.subscribeToEvents(self) { data in
-                let value = data as! E
+                let value = data as! E // swiftlint:disable:this force_cast
                 continuation.yield(value)
             } onComplete: {
                 continuation.finish()

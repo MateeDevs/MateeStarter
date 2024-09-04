@@ -11,7 +11,7 @@ public protocol ViewModel {
     
     // State
     associatedtype State
-    var state: State { get }
+    var state: State { get } // swiftlint:disable:this let_var_whitespace
     
     // Intent
     associatedtype Intent
