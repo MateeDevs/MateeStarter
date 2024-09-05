@@ -36,8 +36,8 @@ public extension UseCaseFlowResult {
         let _: JobWrapper = JobWrapper()
         return AsyncThrowingStream<Out, Error> { continuation in
             let coroutineJob = subscribe(params: params) { result in
-                switch result {
-                case let resultSuccess as ResultSuccess<AnyObject>:
+                switch onEnum(of: result) {
+                case .success(let resultSuccess):
                     // if new possible type is needed, it can be added to this switch
                     // swiftlint:disable force_cast
                     switch resultSuccess.data {
@@ -50,17 +50,8 @@ public extension UseCaseFlowResult {
                     default:
                         continuation.yield(resultSuccess as! Out)
                     }
-                    // swiftlint:enable force_cast
-                case let resultError as ResultError<AnyObject>:
+                case .error(let resultError):
                     let resultError = resultError.error
-                    continuation.finish(
-                        throwing: KmmLocalizedError(
-                            errorResult: resultError,
-                            localizedMessage: resultError.localizedMessage.localized()
-                        )
-                    )
-                default:
-                    let resultError = CommonError.Unknown()
                     continuation.finish(
                         throwing: KmmLocalizedError(
                             errorResult: resultError,
@@ -82,149 +73,50 @@ public extension UseCaseFlowResult {
 
 public extension UseCaseResult {
     func execute<In: Any, Out>(params: In) async throws -> Out {
-        let jobWrapper: JobWrapper = JobWrapper()
-        return try await withTaskCancellationHandler(
-            operation: {
-                try await withCheckedThrowingContinuation { continuation in
+        let res = try await invoke(params: params)
 
-                    let coroutineJob = subscribe(
-                        params: params,
-                        onSuccess: { result in
-                            // swiftlint:disable force_cast
-                            guard result is ResultSuccess else {
-                                let errorResult = (result as! ResultError).error
-                                continuation.resume(throwing: KmmLocalizedError(
-                                    errorResult: errorResult,
-                                    localizedMessage: errorResult.localizedMessage.localized()
-                                ))
-                                return
-                            }
-                            let value: Out = (result as! ResultSuccess).data as! Out
-                            continuation.resume(returning: value)
-                            return
-                            // swiftlint:enable force_cast
-                        },
-                        onThrow: { kotlinThrowable in
-                            continuation.resume(throwing: KmmLocalizedError(
-                                errorResult: nil,
-                                localizedMessage: kotlinThrowable.message ?? kotlinThrowable.description()
-                            ))
-                        })
-                    jobWrapper.setJob(coroutineJob)
-                }
-            },
-            onCancel: {[jobWrapper] in
-                jobWrapper.job?.cancel(cause: nil)
-            }
-        )
+        switch onEnum(of: res) {
+        case .error(let resultError):
+            throw KmmLocalizedError(errorResult: resultError.error, localizedMessage: resultError.error.localizedMessage(nil))
+        case .success(let resultSuccess):
+            return resultSuccess.data as! Out
+        }
     }
 
     func execute<In: Any>(params: In) async throws {
-        let jobWrapper: JobWrapper = JobWrapper()
-        return try await withTaskCancellationHandler(
-            operation: {
-                try await withCheckedThrowingContinuation { continuation in
+        let res = try await invoke(params: params)
 
-                    let coroutineJob = subscribe(
-                        params: params,
-                        onSuccess: { result in
-                            guard result is ResultSuccess else {
-                                let errorResult = (result as! ResultError).error // swiftlint:disable:this force_cast
-                                continuation.resume(throwing: KmmLocalizedError(
-                                    errorResult: errorResult,
-                                    localizedMessage: errorResult.localizedMessage.localized()
-                                ))
-                                return
-                            }
-                            continuation.resume()
-                            return
-                        },
-                        onThrow: { kotlinThrowable in
-                            continuation.resume(throwing: KmmLocalizedError(
-                                errorResult: nil,
-                                localizedMessage: kotlinThrowable.message ?? kotlinThrowable.description()
-                            ))
-                        })
-                    jobWrapper.setJob(coroutineJob)
-                }
-            },
-            onCancel: {[jobWrapper] in
-                jobWrapper.job?.cancel(cause: nil)
-            }
-        )
+        switch onEnum(of: res) {
+        case .error(let resultError):
+            throw KmmLocalizedError(errorResult: resultError.error, localizedMessage: resultError.error.localizedMessage(nil))
+        case .success(let resultSuccess):
+            return
+        }
     }
 }
 
 public extension UseCaseResultNoParams {
     func execute<Out>() async throws -> Out {
-        let jobWrapper: JobWrapper = JobWrapper()
-        return try await withTaskCancellationHandler(
-            operation: {
-                try await withCheckedThrowingContinuation { continuation in
+        let res = try await invoke()
 
-                    let coroutineJob = subscribe(
-                        onSuccess: { result in
-                            // swiftlint:disable force_cast
-                            guard result is ResultSuccess else {
-                                let errorResult = (result as! ResultError).error
-                                continuation.resume(throwing: KmmLocalizedError(
-                                    errorResult: errorResult,
-                                    localizedMessage: errorResult.localizedMessage.localized()
-                                ))
-                                return
-                            }
-                            let value: Out = (result as! ResultSuccess).data as! Out
-                            continuation.resume(returning: value)
-                            return
-                            // swiftlint:enable force_cast
-                        },
-                        onThrow: { kotlinThrowable in
-                            continuation.resume(throwing: KmmLocalizedError(
-                                errorResult: nil,
-                                localizedMessage: kotlinThrowable.message ?? kotlinThrowable.description()
-                            ))
-                        })
-                    jobWrapper.setJob(coroutineJob)
-                }
-            },
-            onCancel: {[jobWrapper] in
-                jobWrapper.job?.cancel(cause: nil)
-            }
-        )
+        switch onEnum(of: res) {
+        case .error(let resultError):
+            throw KmmLocalizedError(errorResult: resultError.error, localizedMessage: resultError.error.localizedMessage(nil))
+        case .success(let resultSuccess):
+            return resultSuccess.data as! Out
+        }
     }
+
 
     // Void returining UC
     func execute() async throws {
-        let jobWrapper: JobWrapper = JobWrapper()
-        return try await withTaskCancellationHandler(
-            operation: {
-                try await withCheckedThrowingContinuation { continuation in
+        let res = try await invoke()
 
-                    let coroutineJob = subscribe(
-                        onSuccess: { result in
-                            guard result is ResultSuccess else {
-                                let errorResult = (result as! ResultError).error // swiftlint:disable:this force_cast
-                                continuation.resume(throwing: KmmLocalizedError(
-                                    errorResult: errorResult,
-                                    localizedMessage: errorResult.localizedMessage.localized()
-                                ))
-                                return
-                            }
-                            continuation.resume()
-                            return
-                        },
-                        onThrow: { kotlinThrowable in
-                            continuation.resume(throwing: KmmLocalizedError(
-                                errorResult: nil,
-                                localizedMessage: kotlinThrowable.message ?? kotlinThrowable.description()
-                            ))
-                        })
-                    jobWrapper.setJob(coroutineJob)
-                }
-            },
-            onCancel: {[jobWrapper] in
-                jobWrapper.job?.cancel(cause: nil)
-            }
-        )
+        switch onEnum(of: res) {
+        case .error(let resultError):
+            throw KmmLocalizedError(errorResult: resultError.error, localizedMessage: resultError.error.localizedMessage(nil))
+        case .success(let resultSuccess):
+            return
+        }
     }
 }

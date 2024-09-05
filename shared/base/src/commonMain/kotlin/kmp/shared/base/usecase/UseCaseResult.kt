@@ -13,10 +13,12 @@ import kotlinx.coroutines.flow.Flow
  */
 
 interface UseCaseResult<in Params, out T : Any> {
+    @Throws(Throwable::class)
     suspend operator fun invoke(params: Params): Result<T>
 }
 
 interface UseCaseResultNoParams<out T : Any> {
+    @Throws(Throwable::class)
     suspend operator fun invoke(): Result<T>
 }
 
