@@ -10,7 +10,7 @@ import UIToolkit
 struct SampleSharedViewModelView: View {
     
     @Injected(\.sampleSharedViewModel) private var viewModel: KMPShared.SampleSharedViewModel
-    @State private var state: SampleSharedState = .init(loading: false, sampleText: nil, error: nil)
+    @State private var state = SampleSharedState()
     
     @State private var toastData: ToastData?
     

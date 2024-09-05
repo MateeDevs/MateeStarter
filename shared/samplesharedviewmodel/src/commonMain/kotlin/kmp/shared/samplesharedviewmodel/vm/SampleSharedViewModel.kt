@@ -33,7 +33,9 @@ data class SampleSharedState(
     val loading: Boolean = false,
     val sampleText: SampleText? = null,
     val error: ErrorResult? = null,
-) : VmState
+) : VmState {
+    constructor() : this(true, null, null)
+}
 
 sealed interface SampleSharedIntent : VmIntent {
     data object OnAppeared : SampleSharedIntent
