@@ -44,10 +44,9 @@ struct SampleSharedViewModelView: View {
             viewModel,
             stateBinding: $state,
             onEvent: { event in
-                switch event {
-                case let event as SampleSharedEventShowMessage:
-                    toastData = ToastData(event.message, hideAfter: 2)
-                default: print("Event \(event) not recognized")
+                switch onEnum(of: event) {
+                case .showMessage(let message):
+                    toastData = ToastData(message.message, hideAfter: 2)
                 }
             }
         )
