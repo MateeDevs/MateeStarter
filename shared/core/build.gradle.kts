@@ -1,5 +1,3 @@
-import constants.ProjectConstants
-
 plugins {
     alias(libs.plugins.mateeStarter.kmm.xcframework.library)
     alias(libs.plugins.touchlabSkie)
@@ -10,8 +8,7 @@ android {
 }
 
 multiplatformResources {
-    resourcesPackage.set("kmp.shared.base")
-    configureCopyXCFrameworkResources(ProjectConstants.iosShared)
+    resourcesPackage.set("kmp.shared.core")
 }
 
 ktlint {
