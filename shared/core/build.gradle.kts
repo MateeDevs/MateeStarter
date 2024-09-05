@@ -2,6 +2,7 @@ import constants.ProjectConstants
 
 plugins {
     alias(libs.plugins.mateeStarter.kmm.xcframework.library)
+    alias(libs.plugins.touchlabSkie)
 }
 
 android {
