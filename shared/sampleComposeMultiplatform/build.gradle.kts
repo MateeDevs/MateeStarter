@@ -1,3 +1,6 @@
+import extensions.ktlintRuleset
+import extensions.libs
+
 plugins {
     alias(libs.plugins.mateeStarter.kmm.library)
     alias(libs.plugins.jetbrains.compose)
@@ -27,4 +30,6 @@ dependencies {
     @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
     commonMainImplementation(compose.components.resources)
     commonMainImplementation(compose.components.uiToolingPreview)
+
+    ktlintRuleset(libs.ktlint.composeRules)
 }

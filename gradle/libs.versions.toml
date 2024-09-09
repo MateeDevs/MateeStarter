@@ -23,6 +23,7 @@ kermit = "2.0.3"
 settings = "1.1.1"
 googlePlayServices = "21.3.0"
 ktLint = "11.6.0"
+ktLint-rules = "0.3.8"
 kotlinxImmutableCollections = "0.3.6"
 konsist = "0.13.0"
 junit = "4.13.2"
@@ -96,7 +97,7 @@ settings-coroutines = { module = "com.russhwolf:multiplatform-settings-coroutine
 # Google Play Services
 googlePlayServices-location = { module = "com.google.android.gms:play-services-location", version.ref = "googlePlayServices" }
 # KtLint rules
-ktlint-composeRules = { module = "io.nlopez.compose.rules:ktlint", version.ref = "ktLint" }
+ktlint-composeRules = { module = "io.nlopez.compose.rules:ktlint", version.ref = "ktLint-rules" }
 # Moko resources
 mokoResources = { module = "dev.icerock.moko:resources", version.ref = "mokoResources" }
 mokoResources-compose = { module = "dev.icerock.moko:resources-compose", version.ref = "mokoResources" }

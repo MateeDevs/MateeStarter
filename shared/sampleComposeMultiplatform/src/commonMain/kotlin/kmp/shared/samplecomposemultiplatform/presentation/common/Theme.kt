@@ -8,8 +8,6 @@ import androidx.compose.material.Shapes
 import androidx.compose.material.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
 
 // https://coolors.co/f5ab00-b8a422-9aa133-7b9d44-d95700-e0e0e0-f0f0f0
 val lightColors = Colors(

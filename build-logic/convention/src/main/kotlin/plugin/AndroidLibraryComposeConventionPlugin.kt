@@ -3,6 +3,7 @@ package plugin
 import com.android.build.api.dsl.LibraryExtension
 import config.configureComposeCompiler
 import config.configureComposeDependencies
+import config.configureComposeLint
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
@@ -20,6 +21,7 @@ class AndroidLibraryComposeConventionPlugin : Plugin<Project> {
             }
 
             configureComposeDependencies()
+            configureComposeLint()
         }
     }
 }

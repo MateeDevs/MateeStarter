@@ -19,7 +19,6 @@ fun <A : Any> A.success(): Result<A> = Result.Success(this)
  */
 fun <A : Any> ErrorResult.error(): Result<A> = Result.Error(this)
 
-
 /** Fold Result data object */
 @OptIn(ExperimentalContracts::class)
 inline fun <T : Any, R> Result<T>.fold(
@@ -69,7 +68,6 @@ inline fun <T : Any> Result<T>.getOrElse(recover: (ErrorResult) -> T): T =
  * Returns the [data] if this [Result] is a [Result.Success] or null otherwise.
  */
 fun <T : Any> Result<T>.getOrNull(): T? = fold(success = { it }, error = { null })
-
 
 /**
  * Returns this [Result] if it's a [Result.Success] or returns the [Result] of [recover] when this [Result] is [Result.Error]
