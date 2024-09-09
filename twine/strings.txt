@@ -1,0 +1,113 @@
+[[Languages]]
+	[language_cs]
+		cs = CS
+		en = CS
+		sk = CS
+	[language_cs_fullname]
+		cs = Čeština
+		en = Czech
+		sk = Čeština
+	[language_sk]
+		cs = SK
+		en = SK
+		sk = SK
+	[language_sk_fullname]
+		cs = Slovenština
+		en = Slovak
+		sk = Slovenčina
+	[language_en]
+		cs = EN
+		en = EN
+		sk = EN
+	[language_en_fullname]
+		cs = Angličtina
+		en = English
+		sk = Angličtina
+
+[[Bottom bar view]]
+	[bottom_bar_item_1]
+		cs = Classic
+		en = Classic
+		sk = Classic
+	[bottom_bar_item_2]
+		cs = Shared VMs
+		en = Shared VMs
+		sk = Shared VMs
+	[bottom_bar_item_3]
+		cs = Compose Multiplatform
+		en = Compose Multiplatform
+		sk = Compose Multiplatform
+
+[[General navigation]]
+	[done]
+		cs = Hotovo
+		en = Done
+		sk = Hotovo
+	[close]
+		cs = Zavřít
+		en = Close
+		sk = Zavrieť
+	[back]
+		cs = Zpět
+		en = Back
+		sk = Späť
+	[cancel]
+		cs = Zrušit
+		en = Cancel
+		sk = Zrušiť
+	[skip]
+		cs = Přeskočit
+		en = Skip
+		sk = Preskočiť
+	[next]
+		cs = Další
+		en = Next
+		sk = Ďalší
+	[finish]
+		cs = Dokončit
+		en = Finish
+		sk = Dokončiť
+	[ok]
+		cs = Ok
+		en = Ok
+		sk = Ok
+	[yes]
+		cs = Ano
+		en = Yes
+		sk = Áno
+	[no]
+		cs = Ne
+		en = No
+		sk = Nie
+	[clear]
+		cs = Vymazat
+		en = Clear
+		sk = Vymazať
+
+[[Image picker]]
+	[image_picker_title]
+		cs = Výběr fotografie
+		en = Photo selection
+		sk = Výber fotografie
+	[image_picker_subtitle]
+		cs = Vyberte, odkud chcete fotografii nahrát.
+		en = Choose location of the photo
+		sk = Vyberte, odkiaľ chcete fotografiu nahrať.
+	[image_picker_camera]
+		cs = Fotoaparát
+		en = Camera
+		sk = Fotoaparát
+	[image_picker_library]
+		cs = Knihovna
+		en = Library
+		sk = Knihovňa
+	[image_picker_cancel]
+		cs = Zrušit
+		en = Cancel
+		sk = Zrušiť
+
+[[General dialogs]]
+	[dialog_error_close_text]
+		cs = Zavřít
+		en = Close
+		sk = Zavrieť

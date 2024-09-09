@@ -1,0 +1,53 @@
+name: iOS - Build develop
+
+on:
+  pull_request:
+    branches:
+      - develop
+    types: [closed]
+
+jobs:
+  build:
+    name: Create new build
+    if: github.event.pull_request.merged == true
+    runs-on: [self-hosted, ios-build]
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        continue-on-error: true
+        with:
+          clean: false
+      - name: Build KMP
+        working-directory: ios
+        run: |
+          ./scripts/generate-error-messages.sh
+          ./scripts/build-kmp.sh release false true false
+      - name: Setup tools
+        working-directory: ios
+        run: ./scripts/setup.sh
+      - name: Prepare App Store Connect API key file
+        env:
+          APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_MATEE }}
+        working-directory: ios
+        run: echo "$APP_STORE_CONNECT_API_KEY_CONTENT" > AuthKey_Matee.p8
+      - name: Create a new Alpha build
+        env:
+          BUILD_NUMBER: $(echo `date +"%y%m%d%H%M"`)
+        working-directory: ios
+        run: swift run --package-path CI/FastlaneRunner fastlaneRunner lane buildAlphaLane
+
+  deploy-alpha:
+    name: Deploy alpha
+    if: github.event.pull_request.merged == true
+    needs: build
+    runs-on: [self-hosted, ios-internal]
+    timeout-minutes: 15
+    steps:
+      - name: Upload the Alpha build to the TestFlight
+        env:
+          APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_MATEE }}
+          SLACK_URL: ${{ secrets.FASTLANE_SLACK_URL }}
+          DISTRIBUTE_EXTERNAL: false
+        working-directory: ios
+        run: swift run --package-path CI/FastlaneRunner fastlaneRunner lane uploadTestFlightAlphaLane swiftServerPort 2001
