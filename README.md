@@ -76,7 +76,7 @@ remove compose multiplatform plugin from `libs.versions.toml`.
 
 If you choose to share view models, but use native UI, you can delete
 the `samplecomposemultiplatform` module in both `shared`and `android`. You can also remove compose
-multiplatform plugin from `libs.versions.toml`.Refactor base classes that you will need:
+multiplatform plugin from `libs.versions.toml`. Refactor base classes that you will need:
 move `samplesharedviewmodel/base` files in `:shared:samplesharedviewmodel` to the `:shared:base`
 module (from `commonMain` as well as `iosMain` and `androidMain`) to have base classes you can
 extend. Also in iOS project move `SampleSharedViewModel/Toolkit` to `UIToolkit`. Then you can write
@@ -88,6 +88,7 @@ especially check the usage on iOS with helpful extension methods).
 If you go all out and decide to share both UI and view models, take inspiration
 from `SampleComposeMultiplatformScreenViewController` when calling you view from the swift code. For
 Android there are no changes needed, see in `:android:samplecomposemultiplatform` for yourself.
+You can move the classes in `ui/test` to shared module.
 
 ## Creating new feature module in shared
 
@@ -96,6 +97,13 @@ Android there are no changes needed, see in `:android:samplecomposemultiplatform
 - Add dependency to `settings.gradle.kts`, `build.gradle.kts` of `:shared:core` and `.kmm()`
   in `KmmConfig` in `build-logic`
 - Add DI module to `Module` in `:shared:core`
+
+## Tests
+
+### Android
+
+There are UI tests prepared for all three screens in `android/app/androidTest`. You can take inspiration
+and write tests for own screens with prepared structure and extensions.
 
 ## Technologies
 

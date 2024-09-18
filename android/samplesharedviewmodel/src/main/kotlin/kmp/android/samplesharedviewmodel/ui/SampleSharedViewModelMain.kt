@@ -20,6 +20,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
 import kmp.android.samplesharedviewmodel.navigation.SampleSharedViewModelGraph
+import kmp.shared.samplecomposemultiplatform.presentation.ui.test.TestTags
+import kmp.shared.samplecomposemultiplatform.presentation.ui.test.testTag
 import kmp.android.shared.navigation.composableDestination
 import kmp.android.shared.style.Space
 import kmp.shared.samplesharedviewmodel.vm.SampleSharedEvent
@@ -85,7 +87,12 @@ private fun SampleMainScreen(
                         text = "This is a sample with android compose UI and shared VM",
                         textAlign = TextAlign.Center,
                     )
-                    Text(text = state.sampleText?.value ?: "")
+
+                    Text(
+                        text = state.sampleText?.value ?: "",
+                        modifier = Modifier.testTag(TestTags.SampleSharedViewModelScreen.SampleText),
+                    )
+
                     Button(onClick = { onIntent(SampleSharedIntent.OnButtonTapped) }) {
                         Text(text = "Click me!")
                     }

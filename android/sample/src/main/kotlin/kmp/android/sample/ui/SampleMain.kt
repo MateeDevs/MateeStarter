@@ -24,6 +24,8 @@ import kmp.android.sample.vm.SampleEvent
 import kmp.android.sample.vm.SampleIntent
 import kmp.android.sample.vm.SampleState
 import kmp.android.sample.vm.SampleViewModel
+import kmp.shared.samplecomposemultiplatform.presentation.ui.test.TestTags
+import kmp.shared.samplecomposemultiplatform.presentation.ui.test.testTag
 import kmp.android.shared.navigation.composableDestination
 import kmp.android.shared.style.Space
 import kotlinx.coroutines.flow.collectLatest
@@ -85,7 +87,12 @@ private fun SampleMainScreen(
                         text = "This is a sample with android compose UI and android VM",
                         textAlign = TextAlign.Center,
                     )
-                    Text(text = state.sampleText?.value ?: "")
+
+                    Text(
+                        text = state.sampleText?.value ?: "",
+                        modifier = Modifier.testTag(TestTags.SampleScreen.SampleText),
+                    )
+
                     Button(onClick = { onIntent(SampleIntent.OnButtonTapped) }) {
                         Text(text = "Click me!")
                     }

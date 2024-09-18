@@ -15,6 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import kmp.shared.samplecomposemultiplatform.presentation.common.AppTheme
+import kmp.shared.samplecomposemultiplatform.presentation.ui.test.TestTags
+import kmp.shared.samplecomposemultiplatform.presentation.ui.test.testTag
 import kmp.shared.samplesharedviewmodel.vm.SampleSharedIntent
 import kmp.shared.samplesharedviewmodel.vm.SampleSharedState
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -38,7 +40,12 @@ fun SampleComposeMultiplatformScreen(
                         text = "This is a sample with compose multiplatform UI and shared VM",
                         textAlign = TextAlign.Center,
                     )
-                    Text(text = state.sampleText?.value ?: "")
+
+                    Text(
+                        text = state.sampleText?.value ?: "",
+                        modifier = Modifier.testTag(TestTags.SampleComposeMultiplatformScreen.SampleText),
+                    )
+
                     Button(onClick = { onIntent(SampleSharedIntent.OnButtonTapped) }) {
                         Text(text = "Click me!")
                     }

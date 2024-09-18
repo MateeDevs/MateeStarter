@@ -29,6 +29,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
             }
 
             apply<KotlinConventionPlugin>()
+            apply<TestsConventionPlugin>()
 
             extensions.configure<BaseAppModuleExtension> {
                 configureKotlinAndroid(this)
@@ -66,6 +67,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                 implementation(libs.koin.core)
                 implementation(libs.koin.android)
                 implementation(libs.mokoResources.compose)
+                implementation(libs.dateTime)
             }
         }
     }
