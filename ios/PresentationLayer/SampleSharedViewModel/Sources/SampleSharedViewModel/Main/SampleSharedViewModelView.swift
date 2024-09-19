@@ -61,9 +61,9 @@ import DependencyInjectionMocks
 import Factory
 
 #Preview {
+    Container.shared.registerUseCaseMocks()
     Container.shared.registerViewModelMocks()
     
     return SampleSharedViewModelView(flowController: nil)
 }
 #endif
-
