@@ -37,21 +37,16 @@ struct SampleView: View {
         .lifecycle(viewModel)
     }
     
-    private struct ContentView: View {
-        
-        let sampleText: SampleText
-        let onButtonTapped: () -> Void
-        
-        var body: some View {
-            VStack(spacing: AppTheme.Dimens.spaceMedium) {
-                Text("This is a sample with SwiftUI and iOS VM")
-                
-                Text(sampleText.value)
-                
-                Button("Click me!") {
-                    onButtonTapped()
-                }
-            }
+    private func contentView(
+        sampleText: String,
+        onButtonTapped: @escaping () -> Void
+    ) -> some View {
+        VStack(spacing: AppTheme.Dimens.spaceMedium) {
+            Text("This is a sample with SwiftUI and iOS VM")
+            
+            Text(sampleText.value)
+            
+            Button("Click me!", action: onButtonTapped)
         }
     }
     
