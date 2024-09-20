@@ -19,7 +19,7 @@ struct SampleView: View {
         Group {
             switch viewModel.state.sampleText {
             case let .data(text), let .loading(text):
-                ContentView(sampleText: text) {
+                contentView(sampleText: text) {
                     viewModel.onIntent(.onButtonTapped)
                 }
                 .skeleton(viewModel.state.sampleText.isLoading)
@@ -38,7 +38,7 @@ struct SampleView: View {
     }
     
     private func contentView(
-        sampleText: String,
+        sampleText: SampleText,
         onButtonTapped: @escaping () -> Void
     ) -> some View {
         VStack(spacing: AppTheme.Dimens.spaceMedium) {
@@ -47,15 +47,6 @@ struct SampleView: View {
             Text(sampleText.value)
             
             Button("Click me!", action: onButtonTapped)
-        }
-    }
-    
-    private struct ErrorView: View {
-        
-        let error: Error
-        
-        var body: some View {
-            Text(error.localizedDescription)
         }
     }
 }
