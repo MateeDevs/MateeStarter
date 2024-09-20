@@ -8,8 +8,9 @@ import SharedDomain
 
 public extension Container {
     // Analytics
-    var trackAnalyticsEventUseCase: Factory<TrackAnalyticsEventUseCase> { self { TrackAnalyticsEventUseCaseImpl(
-        analyticsRepository: self.analyticsRepository()
-    )
+    var trackAnalyticsEventUseCase: Factory<TrackAnalyticsEventUseCase> { self {
+        TrackAnalyticsEventUseCaseImpl(
+            analyticsRepository: self.analyticsRepository()
+        )
     }}
 }
