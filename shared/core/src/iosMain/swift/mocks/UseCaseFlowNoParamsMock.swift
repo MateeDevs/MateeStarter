@@ -24,13 +24,14 @@ open class UseCaseFlowNoParamsMock<Out>: UseCaseFlowNoParams {
         executeCallsCount += 1
         
         guard let executeReturnValue else {
-            return FlowTestHelper.shared.arrayToFlow(array: [])
+            return FlowTestHelper.shared.arrayToFlow([])
         }
         
-        guard let executeReturnValue = executeReturnValue as? [Out] else {
-            return FlowTestHelper.shared.arrayToFlow(array: [executeReturnValue] as! [Out]) // swiftlint:disable:this force_cast
+        guard let executeReturnValue = executeReturnValue as? Array<Out> else {
+            return FlowTestHelper.shared.arrayToFlow([executeReturnValue] as! [Out]) // swiftlint:disable:this force_cast
+
         }
         
-        return FlowTestHelper.shared.arrayToFlow(array: executeReturnValue)
+        return FlowTestHelper.shared.arrayToFlow(executeReturnValue)
     }
 }

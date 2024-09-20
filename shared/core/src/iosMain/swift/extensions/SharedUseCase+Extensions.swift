@@ -11,18 +11,20 @@ private class JobWrapper {
     }
 }
 
+/// `SkieSwiftFlow` does not propagate exceptions to Swift, we need custom handling
 public extension UseCaseFlowNoParams {
-    func execute<Out>() -> AsyncStream<Out> {
-        let _: JobWrapper = JobWrapper()
-        return AsyncStream<Out> { continuation in
+    func execute<Out>() -> AsyncThrowingStream<Out, Error> {
+        let jobWrapper: JobWrapper = JobWrapper()
+        return AsyncThrowingStream<Out, Error> { continuation in
             let coroutineJob = subscribe { data in
                 let value: Out = data as! Out // swiftlint:disable:this force_cast
                 continuation.yield(value)
             } onComplete: {
                 continuation.finish()
-            } onThrow: { _ in
-                continuation.finish()
+            } onThrow: { error in
+                continuation.finish(throwing: error.asError())
             }
+            jobWrapper.setJob(coroutineJob)
             continuation.onTermination = { _ in
                 coroutineJob.cancel(cause: nil)
             }
@@ -31,9 +33,10 @@ public extension UseCaseFlowNoParams {
 }
 
 // returns unwrapped result, for try await should be wrapped in do-catch block
+/// `SkieSwiftFlow` does not propagate exceptions to Swift, we need custom handling
 public extension UseCaseFlowResult {
     func execute<In: Any, Out>(params: In) -> AsyncThrowingStream<Out, Error> {
-        let _: JobWrapper = JobWrapper()
+        let jobWrapper: JobWrapper = JobWrapper()
         return AsyncThrowingStream<Out, Error> { continuation in
             let coroutineJob = subscribe(params: params) { result in
                 switch onEnum(of: result) {
@@ -41,11 +44,11 @@ public extension UseCaseFlowResult {
                     // if new possible type is needed, it can be added to this switch
                     // swiftlint:disable force_cast
                     switch resultSuccess.data {
-                    case let resultSuccess as NSArray:
-                        let arrayValue = (resultSuccess as? [Any]) as! Out
+                    case let array as NSArray:
+                        let arrayValue = (array as? [Any]) as! Out
                         continuation.yield(arrayValue)
-                    case let resultSuccess as KotlinBoolean:
-                        let boolValue = resultSuccess.boolValue as! Out
+                    case let boolean as KotlinBoolean:
+                        let boolValue = boolean.boolValue as! Out
                         continuation.yield(boolValue)
                     default:
                         continuation.yield(resultSuccess as! Out)
@@ -64,6 +67,7 @@ public extension UseCaseFlowResult {
             } onThrow: { error in
                 continuation.finish(throwing: error.asError())
             }
+            jobWrapper.setJob(coroutineJob)
             continuation.onTermination = { _ in
                 coroutineJob.cancel(cause: nil)
             }
@@ -90,7 +94,7 @@ public extension UseCaseResult {
         case .error(let resultError):
             throw KmmLocalizedError(errorResult: resultError.error, localizedMessage: resultError.error.localizedMessage(nil))
         case .success(let resultSuccess):
-            return
+            return resultSuccess.data as! Void
         }
     }
 }
@@ -116,7 +120,7 @@ public extension UseCaseResultNoParams {
         case .error(let resultError):
             throw KmmLocalizedError(errorResult: resultError.error, localizedMessage: resultError.error.localizedMessage(nil))
         case .success(let resultSuccess):
-            return
+            return resultSuccess.data as! Void
         }
     }
 }
