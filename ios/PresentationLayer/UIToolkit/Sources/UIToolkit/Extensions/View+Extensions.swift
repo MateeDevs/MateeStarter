@@ -38,7 +38,7 @@ public extension View {
     }
     
     func snack(
-            _ snackState: SnackState<InfoErrorSnackVisuals>
+        _ snackState: SnackState<InfoErrorSnackVisuals>
     ) -> some View {
         self
             .overlay(
