@@ -14,11 +14,10 @@ import SharedDomainMocks
 public extension Container {
     func registerViewModelMocks() {
         
-        // Analytics
-        trackAnalyticsEventUseCase.register { TrackAnalyticsEventUseCaseSpy() }
-        
         // Sample
-        sampleSharedViewModel.register { SampleSharedViewModel(getSampleText: GetSampleTextUseCaseMock()) }
+        sampleSharedViewModel.register {
+            SampleSharedViewModel(getSampleText: self.getSampleTextUseCase())
+        }
     }
 }
 #endif
