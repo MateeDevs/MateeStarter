@@ -18,7 +18,8 @@ let package = Package(
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
         .package(name: "Utilities", path: "../../DomainLayer/Utilities"),
-        .package(url: "https://github.com/SwiftGen/SwiftGenPlugin", .upToNextMajor(from: "6.6.0"))
+        .package(url: "https://github.com/SwiftGen/SwiftGenPlugin", .upToNextMajor(from: "6.6.0")),
+        .package(url: "https://github.com/SFSafeSymbols/SFSafeSymbols.git", .upToNextMajor(from: "5.3.0"))
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -26,7 +27,8 @@ let package = Package(
         .target(
             name: "UIToolkit",
             dependencies: [
-                .product(name: "Utilities", package: "Utilities")
+                .product(name: "Utilities", package: "Utilities"),
+                .product(name: "SFSafeSymbols", package: "SFSafeSymbols")
             ],
             exclude: [
                 "swiftgen-strings.stencil",
