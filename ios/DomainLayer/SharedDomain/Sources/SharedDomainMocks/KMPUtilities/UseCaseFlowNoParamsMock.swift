@@ -28,8 +28,8 @@ open class UseCaseFlowNoParamsMock<Out>: UseCaseFlowNoParams {
             return FlowTestHelper.shared.arrayToFlow(array: [])
         }
         
-        guard let executeReturnValue = executeReturnValue as? Array<Out> else {
-            return FlowTestHelper.shared.arrayToFlow(array: [executeReturnValue] as! [Out])
+        guard let executeReturnValue = executeReturnValue as? [Out] else {
+            return FlowTestHelper.shared.arrayToFlow(array: [executeReturnValue] as! [Out]) // swiftlint:disable:this force_cast
         }
         
         return FlowTestHelper.shared.arrayToFlow(array: executeReturnValue)

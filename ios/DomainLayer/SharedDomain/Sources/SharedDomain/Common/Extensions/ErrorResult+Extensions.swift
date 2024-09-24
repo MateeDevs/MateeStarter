@@ -13,7 +13,7 @@ public struct KmmLocalizedError: Swift.Error {
 
 public extension Swift.Error {
     var kmmErrorResult: ErrorResult? {
-        switch self{
+        switch self {
         case let error as KmmLocalizedError:
             return error.errorResult
         default:
@@ -23,7 +23,7 @@ public extension Swift.Error {
     
     /// Returns localized message based on shared error string. If Error is not KmmLocalizedError - it will returns localizedDescription as usual
     var localizedMessage: String {
-        switch self{
+        switch self {
         case let error as KmmLocalizedError:
             return error.localizedMessage
         default:

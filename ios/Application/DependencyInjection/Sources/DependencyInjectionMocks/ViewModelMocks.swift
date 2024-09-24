@@ -6,8 +6,8 @@
 #if DEBUG
 import CoreLocation
 import DependencyInjection
-import KMPShared
 import Factory
+import KMPShared
 @testable import SharedDomain
 import SharedDomainMocks
 

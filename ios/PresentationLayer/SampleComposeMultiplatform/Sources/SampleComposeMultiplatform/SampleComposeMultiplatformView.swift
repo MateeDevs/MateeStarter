@@ -30,7 +30,7 @@ struct SampleComposeMultiplatformViewController: UIViewControllerRepresentable {
     }
 }
 
-struct SampleComposeMultiplatformView : View {
+struct SampleComposeMultiplatformView: View {
     
     @Injected(\.sampleSharedViewModel) private(set) var viewModel: KMPShared.SampleSharedViewModel
     private weak var flowController: FlowController?
@@ -46,7 +46,8 @@ struct SampleComposeMultiplatformView : View {
             viewModel: viewModel,
             onEvent: { event in
                 switch event {
-                case is SampleSharedEventShowMessage: toastData = ToastData((event as! SampleSharedEventShowMessage).message, hideAfter: 2)
+                case let event as SampleSharedEventShowMessage:
+                    toastData = ToastData(event.message, hideAfter: 2)
                 default: print("Event \(event) not recognized")
                 }
             }

@@ -45,9 +45,8 @@ struct SampleSharedViewModelView: View {
             stateBinding: $state,
             onEvent: { event in
                 switch event {
-                case is SampleSharedEventShowMessage: do {
-                    toastData = ToastData((event as! SampleSharedEventShowMessage).message, hideAfter: 2)
-                }
+                case let event as SampleSharedEventShowMessage:
+                    toastData = ToastData(event.message, hideAfter: 2)
                 default: print("Event \(event) not recognized")
                 }
             }

@@ -32,3 +32,21 @@ else
   echo "❌ Twine is not installed"
   echo "Check https://github.com/MateeDevs/wiki/blob/master/tooling/ruby.md for more info"
 fi
+
+echo "⚙️  Checking whether Homebrew is installed"
+if command -v brew &> /dev/null; then
+  echo "✅ Homebrew is installed"
+else
+  echo "❌ Homebrew is not installed"
+  echo "Please visit https://brew.sh for more info"
+  exit
+fi
+
+echo "⚙️  Checking whether SwiftLint is installed"
+if command -v swiftlint &> /dev/null; then
+  echo "✅ SwiftLint is installed"
+else
+  echo "❌ SwiftLint is not installed"
+  echo "Please run 'brew install swiftlint' to install it"
+  exit
+fi

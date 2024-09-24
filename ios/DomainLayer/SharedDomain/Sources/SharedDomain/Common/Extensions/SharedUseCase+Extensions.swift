@@ -1,9 +1,7 @@
-// swiftlint:disable force_cast
-// swiftlint:disable line_length
-// swiftlint:disable multiline_arguments
+// swiftlint:disable file_length
 
-import KMPShared
 import Foundation
+import KMPShared
 
 private class JobWrapper {
     var job: Kotlinx_coroutines_coreJob?
@@ -18,7 +16,7 @@ public extension UseCaseFlowNoParams {
         let _: JobWrapper = JobWrapper()
         return AsyncStream<Out> { continuation in
             let coroutineJob = SwiftCoroutinesKt.subscribe(self) { data in
-                let value: Out = data as! Out
+                let value: Out = data as! Out // swiftlint:disable:this force_cast
                 continuation.yield(value)
             } onComplete: {
                 continuation.finish()
@@ -41,6 +39,7 @@ public extension UseCaseFlowResult {
                 switch result {
                 case let resultSuccess as ResultSuccess<AnyObject>:
                     // if new possible type is needed, it can be added to this switch
+                    // swiftlint:disable force_cast
                     switch resultSuccess.data {
                     case let resultSuccess as NSArray:
                         let arrayValue = (resultSuccess as? [Any]) as! Out
@@ -51,6 +50,7 @@ public extension UseCaseFlowResult {
                     default:
                         continuation.yield(resultSuccess as! Out)
                     }
+                    // swiftlint:enable force_cast
                 case let resultError as ResultError<AnyObject>:
                     let resultError = resultError.error
                     continuation.finish(
@@ -91,17 +91,25 @@ public extension UseCaseResult {
                         self,
                         params: params,
                         onSuccess: { result in
+                            // swiftlint:disable force_cast
                             guard result is ResultSuccess else {
                                 let errorResult = (result as! ResultError).error
-                                continuation.resume(throwing: KmmLocalizedError(errorResult: errorResult, localizedMessage: errorResult.localizedMessage(nil)))
+                                continuation.resume(throwing: KmmLocalizedError(
+                                    errorResult: errorResult,
+                                    localizedMessage: errorResult.localizedMessage(nil)
+                                ))
                                 return
                             }
                             let value: Out = (result as! ResultSuccess).data as! Out
                             continuation.resume(returning: value)
                             return
+                            // swiftlint:enable force_cast
                         },
                         onThrow: { kotlinThrowable in
-                            continuation.resume(throwing: KmmLocalizedError(errorResult: nil, localizedMessage: kotlinThrowable.message ?? kotlinThrowable.description()))
+                            continuation.resume(throwing: KmmLocalizedError(
+                                errorResult: nil,
+                                localizedMessage: kotlinThrowable.message ?? kotlinThrowable.description()
+                            ))
                         })
                     jobWrapper.setJob(coroutineJob)
                 }
@@ -123,15 +131,21 @@ public extension UseCaseResult {
                         params: params,
                         onSuccess: { result in
                             guard result is ResultSuccess else {
-                                let errorResult = (result as! ResultError).error
-                                continuation.resume(throwing: KmmLocalizedError(errorResult: errorResult, localizedMessage: errorResult.localizedMessage(nil)))
+                                let errorResult = (result as! ResultError).error // swiftlint:disable:this force_cast
+                                continuation.resume(throwing: KmmLocalizedError(
+                                    errorResult: errorResult,
+                                    localizedMessage: errorResult.localizedMessage(nil)
+                                ))
                                 return
                             }
                             continuation.resume()
                             return
                         },
                         onThrow: { kotlinThrowable in
-                            continuation.resume(throwing: KmmLocalizedError(errorResult: nil, localizedMessage: kotlinThrowable.message ?? kotlinThrowable.description()))
+                            continuation.resume(throwing: KmmLocalizedError(
+                                errorResult: nil,
+                                localizedMessage: kotlinThrowable.message ?? kotlinThrowable.description()
+                            ))
                         })
                     jobWrapper.setJob(coroutineJob)
                 }
@@ -153,17 +167,25 @@ public extension UseCaseResultNoParams {
                     let coroutineJob = SwiftCoroutinesKt.subscribe(
                         self,
                         onSuccess: { result in
+                            // swiftlint:disable force_cast
                             guard result is ResultSuccess else {
                                 let errorResult = (result as! ResultError).error
-                                continuation.resume(throwing: KmmLocalizedError(errorResult: errorResult, localizedMessage: errorResult.localizedMessage(nil)))
+                                continuation.resume(throwing: KmmLocalizedError(
+                                    errorResult: errorResult,
+                                    localizedMessage: errorResult.localizedMessage(nil)
+                                ))
                                 return
                             }
                             let value: Out = (result as! ResultSuccess).data as! Out
                             continuation.resume(returning: value)
                             return
+                            // swiftlint:enable force_cast
                         },
                         onThrow: { kotlinThrowable in
-                            continuation.resume(throwing: KmmLocalizedError(errorResult: nil, localizedMessage: kotlinThrowable.message ?? kotlinThrowable.description()))
+                            continuation.resume(throwing: KmmLocalizedError(
+                                errorResult: nil,
+                                localizedMessage: kotlinThrowable.message ?? kotlinThrowable.description()
+                            ))
                         })
                     jobWrapper.setJob(coroutineJob)
                 }
@@ -185,15 +207,21 @@ public extension UseCaseResultNoParams {
                         self,
                         onSuccess: { result in
                             guard result is ResultSuccess else {
-                                let errorResult = (result as! ResultError).error
-                                continuation.resume(throwing: KmmLocalizedError(errorResult: errorResult, localizedMessage: errorResult.localizedMessage(nil)))
+                                let errorResult = (result as! ResultError).error // swiftlint:disable:this force_cast
+                                continuation.resume(throwing: KmmLocalizedError(
+                                    errorResult: errorResult,
+                                    localizedMessage: errorResult.localizedMessage(nil)
+                                ))
                                 return
                             }
                             continuation.resume()
                             return
                         },
                         onThrow: { kotlinThrowable in
-                            continuation.resume(throwing: KmmLocalizedError(errorResult: nil, localizedMessage: kotlinThrowable.message ?? kotlinThrowable.description()))
+                            continuation.resume(throwing: KmmLocalizedError(
+                                errorResult: nil,
+                                localizedMessage: kotlinThrowable.message ?? kotlinThrowable.description()
+                            ))
                         })
                     jobWrapper.setJob(coroutineJob)
                 }

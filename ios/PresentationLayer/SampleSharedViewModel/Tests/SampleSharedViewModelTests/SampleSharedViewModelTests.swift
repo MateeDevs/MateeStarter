@@ -1,5 +1,5 @@
-import XCTest
 @testable import SampleSharedViewModel
+import XCTest
 
 final class SampleSharedViewModelTests: XCTestCase {
     func testExample() throws {

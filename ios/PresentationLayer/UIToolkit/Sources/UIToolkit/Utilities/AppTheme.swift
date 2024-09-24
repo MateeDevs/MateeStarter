@@ -128,7 +128,7 @@ public enum AppTheme {
         /**
          * Radius of 12
          */
-        public static let radiusSmall : CGFloat = 12
+        public static let radiusSmall: CGFloat = 12
         /**
          * Radius of 16
          */
