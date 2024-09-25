@@ -9,4 +9,4 @@ sealed class Result<out T : Any> {
     data class Error<out T : Any>(val error: ErrorResult, val data: T? = null) : Result<T>()
 }
 
-abstract class ErrorResult(val localizedMessage: StringDesc, open val responseMessage: String? = null, open val throwable: Throwable? = null)
+abstract class ErrorResult(val localizedMessage: StringDesc, open val throwable: Throwable? = null)

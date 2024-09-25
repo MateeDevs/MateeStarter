@@ -11,11 +11,10 @@ import kmp.shared.base.MR
  */
 sealed class BackendError(
     localizedMessage: StringDesc,
-    responseMessage: String? = null,
     throwable: Throwable? = null,
+    val responseMessage: String? = null,
 ) : ErrorResult(
     localizedMessage = localizedMessage,
-    responseMessage = responseMessage,
     throwable = throwable,
 ) {
 
