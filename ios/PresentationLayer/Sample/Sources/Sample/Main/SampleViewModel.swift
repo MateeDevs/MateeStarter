@@ -59,12 +59,17 @@ final class SampleViewModel: UIToolkit.BaseViewModel, ViewModel, ObservableObjec
     // MARK: Private
     
     private func loadSampleText() async {
-        do {
+        await execute {
+            // Do the business logic
             state.isLoading = true
             state.sampleText = try await getSampleTextUseCase.execute()
             state.isLoading = false
-        } catch {
+        } onError: { error in
+            // Handle error
             state.error = error.localizedMessage
+            state.isLoading = false
+        } onCancel: { _ in
+            // Custom cancel handling
         }
     }
     
