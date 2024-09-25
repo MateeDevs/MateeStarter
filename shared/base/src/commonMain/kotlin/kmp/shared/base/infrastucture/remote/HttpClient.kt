@@ -15,6 +15,7 @@ import io.ktor.http.URLProtocol
 import io.ktor.http.contentType
 import io.ktor.http.encodedPath
 import io.ktor.serialization.kotlinx.json.json
+import kmp.shared.base.infrastucture.provider.AuthProvider
 import kmp.shared.base.system.Config
 import kotlin.native.concurrent.ThreadLocal
 import co.touchlab.kermit.Logger as KermitLogger
@@ -23,7 +24,7 @@ import kotlinx.serialization.json.Json as JsonConfig
 internal object HttpClient {
     private val unauthorizedEndpoints = listOf("/api/auth/login", "/api/auth/registration")
 
-    fun init(config: Config, engine: HttpClientEngine) = HttpClient(engine).config {
+    fun init(config: Config, engine: HttpClientEngine, authProvider: AuthProvider) = HttpClient(engine).config {
         expectSuccess = true
         developmentMode = !config.isRelease
         followRedirects = false
@@ -44,16 +45,20 @@ internal object HttpClient {
         }
 
         install(Auth) {
-            // TODO: Use if your authentication method is a bearer token (other options are `basic` and `digest`)
+            // Use if your authentication method is a bearer token (other options are `basic` and `digest`)
             bearer {
                 loadTokens {
-                    // TODO: Use your access and refresh tokens here (you can use access token for both if you don't use refresh token)
-                    BearerTokens("mockAccessToken", "mockRefreshToken")
+                    authProvider.token?.let { token ->
+                        // Use your access and refresh tokens here (you can use access token for both if you don't use refresh token)
+                        BearerTokens(token, token)
+                    }
                 }
 
                 refreshTokens {
-                    // TODO: Use your access and refresh tokens here (you can use access token for both if you don't use refresh token)
-                    BearerTokens("mockAccessToken", "mockRefreshToken")
+                    authProvider.token?.let { token ->
+                        // Use your access and refresh tokens here (you can use access token for both if you don't use refresh token)
+                        BearerTokens(token, token)
+                    }
                 }
 
                 sendWithoutRequest { request ->
