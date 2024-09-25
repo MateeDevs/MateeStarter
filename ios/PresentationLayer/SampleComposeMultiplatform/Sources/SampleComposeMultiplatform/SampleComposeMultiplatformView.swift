@@ -9,27 +9,6 @@ import KMPShared
 import SwiftUI
 import UIToolkit
 
-struct SampleComposeMultiplatformViewController: UIViewControllerRepresentable {
-    
-    private var viewModel: KMPShared.SampleSharedViewModel
-    private let onEvent: (SampleSharedEvent) -> Void
-    
-    init(viewModel: KMPShared.SampleSharedViewModel, onEvent: @escaping (SampleSharedEvent) -> Void) {
-        self.viewModel = viewModel
-        self.onEvent = onEvent
-    }
-    
-    func makeUIViewController(context: Context) -> UIViewController {
-        return SampleComposeMultiplatformScreenViewControllerKt.SampleComposeMultiplatformScreenViewController(
-            viewModel: viewModel,
-            onEvent: onEvent
-        )
-    }
-    
-    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-    }
-}
-
 struct SampleComposeMultiplatformView: View {
     
     @Injected(\.sampleSharedViewModel) private(set) var viewModel: KMPShared.SampleSharedViewModel
@@ -42,16 +21,18 @@ struct SampleComposeMultiplatformView: View {
     }
     
     var body: some View {
-        SampleComposeMultiplatformViewController(
-            viewModel: viewModel,
-            onEvent: { event in
-                switch event {
-                case let event as SampleSharedEventShowMessage:
-                    toastData = ToastData(event.message, hideAfter: 2)
-                default: print("Event \(event) not recognized")
+        ComposeViewController {
+            SampleComposeMultiplatformScreenViewControllerKt.SampleComposeMultiplatformScreenViewController(
+                viewModel: viewModel,
+                onEvent: { event in
+                    switch event {
+                    case let event as SampleSharedEventShowMessage:
+                        toastData = ToastData(event.message, hideAfter: 2)
+                    default: print("Event \(event) not recognized")
+                    }
                 }
-            }
-        )
+            )
+        }
         .toastView($toastData)
         .navigationTitle(L10n.bottom_bar_item_3)
     }
