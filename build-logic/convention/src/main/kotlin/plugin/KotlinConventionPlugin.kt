@@ -1,6 +1,10 @@
 package plugin
 
-import extensions.*
+import extensions.implementation
+import extensions.kotlin
+import extensions.libs
+import extensions.pluginManager
+import extensions.apply
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
