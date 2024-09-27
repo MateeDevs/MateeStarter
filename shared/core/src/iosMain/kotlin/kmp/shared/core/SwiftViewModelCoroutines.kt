@@ -7,8 +7,8 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import org.skyseat.shared.base.viewmodel.VmEvent
-import org.skyseat.shared.base.viewmodel.VmState
+import kmp.shared.samplesharedviewmodel.base.vm.VmEvent
+import kmp.shared.samplesharedviewmodel.base.vm.VmState
 
 fun <S : VmState> BaseViewModelInt<S, *, *>.subscribeToState(
     onEach: (item: S) -> Unit,
