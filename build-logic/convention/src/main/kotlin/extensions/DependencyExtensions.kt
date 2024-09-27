@@ -36,6 +36,3 @@ fun DependencyHandlerScope.kapt(dependencyNotation: Any) =
 
 fun DependencyHandlerScope.ktlintRuleset(dependencyNotation: Any) =
     add(ExtensionConstants.KTLINT_RULESET, dependencyNotation)
-
-fun BaseExtension.kotlinOptions(configure: Action<KotlinJvmOptions>) =
-    (this as org.gradle.api.plugins.ExtensionAware).extensions.configure("kotlinOptions", configure)
