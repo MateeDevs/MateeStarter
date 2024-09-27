@@ -1,6 +1,3 @@
-import extensions.ktlintRuleset
-import extensions.libs
-
 plugins {
     alias(libs.plugins.mateeStarter.kmm.library)
     alias(libs.plugins.jetbrains.compose)
