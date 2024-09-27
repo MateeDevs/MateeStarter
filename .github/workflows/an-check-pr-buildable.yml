@@ -31,7 +31,7 @@ jobs:
 
       - name: Build
         run: |
-          git config --global --add safe.directory $GITHUB_WORKSPACE
+          export JAVA_HOME=$(/usr/libexec/java_home -v17.0.6)
           
           ./gradlew generateTwine
           ./gradlew :android:app:bundleDebug
