@@ -4,10 +4,10 @@ import kmp.shared.base.ErrorResult
 import kmp.shared.base.Result
 import kmp.shared.sample.domain.model.SampleText
 import kmp.shared.sample.domain.usecase.GetSampleTextUseCase
-import org.skyseat.shared.base.viewmodel.BaseViewModel
-import org.skyseat.shared.base.viewmodel.VmEvent
-import org.skyseat.shared.base.viewmodel.VmIntent
-import org.skyseat.shared.base.viewmodel.VmState
+import kmp.shared.samplesharedviewmodel.base.vm.BaseViewModel
+import kmp.shared.samplesharedviewmodel.base.vm.VmEvent
+import kmp.shared.samplesharedviewmodel.base.vm.VmIntent
+import kmp.shared.samplesharedviewmodel.base.vm.VmState
 
 class SampleSharedViewModel(
     private val getSampleText: GetSampleTextUseCase,
