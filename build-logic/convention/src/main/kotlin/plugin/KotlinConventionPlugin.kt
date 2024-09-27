@@ -33,6 +33,7 @@ class KotlinConventionPlugin : Plugin<Project> {
                     freeCompilerArgs.addAll(
                         "-Xallow-jvm-ir-dependencies",
                         "-opt-in=kotlin.RequiresOptIn",
+                        "-Xexpect-actual-classes",
                     )
                 }
             }
