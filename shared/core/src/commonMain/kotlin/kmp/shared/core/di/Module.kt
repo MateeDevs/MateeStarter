@@ -1,5 +1,6 @@
 package kmp.shared.core.di
 
+import kmp.shared.auth.di.authModule
 import kmp.shared.base.di.baseModule
 import kmp.shared.sample.di.sampleModule
 import kmp.shared.samplesharedviewmodel.di.sampleSharedViewModelModule
@@ -12,6 +13,7 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}): KoinApplication {
         appDeclaration()
         modules(
             baseModule,
+            authModule,
             sampleModule,
             sampleSharedViewModelModule,
         )
