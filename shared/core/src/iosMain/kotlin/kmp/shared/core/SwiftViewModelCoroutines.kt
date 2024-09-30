@@ -1,14 +1,14 @@
 package kmp.shared.core
 
 import kmp.shared.samplesharedviewmodel.base.vm.BaseViewModelInt
+import kmp.shared.samplesharedviewmodel.base.vm.VmEvent
+import kmp.shared.samplesharedviewmodel.base.vm.VmState
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import org.skyseat.shared.base.viewmodel.VmEvent
-import org.skyseat.shared.base.viewmodel.VmState
 
 fun <S : VmState> BaseViewModelInt<S, *, *>.subscribeToState(
     onEach: (item: S) -> Unit,

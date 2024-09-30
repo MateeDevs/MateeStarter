@@ -4,9 +4,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancelChildren
-import org.skyseat.shared.base.viewmodel.VmEvent
-import org.skyseat.shared.base.viewmodel.VmIntent
-import org.skyseat.shared.base.viewmodel.VmState
 
 /**
  * Base class that provides a Kotlin/Native equivalent to the AndroidX `ViewModel`. In particular, this provides

@@ -3,9 +3,6 @@ package kmp.shared.samplesharedviewmodel.base.vm
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
-import org.skyseat.shared.base.viewmodel.VmEvent
-import org.skyseat.shared.base.viewmodel.VmIntent
-import org.skyseat.shared.base.viewmodel.VmState
 
 expect abstract class BaseScopedViewModel<S : VmState, I : VmIntent, E : VmEvent>() :
     BaseViewModelInt<S, I, E> {

@@ -1,15 +1,15 @@
 package plugin
 
-import extensions.apply
 import extensions.implementation
 import extensions.kotlin
 import extensions.libs
 import extensions.pluginManager
-import org.gradle.api.JavaVersion
+import extensions.apply
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.withType
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 @Suppress("unused")
@@ -21,19 +21,19 @@ class KotlinConventionPlugin : Plugin<Project> {
                 apply(libs.plugins.kotlin.android)
             }
 
-            val versionCode = libs.versions.java.get().toInt()
-            val javaVersion = JavaVersion.toVersion(versionCode)
+            val javaVersionCode = libs.versions.java.get().toInt()
 
             kotlin {
-                jvmToolchain(versionCode)
+                jvmToolchain(javaVersionCode)
             }
 
             tasks.withType<KotlinCompile> {
-                kotlinOptions {
-                    jvmTarget = javaVersion.toString()
-                    freeCompilerArgs = freeCompilerArgs + listOf(
+                compilerOptions {
+                    jvmTarget.set(JvmTarget.fromTarget(javaVersionCode.toString()))
+                    freeCompilerArgs.addAll(
                         "-Xallow-jvm-ir-dependencies",
                         "-opt-in=kotlin.RequiresOptIn",
+                        "-Xexpect-actual-classes",
                     )
                 }
             }

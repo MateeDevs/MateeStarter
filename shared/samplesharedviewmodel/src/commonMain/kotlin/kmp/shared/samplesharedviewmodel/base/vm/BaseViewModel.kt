@@ -1,6 +1,5 @@
-package org.skyseat.shared.base.viewmodel
+package kmp.shared.samplesharedviewmodel.base.vm
 
-import kmp.shared.samplesharedviewmodel.base.vm.BaseScopedViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow

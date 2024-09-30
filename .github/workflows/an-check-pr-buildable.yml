@@ -11,7 +11,7 @@ jobs:
     container: mateedevs/charmander
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
@@ -21,7 +21,7 @@ jobs:
 
       - name: Run architecture lint
         run: |
-          ./gradlew :shared:testDebugUnitTest --tests "konsistTest.*" --no-build-cache --no-configuration-cache 
+          ./gradlew :shared:core:testDebugUnitTest --tests "konsistTest.*" --no-build-cache --no-configuration-cache
 
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v4
@@ -31,7 +31,5 @@ jobs:
 
       - name: Build
         run: |
-          git config --global --add safe.directory $GITHUB_WORKSPACE
-          
           ./gradlew generateTwine
           ./gradlew :android:app:bundleDebug
