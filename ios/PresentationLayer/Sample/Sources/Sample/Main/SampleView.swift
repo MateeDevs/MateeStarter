@@ -5,6 +5,7 @@
 
 import SwiftUI
 import UIToolkit
+import KMPShared
 
 struct SampleView: View {
     
@@ -15,19 +16,17 @@ struct SampleView: View {
     }
     
     var body: some View {
-        ZStack(alignment: .center) {
-            if viewModel.state.isLoading {
-                PrimaryProgressView()
-            } else {
-                VStack(spacing: AppTheme.Dimens.spaceMedium) {
-                    Text("This is a sample with SwiftUI and iOS VM")
-                    
-                    Text(viewModel.state.sampleText?.value ?? "")
-                    
-                    Button("Click me!") {
-                        viewModel.onIntent(.onButtonTapped)
-                    }
+        Group {
+            switch viewModel.state.sampleText {
+            case let .data(text), let .loading(text):
+                contentView(sampleText: text) {
+                    viewModel.onIntent(.onButtonTapped)
                 }
+                .skeleton(viewModel.state.sampleText.isLoading)
+            case let .error(error):
+                ErrorView(error: error)
+            case .empty:
+                EmptyView()
             }
         }
         .navigationTitle(L10n.bottom_bar_item_1)
@@ -36,6 +35,19 @@ struct SampleView: View {
             set: { toast in viewModel.onIntent(.onToastChanged(data: toast)) }
         ))
         .lifecycle(viewModel)
+    }
+    
+    private func contentView(
+        sampleText: SampleText,
+        onButtonTapped: @escaping () -> Void
+    ) -> some View {
+        VStack(spacing: AppTheme.Dimens.spaceMedium) {
+            Text("This is a sample with SwiftUI and iOS VM")
+            
+            Text(sampleText.value)
+            
+            Button("Click me!", action: onButtonTapped)
+        }
     }
 }
 
