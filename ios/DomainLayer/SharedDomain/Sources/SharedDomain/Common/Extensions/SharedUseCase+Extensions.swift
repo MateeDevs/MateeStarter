@@ -56,7 +56,7 @@ public extension UseCaseFlowResult {
                     continuation.finish(
                         throwing: KmmLocalizedError(
                             errorResult: resultError,
-                            localizedMessage: resultError.localizedMessage(nil)
+                            localizedMessage: resultError.localizedMessage.localized()
                         )
                     )
                 default:
@@ -64,7 +64,7 @@ public extension UseCaseFlowResult {
                     continuation.finish(
                         throwing: KmmLocalizedError(
                             errorResult: resultError,
-                            localizedMessage: resultError.localizedMessage(nil)
+                            localizedMessage: resultError.localizedMessage.localized()
                         )
                     )
                 }
@@ -96,7 +96,7 @@ public extension UseCaseResult {
                                 let errorResult = (result as! ResultError).error
                                 continuation.resume(throwing: KmmLocalizedError(
                                     errorResult: errorResult,
-                                    localizedMessage: errorResult.localizedMessage(nil)
+                                    localizedMessage: errorResult.localizedMessage.localized()
                                 ))
                                 return
                             }
@@ -134,7 +134,7 @@ public extension UseCaseResult {
                                 let errorResult = (result as! ResultError).error // swiftlint:disable:this force_cast
                                 continuation.resume(throwing: KmmLocalizedError(
                                     errorResult: errorResult,
-                                    localizedMessage: errorResult.localizedMessage(nil)
+                                    localizedMessage: errorResult.localizedMessage.localized()
                                 ))
                                 return
                             }
@@ -172,7 +172,7 @@ public extension UseCaseResultNoParams {
                                 let errorResult = (result as! ResultError).error
                                 continuation.resume(throwing: KmmLocalizedError(
                                     errorResult: errorResult,
-                                    localizedMessage: errorResult.localizedMessage(nil)
+                                    localizedMessage: errorResult.localizedMessage.localized()
                                 ))
                                 return
                             }
@@ -210,7 +210,7 @@ public extension UseCaseResultNoParams {
                                 let errorResult = (result as! ResultError).error // swiftlint:disable:this force_cast
                                 continuation.resume(throwing: KmmLocalizedError(
                                     errorResult: errorResult,
-                                    localizedMessage: errorResult.localizedMessage(nil)
+                                    localizedMessage: errorResult.localizedMessage.localized()
                                 ))
                                 return
                             }
