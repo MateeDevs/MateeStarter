@@ -14,7 +14,7 @@ jobs:
     timeout-minutes: 15
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         continue-on-error: true
         with:
           clean: false
@@ -26,6 +26,8 @@ jobs:
       - name: Setup tools
         working-directory: ios
         run: ./scripts/setup.sh
+      - name: Generate build number
+        run: echo "BUILD_NUMBER=$(echo `date +"%y%m%d%H%M"`)" >> $GITHUB_ENV
       - name: Prepare App Store Connect API key file
         env:
           APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_MATEE }}
@@ -35,7 +37,7 @@ jobs:
         env:
           BUILD_NUMBER: $(echo `date +"%y%m%d%H%M"`)
         working-directory: ios
-        run: swift run --package-path CI/FastlaneRunner fastlaneRunner lane buildAlphaLane
+        run: fastlane build_alpha
 
   deploy-alpha:
     name: Deploy alpha
@@ -50,4 +52,4 @@ jobs:
           SLACK_URL: ${{ secrets.FASTLANE_SLACK_URL }}
           DISTRIBUTE_EXTERNAL: false
         working-directory: ios
-        run: swift run --package-path CI/FastlaneRunner fastlaneRunner lane uploadTestFlightAlphaLane swiftServerPort 2001
+        run: fastlane upload_testflight_alpha distribute_external:false

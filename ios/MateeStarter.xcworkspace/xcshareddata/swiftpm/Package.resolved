@@ -37,15 +37,6 @@
       }
     },
     {
-      "identity" : "fastlane",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/fastlane/fastlane",
-      "state" : {
-        "revision" : "425719196c38bda13950d2bc0dfcb08b1e14cac1",
-        "version" : "2.216.0"
-      }
-    },
-    {
       "identity" : "firebase-ios-sdk",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/firebase-ios-sdk.git",
@@ -187,15 +178,6 @@
       "state" : {
         "revision" : "879b85a470cacd70c19e22eb7e11a3aed66f4068",
         "version" : "6.6.2"
-      }
-    },
-    {
-      "identity" : "swiftshell",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/kareman/SwiftShell",
-      "state" : {
-        "revision" : "99680b2efc7c7dbcace1da0b3979d266f02e213c",
-        "version" : "5.1.0"
       }
     }
   ],
