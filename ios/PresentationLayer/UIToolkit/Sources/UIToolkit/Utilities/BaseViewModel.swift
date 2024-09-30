@@ -45,4 +45,20 @@ open class BaseViewModel {
     public func awaitAllTasks() async {
         for task in tasks { await task.value }
     }
+    
+    public func execute(
+        _ block: () async throws -> Void,
+        /* logErrors: Bool = true, */
+        onError: (Swift.Error) -> Void = { _ in },
+        onCancel: (CancellationError) -> Void = { _ in }
+    ) async {
+        do {
+            try await block()
+        } catch let error as CancellationError {
+            onCancel(error)
+        } catch {
+            // Custom error logging if needed
+            onError(error)
+        }
+    }
 }
