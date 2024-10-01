@@ -1,18 +1,17 @@
-name: iOS - Test develop
+name: iOS – PR check
 
 on:
   pull_request:
-    branches:
-      - develop
+    types: [ opened, synchronize ]
 
 jobs:
   test:
-    name: Run tests
+    name: Build
     runs-on: [self-hosted, ios-build]
-    timeout-minutes: 15
+    timeout-minutes: 30
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         continue-on-error: true
         with:
           clean: false
@@ -24,6 +23,6 @@ jobs:
       - name: Setup tools
         working-directory: ios
         run: ./scripts/setup.sh
-      - name: Run tests
+      - name: Build iOS
         working-directory: ios
         run: fastlane test_alpha
