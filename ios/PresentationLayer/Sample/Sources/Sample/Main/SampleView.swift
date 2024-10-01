@@ -3,9 +3,9 @@
 //  Copyright © 2022 Matee. All rights reserved.
 //
 
+import KMPShared
 import SwiftUI
 import UIToolkit
-import KMPShared
 
 struct SampleView: View {
     

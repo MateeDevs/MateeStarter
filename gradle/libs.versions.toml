@@ -34,6 +34,7 @@ appcompat = "1.7.0"
 versionCatalogueUpdate = "0.8.1"
 versions = "0.49.0"
 desugar = "2.0.3"
+skie = "0.8.4"
 
 [libraries]
 # Kotlin
@@ -108,6 +109,8 @@ konsist = { module = "com.lemonappdev:konsist", version.ref = "konsist" }
 junit = { module = "junit:junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+# Skie
+skie-annotations = { module = "co.touchlab.skie:configuration-annotations", version.ref = "skie" }
 
 [bundles]
 settings = [
@@ -137,6 +140,7 @@ versions = { id = "com.github.ben-manes.versions", version.ref = "versions" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktLint" }
 mokoResources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "mokoResources" }
 jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "jetbrains-composePlugin" }
+skie = { id = "co.touchlab.skie", version.ref = "skie" }
 # Can be removed in case you do not use compose multiplatform
 jetbrains-compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 # Convention plugins

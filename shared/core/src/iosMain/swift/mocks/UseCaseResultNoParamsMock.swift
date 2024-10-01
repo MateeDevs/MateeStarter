@@ -4,9 +4,8 @@
 //
 
 import Foundation
-import KMPShared
 
-open class UseCaseResultMock: UseCaseResult {
+open class UseCaseResultNoParamsMock: UseCaseResultNoParams {
     
     public var executeThrowableError: Swift.Error?
     public var executeCallsCount = 0
@@ -14,8 +13,6 @@ open class UseCaseResultMock: UseCaseResult {
         return executeCallsCount > 0
     }
     public var executeReturnValue: Result<AnyObject>! // swiftlint:disable:this implicitly_unwrapped_optional
-    
-    public var receivedParams: Any?
     
     public var executeClosure: (() throws -> Result<AnyObject>)?
     
@@ -26,9 +23,9 @@ open class UseCaseResultMock: UseCaseResult {
     }
     
     // MARK: - execute
-    public func invoke(params: Any?) async throws -> Result<AnyObject> {
+    
+    public func __invoke() async throws -> Result<AnyObject> {
         executeCallsCount += 1
-        receivedParams = params
         
         if let error = executeThrowableError {
             throw error

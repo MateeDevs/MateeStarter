@@ -1,7 +1,20 @@
-import constants.ProjectConstants
+import co.touchlab.skie.configuration.DefaultArgumentInterop
 
 plugins {
     alias(libs.plugins.mateeStarter.kmm.xcframework.library)
+    alias(libs.plugins.skie)
+}
+
+skie {
+    swiftBundling {
+        enabled = true
+    }
+
+    features {
+        group {
+            DefaultArgumentInterop.Enabled(false)
+        }
+    }
 }
 
 android {
@@ -9,8 +22,7 @@ android {
 }
 
 multiplatformResources {
-    resourcesPackage.set("kmp.shared.base")
-    configureCopyXCFrameworkResources(ProjectConstants.iosShared)
+    resourcesPackage.set("kmp.shared.core")
 }
 
 ktlint {

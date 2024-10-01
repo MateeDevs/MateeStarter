@@ -239,7 +239,6 @@
 				7E5D98302C762B1D00178257 /* Run SwiftLint */,
 				453D3FCD25ED976A0094ADD7 /* Copy GoogleService-Info.plist */,
 				45DEBE2627A153A20075C7E2 /* Embed Foundation Extensions */,
-				45F1AC642BDFDF7A000795E2 /* Copy Moko resources */,
 				4564A9F7289CFF3D00A0FEF0 /* Upload dSYMs to Crashlytics */,
 			);
 			buildRules = (
