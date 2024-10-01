@@ -1,7 +1,6 @@
 // swiftlint:disable file_length
 
 import Foundation
-import KMPShared
 
 private class JobWrapper {
     var job: Kotlinx_coroutines_coreJob?
@@ -81,7 +80,7 @@ public extension UseCaseResult {
 
         switch onEnum(of: res) {
         case .error(let resultError):
-            throw KmmLocalizedError(errorResult: resultError.error, localizedMessage: resultError.error.localizedMessage(nil))
+            throw KmmLocalizedError(errorResult: resultError.error, localizedMessage: resultError.error.localizedMessage.localized())
         case .success(let resultSuccess):
             return resultSuccess.data as! Out
         }
@@ -92,7 +91,7 @@ public extension UseCaseResult {
 
         switch onEnum(of: res) {
         case .error(let resultError):
-            throw KmmLocalizedError(errorResult: resultError.error, localizedMessage: resultError.error.localizedMessage(nil))
+            throw KmmLocalizedError(errorResult: resultError.error, localizedMessage: resultError.error.localizedMessage.localized())
         case .success(let resultSuccess):
             return resultSuccess.data as! Void
         }
@@ -105,7 +104,7 @@ public extension UseCaseResultNoParams {
 
         switch onEnum(of: res) {
         case .error(let resultError):
-            throw KmmLocalizedError(errorResult: resultError.error, localizedMessage: resultError.error.localizedMessage(nil))
+            throw KmmLocalizedError(errorResult: resultError.error, localizedMessage: resultError.error.localizedMessage.localized())
         case .success(let resultSuccess):
             return resultSuccess.data as! Out
         }
@@ -118,7 +117,7 @@ public extension UseCaseResultNoParams {
 
         switch onEnum(of: res) {
         case .error(let resultError):
-            throw KmmLocalizedError(errorResult: resultError.error, localizedMessage: resultError.error.localizedMessage(nil))
+            throw KmmLocalizedError(errorResult: resultError.error, localizedMessage: resultError.error.localizedMessage.localized())
         case .success(let resultSuccess):
             return resultSuccess.data as! Void
         }
