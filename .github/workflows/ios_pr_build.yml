@@ -25,4 +25,4 @@ jobs:
         run: ./scripts/setup.sh
       - name: Build iOS
         working-directory: ios
-        run: fastlane build_alpha
+        run: fastlane test_alpha
