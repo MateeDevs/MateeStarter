@@ -12,8 +12,6 @@ import org.koin.core.context.GlobalContext
 class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        GlobalContext.getOrNull()
-            ?: initDependencyInjection() // Init only if there is no context already
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
     }

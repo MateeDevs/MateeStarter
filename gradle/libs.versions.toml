@@ -34,6 +34,7 @@ appcompat = "1.7.0"
 versionCatalogueUpdate = "0.8.1"
 versions = "0.49.0"
 desugar = "2.0.3"
+uiautomator = "2.3.0"
 skie = "0.8.4"
 
 [libraries]
@@ -54,6 +55,7 @@ atomicFu = { module = "org.jetbrains.kotlinx:atomicfu", version.ref = "atomicFu"
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
+koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
 # AndroidX
 androidX-core = { module = "androidx.core:core-ktx", version.ref = "androidXCore" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
@@ -109,6 +111,7 @@ konsist = { module = "com.lemonappdev:konsist", version.ref = "konsist" }
 junit = { module = "junit:junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-uiautomator = { group = "androidx.test.uiautomator", name = "uiautomator", version.ref = "uiautomator" }
 # Skie
 skie-annotations = { module = "co.touchlab.skie:configuration-annotations", version.ref = "skie" }
 

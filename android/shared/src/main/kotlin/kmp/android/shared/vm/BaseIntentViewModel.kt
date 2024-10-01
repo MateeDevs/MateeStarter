@@ -13,7 +13,7 @@ abstract class BaseIntentViewModel<S : VmState, I : VmIntent, E : VmEvent>(initi
     ViewModel() {
 
     private val _state = MutableStateFlow(initialState)
-    val state = MutableStateFlow(initialState).asStateFlow()
+    val state = _state.asStateFlow()
 
     protected val _events = MutableSharedFlow<E>()
     val events = _events.asSharedFlow()
