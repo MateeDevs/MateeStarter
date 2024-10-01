@@ -1,4 +1,4 @@
-package cz.up.customer.android.presentation.extensions
+package kmp.android.extension
 
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color

@@ -8,7 +8,9 @@ jobs:
   lint:
     name: Lint & Build
     runs-on: [self-hosted, pikachu]
-    container: mateedevs/charmander
+    container:
+      image: mateedevs/charmander-emulator
+      options: --privileged
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -33,3 +35,8 @@ jobs:
         run: |
           ./gradlew generateTwine
           ./gradlew :android:app:bundleDebug
+          
+      - name: UI tests
+        run: |
+          start_emu_headless.sh
+          ./gradlew :android:app:connectedCheck

@@ -8,8 +8,8 @@ import androidx.compose.ui.test.junit4.AndroidComposeTestRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.test.ext.junit.rules.ActivityScenarioRule
-import cz.up.customer.android.presentation.extensions.hasTestTag
-import cz.up.customer.android.presentation.extensions.onNodeWithTag
+import kmp.android.extension.hasTestTag
+import kmp.android.extension.onNodeWithTag
 import kmp.android.extension.ShortDuration
 import kmp.android.extension.waitUntilExactlyOneExists
 import kmp.shared.samplecomposemultiplatform.presentation.ui.test.TestTags
