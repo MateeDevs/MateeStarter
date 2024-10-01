@@ -85,7 +85,7 @@ fun KotlinMultiplatformExtension.kmm(
                     export(project(":shared:base"))
                     export(project(":shared:sample"))
                     export(project(":shared:samplesharedviewmodel"))
-                    export(project(":shared:samplecomposemultiplatform"))
+                    export(project(":shared:samplecomposemultiplatformmodule"))
                 }
             }
         }
@@ -100,7 +100,7 @@ fun KotlinMultiplatformExtension.kmm(
                         export(project(":shared:base"))
                         export(project(":shared:sample"))
                         export(project(":shared:samplesharedviewmodel"))
-                        export(project(":shared:samplecomposemultiplatform"))
+                        export(project(":shared:samplecomposemultiplatformmodule"))
                     }
                 }
             }
