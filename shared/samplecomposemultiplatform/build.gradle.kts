@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "kmp.shared.samplecomposemultiplatformmodule"
+    namespace = "kmp.shared.samplecomposemultiplatform"
 }
 
 ktlint {
