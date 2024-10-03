@@ -28,11 +28,6 @@ if [ ! -f ../../shared/core/src/commonMain/resources/MR/base/strings.xml ]; then
   ./generate-strings.sh
 fi
 
-if [ ! -d ../DomainLayer/KMPShared.xcframework ]; then
-  echo "⚙️  Building KMP for the first time"
-  ./build-kmp.sh
-fi
-
 echo "⚙️  Checking whether Homebrew is installed"
 if command -v brew &> /dev/null; then
   echo "✅ Homebrew is installed"
