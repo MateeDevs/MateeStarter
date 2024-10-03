@@ -20,11 +20,6 @@ if [ ! -f ../../shared/core/src/commonMain/resources/MR/base/strings.xml ]; then
   ./generate-error-messages.sh
 fi
 
-if [ ! -d ../DomainLayer/KMPShared.xcframework ]; then
-  echo "⚙️  Building KMP for the first time"
-  ./build-kmp.sh
-fi
-
 echo "⚙️  Checking whether Twine is installed"
 if command -v twine &> /dev/null; then
   echo "✅ Twine is installed"

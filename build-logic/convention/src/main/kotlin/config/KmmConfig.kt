@@ -1,20 +1,12 @@
 package config
 
 import extensions.getBooleanProperty
-import extensions.getStringProperty
 import extensions.libs
 import org.gradle.api.Project
-import org.gradle.api.Task
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
-import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType
-import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
-import java.util.Locale
 
 object KmmConfig {
-    private fun getXCodeConfiguration(project: Project): String =
-        getStringProperty(project, "XCODE_CONFIGURATION", "debug")
-
     private fun includeX86(project: Project): Boolean =
         getBooleanProperty(project, "X86", false)
 
@@ -24,49 +16,32 @@ object KmmConfig {
     private fun includeArm64Sim(project: Project): Boolean =
         getBooleanProperty(project, "ARM64SIM", true)
 
-    fun getCurrentNativeBuildType(project: Project): NativeBuildType {
-        val xCodeConfiguration = getXCodeConfiguration(project).lowercase(Locale.getDefault())
-        println("XCODE_CONFIGURATION: $xCodeConfiguration")
-        return if (xCodeConfiguration.contains("debug")) {
-            NativeBuildType.DEBUG
-        } else {
-            NativeBuildType.RELEASE
-        }
-    }
-
-    val KotlinNativeTarget.asMainSourceSetName: String
-        get() = "${this.name}Main"
-
-    fun getSupportedMobilePlatforms(extensions: KotlinMultiplatformExtension, project: Project) =
+    fun getSupportedMobilePlatforms(extensions: KotlinMultiplatformExtension, project: Project): List<KotlinNativeTarget> =
         with(extensions) {
-            val architecture = mutableListOf<KotlinNativeTarget>()
-            if (includeX86(project)) architecture.add(iosX64())
-            if (includeArm64(project)) architecture.add(iosArm64())
-            if (includeArm64Sim(project)) architecture.add(iosSimulatorArm64())
-            architecture
+            val targets = mutableListOf<KotlinNativeTarget>()
+            if (includeX86(project)) targets.add(iosX64())
+            if (includeArm64(project)) targets.add(iosArm64())
+            if (includeArm64Sim(project)) targets.add(iosSimulatorArm64())
+            targets
         }
 
-    fun getSupportedTvPlatforms(extensions: KotlinMultiplatformExtension, project: Project) =
+    fun getSupportedTvPlatforms(extensions: KotlinMultiplatformExtension, project: Project): List<KotlinNativeTarget> =
         with(extensions) {
-            val architecture = mutableListOf<KotlinNativeTarget>()
-            if (includeX86(project)) architecture.add(tvosX64())
-            if (includeArm64(project)) architecture.add(tvosArm64())
-            if (includeArm64Sim(project)) architecture.add(tvosSimulatorArm64())
-            architecture
+            val targets = mutableListOf<KotlinNativeTarget>()
+            if (includeX86(project)) targets.add(tvosX64())
+            if (includeArm64(project)) targets.add(tvosArm64())
+            if (includeArm64Sim(project)) targets.add(tvosSimulatorArm64())
+            targets
         }
-
-    fun Task.copyXCFramework(projectName: String) {
-        val buildPathRelease =
-            "build/XCFrameworks/${getCurrentNativeBuildType(project).name.lowercase(Locale.getDefault())}/$projectName.xcframework"
-        val iosXCBinaryPath = "../../ios/DomainLayer/$projectName.xcframework"
-
-        project.delete(iosXCBinaryPath)
-        project.copy {
-            from(buildPathRelease)
-            into(iosXCBinaryPath)
-        }
-    }
 }
+
+fun KotlinMultiplatformExtension.getIosTargets(project: Project, tvOSEnabled: Boolean = false): List<KotlinNativeTarget> =
+    KmmConfig.getSupportedMobilePlatforms(this, project) +
+        if (tvOSEnabled) {
+            KmmConfig.getSupportedTvPlatforms(this, project)
+        } else {
+            emptyList()
+        }
 
 fun KotlinMultiplatformExtension.kmm(
     project: Project,
@@ -74,35 +49,15 @@ fun KotlinMultiplatformExtension.kmm(
     tvOSEnabled: Boolean = false,
 ) {
     with(project) {
-        val xcf = XCFramework(nativeName)
-        KmmConfig.getSupportedMobilePlatforms(this@kmm, project).forEach {
+        getIosTargets(project, tvOSEnabled).forEach {
             it.binaries.framework {
-                if (this.buildType == KmmConfig.getCurrentNativeBuildType(project)) {
-                    baseName = nativeName
-                    isStatic = false
-                    xcf.add(this)
-                    export(libs.mokoResources)
-                    export(project(":shared:base"))
-                    export(project(":shared:sample"))
-                    export(project(":shared:samplesharedviewmodel"))
-                    export(project(":shared:samplecomposemultiplatform"))
-                }
-            }
-        }
-        if (tvOSEnabled) {
-            KmmConfig.getSupportedTvPlatforms(this@kmm, project).forEach {
-                it.binaries.framework {
-                    if (this.buildType == KmmConfig.getCurrentNativeBuildType(project)) {
-                        baseName = nativeName
-                        isStatic = false
-                        xcf.add(this)
-                        export(libs.mokoResources)
-                        export(project(":shared:base"))
-                        export(project(":shared:sample"))
-                        export(project(":shared:samplesharedviewmodel"))
-                        export(project(":shared:samplecomposemultiplatform"))
-                    }
-                }
+                baseName = nativeName
+                isStatic = false
+                export(libs.mokoResources)
+                export(project(":shared:base"))
+                export(project(":shared:sample"))
+                export(project(":shared:samplesharedviewmodel"))
+                export(project(":shared:samplecomposemultiplatform"))
             }
         }
     }

@@ -1,10 +1,10 @@
 package plugin
 
 import com.android.build.api.dsl.LibraryExtension
-import config.KmmConfig
 import config.configureBuildVariants
 import config.configureKotlinAndroid
 import config.configureTests
+import config.getIosTargets
 import extensions.apply
 import extensions.kotlin
 import extensions.libs
@@ -49,8 +49,7 @@ class KmmLibraryConventionPlugin : Plugin<Project> {
 
             extensions.configure<KotlinMultiplatformExtension> {
                 androidTarget()
-                // iOS targets
-                KmmConfig.getSupportedMobilePlatforms(this@configure, project)
+                getIosTargets(project)
 
                 sourceSets {
                     commonMain.dependencies {
