@@ -8,14 +8,14 @@ internal fun Project.configureSingingConfigs(
     module: BaseAppModuleExtension,
 ) = with(module) {
     signingConfigs {
-        named(ProjectConstants.Variant.debug).configure {
+        named(ProjectConstants.BuildVariant.debug).configure {
             storeFile = file("../../other/keystore/debug.jks")
             storePassword = "android"
             keyAlias = "androiddebugkey"
             keyPassword = "android"
         }
 
-        register(ProjectConstants.Variant.release) {
+        register(ProjectConstants.BuildVariant.release) {
             storeFile = file("../../other/keystore/release.jks")
             storePassword = "android"
             keyAlias = "androiddebugkey"
@@ -26,18 +26,20 @@ internal fun Project.configureSingingConfigs(
     buildTypes {
         debug {
             isMinifyEnabled = false
-            applicationIdSuffix = ".${ProjectConstants.Variant.debug}"
-            signingConfig = signingConfigs.getByName(ProjectConstants.Variant.debug)
+            applicationIdSuffix = ".${ProjectConstants.BuildVariant.debug}"
+            signingConfig = signingConfigs.getByName(ProjectConstants.BuildVariant.debug)
         }
 
-        named(ProjectConstants.Variant.alpha) {
-            applicationIdSuffix = ".${ProjectConstants.Variant.alpha}"
-            signingConfig = signingConfigs.getByName(ProjectConstants.Variant.debug)
-        }
-
-        getByName("release") {
+        release {
             isMinifyEnabled = false
-            signingConfig = signingConfigs.getByName(ProjectConstants.Variant.release)
+            signingConfig = signingConfigs.getByName(ProjectConstants.BuildVariant.release)
+        }
+    }
+
+    productFlavors {
+        all {
+            applicationIdSuffix = ".$name"
+            versionNameSuffix = "-$name"
         }
     }
 }
