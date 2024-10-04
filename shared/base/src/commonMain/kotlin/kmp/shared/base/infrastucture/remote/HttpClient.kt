@@ -18,6 +18,7 @@ import io.ktor.http.contentType
 import io.ktor.http.encodedPath
 import io.ktor.serialization.kotlinx.json.json
 import kmp.shared.base.infrastucture.provider.AuthProvider
+import kmp.shared.base.system.ApiVariant
 import kmp.shared.base.system.Config
 import kotlin.native.concurrent.ThreadLocal
 import co.touchlab.kermit.Logger as KermitLogger
@@ -72,7 +73,12 @@ internal object HttpClient {
         defaultRequest {
             url {
                 protocol = URLProtocol.HTTPS
-                host = "devstack-server-production.up.railway.app"
+                // Set your host URLs
+                host = when (config.apiVariant) {
+                    ApiVariant.Develop -> "devstack-server-production.up.railway.app"
+                    ApiVariant.Alpha -> "devstack-server-production.up.railway.app"
+                    ApiVariant.Production -> "devstack-server-production.up.railway.app"
+                }
             }
             contentType(ContentType.Application.Json)
         }
