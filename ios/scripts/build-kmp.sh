@@ -27,6 +27,8 @@ x86=${2:-false}
 arm64=$3
 arm64sim=$4
 
+defaults write com.apple.dt.Xcode IDESkipPackagePluginFingerprintValidatation -bool YES
+
 # Check if arm64 argument is blank
 if [ -z "$arm64" ]; then
   if [ -z "$__IS_NOT_SIMULATOR" ] || [ "$__IS_NOT_SIMULATOR" = "YES" ]; then
