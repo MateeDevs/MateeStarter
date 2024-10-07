@@ -373,7 +373,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#if [ -z \"$CI\" ]; then\n#    cd \"${PROJECT_DIR}\"\n#    scripts/swiftlint.sh\n#fi\n\ncd \"${PROJECT_DIR}\"\nscripts/swiftlint.sh\n";
+			shellScript = "cd \"${PROJECT_DIR}\"\nscripts/swiftlint.sh\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

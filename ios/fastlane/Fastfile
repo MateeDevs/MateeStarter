@@ -194,7 +194,6 @@ platform :ios do
   private_lane :tests do |config|
   run_tests(
     scheme: config[:scheme],
-    derived_data_path: "~/Library/Developer/Xcode/DerivedData",
     xcargs: "-skipPackagePluginValidation -skipMacroValidation"
   )
   end
