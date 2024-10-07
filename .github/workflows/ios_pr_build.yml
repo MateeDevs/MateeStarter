@@ -19,7 +19,7 @@ jobs:
       - name: Build KMP
         working-directory: ios
         run: |
-          ./scripts/ci_post_clone.sh
+#          ./scripts/ci_post_clone.sh
           ./scripts/generate-error-messages.sh
           ./scripts/build-kmp.sh debug true true false
       - name: Setup tools

@@ -195,7 +195,7 @@ platform :ios do
   run_tests(
     scheme: config[:scheme],
     derived_data_path: "~/Library/Developer/Xcode/DerivedData",
-    xcargs: "-skipPackagePluginValidation"
+    xcargs: "-skipPackagePluginValidation -skipMacroValidation"
   )
   end
 
