@@ -26,7 +26,7 @@ public extension View {
                 }
             }
             .onDisappear {
-                viewModel.clear()
+                viewModel.clearScope()
                 onFinishStateObserving?()
             }
     }

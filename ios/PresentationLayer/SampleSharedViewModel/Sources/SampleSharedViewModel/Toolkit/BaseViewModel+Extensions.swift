@@ -11,7 +11,7 @@ public extension BaseViewModelInt {
     func bindState<S: VmState>(stateBinding: Binding<S>) -> () -> Void {
         @Binding var state: S
         _state = stateBinding
-        let coroutineJob = SwiftViewModelCoroutinesKt.subscribeToState(self) { data in
+        let coroutineJob = self.subscribeToState { data in
             let value = data as! S // swiftlint:disable:this force_cast
             state = value
         } onComplete: {

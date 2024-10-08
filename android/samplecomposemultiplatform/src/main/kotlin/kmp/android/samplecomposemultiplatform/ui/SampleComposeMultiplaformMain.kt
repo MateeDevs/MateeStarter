@@ -14,7 +14,7 @@ import kmp.shared.samplesharedviewmodel.vm.SampleSharedEvent
 import kmp.shared.samplesharedviewmodel.vm.SampleSharedIntent
 import kmp.shared.samplesharedviewmodel.vm.SampleSharedViewModel
 import kotlinx.coroutines.flow.collectLatest
-import org.koin.androidx.compose.getViewModel
+import org.koin.androidx.compose.koinViewModel
 
 internal fun NavGraphBuilder.sampleComposeMultiplatformMainRoute() {
     composableDestination(
@@ -26,7 +26,7 @@ internal fun NavGraphBuilder.sampleComposeMultiplatformMainRoute() {
 
 @Composable
 internal fun SampleComposeMultiplatformMainRoute(
-    viewModel: SampleSharedViewModel = getViewModel(),
+    viewModel: SampleSharedViewModel = koinViewModel(),
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 

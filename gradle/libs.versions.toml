@@ -8,7 +8,7 @@ gradlePlugin = "8.3.2"
 coroutines = "1.8.1"
 dateTime = "0.6.0"
 atomicFu = "0.23.2"
-koin = "3.5.3"
+koin = "4.0.0"
 androidXCore = "1.13.1"
 material = "1.12.0"
 lifecycle = "2.8.6"
@@ -53,8 +53,14 @@ dateTime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "d
 atomicFu = { module = "org.jetbrains.kotlinx:atomicfu", version.ref = "atomicFu" }
 # Koin
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+# Can be removed in case you do not use compose multiplatform
+koin-core-viewModel = { module = "io.insert-koin:koin-core-viewmodel", version.ref = "koin" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
-koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
+koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
+# Can be removed in case you do not use compose multiplatform
+koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koin" }
+# Can be removed in case you do not use compose multiplatform
+koin-compose-viewModel = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koin" }
 koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
 # AndroidX
 androidX-core = { module = "androidx.core:core-ktx", version.ref = "androidXCore" }

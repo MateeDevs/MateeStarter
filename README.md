@@ -83,6 +83,9 @@ extend. Also in iOS project move `SampleSharedViewModel/Toolkit` to `UIToolkit`.
 your shared view models in the same way as the `SampleSharedViewModel` is written and used (
 especially check the usage on iOS with helpful extension methods).
 
+If you do not want to use shared view models inside SwiftUI views, you can remove the `expect` from `BaseScopedViewModel` (and the `actual` class), the
+whole `BaseViewModelInt` interface and the whole `SwiftViewModelCoroutines`, to simplify the base view model.
+
 ### Shared UI and view models
 
 If you go all out and decide to share both UI and view models, take inspiration

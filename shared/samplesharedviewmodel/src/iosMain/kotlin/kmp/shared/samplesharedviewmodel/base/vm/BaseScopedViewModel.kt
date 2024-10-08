@@ -1,28 +1,23 @@
 package kmp.shared.samplesharedviewmodel.base.vm
 
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancelChildren
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.StateFlow
+import androidx.lifecycle.ViewModel as AndroidXViewModel
 
 /**
  * Base class that provides a Kotlin/Native equivalent to the AndroidX `ViewModel`. In particular, this provides
  * a [CoroutineScope][kotlinx.coroutines.CoroutineScope] which uses [Dispatchers.Main][kotlinx.coroutines.Dispatchers.Main]
- * and can be tied into an arbitrary lifecycle by calling [clear] at the appropriate time.
+ * and can be tied into an arbitrary lifecycle by calling [clearScope] at the appropriate time.
  */
 actual abstract class BaseScopedViewModel<S : VmState, I : VmIntent, E : VmEvent> :
-    BaseViewModelInt<S, I, E> {
+    AndroidXViewModel(), BaseViewModelInt<S, I, E> {
 
-    private var _viewModelScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
-    actual override val viewModelScope
-        get() = _viewModelScope
-
-    /**
-     * Override this to do any cleanup immediately before the internal [CoroutineScope][kotlinx.coroutines.CoroutineScope]
-     * is cancelled in [clear]
-     */
-    protected actual open fun onCleared() {
-    }
+    final override val viewModelScope: CoroutineScope
+        get() = (this as ViewModel).viewModelScope
 
     /**
      * Cancels the children of the Context of the internal [CoroutineScope][kotlinx.coroutines.CoroutineScope].
@@ -30,8 +25,19 @@ actual abstract class BaseScopedViewModel<S : VmState, I : VmIntent, E : VmEvent
      * where the lifecycle is not stopped until the screen is no longer in the backstack
      * (meaning it lives if the user navigates to next screen, but not when he navigates back)
      */
-    fun clear() {
-        onCleared()
+    override fun clearScope() {
         viewModelScope.coroutineContext.cancelChildren()
+        onCleared()
     }
+}
+
+actual interface BaseViewModelInt<S : VmState, I : VmIntent, E : VmEvent> {
+
+    val viewModelScope: CoroutineScope
+
+    actual val state: StateFlow<S>
+    actual val events: SharedFlow<E>
+
+    actual fun onIntent(intent: I)
+    fun clearScope()
 }
