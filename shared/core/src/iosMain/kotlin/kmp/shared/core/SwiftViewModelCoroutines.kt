@@ -1,6 +1,6 @@
 package kmp.shared.core
 
-import kmp.shared.samplesharedviewmodel.base.vm.BaseViewModelInt
+import kmp.shared.samplesharedviewmodel.base.vm.BaseIntentViewModel
 import kmp.shared.samplesharedviewmodel.base.vm.VmEvent
 import kmp.shared.samplesharedviewmodel.base.vm.VmState
 import kotlinx.coroutines.Job
@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
-fun <S : VmState> BaseViewModelInt<S, *, *>.subscribeToState(
+fun <S : VmState> BaseIntentViewModel<S, *, *>.subscribeToState(
     onEach: (item: S) -> Unit,
     onComplete: () -> Unit,
     onThrow: (error: Throwable) -> Unit,
@@ -28,7 +28,7 @@ fun <S : VmState> BaseViewModelInt<S, *, *>.subscribeToState(
         .collect()
 }
 
-fun <E : VmEvent> BaseViewModelInt<*, *, E>.subscribeToEvents(
+fun <E : VmEvent> BaseIntentViewModel<*, *, E>.subscribeToEvents(
     onEach: (item: E) -> Unit,
     onComplete: () -> Unit,
     onThrow: (error: Throwable) -> Unit,

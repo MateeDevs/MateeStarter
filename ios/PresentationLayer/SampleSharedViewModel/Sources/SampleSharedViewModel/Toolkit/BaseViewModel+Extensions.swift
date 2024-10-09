@@ -7,7 +7,7 @@ import Foundation
 import KMPShared
 import SwiftUI
 
-public extension BaseViewModelInt {
+public extension BaseIntentViewModel {
     func bindState<S: VmState>(stateBinding: Binding<S>) -> () -> Void {
         @Binding var state: S
         _state = stateBinding
@@ -23,7 +23,7 @@ public extension BaseViewModelInt {
     }
 }
 
-public extension BaseViewModelInt {
+public extension BaseIntentViewModel {
     func asyncStreamFromEvents<E: VmEvent>() -> AsyncStream<E> {
         return AsyncStream<E> { continuation in
             let coroutineJob = subscribeToEvents { data in

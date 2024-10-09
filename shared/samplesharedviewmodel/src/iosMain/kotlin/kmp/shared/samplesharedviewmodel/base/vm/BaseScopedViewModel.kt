@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModel as AndroidXViewModel
  * and can be tied into an arbitrary lifecycle by calling [clearScope] at the appropriate time.
  */
 actual abstract class BaseScopedViewModel<S : VmState, I : VmIntent, E : VmEvent> :
-    AndroidXViewModel(), BaseViewModelInt<S, I, E> {
+    AndroidXViewModel(), BaseIntentViewModel<S, I, E> {
 
     final override val viewModelScope: CoroutineScope
         get() = (this as ViewModel).viewModelScope
@@ -31,7 +31,7 @@ actual abstract class BaseScopedViewModel<S : VmState, I : VmIntent, E : VmEvent
     }
 }
 
-actual interface BaseViewModelInt<S : VmState, I : VmIntent, E : VmEvent> {
+actual interface BaseIntentViewModel<S : VmState, I : VmIntent, E : VmEvent> {
 
     val viewModelScope: CoroutineScope
 
