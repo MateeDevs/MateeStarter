@@ -11,7 +11,7 @@ public extension BaseViewModelInt {
     func bindState<S: VmState>(stateBinding: Binding<S>) -> () -> Void {
         @Binding var state: S
         _state = stateBinding
-        let coroutineJob = self.subscribeToState { data in
+        let coroutineJob = subscribeToState { data in
             let value = data as! S // swiftlint:disable:this force_cast
             state = value
         } onComplete: {
@@ -26,7 +26,7 @@ public extension BaseViewModelInt {
 public extension BaseViewModelInt {
     func asyncStreamFromEvents<E: VmEvent>() -> AsyncStream<E> {
         return AsyncStream<E> { continuation in
-            let coroutineJob = SwiftViewModelCoroutinesKt.subscribeToEvents(self) { data in
+            let coroutineJob = subscribeToEvents { data in
                 let value = data as! E // swiftlint:disable:this force_cast
                 continuation.yield(value)
             } onComplete: {
