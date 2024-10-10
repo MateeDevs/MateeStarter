@@ -35,7 +35,7 @@ internal fun Project.configureComposeDependencies() {
         implementation(libs.activity.compose)
         implementation(libs.navigation.compose)
         implementation(libs.koin.android)
-        implementation(libs.koin.compose)
+        implementation(libs.koin.androidx.compose)
         implementation(libs.accompanist.navigationMaterial)
         androidTestImplementation(libs.compose.uiTest)
     }

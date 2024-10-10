@@ -1,15 +1,16 @@
 package kmp.shared.samplesharedviewmodel.base.vm
 
-import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.StateFlow
 import androidx.lifecycle.ViewModel as AndroidXViewModel
-import androidx.lifecycle.viewModelScope as androidXViewModelScope
 
 actual abstract class BaseScopedViewModel<S : VmState, I : VmIntent, E : VmEvent> actual constructor() :
-    AndroidXViewModel(), BaseViewModelInt<S, I, E> {
+    AndroidXViewModel(), BaseIntentViewModel<S, I, E>
 
-    actual override val viewModelScope: CoroutineScope = androidXViewModelScope
+actual interface BaseIntentViewModel<S : VmState, I : VmIntent, E : VmEvent> {
 
-    actual override fun onCleared() {
-        super.onCleared()
-    }
+    actual val state: StateFlow<S>
+    actual val events: SharedFlow<E>
+
+    actual fun onIntent(intent: I)
 }

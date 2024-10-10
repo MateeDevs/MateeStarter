@@ -10,8 +10,7 @@ import SwiftUI
 import UIToolkit
 
 struct SampleComposeMultiplatformView: View {
-    
-    @Injected(\.sampleSharedViewModel) private(set) var viewModel: KMPShared.SampleSharedViewModel
+
     private weak var flowController: FlowController?
     
     @State private var toastData: ToastData?
@@ -23,7 +22,6 @@ struct SampleComposeMultiplatformView: View {
     var body: some View {
         ComposeViewController {
             SampleComposeMultiplatformScreenViewControllerKt.SampleComposeMultiplatformScreenViewController(
-                viewModel: viewModel,
                 onEvent: { event in
                     switch onEnum(of: event) {
                     case .showMessage(let message):
