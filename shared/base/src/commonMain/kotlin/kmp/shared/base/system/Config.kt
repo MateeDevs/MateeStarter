@@ -1,5 +1,6 @@
 package kmp.shared.base.system
 
-expect class Config {
+interface Config {
     val isRelease: Boolean
+    val apiVariant: ApiVariant
 }

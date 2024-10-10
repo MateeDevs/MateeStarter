@@ -6,6 +6,7 @@
 import Foundation
 import KMPShared
 import OSLog
+import SharedDomain
 import Utilities
 
 protocol KMPDependency {
@@ -27,7 +28,7 @@ final class KMPKoinDependency: KMPDependency {
             Logger.app.info("Koin Started")
         }
         
-        let koinApplication = KoinIOSKt.doInitKoinIos(doOnStartup: onStartup)
+        let koinApplication = KoinIOSKt.doInitKoinIos(doOnStartup: onStartup, config: ConfigImpl())
         _koin = koinApplication.koin
     }
     

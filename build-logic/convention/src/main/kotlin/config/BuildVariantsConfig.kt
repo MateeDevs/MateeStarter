@@ -13,12 +13,24 @@ internal fun <T : BuildType> CommonExtension<*, T, *, *, *, *>.configureBuildVar
             splits.density.isEnable = false
             (this as ExtensionAware).extra["alwaysUpdateBuildId"] = false
         }
-        create(ProjectConstants.Variant.alpha) {
-            initWith(getByName("release"))
-        }
         release {
             isMinifyEnabled = false
             isShrinkResources = false
+        }
+    }
+
+    flavorDimensions += ProjectConstants.ApiVariant.dimensionName
+    productFlavors {
+        create(ProjectConstants.ApiVariant.develop) {
+            dimension = ProjectConstants.ApiVariant.dimensionName
+        }
+
+        create(ProjectConstants.ApiVariant.alpha) {
+            dimension = ProjectConstants.ApiVariant.dimensionName
+        }
+
+        create(ProjectConstants.ApiVariant.production) {
+            dimension = ProjectConstants.ApiVariant.dimensionName
         }
     }
 }
