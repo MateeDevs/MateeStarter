@@ -20,7 +20,7 @@ jobs:
         working-directory: ios
         run: |
           ./scripts/generate-error-messages.sh
-          ./scripts/build-kmp.sh debug true true false
+          ./scripts/build-kmp.sh
       - name: Setup tools
         working-directory: ios
         run: ./scripts/setup.sh
