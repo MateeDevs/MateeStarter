@@ -47,6 +47,6 @@ if command -v swiftlint &> /dev/null; then
   echo "✅ SwiftLint is installed"
 else
   echo "❌ SwiftLint is not installed"
-  echo "Please run 'brew install swiftlint' to install it"
-  exit
+  echo "Trying to install swiftlint"
+  brew install swiftlint
 fi
