@@ -21,7 +21,7 @@ jobs:
       - name: Build KMP
         working-directory: ios
         run: |
-          ./scripts/generate-error-messages.sh
+          ./scripts/generate-strings.sh
           ./scripts/build-kmp.sh release false true false
       - name: Setup tools
         working-directory: ios
