@@ -3,6 +3,7 @@
 //  Copyright © 2019 Matee. All rights reserved.
 //
 
+import KMPShared
 import Sample
 import SampleComposeMultiplatform
 import SampleSharedViewModel
@@ -28,7 +29,7 @@ final class MainFlowController: FlowController {
     private func setupSampleTab() -> UINavigationController {
         let sampleNC = BaseNavigationController(statusBarStyle: .lightContent)
         sampleNC.tabBarItem = UITabBarItem(
-            title: L10n.bottom_bar_item_1,
+            title: MR.strings().bottom_bar_item_1.toLocalized(),
             image: AppTheme.Images.person,
             tag: MainTab.sample.rawValue
         )
@@ -41,7 +42,7 @@ final class MainFlowController: FlowController {
     private func setupSampleSharedViewModelTab() -> UINavigationController {
         let sampleSharedViewModelNC = BaseNavigationController(statusBarStyle: .lightContent)
         sampleSharedViewModelNC.tabBarItem = UITabBarItem(
-            title: L10n.bottom_bar_item_2,
+            title: MR.strings().bottom_bar_item_2.toLocalized(),
             image: AppTheme.Images.personCirle,
             tag: MainTab.sampleSharedViewModel.rawValue
         )
@@ -54,7 +55,7 @@ final class MainFlowController: FlowController {
     private func setupSampleComposeMultiplatformTab() -> UINavigationController {
         let sampleComposeMultiplatformNC = BaseNavigationController(statusBarStyle: .lightContent)
         sampleComposeMultiplatformNC.tabBarItem = UITabBarItem(
-            title: L10n.bottom_bar_item_3,
+            title: MR.strings().bottom_bar_item_3.toLocalized(),
             image: AppTheme.Images.personSquare,
             tag: MainTab.sampleComposeMultiplatform.rawValue
         )

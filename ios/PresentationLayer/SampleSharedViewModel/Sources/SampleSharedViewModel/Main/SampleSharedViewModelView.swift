@@ -36,7 +36,7 @@ struct SampleSharedViewModelView: View {
                 }
             }
         }
-        .navigationTitle(L10n.bottom_bar_item_2)
+        .navigationTitle(MR.strings().bottom_bar_item_2.toLocalized())
         .onAppear {
             viewModel.onIntent(intent: SampleSharedIntentOnAppeared())
         }

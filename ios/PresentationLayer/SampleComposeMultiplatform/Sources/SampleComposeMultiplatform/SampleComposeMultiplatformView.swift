@@ -31,6 +31,6 @@ struct SampleComposeMultiplatformView: View {
             )
         }
         .toastView($toastData)
-        .navigationTitle(L10n.bottom_bar_item_3)
+        .navigationTitle(MR.strings().bottom_bar_item_3.toLocalized())
     }
 }

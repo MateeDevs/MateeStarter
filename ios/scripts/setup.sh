@@ -16,21 +16,13 @@ else
 fi
 
 if [ ! -f ../../shared/core/src/commonMain/resources/MR/base/strings.xml ]; then
-  echo "⚙️  Building Moko error strings for the first time"
-  ./generate-error-messages.sh
+  echo "⚙️  Building Moko strings for the first time"
+  ./generate-strings.sh
 fi
 
 if [ ! -d ../DomainLayer/KMPShared.xcframework ]; then
   echo "⚙️  Building KMP for the first time"
   ./build-kmp.sh
-fi
-
-echo "⚙️  Checking whether Twine is installed"
-if command -v twine &> /dev/null; then
-  echo "✅ Twine is installed"
-else
-  echo "❌ Twine is not installed"
-  echo "Check https://github.com/MateeDevs/wiki/blob/master/tooling/ruby.md for more info"
 fi
 
 echo "⚙️  Checking whether Homebrew is installed"
@@ -46,7 +38,6 @@ echo "⚙️  Checking whether SwiftLint is installed"
 if command -v swiftlint &> /dev/null; then
   echo "✅ SwiftLint is installed"
 else
-  echo "❌ SwiftLint is not installed"
-  echo "Trying to install swiftlint"
+  echo "❌ SwiftLint is not installed - installing now"
   brew install swiftlint
 fi
