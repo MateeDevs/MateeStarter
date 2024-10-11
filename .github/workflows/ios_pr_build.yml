@@ -1,0 +1,33 @@
+name: iOS – PR check
+
+on:
+  pull_request:
+    types: [ opened, synchronize ]
+
+jobs:
+  test:
+    name: Build
+    runs-on:
+      group: matee-tartelets
+    timeout-minutes: 30
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        continue-on-error: true
+        with:
+          clean: false
+      - name: Setup Tools
+        working-directory: ios
+        run: |
+          ./scripts/setup.sh
+      - name: Generate Error Messages
+        working-directory: ios
+        run: |
+          ./scripts/generate-error-messages.sh
+      - name: Build KMP
+        working-directory: ios
+        run: |        
+          ./scripts/build-kmp.sh debug false
+      - name: Build iOS
+        working-directory: ios
+        run: fastlane test_alpha
