@@ -59,6 +59,7 @@ import DependencyInjectionMocks
 import Factory
 
 #Preview {
+    fixMokoResourcesForPreviews()
     Container.shared.registerUseCaseMocks()
     Container.shared.registerViewModelMocks()
     

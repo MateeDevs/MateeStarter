@@ -56,6 +56,7 @@ import DependencyInjectionMocks
 import Factory
 
 #Preview {
+    fixMokoResourcesForPreviews()
     Container.shared.registerUseCaseMocks()
     
     let vm = SampleViewModel(flowController: nil)
