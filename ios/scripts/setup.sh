@@ -15,6 +15,14 @@ else
   echo "✅ File header is properly set"
 fi
 
+echo "⚙️  Checking whether Twine is installed"
+if command -v twine &> /dev/null; then
+  echo "✅ Twine is installed"
+else
+  echo "❌ Twine is not installed"
+  echo "Check https://github.com/MateeDevs/wiki/blob/master/tooling/ruby.md for more info"
+fi
+
 if [ ! -f ../../shared/core/src/commonMain/resources/MR/base/strings.xml ]; then
   echo "⚙️  Building Moko strings for the first time"
   ./generate-strings.sh
