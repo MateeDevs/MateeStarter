@@ -20,10 +20,10 @@ jobs:
         working-directory: ios
         run: |
           ./scripts/setup.sh
-      - name: Generate Error Messages
+      - name: Generate Strings
         working-directory: ios
         run: |
-          ./scripts/generate-error-messages.sh
+          ./scripts/generate-strings.sh
       - name: Build KMP
         working-directory: ios
         run: |        
