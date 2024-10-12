@@ -3,6 +3,7 @@
 //  Copyright © 2018 Matee. All rights reserved.
 //
 
+import KMPShared
 import UIKit
 
 @objc public protocol ImagePickerViewControllerDelegate: AnyObject {
@@ -12,8 +13,8 @@ import UIKit
 public final class ImagePickerViewController: BaseViewController {
 
     // MARK: Stored properties
-    public var imagePickerTitle: String = L10n.image_picker_title
-    public var imagePickerSubtitle: String = L10n.image_picker_subtitle
+    public var imagePickerTitle: String = MR.strings().image_picker_title.toLocalized()
+    public var imagePickerSubtitle: String = MR.strings().image_picker_subtitle.toLocalized()
 
     public weak var delegate: ImagePickerViewControllerDelegate?
 
@@ -25,17 +26,17 @@ public final class ImagePickerViewController: BaseViewController {
         // Setup action sheet with camera/library options
         let actionSheetController = UIAlertController(title: imagePickerTitle, message: imagePickerSubtitle, preferredStyle: .actionSheet)
 
-        let photoLibrary = UIAlertAction(title: L10n.image_picker_library, style: .default, handler: { _ in
+        let photoLibrary = UIAlertAction(title: MR.strings().image_picker_library.toLocalized(), style: .default, handler: { _ in
             self.selectPhoto(sourceType: .photoLibrary)
         })
         actionSheetController.addAction(photoLibrary)
 
-        let takePhotoByCamera = UIAlertAction(title: L10n.image_picker_camera, style: .default, handler: { _ in
+        let takePhotoByCamera = UIAlertAction(title: MR.strings().image_picker_camera.toLocalized(), style: .default, handler: { _ in
             self.selectPhoto(sourceType: .camera)
         })
         actionSheetController.addAction(takePhotoByCamera)
 
-        let cancel = UIAlertAction(title: L10n.image_picker_cancel, style: .cancel, handler: nil)
+        let cancel = UIAlertAction(title: MR.strings().image_picker_cancel.toLocalized(), style: .cancel, handler: nil)
         actionSheetController.addAction(cancel)
 
         // Required for iPad

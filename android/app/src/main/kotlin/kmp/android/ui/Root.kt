@@ -18,12 +18,12 @@ import androidx.compose.material.primarySurface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import dev.icerock.moko.resources.compose.localized
 import kmp.android.navigation.NavBarFeature
 import kmp.android.sample.navigation.SampleGraph
 import kmp.android.sample.navigation.sampleNavGraph
@@ -84,7 +84,7 @@ private fun BottomBar(navController: NavHostController, modifier: Modifier = Mod
                             )
                         }
                     },
-                    label = { Text(stringResource(screen.titleRes)) },
+                    label = { Text(screen.titleRes.localized()) },
                     selected = currentRoute?.startsWith(screen.route + "/") ?: false,
                     onClick = {
                         navController.navigate(screen.route) {

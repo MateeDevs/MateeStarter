@@ -3,6 +3,7 @@
 //  Copyright © 2017 Matee. All rights reserved.
 //
 
+import KMPShared
 import OSLog
 import UIKit
 import Utilities
@@ -36,6 +37,6 @@ public class BaseViewController: UIViewController {
     open func setupUI() {
         // Setup background color and back button title
         view.backgroundColor = UIColor(AppTheme.Colors.background)
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: L10n.back, style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: MR.strings().back.toLocalized(), style: .plain, target: nil, action: nil)
     }
 }

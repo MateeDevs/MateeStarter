@@ -3,6 +3,7 @@
 //  Copyright © 2022 Matee. All rights reserved.
 //
 
+import KMPShared
 import OSLog
 import SwiftUI
 import Utilities
@@ -39,6 +40,6 @@ public class BaseHostingController<Content>: UIHostingController<Content> where 
     private func setupUI() {
         // Setup background color and back button title
         view.backgroundColor = UIColor(AppTheme.Colors.background)
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: L10n.back, style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: MR.strings().back.toLocalized(), style: .plain, target: nil, action: nil)
     }
 }

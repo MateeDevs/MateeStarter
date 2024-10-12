@@ -29,7 +29,7 @@ struct SampleView: View {
                 EmptyView()
             }
         }
-        .navigationTitle(L10n.bottom_bar_item_1)
+        .navigationTitle(MR.strings().bottom_bar_item_1.toLocalized())
         .toastView(Binding<ToastData?>(
             get: { viewModel.state.toast },
             set: { toast in viewModel.onIntent(.onToastChanged(data: toast)) }
@@ -56,6 +56,7 @@ import DependencyInjectionMocks
 import Factory
 
 #Preview {
+    fixMokoResourcesForPreviews()
     Container.shared.registerUseCaseMocks()
     
     let vm = SampleViewModel(flowController: nil)

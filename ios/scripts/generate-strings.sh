@@ -5,8 +5,8 @@ cd "$(dirname "$0")"
 
 cd ../..
 
-echo "Generating Localizable files for error messages in specified languages"
-./gradlew generateErrorsTwine
+echo "Generating Localizable files"
+./gradlew generateTwine
 
 echo "Generating MR resources from .xml files"
 ./gradlew :shared:base:generateMRcommonMain
