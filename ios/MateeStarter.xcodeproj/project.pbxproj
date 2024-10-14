@@ -70,7 +70,6 @@
 		45FF99D72842B0A600E32D9A /* AnalyticsToolkit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = AnalyticsToolkit; sourceTree = "<group>"; };
 		45FF99D92842B51800E32D9A /* Utilities */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Utilities; sourceTree = "<group>"; };
 		A3009BAA2C5A6E5800806BA3 /* UserDefaultsProvider */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UserDefaultsProvider; sourceTree = "<group>"; };
-		A350DE7C2C5A3103009B6F77 /* KMPShared.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = KMPShared.xcframework; sourceTree = "<group>"; };
 		A37BB4DC2C5CD658006C491D /* SampleSharedViewModel */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SampleSharedViewModel; sourceTree = "<group>"; };
 		A37BB4DF2C5D0CE5006C491D /* SampleComposeMultiplatform */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SampleComposeMultiplatform; sourceTree = "<group>"; };
 		A3F048832C5A43E100B9A3F3 /* Sample */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Sample; sourceTree = "<group>"; };
@@ -113,7 +112,6 @@
 		453C8802283FA9D10027BDFB /* DomainLayer */ = {
 			isa = PBXGroup;
 			children = (
-				A350DE7C2C5A3103009B6F77 /* KMPShared.xcframework */,
 				453C8807283FAB4C0027BDFB /* SharedDomain */,
 				45FF99D92842B51800E32D9A /* Utilities */,
 			);
@@ -486,6 +484,7 @@
 				GOOGLE_SERVICE_INFO_PLIST_FILE = "Application/GoogleService/GoogleService-Info-Alpha.plist";
 				INFOPLIST_FILE = "Application/Info/Info+Proxyman.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				KOTLIN_FRAMEWORK_BUILD_TYPE = debug;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -583,6 +582,7 @@
 				GOOGLE_SERVICE_INFO_PLIST_FILE = "Application/GoogleService/GoogleService-Info-Beta.plist";
 				INFOPLIST_FILE = "Application/Info/Info+Proxyman.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				KOTLIN_FRAMEWORK_BUILD_TYPE = debug;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -675,6 +675,7 @@
 				GOOGLE_SERVICE_INFO_PLIST_FILE = "Application/GoogleService/GoogleService-Info-Alpha.plist";
 				INFOPLIST_FILE = "Application/Info/Info+Proxyman.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				KOTLIN_FRAMEWORK_BUILD_TYPE = release;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -767,6 +768,7 @@
 				GOOGLE_SERVICE_INFO_PLIST_FILE = "Application/GoogleService/GoogleService-Info-Beta.plist";
 				INFOPLIST_FILE = "Application/Info/Info+Proxyman.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				KOTLIN_FRAMEWORK_BUILD_TYPE = release;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -921,6 +923,7 @@
 				GOOGLE_SERVICE_INFO_PLIST_FILE = "Application/GoogleService/GoogleService-Info-Prod.plist";
 				INFOPLIST_FILE = "Application/Info/Info+Proxyman.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				KOTLIN_FRAMEWORK_BUILD_TYPE = debug;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -956,6 +959,7 @@
 				GOOGLE_SERVICE_INFO_PLIST_FILE = "Application/GoogleService/GoogleService-Info-Prod.plist";
 				INFOPLIST_FILE = Application/Info/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				KOTLIN_FRAMEWORK_BUILD_TYPE = release;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
