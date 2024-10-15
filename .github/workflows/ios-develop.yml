@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     name: Create new build
-    if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == false
     runs-on: [self-hosted, ios-build]
     timeout-minutes: 15
     steps:
@@ -36,7 +36,7 @@ jobs:
 
   deploy-alpha:
     name: Deploy alpha
-    if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == false
     needs: build
     runs-on: [self-hosted, ios-internal]
     timeout-minutes: 15
