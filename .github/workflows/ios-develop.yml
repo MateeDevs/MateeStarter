@@ -10,7 +10,8 @@ jobs:
   build:
     name: Create new build
     if: github.event.pull_request.merged == false
-    runs-on: [self-hosted, ios-build]
+    runs-on:
+      group: matee-tartelets
     timeout-minutes: 15
     steps:
       - name: Checkout repo
