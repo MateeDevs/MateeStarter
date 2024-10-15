@@ -1,11 +1,10 @@
 name: iOS - Build develop
 
 on:
-  workflow_dispatch:
   pull_request:
     branches:
       - main
-    types: [closed]
+    types: [closed, opened, synchronize]
 
 jobs:
   build:
