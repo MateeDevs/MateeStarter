@@ -269,7 +269,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1320;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1600;
 				ORGANIZATIONNAME = Matee;
 				TargetAttributes = {
 					4558D30620FCC8FF005BC325 = {
@@ -493,7 +493,7 @@
 				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-DALPHA\"";
-				PRODUCT_BUNDLE_IDENTIFIER = cz.matee.mateestarter.alpha;
+				PRODUCT_BUNDLE_IDENTIFIER = cz.matee.starter.alpha;
 				PRODUCT_NAME = MateeStarter;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -590,7 +590,7 @@
 				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-DBETA\"";
-				PRODUCT_BUNDLE_IDENTIFIER = cz.matee.mateestarter.beta;
+				PRODUCT_BUNDLE_IDENTIFIER = cz.matee.starter.beta;
 				PRODUCT_NAME = MateeStarter;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -682,7 +682,7 @@
 				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-DALPHA\"";
-				PRODUCT_BUNDLE_IDENTIFIER = cz.matee.mateestarter.alpha;
+				PRODUCT_BUNDLE_IDENTIFIER = cz.matee.starter.alpha;
 				PRODUCT_NAME = MateeStarter;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -774,7 +774,7 @@
 				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-DBETA\"";
-				PRODUCT_BUNDLE_IDENTIFIER = cz.matee.mateestarter.beta;
+				PRODUCT_BUNDLE_IDENTIFIER = cz.matee.starter.beta;
 				PRODUCT_NAME = MateeStarter;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -928,7 +928,7 @@
 				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-DPRODUCTION\"";
-				PRODUCT_BUNDLE_IDENTIFIER = cz.matee.mateestarter;
+				PRODUCT_BUNDLE_IDENTIFIER = cz.matee.starter;
 				PRODUCT_NAME = MateeStarter;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -963,7 +963,7 @@
 				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-DPRODUCTION\"";
-				PRODUCT_BUNDLE_IDENTIFIER = cz.matee.mateestarter;
+				PRODUCT_BUNDLE_IDENTIFIER = cz.matee.starter;
 				PRODUCT_NAME = MateeStarter;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
