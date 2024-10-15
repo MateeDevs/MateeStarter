@@ -3,6 +3,8 @@
 //  Copyright © 2024 Matee. All rights reserved.
 //
 
+import DependencyInjection
+import Factory
 import KMPShared
 import SwiftUI
 import UIToolkit
