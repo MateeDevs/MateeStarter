@@ -34,7 +34,8 @@ jobs:
   deploy-alpha:
     name: Deploy alpha
     needs: build
-    runs-on: [self-hosted, ios-alpha]
+    runs-on:
+      group: matee-tartelets
     timeout-minutes: 120
     steps:
       - name: Upload the Alpha build to the TestFlight
@@ -47,7 +48,8 @@ jobs:
   deploy-production:
     name: Deploy production
     needs: build
-    runs-on: [self-hosted, ios-prod]
+    runs-on:
+      group: matee-tartelets
     timeout-minutes: 120
     steps:
       - name: Upload the Production build to the TestFlight
