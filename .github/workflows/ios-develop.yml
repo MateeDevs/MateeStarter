@@ -12,7 +12,7 @@ jobs:
     if: github.event.pull_request.merged == false
     runs-on:
       group: matee-tartelets
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
@@ -32,6 +32,10 @@ jobs:
       - name: Create a new Alpha build
         working-directory: ios
         run: fastlane build_alpha
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          path: .ios/ipa/
 
   deploy-alpha:
     name: Deploy alpha
@@ -41,6 +45,16 @@ jobs:
       group: matee-tartelets
     timeout-minutes: 30
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        continue-on-error: true
+        with:
+          clean: false
+      - name: Download Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: ./ios/ipa/
+          merge-multiple: true
       - name: Upload the Alpha build to the TestFlight
         env:
           APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_MATEE }}
