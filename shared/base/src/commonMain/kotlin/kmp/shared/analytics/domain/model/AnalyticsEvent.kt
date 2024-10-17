@@ -17,14 +17,11 @@ class AnalyticsEvent(
  */
 object AnalyticName {
     enum class Event(val eventName: String) {
-        LoginScreenAppear("login_screen_appear"),
-        LoginButtonTap("login_button_tap"),
-        RegisterButtonTap("register_button_tap"),
-        ViewUserDetail("user_detail"),
+        ToastPresented("toast_presented"),
     }
 
     enum class Param(val parameterName: String) {
-        Id("id"),
+        PresentedFrom("presented_from"),
     }
 }
 
