@@ -4,12 +4,12 @@ on:
   pull_request:
     branches:
       - main
-    types: [closed, opened, synchronize]
+    types: [closed]
 
 jobs:
   build:
     name: Create new build
-    if: github.event.pull_request.merged == false
+    if: github.event.pull_request.merged == true
     runs-on:
       group: matee-tartelets
     timeout-minutes: 45
@@ -44,7 +44,7 @@ jobs:
 
   deploy-alpha:
     name: Deploy alpha
-    if: github.event.pull_request.merged == false
+    if: github.event.pull_request.merged == true
     needs: build
     runs-on:
       group: matee-tartelets
