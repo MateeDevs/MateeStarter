@@ -5,12 +5,12 @@ on: workflow_dispatch
 jobs:
   build:
     name: Create new builds
-    runs-on: [self-hosted, ios-build]
+    runs-on:
+      group: matee-tartelets
     timeout-minutes: 60
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
-        continue-on-error: true
+        uses: actions/checkout@v4
         with:
           clean: false
       - name: Build KMP
@@ -35,13 +35,28 @@ jobs:
           fastlane build_beta
           fastlane build_production
           fastlane tag
+      - name: Cache build output
+        uses: actions/cache@v4
+        with:
+          path: ios/ipa/
+          key: ios-build-${{ github.sha }}-release  # Unique key based on the commit SHA
 
   deploy-alpha:
     name: Deploy alpha
     needs: build
-    runs-on: [self-hosted, ios-alpha]
+    runs-on:
+      group: matee-tartelets
     timeout-minutes: 120
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          clean: false
+      - name: Restore cache for build output
+        uses: actions/cache@v4
+        with:
+          path: ios/ipa/
+          key: ios-build-${{ github.sha }}-release  # Unique key based on the commit SHA
       - name: Upload the Alpha build to the TestFlight
         env:
           APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_MATEE }}
@@ -52,9 +67,19 @@ jobs:
   deploy-beta:
     name: Deploy beta
     needs: build
-    runs-on: [self-hosted, ios-beta]
+    runs-on:
+      group: matee-tartelets
     timeout-minutes: 120
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          clean: false
+      - name: Restore cache for build output
+        uses: actions/cache@v4
+        with:
+          path: ios/ipa/
+          key: ios-build-${{ github.sha }}-release  # Unique key based on the commit SHA
       - name: Upload the Beta build to the TestFlight
         env:
           APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_MATEE }}
@@ -65,9 +90,19 @@ jobs:
   deploy-production:
     name: Deploy production
     needs: build
-    runs-on: [self-hosted, ios-prod]
+    runs-on:
+      group: matee-tartelets
     timeout-minutes: 120
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          clean: false
+      - name: Restore cache for build output
+        uses: actions/cache@v4
+        with:
+          path: ios/ipa/
+          key: ios-build-${{ github.sha }}-release  # Unique key based on the commit SHA
       - name: Upload the Production build to the TestFlight
         env:
           APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_MATEE }}

@@ -16,13 +16,17 @@
          <FileRef
             location = "group:../.github/workflows/ios-release.yml">
          </FileRef>
+      </Group>
+      <Group
+         location = "container:fastlane"
+         name = "fastlane">
          <FileRef
-            location = "group:../.github/workflows/ios-test.yml">
+            location = "group:Fastfile">
+         </FileRef>
+         <FileRef
+            location = "group:README.md">
          </FileRef>
       </Group>
-      <FileRef
-         location = "group:FastlaneRunner">
-      </FileRef>
    </Group>
    <Group
       location = "container:"
