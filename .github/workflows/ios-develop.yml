@@ -15,8 +15,7 @@ jobs:
     timeout-minutes: 45
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
-        continue-on-error: true
+        uses: actions/checkout@v4
         with:
           clean: false
       - name: Setup tools
@@ -32,10 +31,10 @@ jobs:
       - name: Create a new Alpha build
         working-directory: ios
         run: fastlane build_alpha
-      - name: Upload Artifacts
+      - name: Archive Build Output
         uses: actions/upload-artifact@v4
         with:
-          path: .ios/ipa/
+          path: ios/ipa/
 
   deploy-alpha:
     name: Deploy alpha
@@ -46,14 +45,13 @@ jobs:
     timeout-minutes: 30
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
-        continue-on-error: true
+        uses: actions/checkout@v4
         with:
           clean: false
-      - name: Download Artifacts
+      - name: Download Build Output
         uses: actions/download-artifact@v4
         with:
-          path: ./ios/ipa/
+          path: ios/ipa/
           merge-multiple: true
       - name: Upload the Alpha build to the TestFlight
         env:
