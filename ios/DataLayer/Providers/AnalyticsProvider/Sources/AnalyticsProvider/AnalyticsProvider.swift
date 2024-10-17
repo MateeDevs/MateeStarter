@@ -3,7 +3,6 @@
 //  Copyright © 2021 Matee. All rights reserved.
 //
 
-public protocol AnalyticsProvider {
-    /// Track a given event
-    func track(_ name: String, params: [String: AnyHashable])
-}
+import KMPShared
+
+public typealias AnalyticsProvider = AnalyticsSource

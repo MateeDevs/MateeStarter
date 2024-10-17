@@ -10,7 +10,10 @@ import SharedDomain
 public extension Container {
     // Koin
     private var kmp: Factory<KMPDependency> { self { KMPKoinDependency() }.singleton }
-
+    
+    // Analytics
+    var trackAnalyticsEventUseCase: Factory<TrackAnalyticsEventUseCase> { self { self.kmp().getProtocol(TrackAnalyticsEventUseCase.self) } }
+    
     // Sample
     var getSampleTextUseCase: Factory<GetSampleTextUseCase> { self { self.kmp().getProtocol(GetSampleTextUseCase.self) } }
 }

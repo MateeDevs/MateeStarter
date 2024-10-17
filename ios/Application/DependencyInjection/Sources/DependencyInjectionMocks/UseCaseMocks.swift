@@ -14,9 +14,6 @@ import SharedDomainMocks
 public extension Container {
     func registerUseCaseMocks() {
         
-        // Analytics
-        trackAnalyticsEventUseCase.register { TrackAnalyticsEventUseCaseSpy() }
-        
         // Sample
         getSampleTextUseCase.register { GetSampleTextUseCaseMock(executeReturnValue: ResultSuccess(data: SampleText.stub)) }
     }
