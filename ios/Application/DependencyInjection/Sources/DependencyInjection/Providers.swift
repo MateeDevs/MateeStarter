@@ -13,7 +13,7 @@ import Utilities
 
 public extension Container {
     var keychainProvider: Factory<KeychainProvider> { self { SystemKeychainProvider() } }
-    var analyticsProvider: Factory<AnalyticsProvider> { self { FirebaseAnalyticsProvider() } }
+    var analyticsProvider: Factory<AnalyticsProvider> { self { IosAnalyticsProviderImpl() } }
     var networkProvider: Factory<NetworkProvider> { self {
         SystemNetworkProvider(
             readAuthToken: { try self.keychainProvider().read(.authToken) },
