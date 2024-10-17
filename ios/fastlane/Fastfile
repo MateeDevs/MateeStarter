@@ -15,7 +15,7 @@ alpha = {
   output_name: "A-MateeStarter",
   app_identifier: "cz.matee.starter.alpha",
   scheme: "MateeStarter_Alpha",
-  testflight_groups: ['App Store Connect Users', 'Public'],
+  testflight_groups: ['App Store Connect Users'],
   testflight_link: "NOT AVAILABLE"
 }
 
@@ -23,7 +23,7 @@ beta = {
   output_name: "B-MateeStarter",
   app_identifier: "cz.matee.starter.beta",
   scheme: "MateeStarter_Beta",
-  testflight_groups: ['App Store Connect Users', 'Public'],
+  testflight_groups: ['App Store Connect Users'],
   testflight_link: "https://testflight.apple.com/join/aff9SFVc"
 }
 
@@ -31,7 +31,7 @@ production = {
   output_name: "MateeStarter",
   app_identifier: "cz.matee.starter",
   scheme: "MateeStarter",
-  testflight_groups: ['App Store Connect Users', 'Public'],
+  testflight_groups: ['App Store Connect Users'],
   testflight_link: "https://testflight.apple.com/join/lP4bFs1a"
 }
 
