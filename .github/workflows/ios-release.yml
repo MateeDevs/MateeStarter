@@ -10,8 +10,7 @@ jobs:
     timeout-minutes: 60
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
-        continue-on-error: true
+        uses: actions/checkout@v4
         with:
           clean: false
       - name: Setup tools
@@ -30,6 +29,11 @@ jobs:
           fastlane build_alpha
           fastlane build_production
           fastlane tag
+      - name: Cache build output
+        uses: actions/cache@v4
+        with:
+          path: ios/ipa/
+          key: ios-build-${{ github.sha }}-release  # Unique key based on the commit SHA
 
   deploy-alpha:
     name: Deploy alpha
@@ -38,6 +42,15 @@ jobs:
       group: matee-tartelets
     timeout-minutes: 120
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          clean: false
+      - name: Restore cache for build output
+        uses: actions/cache@v4
+        with:
+          path: ios/ipa/
+          key: ios-build-${{ github.sha }}-release  # Unique key based on the commit SHA
       - name: Upload the Alpha build to the TestFlight
         env:
           APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_MATEE }}
@@ -52,6 +65,15 @@ jobs:
       group: matee-tartelets
     timeout-minutes: 120
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          clean: false
+      - name: Restore cache for build output
+        uses: actions/cache@v4
+        with:
+          path: ios/ipa/
+          key: ios-build-${{ github.sha }}-release  # Unique key based on the commit SHA
       - name: Upload the Production build to the TestFlight
         env:
           APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_MATEE }}
