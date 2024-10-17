@@ -6,7 +6,15 @@ import kmp.shared.base.Result
 import kmp.shared.base.usecase.UseCaseResult
 import kmp.shared.base.util.extension.success
 
+/**
+ * Use case to track an analytics event.
+ * @param TrackAnalyticsEventUseCase.Params
+ */
 interface TrackAnalyticsEventUseCase: UseCaseResult<TrackAnalyticsEventUseCase.Params, Unit> {
+    /**
+     * Parameters for the [TrackAnalyticsEventUseCase] use case.
+     * @param event The analytics event to track.
+     */
     data class Params(val event: AnalyticsEvent)
 }
 
