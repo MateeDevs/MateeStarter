@@ -2,6 +2,7 @@
 
 package kmp.shared.core.di
 
+import kmp.shared.analytics.data.source.AnalyticsSource
 import kmp.shared.base.system.Config
 import kotlinx.cinterop.BetaInteropApi
 import kotlinx.cinterop.ObjCClass
@@ -12,10 +13,14 @@ import org.koin.core.parameter.parametersOf
 import org.koin.core.qualifier.Qualifier
 import org.koin.dsl.module
 
-fun initKoinIos(doOnStartup: () -> Unit, config: Config) = initKoin {
+fun initKoinIos(
+    doOnStartup: () -> Unit,
+    analyticsSource: AnalyticsSource
+) = initKoin {
     modules(
         module {
             single { doOnStartup }
+            single { analyticsSource }
             single { config }
         },
     )
