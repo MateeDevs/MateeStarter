@@ -4,6 +4,8 @@
 //
 
 import KMPShared
+import OSLog
+import Utilities
 
 /**
  * iOS implementation of the AnalyticsSource from shared module
@@ -14,6 +16,6 @@ public class IosAnalyticsProviderImpl: AnalyticsProvider {
     
     public func logEvent(event: AnalyticsEvent) {
         // TODO: Implement analytics event logging
-        print("Analytics not implemented")
+        Logger.app.error("Analytics event logging not implemented")
     }
 }
