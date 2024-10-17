@@ -16,6 +16,7 @@ final class SampleViewModel: UIToolkit.BaseViewModel, ViewModel, ObservableObjec
     private weak var flowController: FlowController?
     
     @Injected(\.getSampleTextUseCase) private(set) var getSampleTextUseCase
+    @Injected(\.trackAnalyticsEventUseCase) private(set) var trackAnalyticsEventUseCase
 
     // MARK: Init
     init(flowController: FlowController?) {
@@ -69,6 +70,12 @@ final class SampleViewModel: UIToolkit.BaseViewModel, ViewModel, ObservableObjec
     }
     
     private func showToast(message: String) {
+        Task {
+            try? await trackAnalyticsEventUseCase.invoke(
+                params: TrackAnalyticsEventUseCaseParams(event: ToastAnalytics.Event.shared.PresentedFromNative())
+            )
+        }
+        
         state.toast = ToastData(message, hideAfter: 2)
     }
 }

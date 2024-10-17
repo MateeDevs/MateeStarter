@@ -26,7 +26,6 @@ let package = Package(
         .package(name: "Utilities", path: "../../DomainLayer/Utilities"),
         
         // Toolkits
-        .package(name: "AnalyticsToolkit", path: "../../DataLayer/Toolkits/AnalyticsToolkit"),
         
         // Providers
         .package(name: "AnalyticsProvider", path: "../../DataLayer/Providers/AnalyticsProvider"),
@@ -45,7 +44,6 @@ let package = Package(
                 .product(name: "Utilities", package: "Utilities"),
                 
                 // Toolkits
-                .product(name: "AnalyticsToolkit", package: "AnalyticsToolkit"),
                 
                 // Providers
                 .product(name: "AnalyticsProvider", package: "AnalyticsProvider"),

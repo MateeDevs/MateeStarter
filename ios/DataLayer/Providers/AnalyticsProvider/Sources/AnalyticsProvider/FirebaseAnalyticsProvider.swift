@@ -5,8 +5,9 @@
 
 import Firebase
 import FirebaseAnalytics
+import KMPShared
 
-public struct FirebaseAnalyticsProvider {
+public class FirebaseAnalyticsProvider {
     public init() {
         // Start Firebase if not yet started
         if FirebaseApp.app() == nil {
@@ -17,7 +18,12 @@ public struct FirebaseAnalyticsProvider {
 
 extension FirebaseAnalyticsProvider: AnalyticsProvider {
     
-    public func track(_ name: String, params: [String: AnyHashable]) {
-        Analytics.logEvent(name, parameters: params)
+    public func logEvent(event: AnalyticsEvent) {
+        
+        let params = Dictionary(uniqueKeysWithValues: event.parameters.map { key, value in
+            (key.parameterName, value)
+        })
+        
+        Analytics.logEvent(event.eventName.eventName, parameters: params)
     }
 }

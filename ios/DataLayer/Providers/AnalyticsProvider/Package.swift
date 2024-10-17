@@ -11,16 +11,13 @@ let package = Package(
         .library(
             name: "AnalyticsProvider",
             targets: ["AnalyticsProvider"]
-        ),
-        .library(
-            name: "AnalyticsProviderMocks",
-            targets: ["AnalyticsProviderMocks"]
         )
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(url: "https://github.com/firebase/firebase-ios-sdk.git", .upToNextMajor(from: "10.0.0"))
+        .package(url: "https://github.com/firebase/firebase-ios-sdk.git", .upToNextMajor(from: "10.0.0")),
+        .package(name: "SharedDomain", path: "../../../DomainLayer/SharedDomain")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -29,13 +26,8 @@ let package = Package(
             name: "AnalyticsProvider",
             dependencies: [
                 .product(name: "FirebaseAnalyticsWithoutAdIdSupport", package: "firebase-ios-sdk"),
-                .product(name: "FirebaseCrashlytics", package: "firebase-ios-sdk")
-            ]
-        ),
-        .target(
-            name: "AnalyticsProviderMocks",
-            dependencies: [
-                "AnalyticsProvider"
+                .product(name: "FirebaseCrashlytics", package: "firebase-ios-sdk"),
+                .product(name: "SharedDomain", package: "SharedDomain")
             ]
         )
     ]

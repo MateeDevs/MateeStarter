@@ -3,6 +3,7 @@
 //  Copyright © 2023 Matee. All rights reserved.
 //
 
+import Factory
 import Foundation
 import KMPShared
 import OSLog
@@ -27,7 +28,10 @@ final class KMPKoinDependency: KMPDependency {
             Logger.app.info("Koin Started")
         }
         
-        let koinApplication = KoinIOSKt.doInitKoinIos(doOnStartup: onStartup)
+        let koinApplication = KoinIOSKt.doInitKoinIos(
+            doOnStartup: onStartup,
+            analyticsSource: Container.shared.analyticsProvider()
+        )
         _koin = koinApplication.koin
     }
     

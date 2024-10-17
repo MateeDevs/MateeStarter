@@ -67,7 +67,6 @@
 		45DEBE3227A400410075C7E2 /* Beta.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Beta.entitlements; sourceTree = "<group>"; };
 		45DEBE3327A400410075C7E2 /* Prod.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Prod.entitlements; sourceTree = "<group>"; };
 		45DEBE3427A400410075C7E2 /* Alpha.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Alpha.entitlements; sourceTree = "<group>"; };
-		45FF99D72842B0A600E32D9A /* AnalyticsToolkit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = AnalyticsToolkit; sourceTree = "<group>"; };
 		45FF99D92842B51800E32D9A /* Utilities */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Utilities; sourceTree = "<group>"; };
 		A3009BAA2C5A6E5800806BA3 /* UserDefaultsProvider */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UserDefaultsProvider; sourceTree = "<group>"; };
 		A350DE7C2C5A3103009B6F77 /* KMPShared.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = KMPShared.xcframework; sourceTree = "<group>"; };
@@ -221,7 +220,6 @@
 		45FF99D62842B05700E32D9A /* Toolkits */ = {
 			isa = PBXGroup;
 			children = (
-				45FF99D72842B0A600E32D9A /* AnalyticsToolkit */,
 			);
 			path = Toolkits;
 			sourceTree = "<group>";
