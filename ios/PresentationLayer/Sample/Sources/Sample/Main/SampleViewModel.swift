@@ -72,7 +72,7 @@ final class SampleViewModel: UIToolkit.BaseViewModel, ViewModel, ObservableObjec
     private func showToast(message: String) {
         Task {
             try? await trackAnalyticsEventUseCase.invoke(
-                params: TrackAnalyticsEventUseCaseParams(event: ToastAnalytics.Event.shared.PresentedFromNative())
+                params: TrackAnalyticsEventUseCaseParams(event: ToastAnalytics.Event.shared.presented(type: .native))
             )
         }
         
