@@ -7,5 +7,5 @@ internal class ConfigImpl : Config {
         get() = BuildConfig.BUILD_TYPE == "release"
 
     override val apiVariant: ApiVariant
-        get() = ApiVariant.entries.firstOrNull { it.name.lowercase() == BuildConfig.FLAVOR } ?: ApiVariant.Develop
+        get() = ApiVariant.entries.firstOrNull { it.name.lowercase() == BuildConfig.FLAVOR } ?: ApiVariant.Alpha
 }

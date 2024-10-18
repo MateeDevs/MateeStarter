@@ -21,10 +21,6 @@ internal fun <T : BuildType> CommonExtension<*, T, *, *, *, *>.configureBuildVar
 
     flavorDimensions += ProjectConstants.ApiVariant.dimensionName
     productFlavors {
-        create(ProjectConstants.ApiVariant.develop) {
-            dimension = ProjectConstants.ApiVariant.dimensionName
-        }
-
         create(ProjectConstants.ApiVariant.alpha) {
             dimension = ProjectConstants.ApiVariant.dimensionName
         }

@@ -11,7 +11,6 @@ object ProjectConstants {
     object ApiVariant {
         const val dimensionName = "api"
 
-        const val develop = "develop"
         const val alpha = "alpha"
         const val production = "production"
     }
