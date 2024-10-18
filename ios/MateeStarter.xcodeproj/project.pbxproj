@@ -40,7 +40,6 @@
 
 /* Begin PBXFileReference section */
 		450392842256B29D0037BF42 /* GoogleService-Info-Alpha.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Alpha.plist"; sourceTree = "<group>"; };
-		450392862256B35E0037BF42 /* GoogleService-Info-Beta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Beta.plist"; sourceTree = "<group>"; };
 		450392882256B3C60037BF42 /* GoogleService-Info-Prod.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Prod.plist"; sourceTree = "<group>"; };
 		4508333128436EFB00BC9460 /* UIToolkit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UIToolkit; sourceTree = "<group>"; };
 		4508333228437BA500BC9460 /* AppFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowController.swift; sourceTree = "<group>"; };
@@ -64,7 +63,6 @@
 		45BCC8832AD0B4F400672401 /* DependencyInjection */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = DependencyInjection; sourceTree = "<group>"; };
 		45DEBE1927A153A10075C7E2 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		45DEBE1B27A153A10075C7E2 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		45DEBE3227A400410075C7E2 /* Beta.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Beta.entitlements; sourceTree = "<group>"; };
 		45DEBE3327A400410075C7E2 /* Prod.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Prod.entitlements; sourceTree = "<group>"; };
 		45DEBE3427A400410075C7E2 /* Alpha.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Alpha.entitlements; sourceTree = "<group>"; };
 		45FF99D72842B0A600E32D9A /* AnalyticsToolkit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = AnalyticsToolkit; sourceTree = "<group>"; };
@@ -191,7 +189,6 @@
 			isa = PBXGroup;
 			children = (
 				45DEBE3427A400410075C7E2 /* Alpha.entitlements */,
-				45DEBE3227A400410075C7E2 /* Beta.entitlements */,
 				45DEBE3327A400410075C7E2 /* Prod.entitlements */,
 			);
 			path = Entitlements;
@@ -201,7 +198,6 @@
 			isa = PBXGroup;
 			children = (
 				450392842256B29D0037BF42 /* GoogleService-Info-Alpha.plist */,
-				450392862256B35E0037BF42 /* GoogleService-Info-Beta.plist */,
 				450392882256B3C60037BF42 /* GoogleService-Info-Prod.plist */,
 			);
 			path = GoogleService;
@@ -502,103 +498,6 @@
 			};
 			name = "Alpha Debug";
 		};
-		453D3F5D25ED2AE60094ADD7 /* Beta Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-			};
-			name = "Beta Debug";
-		};
-		453D3F5E25ED2AE60094ADD7 /* Beta Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				APP_DISPLAY_NAME = "B-MateeStarter";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Beta";
-				CODE_SIGN_ENTITLEMENTS = Application/Entitlements/Beta.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = WNB34WBN42;
-				ENABLE_BITCODE = NO;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				FRAMEWORK_SEARCH_PATHS = "";
-				GOOGLE_SERVICE_INFO_PLIST_FILE = "Application/GoogleService/GoogleService-Info-Beta.plist";
-				INFOPLIST_FILE = "Application/Info/Info+Proxyman.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0.0;
-				OTHER_LDFLAGS = "-ObjC";
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-DBETA\"";
-				PRODUCT_BUNDLE_IDENTIFIER = cz.matee.mateestarter.beta;
-				PRODUCT_NAME = MateeStarter;
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-				VERSIONING_SYSTEM = "apple-generic";
-			};
-			name = "Beta Debug";
-		};
 		453D3F6225ED2AF10094ADD7 /* Alpha Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -690,98 +589,6 @@
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = "Alpha Release";
-		};
-		453D3F6725ED2AFB0094ADD7 /* Beta Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = "Beta Release";
-		};
-		453D3F6825ED2AFB0094ADD7 /* Beta Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				APP_DISPLAY_NAME = "B-MateeStarter";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Beta";
-				CODE_SIGN_ENTITLEMENTS = Application/Entitlements/Beta.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = WNB34WBN42;
-				ENABLE_BITCODE = NO;
-				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				FRAMEWORK_SEARCH_PATHS = "";
-				GOOGLE_SERVICE_INFO_PLIST_FILE = "Application/GoogleService/GoogleService-Info-Beta.plist";
-				INFOPLIST_FILE = "Application/Info/Info+Proxyman.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0.0;
-				OTHER_LDFLAGS = "-ObjC";
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-DBETA\"";
-				PRODUCT_BUNDLE_IDENTIFIER = cz.matee.mateestarter.beta;
-				PRODUCT_NAME = MateeStarter;
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-				VERSIONING_SYSTEM = "apple-generic";
-			};
-			name = "Beta Release";
 		};
 		4558D31720FCC900005BC325 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -979,10 +786,8 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4558D31720FCC900005BC325 /* Debug */,
-				453D3F5D25ED2AE60094ADD7 /* Beta Debug */,
 				453D3F5825ED2AD70094ADD7 /* Alpha Debug */,
 				4558D31820FCC900005BC325 /* Release */,
-				453D3F6725ED2AFB0094ADD7 /* Beta Release */,
 				453D3F6225ED2AF10094ADD7 /* Alpha Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -992,10 +797,8 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4558D31A20FCC900005BC325 /* Debug */,
-				453D3F5E25ED2AE60094ADD7 /* Beta Debug */,
 				453D3F5925ED2AD70094ADD7 /* Alpha Debug */,
 				4558D31B20FCC900005BC325 /* Release */,
-				453D3F6825ED2AFB0094ADD7 /* Beta Release */,
 				453D3F6325ED2AF10094ADD7 /* Alpha Release */,
 			);
 			defaultConfigurationIsVisible = 0;
