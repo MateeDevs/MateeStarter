@@ -39,9 +39,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		450392842256B29D0037BF42 /* GoogleService-Info-Alpha.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Alpha.plist"; sourceTree = "<group>"; };
-		450392862256B35E0037BF42 /* GoogleService-Info-Beta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Beta.plist"; sourceTree = "<group>"; };
-		450392882256B3C60037BF42 /* GoogleService-Info-Prod.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Prod.plist"; sourceTree = "<group>"; };
 		4508333128436EFB00BC9460 /* UIToolkit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UIToolkit; sourceTree = "<group>"; };
 		4508333228437BA500BC9460 /* AppFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowController.swift; sourceTree = "<group>"; };
 		4508333328437BA500BC9460 /* MainFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowController.swift; sourceTree = "<group>"; };
@@ -67,7 +64,6 @@
 		45DEBE3227A400410075C7E2 /* Beta.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Beta.entitlements; sourceTree = "<group>"; };
 		45DEBE3327A400410075C7E2 /* Prod.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Prod.entitlements; sourceTree = "<group>"; };
 		45DEBE3427A400410075C7E2 /* Alpha.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Alpha.entitlements; sourceTree = "<group>"; };
-		45FF99D72842B0A600E32D9A /* AnalyticsToolkit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = AnalyticsToolkit; sourceTree = "<group>"; };
 		45FF99D92842B51800E32D9A /* Utilities */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Utilities; sourceTree = "<group>"; };
 		A3009BAA2C5A6E5800806BA3 /* UserDefaultsProvider */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UserDefaultsProvider; sourceTree = "<group>"; };
 		A350DE7C2C5A3103009B6F77 /* KMPShared.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = KMPShared.xcframework; sourceTree = "<group>"; };
@@ -155,7 +151,6 @@
 				45BCC8832AD0B4F400672401 /* DependencyInjection */,
 				4575E61225F6F82C00CCC003 /* Entitlements */,
 				456E73DC25F817CF007D9A6D /* Info */,
-				4575E61325F6F83600CCC003 /* GoogleService */,
 				4558D30A20FCC8FF005BC325 /* AppDelegate.swift */,
 				4508333228437BA500BC9460 /* AppFlowController.swift */,
 				4508333328437BA500BC9460 /* MainFlowController.swift */,
@@ -197,16 +192,6 @@
 			path = Entitlements;
 			sourceTree = "<group>";
 		};
-		4575E61325F6F83600CCC003 /* GoogleService */ = {
-			isa = PBXGroup;
-			children = (
-				450392842256B29D0037BF42 /* GoogleService-Info-Alpha.plist */,
-				450392862256B35E0037BF42 /* GoogleService-Info-Beta.plist */,
-				450392882256B3C60037BF42 /* GoogleService-Info-Prod.plist */,
-			);
-			path = GoogleService;
-			sourceTree = "<group>";
-		};
 		4576CEDF25ACF54F00218229 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,7 +206,6 @@
 		45FF99D62842B05700E32D9A /* Toolkits */ = {
 			isa = PBXGroup;
 			children = (
-				45FF99D72842B0A600E32D9A /* AnalyticsToolkit */,
 			);
 			path = Toolkits;
 			sourceTree = "<group>";
@@ -237,9 +221,7 @@
 				4558D30420FCC8FF005BC325 /* Frameworks */,
 				4558D30520FCC8FF005BC325 /* Resources */,
 				7E5D98302C762B1D00178257 /* Run SwiftLint */,
-				453D3FCD25ED976A0094ADD7 /* Copy GoogleService-Info.plist */,
 				45DEBE2627A153A20075C7E2 /* Embed Foundation Extensions */,
-				4564A9F7289CFF3D00A0FEF0 /* Upload dSYMs to Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -316,46 +298,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		453D3FCD25ED976A0094ADD7 /* Copy GoogleService-Info.plist */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Copy GoogleService-Info.plist";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "GOOGLE_SERVICE_INFO_PLIST_FROM=\"${PROJECT_DIR}/${GOOGLE_SERVICE_INFO_PLIST_FILE}\"\nGOOGLE_SERVICE_INFO_PLIST_TO=\"${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}/GoogleService-Info.plist\"\ncp \"${GOOGLE_SERVICE_INFO_PLIST_FROM}\" \"${GOOGLE_SERVICE_INFO_PLIST_TO}\" \n";
-		};
-		4564A9F7289CFF3D00A0FEF0 /* Upload dSYMs to Crashlytics */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
-				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
-			);
-			name = "Upload dSYMs to Crashlytics";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
-		};
 		7E5D98302C762B1D00178257 /* Run SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
