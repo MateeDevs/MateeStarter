@@ -28,6 +28,7 @@ struct SampleViewModelTests {
         }
         
         // Init test subject
+        // Imporant: test subject must be initialized after dependencies are registered
         viewModel = SampleViewModel(flowController: flowController)
     }
     
