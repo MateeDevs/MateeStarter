@@ -11,14 +11,13 @@ public class ConfigImpl: Config {
     public init() {}
 
     public var apiVariant: KMPShared.ApiVariant {
-        switch Environment.type {
+        switch Environment.api {
         case .alpha: KMPShared.ApiVariant.alpha
-        case .beta: KMPShared.ApiVariant.develop
         case .production: KMPShared.ApiVariant.production
         }
     }
     
     public var isRelease: Bool {
-        Environment.flavor == .release
+        Environment.build == .release
     }
 }

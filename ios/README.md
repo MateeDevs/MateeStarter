@@ -84,7 +84,7 @@
 
 - All important information should be logged using the system `Logger`
 - All network requests going through the `SystemNetworkProvider` are logged in debug builds
-- [Proxyman](https://proxyman.io) for HTTP request/response debugging is enabled for alpha and beta
+- [Proxyman](https://proxyman.io) for HTTP request/response debugging is enabled for alpha
   builds
 
 ## Build + Release
