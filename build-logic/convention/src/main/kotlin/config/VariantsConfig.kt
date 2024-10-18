@@ -6,11 +6,11 @@ import constants.ProjectConstants
 
 internal fun BaseAppModuleExtension.configureApplicationVariants() {
     applicationVariants.all {
-        if (buildType.name != ProjectConstants.BuildVariant.release || flavorName != ProjectConstants.ApiVariant.production) {
+        if (flavorName != ProjectConstants.ApiVariant.production) {
             resValue(
                 "string",
                 "app_name",
-                "[${flavorName.uppercase()}] [${buildType.name.uppercase()}] ${Application.appName}",
+                "[${flavorName.first().uppercase()}] ${Application.appName}",
             )
         } else {
             resValue("string", "app_name", Application.appName)

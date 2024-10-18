@@ -75,7 +75,6 @@ internal object HttpClient {
                 protocol = URLProtocol.HTTPS
                 // Set your host URLs
                 host = when (config.apiVariant) {
-                    ApiVariant.Develop -> "devstack-server-production.up.railway.app"
                     ApiVariant.Alpha -> "devstack-server-production.up.railway.app"
                     ApiVariant.Production -> "devstack-server-production.up.railway.app"
                 }
