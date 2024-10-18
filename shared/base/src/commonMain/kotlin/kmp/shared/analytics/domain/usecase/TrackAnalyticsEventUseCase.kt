@@ -10,7 +10,7 @@ import kmp.shared.base.util.extension.success
  * Use case to track an analytics event.
  * @param TrackAnalyticsEventUseCase.Params
  */
-interface TrackAnalyticsEventUseCase: UseCaseResult<TrackAnalyticsEventUseCase.Params, Unit> {
+interface TrackAnalyticsEventUseCase : UseCaseResult<TrackAnalyticsEventUseCase.Params, Unit> {
     /**
      * Parameters for the [TrackAnalyticsEventUseCase] use case.
      * @param event The analytics event to track.

@@ -8,7 +8,7 @@ package kmp.shared.analytics.domain.model
  */
 class AnalyticsEvent(
     val eventName: AnalyticName.Event,
-    val parameters: Map<AnalyticName.Param, String> = emptyMap()
+    val parameters: Map<AnalyticName.Param, String> = emptyMap(),
 )
 
 /**
@@ -23,4 +23,3 @@ object AnalyticName {
         PresentedFrom("presented_from"),
     }
 }
-
