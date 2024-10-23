@@ -35,7 +35,7 @@ class SampleSharedViewModel(
     }
 
     private suspend fun showToast() {
-        trackAnalyticsEventUseCase(Params(ToastAnalytics.Event.presented(ViewType.SharedVM)))
+        trackAnalyticsEventUseCase(Params(ToastAnalytics.ToastPresentedEvent(ViewType.SharedVM)))
         _events.emit(SampleSharedEvent.ShowMessage("Button was tapped"))
     }
 }

@@ -6,9 +6,7 @@ package kmp.shared.analytics.domain.model
  */
 object ToastAnalytics {
 
-    object Event {
-        fun presented(type: ViewType) = AnalyticsEvent(AnalyticName.Event.ToastPresented, mapOf(AnalyticName.Param.PresentedFrom to type.value))
-    }
+    class ToastPresentedEvent(viewType: ViewType) : AnalyticsEvent("toast_presented", mapOf("presented_from" to viewType.value))
 
     enum class ViewType(val value: String) {
         Native("native"),

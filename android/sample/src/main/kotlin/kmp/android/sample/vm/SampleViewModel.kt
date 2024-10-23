@@ -34,7 +34,7 @@ class SampleViewModel(
     }
 
     private suspend fun showToast() {
-        trackAnalyticsEventUseCase(Params(ToastAnalytics.Event.presented(ViewType.Native)))
+        trackAnalyticsEventUseCase(Params(ToastAnalytics.ToastPresentedEvent(ViewType.Native)))
 
         _events.emit(SampleEvent.ShowMessage("Button was tapped"))
     }
