@@ -1,6 +1,16 @@
 name: iOS - Release
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      alpha:
+        type: boolean
+        description: 'Alpha'
+        default: true
+      production:
+        type: boolean
+        description: 'Production'
+        default: true
 
 jobs:
   build:
@@ -23,12 +33,17 @@ jobs:
           APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_MATEE }}
         working-directory: ios
         run: echo "$APP_STORE_CONNECT_API_KEY_CONTENT" > AuthKey_Matee.p8
-      - name: Create builds
+      - name: Create a new Alpha build
+        if: ${{ github.event.inputs.alpha == 'true' }}
         working-directory: ios
-        run: |
-          fastlane build_alpha
-          fastlane build_production
-          fastlane tag
+        run: fastlane build_alpha
+      - name: Create a new Production build
+        if: ${{ github.event.inputs.production == 'true' }}
+        working-directory: ios
+        run: fastlane build_production
+      - name: Create and push git tag
+        working-directory: ios
+        run: fastlane tag alpha:${{ github.event.inputs.alpha }} prod:${{ github.event.inputs.production }}
       - name: Cache build output
         uses: actions/cache@v4
         with:
@@ -38,6 +53,7 @@ jobs:
   deploy-alpha:
     name: Deploy alpha
     needs: build
+    if: ${{ github.event.inputs.alpha == 'true' }}
     runs-on:
       group: matee-tartelets
     timeout-minutes: 120
@@ -57,10 +73,11 @@ jobs:
           SLACK_URL: ${{ secrets.FASTLANE_SLACK_URL }}
         working-directory: ios
         run: fastlane upload_testflight_alpha distribute_external:true
-
+        
   deploy-production:
     name: Deploy production
     needs: build
+    if: ${{ github.event.inputs.production == 'true' }}
     runs-on:
       group: matee-tartelets
     timeout-minutes: 120
