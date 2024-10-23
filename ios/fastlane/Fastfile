@@ -201,9 +201,15 @@ platform :ios do
   # GIT TAG
 
   desc "Create and push git tag"
-  lane :tag do
-    version = get_ipa_info_plist_value(ipa: "./ipa/#{production[:output_name]}.ipa", key: "CFBundleShortVersionString")
-    build = get_ipa_info_plist_value(ipa: "./ipa/#{production[:output_name]}.ipa", key: "CFBundleVersion")
+  lane :tag do |config|
+    if config[:alpha]
+      version = get_ipa_info_plist_value(ipa: "./ipa/#{alpha[:output_name]}.ipa", key: "CFBundleShortVersionString")
+    elsif config[:prod]
+      version = get_ipa_info_plist_value(ipa: "./ipa/#{production[:output_name]}.ipa", key: "CFBundleShortVersionString")
+    end
+    
+    build = ENV["BUILD_NUMBER"]
+    
     add_git_tag(tag: "ios/#{version}.#{build}")
     push_git_tags(tag: "ios/#{version}.#{build}")
   end
