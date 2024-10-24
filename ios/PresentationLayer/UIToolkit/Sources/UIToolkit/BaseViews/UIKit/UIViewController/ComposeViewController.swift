@@ -6,17 +6,17 @@
 import KMPShared
 import SwiftUI
 
-struct ComposeViewController: UIViewControllerRepresentable {
+public struct ComposeViewController: UIViewControllerRepresentable {
     private let makeScreenViewController: () -> UIViewController
     
-    init(makeScreenViewController: @escaping () -> UIViewController) {
+    public init(makeScreenViewController: @escaping () -> UIViewController) {
         self.makeScreenViewController = makeScreenViewController
     }
     
-    func makeUIViewController(context: Context) -> UIViewController {
+    public func makeUIViewController(context: Context) -> UIViewController {
         return makeScreenViewController()
     }
     
-    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
+    public func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
     }
 }

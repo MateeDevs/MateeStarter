@@ -24,8 +24,8 @@ import kmp.android.sample.vm.SampleEvent
 import kmp.android.sample.vm.SampleIntent
 import kmp.android.sample.vm.SampleState
 import kmp.android.sample.vm.SampleViewModel
-import kmp.shared.samplecomposemultiplatform.presentation.ui.test.TestTags
-import kmp.shared.samplecomposemultiplatform.presentation.ui.test.testTag
+import kmp.shared.samplecomposenavigation.presentation.ui.test.TestTags
+import kmp.shared.samplecomposenavigation.presentation.ui.test.testTag
 import kmp.android.shared.navigation.composableDestination
 import kmp.android.shared.style.Space
 import kotlinx.coroutines.flow.collectLatest

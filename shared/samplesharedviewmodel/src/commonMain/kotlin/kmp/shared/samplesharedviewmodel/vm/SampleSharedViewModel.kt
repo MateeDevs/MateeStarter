@@ -17,6 +17,7 @@ class SampleSharedViewModel(
         when (intent) {
             SampleSharedIntent.OnAppeared -> loadSampleText()
             SampleSharedIntent.OnButtonTapped -> _events.emit(SampleSharedEvent.ShowMessage("Button was tapped"))
+            SampleSharedIntent.OnNextButtonTapped -> _events.emit(SampleSharedEvent.GoToNext)
         }
     }
 
@@ -40,8 +41,10 @@ data class SampleSharedState(
 sealed interface SampleSharedIntent : VmIntent {
     data object OnAppeared : SampleSharedIntent
     data object OnButtonTapped : SampleSharedIntent
+    data object OnNextButtonTapped : SampleSharedIntent
 }
 
 sealed interface SampleSharedEvent : VmEvent {
     data class ShowMessage(val message: String) : SampleSharedEvent
+    data object GoToNext : SampleSharedEvent
 }

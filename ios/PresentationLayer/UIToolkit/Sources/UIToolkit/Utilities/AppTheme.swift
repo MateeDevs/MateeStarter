@@ -149,5 +149,6 @@ public enum AppTheme {
         public static let person = UIImage(systemSymbol: .personFill)
         public static let personCirle = UIImage(systemSymbol: .personCircleFill)
         public static let personSquare = UIImage(systemSymbol: .personCropSquareFill)
+        public static let personTwo = UIImage(systemSymbol: .person2)
     }
 }

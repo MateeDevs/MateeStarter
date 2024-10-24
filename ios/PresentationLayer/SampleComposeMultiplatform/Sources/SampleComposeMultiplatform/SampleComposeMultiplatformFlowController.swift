@@ -11,6 +11,7 @@ import UIToolkit
 
 enum SampleComposeMultiplatformFlow: Flow, Equatable {
     case sampleComposeMultiplatform
+    case next
 }
 
 public final class SampleComposeMultiplatformFlowController: FlowController {
@@ -23,6 +24,14 @@ public final class SampleComposeMultiplatformFlowController: FlowController {
         guard let sampleComposeMultiplatformFlow = flow as? SampleComposeMultiplatformFlow else { return }
         switch sampleComposeMultiplatformFlow {
         case .sampleComposeMultiplatform: do {}
+        case .next: openNext()
         }
+    }
+    
+    private func openNext() {
+        let vc = BaseHostingController(rootView: SampleNextView(
+            goBack: { self.navigationController.popViewController(animated: true) }
+        ))
+        navigationController.pushViewController(vc, animated: true)
     }
 }

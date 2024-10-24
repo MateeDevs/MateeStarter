@@ -5,6 +5,7 @@
 
 import Sample
 import SampleComposeMultiplatform
+import SampleComposeNavigation
 import SampleSharedViewModel
 import SharedDomain
 import SwiftUI
@@ -15,13 +16,14 @@ enum MainTab: Int {
     case sample = 0
     case sampleSharedViewModel = 1
     case sampleComposeMultiplatform = 2
+    case sampleComposeNavigation = 3
 }
 
 final class MainFlowController: FlowController {
     
     override func setup() -> UIViewController {
         let main = UITabBarController()
-        main.viewControllers = [setupSampleTab(), setupSampleSharedViewModelTab(), setupSampleComposeMultiplatformTab()]
+        main.viewControllers = [setupSampleTab(), setupSampleSharedViewModelTab(), setupSampleComposeMultiplatformTab(), setupSampleComposeNavigationTab()]
         return main
     }
     
@@ -62,6 +64,19 @@ final class MainFlowController: FlowController {
         let sampleComposeMultiplatformRootVC = startChildFlow(sampleComposeMultiplatformFC)
         sampleComposeMultiplatformNC.viewControllers = [sampleComposeMultiplatformRootVC]
         return sampleComposeMultiplatformNC
+    }
+    
+    private func setupSampleComposeNavigationTab() -> UINavigationController {
+        let sampleComposeNavigationNC = BaseNavigationController(statusBarStyle: .lightContent)
+        sampleComposeNavigationNC.tabBarItem = UITabBarItem(
+            title: L10n.bottom_bar_item_4,
+            image: AppTheme.Images.personTwo,
+            tag: MainTab.sampleComposeNavigation.rawValue
+        )
+        let sampleComposeNavigationFC = SampleComposeNavigationFlowController(navigationController: sampleComposeNavigationNC)
+        let sampleComposeNavigationRootVC = startChildFlow(sampleComposeNavigationFC)
+        sampleComposeNavigationNC.viewControllers = [sampleComposeNavigationRootVC]
+        return sampleComposeNavigationNC
     }
     
     @discardableResult private func switchTab(_ index: MainTab) -> FlowController? {

@@ -47,6 +47,8 @@ struct SampleSharedViewModelView: View {
                 switch onEnum(of: event) {
                 case .showMessage(let message):
                     toastData = ToastData(message.message, hideAfter: 2)
+                case .goToNext(let data):
+                    print("Should navigate to next screen")
                 }
             }
         )

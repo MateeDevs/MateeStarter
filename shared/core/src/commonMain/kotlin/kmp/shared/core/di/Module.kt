@@ -3,6 +3,8 @@ package kmp.shared.core.di
 import kmp.shared.auth.di.authModule
 import kmp.shared.base.di.baseModule
 import kmp.shared.sample.di.sampleModule
+import kmp.shared.samplecomposemultiplatform.di.sampleComposeMultiplatformModule
+import kmp.shared.samplecomposenavigation.di.sampleComposeNavigationModule
 import kmp.shared.samplesharedviewmodel.di.sampleSharedViewModelModule
 import org.koin.core.KoinApplication
 import org.koin.core.context.startKoin
@@ -16,6 +18,8 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}): KoinApplication {
             authModule,
             sampleModule,
             sampleSharedViewModelModule,
+            sampleComposeMultiplatformModule,
+            sampleComposeNavigationModule,
         )
     }
 
