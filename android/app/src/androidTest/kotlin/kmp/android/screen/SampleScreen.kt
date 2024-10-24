@@ -11,7 +11,7 @@ import kmp.android.extension.hasTestTag
 import kmp.android.extension.onNodeWithTag
 import kmp.android.extension.ShortDuration
 import kmp.android.extension.waitUntilExactlyOneExists
-import kmp.shared.samplecomposemultiplatform.presentation.ui.test.TestTags
+import kmp.shared.samplecomposenavigation.presentation.ui.test.TestTags
 
 internal interface SampleScreen : Screen {
     fun checkContentTextVisible()

@@ -8,13 +8,13 @@ import SwiftUI
 import UIToolkit
 
 struct SampleView: View {
-    
+
     @ObservedObject private var viewModel: SampleViewModel
-    
+
     init(viewModel: SampleViewModel) {
         self.viewModel = viewModel
     }
-    
+
     var body: some View {
         Group {
             switch viewModel.state.sampleText {
@@ -36,16 +36,16 @@ struct SampleView: View {
         ))
         .lifecycle(viewModel)
     }
-    
+
     private func contentView(
         sampleText: SampleText,
         onButtonTapped: @escaping () -> Void
     ) -> some View {
         VStack(spacing: AppTheme.Dimens.spaceMedium) {
             Text("This is a sample with SwiftUI and iOS VM")
-            
+
             Text(sampleText.value)
-            
+
             Button("Click me!", action: onButtonTapped)
         }
     }
@@ -58,7 +58,7 @@ import Factory
 #Preview {
     fixMokoResourcesForPreviews()
     Container.shared.registerUseCaseMocks()
-    
+
     let vm = SampleViewModel(flowController: nil)
     return SampleView(viewModel: vm)
 }

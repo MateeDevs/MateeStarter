@@ -9,7 +9,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
 import kmp.android.samplecomposemultiplatform.navigation.SampleComposeMultiplatformGraph
 import kmp.android.shared.navigation.composableDestination
-import kmp.shared.samplecomposemultiplatform.presentation.ui.SampleComposeMultiplatformScreen
+import kmp.shared.samplecomposenavigation.presentation.ui.SampleComposeMultiplatformScreen
 import kmp.shared.samplesharedviewmodel.vm.SampleSharedEvent
 import kmp.shared.samplesharedviewmodel.vm.SampleSharedIntent
 import kmp.shared.samplesharedviewmodel.vm.SampleSharedViewModel
@@ -43,6 +43,8 @@ internal fun SampleComposeMultiplatformMainRoute(
                     event.message,
                     Toast.LENGTH_SHORT,
                 ).show()
+
+                SampleSharedEvent.GoToNext -> TODO()
             }
         }
     }

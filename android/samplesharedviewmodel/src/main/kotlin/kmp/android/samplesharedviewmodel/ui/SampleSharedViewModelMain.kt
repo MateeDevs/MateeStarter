@@ -20,8 +20,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
 import kmp.android.samplesharedviewmodel.navigation.SampleSharedViewModelGraph
-import kmp.shared.samplecomposemultiplatform.presentation.ui.test.TestTags
-import kmp.shared.samplecomposemultiplatform.presentation.ui.test.testTag
+import kmp.shared.samplecomposenavigation.presentation.ui.test.TestTags
+import kmp.shared.samplecomposenavigation.presentation.ui.test.testTag
 import kmp.android.shared.navigation.composableDestination
 import kmp.android.shared.style.Space
 import kmp.shared.samplesharedviewmodel.vm.SampleSharedEvent
@@ -58,6 +58,8 @@ internal fun SampleSharedViewModelMainRoute(
                     event.message,
                     Toast.LENGTH_SHORT,
                 ).show()
+
+                SampleSharedEvent.GoToNext -> TODO()
             }
         }
     }

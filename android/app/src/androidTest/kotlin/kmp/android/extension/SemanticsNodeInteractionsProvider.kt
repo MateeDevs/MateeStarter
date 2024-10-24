@@ -19,7 +19,7 @@ import androidx.compose.ui.test.onChildren
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performTouchInput
 import androidx.compose.ui.test.printToLog
-import kmp.shared.samplecomposemultiplatform.presentation.ui.test.TestTag
+import kmp.shared.samplecomposenavigation.presentation.ui.test.TestTag
 
 /**
  * Finds an focusable node in a sub tree whose root matches the [matcher]

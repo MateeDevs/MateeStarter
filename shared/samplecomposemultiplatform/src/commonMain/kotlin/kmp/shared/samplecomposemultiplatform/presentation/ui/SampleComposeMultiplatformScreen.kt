@@ -46,8 +46,8 @@ fun SampleComposeMultiplatformScreen(
                         modifier = Modifier.testTag(TestTags.SampleComposeMultiplatformScreen.SampleText),
                     )
 
-                    Button(onClick = { onIntent(SampleSharedIntent.OnButtonTapped) }) {
-                        Text(text = "Click me!")
+                    Button(onClick = { onIntent(SampleSharedIntent.OnNextButtonTapped) }) {
+                        Text(text = "Go to next screen")
                     }
                 }
             }
