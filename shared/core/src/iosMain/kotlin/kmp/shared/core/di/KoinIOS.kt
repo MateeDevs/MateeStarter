@@ -2,7 +2,7 @@
 
 package kmp.shared.core.di
 
-import kmp.shared.analytics.data.source.AnalyticsSource
+import kmp.shared.analytics.data.provider.AnalyticsProvider
 import kotlinx.cinterop.BetaInteropApi
 import kotlinx.cinterop.ObjCClass
 import kotlinx.cinterop.ObjCProtocol
@@ -14,12 +14,12 @@ import org.koin.dsl.module
 
 fun initKoinIos(
     doOnStartup: () -> Unit,
-    analyticsSource: AnalyticsSource,
+    analyticsProvider: AnalyticsProvider,
 ) = initKoin {
     modules(
         module {
             single { doOnStartup }
-            single { analyticsSource }
+            single { analyticsProvider }
         },
     )
 }
