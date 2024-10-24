@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import KMPShared
 
 public struct AlertData: Equatable, Identifiable {
     
@@ -17,7 +18,7 @@ public struct AlertData: Equatable, Identifiable {
     public init(
         title: String,
         message: String? = nil,
-        primaryAction: AlertData.Action = AlertData.Action(title: L10n.dialog_error_close_text, style: .default),
+        primaryAction: AlertData.Action = AlertData.Action(title: MR.strings().dialog_error_close_text.toLocalized(), style: .default),
         secondaryAction: AlertData.Action? = nil
     ) {
         self.title = title

@@ -6,17 +6,9 @@ import java.io.File
 
 fun Project.configureTwine() {
     tasks.register("generateTwine") {
-        Twine.generateAllRegularFiles(
+        Twine.generateAllStringFiles(
             project = project,
             twineFile = "${rootProject.file("twine").absolutePath}/strings.txt",
-            moduleName = "android/shared",
-        )
-    }
-
-    tasks.register("generateErrorsTwine") {
-        Twine.generateAllErrorFiles(
-            project = project,
-            twineFile = "${rootProject.file("twine").absolutePath}/errors.txt",
             targetPath = "${project.rootDir.absolutePath}/shared/base/src/commonMain/moko-resources",
             targetFileName = "strings.xml",
             languages = listOf("sk", "en", "cs"),
@@ -27,38 +19,7 @@ fun Project.configureTwine() {
 
 private object Twine {
 
-    fun generateAllRegularFiles(
-        project: Project,
-        moduleName: String,
-        twineFile: String,
-    ) {
-        val script =
-            when {
-                OperatingSystem.current().isLinux || OperatingSystem.current().isMacOsX ->
-                    "twine generate-all-localization-files $twineFile ${project.rootDir.absolutePath}/$moduleName/src/main/res/ -f android -n generated_strings.xml -d en -r"
-
-                OperatingSystem.current().isWindows -> "twine generate-all-localization-files $twineFile ${project.rootDir.absolutePath}/$moduleName/src/main/res/ -f android -n generated_strings.xml -d en -r"
-                else -> "unsupported"
-            }
-
-        project.exec {
-            // Add twine into path
-            // This should be also refactored
-            val twinePath = project.findProperty("twinePath")
-            if (twinePath != null) {
-                environment["PATH"] =
-                    "${environment["PATH"]}${System.getProperty("path.separator")}$twinePath"
-            }
-
-            if (OperatingSystem.current().isMacOsX || OperatingSystem.current().isLinux) {
-                this.commandLine("sh", "-c", script)
-            } else if (OperatingSystem.current().isWindows) {
-                this.commandLine("cmd", "/c", script)
-            }
-        }
-    }
-
-    fun generateAllErrorFiles(
+    fun generateAllStringFiles(
         project: Project,
         twineFile: String,
         targetPath: String,
