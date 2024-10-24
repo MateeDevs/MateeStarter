@@ -15,7 +15,7 @@ import org.koin.dsl.module
 
 fun initKoinIos(
     doOnStartup: () -> Unit,
-    analyticsSource: AnalyticsSource,
+    analyticsProvider: AnalyticsProvider,
 ) = initKoin {
     modules(
         module {

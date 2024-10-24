@@ -6,6 +6,7 @@
 import AnalyticsProvider
 import Factory
 import KeychainProvider
+import KMPShared
 import NetworkProvider
 import UIKit
 import UserDefaultsProvider
