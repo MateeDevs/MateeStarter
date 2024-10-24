@@ -15,7 +15,7 @@ alpha = {
   output_name: "A-MateeStarter",
   app_identifier: "cz.matee.starter.alpha",
   scheme: "MateeStarter_Alpha",
-  testflight_groups: ['App Store Connect Users', 'Public'],
+  testflight_groups: [],
   testflight_link: "NOT AVAILABLE"
 }
 
@@ -23,7 +23,7 @@ beta = {
   output_name: "B-MateeStarter",
   app_identifier: "cz.matee.starter.beta",
   scheme: "MateeStarter_Beta",
-  testflight_groups: ['App Store Connect Users', 'Public'],
+  testflight_groups: [],
   testflight_link: "https://testflight.apple.com/join/aff9SFVc"
 }
 
@@ -31,7 +31,7 @@ production = {
   output_name: "MateeStarter",
   app_identifier: "cz.matee.starter",
   scheme: "MateeStarter",
-  testflight_groups: ['App Store Connect Users', 'Public'],
+  testflight_groups: [],
   testflight_link: "https://testflight.apple.com/join/lP4bFs1a"
 }
 
@@ -201,9 +201,15 @@ platform :ios do
   # GIT TAG
 
   desc "Create and push git tag"
-  lane :tag do
-    version = get_ipa_info_plist_value(ipa: "./ipa/#{production[:output_name]}.ipa", key: "CFBundleShortVersionString")
-    build = get_ipa_info_plist_value(ipa: "./ipa/#{production[:output_name]}.ipa", key: "CFBundleVersion")
+  lane :tag do |config|
+    if config[:alpha]
+      version = get_ipa_info_plist_value(ipa: "./ipa/#{alpha[:output_name]}.ipa", key: "CFBundleShortVersionString")
+    elsif config[:prod]
+      version = get_ipa_info_plist_value(ipa: "./ipa/#{production[:output_name]}.ipa", key: "CFBundleShortVersionString")
+    end
+    
+    build = ENV["BUILD_NUMBER"]
+    
     add_git_tag(tag: "ios/#{version}.#{build}")
     push_git_tags(tag: "ios/#{version}.#{build}")
   end
