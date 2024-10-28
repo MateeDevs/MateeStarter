@@ -77,8 +77,7 @@
   string messages
 - Error strings are stored in the `twine/errors.txt` file
 - Script `generate-error-messages.sh` calls needed gradle tasks (`generateErrorsTwine`
-  and `generateMRCommonMain`) to generate `MR` class and script `copy-moko-resources.sh` copies the
-  resources to the iOS project
+  and `generateMRCommonMain`) to generate `MR` class
 
 ## Debug
 

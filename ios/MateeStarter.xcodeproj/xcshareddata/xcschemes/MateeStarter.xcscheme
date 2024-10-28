@@ -10,7 +10,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Generate strings"
-               scriptText = "if [ -z &quot;$CI&quot; ]; then&#10;    cd &quot;${PROJECT_DIR}&quot;&#10;    scripts/generate-strings.sh&#10;fi&#10;">
+               scriptText = "cd &quot;$SRCROOT&quot;&#10;scripts/generate-strings.sh&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
@@ -25,8 +25,8 @@
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
-               title = "Build KMP"
-               scriptText = "if [ -z &quot;$CI&quot; ]; then&#10;    cd &quot;${PROJECT_DIR}&quot;&#10;    scripts/build-kmp.sh &quot;${CONFIGURATION}&quot; true&#10;fi&#10;">
+               title = "Run Embed and sign shared framework"
+               scriptText = "cd &quot;$SRCROOT/..&quot;&#10;./gradlew :shared:core:embedAndSignAppleFrameworkForXcode &lt; /dev/null&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"

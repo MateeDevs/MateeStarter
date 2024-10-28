@@ -1,6 +1,5 @@
 package plugin
 
-import config.KmmConfig.copyXCFramework
 import config.kmm
 import constants.ProjectConstants
 import org.gradle.api.Plugin
@@ -21,14 +20,6 @@ class KmmXCFrameworkLibraryConventionPlugin : Plugin<Project> {
                     project = project,
                     nativeName = ProjectConstants.iosShared,
                 )
-            }
-
-            tasks.register("buildXCFramework") {
-                dependsOn("assemble${ProjectConstants.iosShared}XCFramework")
-            }
-
-            tasks.register("copyXCFramework") {
-                copyXCFramework(ProjectConstants.iosShared)
             }
         }
     }
