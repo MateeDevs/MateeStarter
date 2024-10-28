@@ -13,6 +13,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.primarySurface
 import androidx.compose.runtime.Composable
@@ -30,6 +31,7 @@ import kmp.android.sample.navigation.sampleNavGraph
 import kmp.android.samplecomposemultiplatform.navigation.sampleComposeMultiplatformNavGraph
 import kmp.android.samplesharedviewmodel.navigation.sampleSharedViewModelNavGraph
 import kmp.android.shared.style.Elevation
+import kmp.shared.samplecomposenavigation.presentation.navigation.sampleComposeNavigationNavGraph
 
 @Composable
 fun Root(modifier: Modifier = Modifier) {
@@ -49,6 +51,8 @@ fun Root(modifier: Modifier = Modifier) {
                 sampleSharedViewModelNavGraph(navController)
 
                 sampleComposeMultiplatformNavGraph(navController)
+
+                sampleComposeNavigationNavGraph(navController, onShowMessage = {})
             }
         }
     }
@@ -80,6 +84,11 @@ private fun BottomBar(navController: NavHostController, modifier: Modifier = Mod
 
                             NavBarFeature.SampleComposeMultiplatform -> Icon(
                                 Icons.Filled.AccountBox,
+                                "",
+                            )
+
+                            NavBarFeature.SampleComposeNavigation -> Icon(
+                                Icons.Filled.Face,
                                 "",
                             )
                         }

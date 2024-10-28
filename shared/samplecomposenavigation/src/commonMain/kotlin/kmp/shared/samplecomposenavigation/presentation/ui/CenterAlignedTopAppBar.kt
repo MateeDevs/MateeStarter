@@ -1,12 +1,12 @@
-package kmp.shared.samplecomposenavigation.presentation
+package kmp.shared.samplecomposenavigation.presentation.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.displayCutoutPadding
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -17,6 +17,7 @@ import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -29,7 +30,7 @@ fun CenterAlignedTopAppBar(
         modifier = modifier
             .fillMaxWidth()
             .background(MaterialTheme.colors.primary)
-            .safeContentPadding()
+            .displayCutoutPadding()
             .height(AppBarHeight),
     ) {
         Text(
@@ -63,4 +64,4 @@ fun CenterAlignedTopAppBar(
     }
 }
 
-private val AppBarHeight = 32.dp
+expect val AppBarHeight: Dp

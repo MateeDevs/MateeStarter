@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "kmp.android.samplesharedviewmodel"
+    namespace = "kmp.android.samplecomposemultiplatform"
 }
 
 dependencies {

@@ -6,9 +6,11 @@ import kmp.android.sample.navigation.SampleGraph
 import kmp.android.samplecomposemultiplatform.navigation.SampleComposeMultiplatformGraph
 import kmp.android.samplesharedviewmodel.navigation.SampleSharedViewModelGraph
 import kmp.shared.base.MR
+import kmp.shared.samplecomposenavigation.presentation.navigation.SampleComposeNavigationGraph
 
 enum class NavBarFeature(val route: String, val titleRes: StringDesc) {
     Sample(SampleGraph.rootPath, MR.strings.bottom_bar_item_1.desc()),
     SampleSharedViewModel(SampleSharedViewModelGraph.rootPath, MR.strings.bottom_bar_item_2.desc()),
     SampleComposeMultiplatform(SampleComposeMultiplatformGraph.rootPath, MR.strings.bottom_bar_item_3.desc()),
+    SampleComposeNavigation(SampleComposeNavigationGraph.rootPath, MR.strings.bottom_bar_item_4.desc()),
 }

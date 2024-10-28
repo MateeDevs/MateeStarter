@@ -20,6 +20,7 @@ dependencies {
     commonMainImplementation(project(":shared:base"))
     commonMainImplementation(project(":shared:sample"))
     commonMainImplementation(project(":shared:samplesharedviewmodel"))
+    commonMainImplementation(project(":shared:samplecomposemultiplatform"))
 
     commonMainImplementation(compose.runtime)
     commonMainImplementation(compose.foundation)
@@ -27,7 +28,10 @@ dependencies {
     @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
     commonMainImplementation(compose.components.resources)
     commonMainImplementation(compose.components.uiToolingPreview)
-//    commonMainImplementation("org.jetbrains.androidx.navigation:navigation-compose:2.8.0-alpha10")
-//    commonMainImplementation("org.jetbrains.compose.material:material-navigation:1.7.0-beta02")
+
+    // Remove these two dependencies for the iOS swipe back navigation to work
+    commonMainImplementation(libs.androidX.navigation)
+    commonMainImplementation(libs.compose.materialNavigation)
+
     ktlintRuleset(libs.ktlint.composeRules)
 }
