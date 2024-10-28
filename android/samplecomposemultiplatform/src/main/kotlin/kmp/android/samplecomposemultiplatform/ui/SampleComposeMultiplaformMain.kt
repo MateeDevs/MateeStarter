@@ -14,8 +14,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
+import dev.icerock.moko.resources.compose.stringResource
 import kmp.android.samplecomposemultiplatform.navigation.SampleComposeMultiplatformGraph
 import kmp.android.shared.navigation.composableDestination
+import kmp.shared.base.MR
 import kmp.shared.samplecomposemultiplatform.presentation.ui.SampleComposeMultiplatformScreen
 import kmp.shared.samplesharedviewmodel.vm.SampleSharedEvent
 import kmp.shared.samplesharedviewmodel.vm.SampleSharedIntent
@@ -60,7 +62,7 @@ internal fun SampleComposeMultiplatformMainRoute(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(text = "Compose Multiplatform") },
+                title = { Text(text = stringResource(MR.strings.bottom_bar_item_3)) },
                 windowInsets = WindowInsets.displayCutout,
             )
         },

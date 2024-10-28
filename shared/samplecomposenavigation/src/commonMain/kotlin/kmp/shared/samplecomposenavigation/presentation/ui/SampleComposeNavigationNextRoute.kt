@@ -7,6 +7,8 @@ import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
+import dev.icerock.moko.resources.compose.stringResource
+import kmp.shared.base.MR
 import kmp.shared.samplecomposemultiplatform.presentation.ui.SampleNextScreen
 import kmp.shared.samplecomposemultiplatform.presentation.vm.SampleNextEvent
 import kmp.shared.samplecomposemultiplatform.presentation.vm.SampleNextIntent
@@ -60,7 +62,7 @@ internal fun SampleComposeNavigationNextRoute(
         Scaffold(
             topBar = {
                 CenterAlignedTopAppBar(
-                    title = "Next",
+                    title = stringResource(MR.strings.next_screen_title),
                     onBackClick = { viewModel.onIntent(SampleNextIntent.OnBackTapped) },
                 )
             },

@@ -38,7 +38,7 @@ public struct SampleNextView: View {
                 )
             }
         }
-        .navigationTitle("Next")
+        .navigationTitle(MR.strings().next_screen_title.toLocalized())
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .toastView($toastData)
     }

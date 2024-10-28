@@ -6,6 +6,8 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
+import dev.icerock.moko.resources.compose.stringResource
+import kmp.shared.base.MR
 import kmp.shared.samplecomposemultiplatform.presentation.ui.SampleComposeMultiplatformScreen
 import kmp.shared.samplecomposenavigation.presentation.common.AppTheme
 import kmp.shared.samplecomposenavigation.presentation.navigation.SampleComposeNavigationGraph
@@ -55,7 +57,7 @@ internal fun SampleComposeNavigationMainRoute(
         Scaffold(
             topBar = {
                 CenterAlignedTopAppBar(
-                    title = "Compose Multiplatform",
+                    title = stringResource(MR.strings.bottom_bar_item_4),
                 )
             },
         ) {

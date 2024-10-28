@@ -70,7 +70,7 @@ final class MainFlowController: FlowController {
     private func setupSampleComposeNavigationTab() -> UINavigationController {
         let sampleComposeNavigationNC = BaseNavigationController(statusBarStyle: .lightContent)
         sampleComposeNavigationNC.tabBarItem = UITabBarItem(
-            title: L10n.bottom_bar_item_4,
+            title: MR.strings().bottom_bar_item_4.toLocalized(),
             image: AppTheme.Images.personTwo,
             tag: MainTab.sampleComposeNavigation.rawValue
         )

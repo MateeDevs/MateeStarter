@@ -19,6 +19,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import dev.icerock.moko.resources.compose.stringResource
+import kmp.shared.base.MR
 
 @Composable
 fun CenterAlignedTopAppBar(
@@ -54,10 +56,13 @@ fun CenterAlignedTopAppBar(
                 ) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft,
-                        contentDescription = "back",
+                        contentDescription = stringResource(MR.strings.back),
                         tint = MaterialTheme.colors.onPrimary,
                     )
-                    Text("Back", color = MaterialTheme.colors.onPrimary)
+                    Text(
+                        text = stringResource(MR.strings.back),
+                        color = MaterialTheme.colors.onPrimary
+                    )
                 }
             }
         }

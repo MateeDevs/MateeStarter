@@ -33,5 +33,7 @@ dependencies {
     commonMainImplementation(libs.androidX.navigation)
     commonMainImplementation(libs.compose.materialNavigation)
 
+    commonMainImplementation(libs.mokoResources.compose)
+
     ktlintRuleset(libs.ktlint.composeRules)
 }

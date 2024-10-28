@@ -20,8 +20,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
+import dev.icerock.moko.resources.compose.stringResource
 import kmp.android.samplecomposemultiplatform.navigation.SampleComposeMultiplatformGraph
 import kmp.android.shared.navigation.composableDestination
+import kmp.shared.base.MR
 import kmp.shared.samplecomposemultiplatform.presentation.ui.SampleNextScreen
 import kmp.shared.samplecomposemultiplatform.presentation.vm.SampleNextEvent
 import kmp.shared.samplecomposemultiplatform.presentation.vm.SampleNextIntent
@@ -70,7 +72,7 @@ internal fun SampleComposeMultiplatformNextRoute(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(text = "Next") },
+                title = { Text(text = stringResource(MR.strings.next_screen_title)) },
                 windowInsets = WindowInsets.displayCutout,
                 navigationIcon = {
                     IconButton(
@@ -78,7 +80,7 @@ internal fun SampleComposeMultiplatformNextRoute(
                     ) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft,
-                            contentDescription = "back",
+                            contentDescription = stringResource(MR.strings.back),
                             tint = MaterialTheme.colors.onPrimary,
                         )
                     }
