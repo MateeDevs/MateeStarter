@@ -3,7 +3,7 @@
 //  Copyright © 2018 Matee. All rights reserved.
 //
 
-#if ALPHA || BETA
+#if ALPHA
 import Atlantis
 #endif
 
@@ -85,21 +85,17 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     private func setupEnvironment() {
         #if ALPHA
         Atlantis.start()
-        Environment.type = .alpha
+        Environment.api = .alpha
         Logger.app.info("ALPHA environment")
-        #elseif BETA
-        Atlantis.start()
-        Environment.type = .beta
-        Logger.app.info("BETA environment")
         #elseif PRODUCTION
-        Environment.type = .production
+        Environment.api = .production
         Logger.app.info("PRODUCTION environment")
         #endif
         
         #if DEBUG
-        Environment.flavor = .debug
+        Environment.build = .debug
         #else
-        Environment.flavor = .release
+        Environment.build = .release
         #endif
     }
     
@@ -119,7 +115,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     private func firebaseDebugSetup() {
         // Enable Firebase Analytics debug mode for non production environments
         // Idea taken from: https://stackoverflow.com/a/47594030/6947225
-        if Environment.type != .production {
+        if Environment.api != .production {
             var args = ProcessInfo.processInfo.arguments
             args.append("-FIRAnalyticsDebugEnabled")
             ProcessInfo.processInfo.setValue(args, forKey: "arguments")

@@ -23,13 +23,13 @@ jobs:
 
       - name: Run architecture lint
         run: |
-          ./gradlew :shared:core:testDebugUnitTest --tests "konsistTest.*" --no-build-cache --no-configuration-cache
+          ./gradlew :shared:core:testDevelopDebugUnitTest --tests "konsistTest.*" --no-build-cache --no-configuration-cache
 
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v4
         if: success() || failure()
         with:
-          report_paths: '**/build/test-results/testDebugUnitTest/TEST-*.xml'
+          report_paths: '**/build/test-results/testDevelopDebugUnitTest/TEST-*.xml'
 
       - name: Build
         run: |
