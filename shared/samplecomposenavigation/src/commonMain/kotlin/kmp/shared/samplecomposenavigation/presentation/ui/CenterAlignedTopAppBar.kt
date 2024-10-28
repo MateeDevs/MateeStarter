@@ -61,7 +61,7 @@ fun CenterAlignedTopAppBar(
                     )
                     Text(
                         text = stringResource(MR.strings.back),
-                        color = MaterialTheme.colors.onPrimary
+                        color = MaterialTheme.colors.onPrimary,
                     )
                 }
             }
