@@ -11,9 +11,12 @@ import extensions.libs
 import extensions.pluginManager
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.invoke
+import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 @Suppress("unused")
 class KmmLibraryConventionPlugin : Plugin<Project> {
@@ -28,10 +31,7 @@ class KmmLibraryConventionPlugin : Plugin<Project> {
                 apply(libs.plugins.mokoResources)
             }
 
-            val versionCode = libs.versions.java.get().toInt()
-            kotlin {
-                jvmToolchain(versionCode)
-            }
+            apply<KotlinConventionPlugin>()
 
             extensions.configure<LibraryExtension> {
                 compileSdk = libs.versions.sdk.compile.get().toInt()
