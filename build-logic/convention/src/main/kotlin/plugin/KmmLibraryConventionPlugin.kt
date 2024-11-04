@@ -6,7 +6,6 @@ import config.configureKotlinAndroid
 import config.configureTests
 import config.getIosTargets
 import extensions.apply
-import extensions.kotlin
 import extensions.libs
 import extensions.pluginManager
 import org.gradle.api.Plugin
@@ -14,9 +13,7 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.invoke
-import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 @Suppress("unused")
 class KmmLibraryConventionPlugin : Plugin<Project> {
@@ -32,6 +29,16 @@ class KmmLibraryConventionPlugin : Plugin<Project> {
             }
 
             apply<KotlinConventionPlugin>()
+
+            extensions.configure<KotlinMultiplatformExtension> {
+                targets.configureEach {
+                    compilations.configureEach {
+                        compileTaskProvider.get().compilerOptions {
+                            freeCompilerArgs.add("-Xexpect-actual-classes")
+                        }
+                    }
+                }
+            }
 
             extensions.configure<LibraryExtension> {
                 compileSdk = libs.versions.sdk.compile.get().toInt()
