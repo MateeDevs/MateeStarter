@@ -3,6 +3,7 @@ package kmp.shared.base.infrastucture.remote
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.plugins.auth.Auth
+import io.ktor.client.plugins.auth.authProviders
 import io.ktor.client.plugins.auth.providers.BearerAuthProvider
 import io.ktor.client.plugins.auth.providers.BearerTokens
 import io.ktor.client.plugins.auth.providers.bearer
@@ -11,7 +12,6 @@ import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
-import io.ktor.client.plugins.plugin
 import io.ktor.http.ContentType
 import io.ktor.http.URLProtocol
 import io.ktor.http.contentType
@@ -88,7 +88,7 @@ internal object HttpClient {
  * Force the Auth plugin to invoke the `loadTokens` block again on the next client request.
  */
 fun HttpClient.clearBearerTokens() {
-    plugin(Auth).providers
+    authProviders
         .filterIsInstance<BearerAuthProvider>()
         .firstOrNull()
         ?.clearToken()
