@@ -6,11 +6,11 @@ import config.configureKotlinAndroid
 import config.configureTests
 import config.getIosTargets
 import extensions.apply
-import extensions.kotlin
 import extensions.libs
 import extensions.pluginManager
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.invoke
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
@@ -28,9 +28,16 @@ class KmmLibraryConventionPlugin : Plugin<Project> {
                 apply(libs.plugins.mokoResources)
             }
 
-            val versionCode = libs.versions.java.get().toInt()
-            kotlin {
-                jvmToolchain(versionCode)
+            apply<KotlinConventionPlugin>()
+
+            extensions.configure<KotlinMultiplatformExtension> {
+                targets.configureEach {
+                    compilations.configureEach {
+                        compileTaskProvider.get().compilerOptions {
+                            freeCompilerArgs.add("-Xexpect-actual-classes")
+                        }
+                    }
+                }
             }
 
             extensions.configure<LibraryExtension> {

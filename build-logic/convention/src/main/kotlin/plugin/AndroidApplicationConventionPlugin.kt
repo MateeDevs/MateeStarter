@@ -26,6 +26,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                 apply(libs.plugins.serialization)
                 apply(libs.plugins.ktlint)
                 apply(libs.plugins.android.application)
+                apply(libs.plugins.kotlin.android)
             }
 
             apply<KotlinConventionPlugin>()

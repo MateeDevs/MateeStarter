@@ -17,12 +17,7 @@ class KotlinConventionPlugin : Plugin<Project> {
 
     override fun apply(target: Project) {
         with(target) {
-            pluginManager {
-                apply(libs.plugins.kotlin.android)
-            }
-
             val javaVersionCode = libs.versions.java.get().toInt()
-
             kotlin {
                 jvmToolchain(javaVersionCode)
             }
@@ -31,7 +26,6 @@ class KotlinConventionPlugin : Plugin<Project> {
                 compilerOptions {
                     jvmTarget.set(JvmTarget.fromTarget(javaVersionCode.toString()))
                     freeCompilerArgs.addAll(
-                        "-Xallow-jvm-ir-dependencies",
                         "-opt-in=kotlin.RequiresOptIn",
                         "-Xexpect-actual-classes",
                     )

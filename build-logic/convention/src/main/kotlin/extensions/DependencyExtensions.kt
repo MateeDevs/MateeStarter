@@ -1,9 +1,6 @@
 package extensions
 
-import com.android.build.gradle.BaseExtension
-import org.gradle.api.Action
 import org.gradle.kotlin.dsl.DependencyHandlerScope
-import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
 
 fun DependencyHandlerScope.implementation(dependencyNotation: Any) =
     add(ExtensionConstants.IMPLEMENTATION, dependencyNotation)
@@ -26,7 +23,8 @@ fun DependencyHandlerScope.alphaImplementation(dependencyNotation: Any) =
 fun DependencyHandlerScope.betaImplementation(dependencyNotation: Any) =
     add(ExtensionConstants.BETA_IMPLEMENTATION, dependencyNotation)
 
-fun DependencyHandlerScope.api(dependencyNotation: Any) = add(ExtensionConstants.API, dependencyNotation)
+fun DependencyHandlerScope.api(dependencyNotation: Any) =
+    add(ExtensionConstants.API, dependencyNotation)
 
 fun DependencyHandlerScope.ksp(dependencyNotation: Any) =
     add(ExtensionConstants.KSP, dependencyNotation)

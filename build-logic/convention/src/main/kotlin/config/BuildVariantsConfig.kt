@@ -10,7 +10,6 @@ internal fun <T : BuildType> CommonExtension<*, T, *, *, *, *>.configureBuildVar
     buildTypes {
         debug {
             splits.abi.isEnable = false
-            splits.density.isEnable = false
             (this as ExtensionAware).extra["alwaysUpdateBuildId"] = false
         }
         release {

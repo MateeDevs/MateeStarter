@@ -78,5 +78,5 @@ inline fun <T : Any> Result<T>.recover(recover: (ErrorResult) -> Result<T>): Res
 /**
  * Returns the inner [Result] if the outer one is a [Result.Success] or the outer one if it is an [Result.Error]
  */
-inline fun <T : Any> Result<Result<T>>.flatten(): Result<T> =
+fun <T : Any> Result<Result<T>>.flatten(): Result<T> =
     fold(success = { it }, error = { Result.Error(it) })
