@@ -8,7 +8,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 object KmmConfig {
     private fun includeX86(project: Project): Boolean =
-        getBooleanProperty(project, "X86", false)
+        getBooleanProperty(project, "X86", true)
 
     private fun includeArm64(project: Project): Boolean =
         getBooleanProperty(project, "ARM64", true)
