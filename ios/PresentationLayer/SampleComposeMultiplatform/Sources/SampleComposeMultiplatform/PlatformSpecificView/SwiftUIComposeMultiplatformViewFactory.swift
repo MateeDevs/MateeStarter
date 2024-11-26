@@ -8,6 +8,6 @@ import SwiftUI
 
 class SwiftUISampleComposeMultiplatformViewFactory: SampleComposeMultiplatformViewFactory {
     func createPlatformSpecificCheckboxView(observable: PlatformSpecificCheckboxViewObservable) -> AnyView {
-        return AnyView(PlatformSpecificCheckboxViewBinding(observable: observable))
+        return AnyView(CheckboxView(observable: observable))
     }
 }
