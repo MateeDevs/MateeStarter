@@ -3,29 +3,26 @@
 //  Copyright © 2024 Matee. All rights reserved.
 //
 
+import KMPShared
 import SwiftUI
 
 struct CheckboxView: View {
     
-    private var text: String
-    private var isChecked: Bool
-    private var onCheckedChange: (Bool) -> Void
+    @ObservedObject var observable: PlatformSpecificCheckboxViewObservable
     
-    init(text: String, isChecked: Bool, onCheckedChange: @escaping (Bool) -> Void) {
-        self.text = text
-        self.isChecked = isChecked
-        self.onCheckedChange = onCheckedChange
+    init(observable: PlatformSpecificCheckboxViewObservable) {
+        self.observable = observable
     }
     
     var body: some View {
         HStack {
-            Image(systemSymbol: isChecked ? .checkmarkSquareFill : .square)
-                .foregroundColor(isChecked ? Color(UIColor.systemBlue) : Color.secondary)
+            Image(systemSymbol: observable.checked ? .checkmarkSquareFill : .square)
+                .foregroundColor(observable.checked ? Color(UIColor.systemBlue) : Color.secondary)
                 .onTapGesture {
-                    onCheckedChange(!isChecked)
+                    observable.onCheckedChanged(KotlinBoolean(value: !observable.checked))
                 }
             
-            Text(text)
+            Text(observable.text)
         }
     }
 }
