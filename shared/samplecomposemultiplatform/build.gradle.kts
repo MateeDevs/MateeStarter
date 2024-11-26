@@ -17,6 +17,7 @@ ktlint {
         exclude { entry ->
             entry.file.toString().contains("generated")
         }
+        include("**/kotlin/**")
     }
 }
 
@@ -63,7 +64,7 @@ ksp {
 
 // support for generating ksp code in commonCode
 // see https://github.com/google/ksp/issues/567
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask<*>>().configureEach {
     if (name != "kspCommonMainKotlinMetadata") {
         dependsOn("kspCommonMainKotlinMetadata")
     }
