@@ -6,10 +6,10 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.window.ComposeUIViewController
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import co.touchlab.compose.swift.bridge.LocalSampleComposeMultiplatformViewFactory
-import co.touchlab.compose.swift.bridge.SampleComposeMultiplatformViewFactory
 import kmp.shared.samplecomposemultiplatform.presentation.common.AppTheme
+import kmp.shared.samplecomposemultiplatform.presentation.ui.LocalSampleComposeMultiplatformViewFactory
 import kmp.shared.samplecomposemultiplatform.presentation.ui.SampleComposeMultiplatformScreen
+import kmp.shared.samplecomposemultiplatform.presentation.ui.SampleComposeMultiplatformViewFactory
 import kmp.shared.samplesharedviewmodel.vm.SampleSharedEvent
 import kmp.shared.samplesharedviewmodel.vm.SampleSharedIntent
 import kmp.shared.samplesharedviewmodel.vm.SampleSharedViewModel

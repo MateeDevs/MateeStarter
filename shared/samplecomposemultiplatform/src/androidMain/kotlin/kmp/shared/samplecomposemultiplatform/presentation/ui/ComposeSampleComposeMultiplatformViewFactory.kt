@@ -1,0 +1,3 @@
+package kmp.shared.samplecomposemultiplatform.presentation.ui
+
+public actual interface ComposeSampleComposeMultiplatformViewFactory
