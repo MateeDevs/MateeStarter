@@ -6,8 +6,15 @@
 import KMPShared
 import SwiftUI
 
-class SwiftUISampleComposeMultiplatformViewFactory: SampleComposeMultiplatformViewFactory {
-    func createPlatformSpecificCheckboxView(observable: PlatformSpecificCheckboxViewObservable) -> AnyView {
-        return AnyView(CheckboxView(observable: observable))
+class SwiftUISampleComposeMultiplatformViewFactory: ComposeSampleComposeMultiplatformViewFactory {
+    func createPlatformSpecificCheckboxView(
+        text: String,
+        checked: Bool,
+        onCheckedChanged: @escaping (KotlinBoolean) -> Void
+    ) -> KotlinPair<UIViewController, any PlatformSpecificCheckboxViewDelegate> {
+        let observable = PlatformSpecificCheckboxViewObservable(checked: checked, onCheckedChanged: onCheckedChanged, text: text)
+        let viewController: UIViewController = UIHostingController(rootView: CheckboxView(observable: observable))
+        
+        return KotlinPair(first: viewController, second: observable)
     }
 }

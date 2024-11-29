@@ -1,0 +1,6 @@
+package kmp.shared.samplecomposemultiplatform.presentation.ui
+
+public typealias SampleComposeMultiplatformViewFactory =
+    ComposeSampleComposeMultiplatformViewFactory
+
+public expect interface ComposeSampleComposeMultiplatformViewFactory
