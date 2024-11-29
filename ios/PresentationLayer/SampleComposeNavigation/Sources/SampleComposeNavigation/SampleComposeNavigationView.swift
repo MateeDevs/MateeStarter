@@ -21,7 +21,7 @@ struct SampleComposeNavigationView: View {
     
     var body: some View {
         ComposeViewController {
-            SampleWithComposeNavigationViewControllerKt.SampleWithComposeNavigationViewController(
+            SampleWithComposeNavigationViewController(
                 showMessage: { message in
                     toastData = ToastData(message, hideAfter: 2)
                 }

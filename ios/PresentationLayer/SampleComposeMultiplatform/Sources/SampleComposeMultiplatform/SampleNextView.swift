@@ -26,7 +26,7 @@ public struct SampleNextView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             
             ComposeViewController {
-                SampleNextScreenViewControllerKt.SampleNextScreenViewController(
+                SampleNextScreenViewController(
                     onEvent: { event in
                         switch onEnum(of: event) {
                         case .showMessage(let message):

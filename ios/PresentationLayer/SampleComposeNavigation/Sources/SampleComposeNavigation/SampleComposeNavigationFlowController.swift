@@ -22,7 +22,7 @@ public final class SampleComposeNavigationFlowController: FlowController {
     override public func handleFlow(_ flow: Flow) {
         guard let sampleComposeNavigationFlow = flow as? SampleComposeNavigationFlow else { return }
         switch sampleComposeNavigationFlow {
-        case .sampleComposeNavigation: do {}
+        case .sampleComposeNavigation: ()
         }
     }
 }

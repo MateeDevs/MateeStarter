@@ -22,7 +22,7 @@ struct SampleComposeMultiplatformView: View {
     public var body: some View {
         ZStack {
             ComposeViewController {
-                SampleComposeMultiplatformScreenViewControllerKt.SampleComposeMultiplatformScreenViewController(
+                SampleComposeMultiplatformScreenViewController(
                     onEvent: { event in
                         switch onEnum(of: event) {
                         case .showMessage(let message):
