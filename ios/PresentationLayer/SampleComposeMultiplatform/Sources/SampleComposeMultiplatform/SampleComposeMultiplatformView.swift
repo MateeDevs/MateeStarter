@@ -21,13 +21,14 @@ struct SampleComposeMultiplatformView: View {
     
     var body: some View {
         ComposeViewController {
-            SampleComposeMultiplatformScreenViewControllerKt.SampleComposeMultiplatformScreenViewController(
+            SampleComposeMultiplatformScreenViewController(
                 onEvent: { event in
                     switch onEnum(of: event) {
                     case .showMessage(let message):
                         toastData = ToastData(message.message, hideAfter: 2)
                     }
-                }
+                },
+                factory: SwiftUISampleComposeMultiplatformViewFactory()
             )
         }
         .toastView($toastData)
