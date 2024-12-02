@@ -24,6 +24,7 @@ package "shared" #C9B6FF {
     [:shared:sample] <<KMP>>
     [:shared:samplesharedviewmodel] <<KMP>>
     [:shared:samplecomposemultiplatform] <<KMP>>
+    [:shared:samplecomposenavigation] <<KMP>>
 }
 
 interface "Android Application" #3DDC84
@@ -48,11 +49,15 @@ interface "iOS XCFramework (KMPShared)" #007AFF
 [:shared:core] --> [:shared:sample]
 [:shared:core] --> [:shared:samplesharedviewmodel]
 [:shared:core] --> [:shared:samplecomposemultiplatform]
+[:shared:core] --> [:shared:samplecomposenavigation]
 
 [:shared:sample] --> [:shared:base]
 [:shared:samplesharedviewmodel] --> [:shared:base]
 [:shared:samplecomposemultiplatform] --> [:shared:base]
+[:shared:samplecomposenavigation] --> [:shared:base]
 
 [:shared:samplesharedviewmodel] -left-> [:shared:sample]
 [:shared:samplecomposemultiplatform] -left-> [:shared:samplesharedviewmodel]
+[:shared:samplecomposenavigation] -left-> [:shared:samplesharedviewmodel]
+[:shared:samplecomposenavigation] -left-> [:shared:samplecomposemultiplatform]
 @enduml

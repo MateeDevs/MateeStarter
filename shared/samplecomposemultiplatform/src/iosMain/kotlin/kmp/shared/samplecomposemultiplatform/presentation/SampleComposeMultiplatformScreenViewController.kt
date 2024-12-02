@@ -1,5 +1,6 @@
 package kmp.shared.samplecomposemultiplatform.presentation
 
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.window.ComposeUIViewController
@@ -18,21 +19,28 @@ fun SampleComposeMultiplatformScreenViewController(
     onEvent: (SampleSharedEvent) -> Unit,
 ): UIViewController {
     return ComposeUIViewController {
-        val viewModel: SampleSharedViewModel = koinViewModel()
-        val state by viewModel.state.collectAsStateWithLifecycle()
+        SampleComposeMultiplatformView(onEvent = onEvent)
+    }
+}
 
-        LaunchedEffect(viewModel) {
-            viewModel.onIntent(SampleSharedIntent.OnAppeared)
-        }
+@Composable
+internal fun SampleComposeMultiplatformView(
+    onEvent: (SampleSharedEvent) -> Unit,
+) {
+    val viewModel: SampleSharedViewModel = koinViewModel()
+    val state by viewModel.state.collectAsStateWithLifecycle()
 
-        LaunchedEffect(viewModel) {
-            viewModel.events.collectLatest { event ->
-                onEvent(event)
-            }
-        }
+    LaunchedEffect(viewModel) {
+        viewModel.onIntent(SampleSharedIntent.OnAppeared)
+    }
 
-        AppTheme {
-            SampleComposeMultiplatformScreen(state = state, onIntent = viewModel::onIntent)
+    LaunchedEffect(viewModel) {
+        viewModel.events.collectLatest { event ->
+            onEvent(event)
         }
+    }
+
+    AppTheme {
+        SampleComposeMultiplatformScreen(state = state, onIntent = viewModel::onIntent)
     }
 }

@@ -25,8 +25,9 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 fun SampleComposeMultiplatformScreen(
     state: SampleSharedState,
     onIntent: (SampleSharedIntent) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+    Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         AnimatedContent(targetState = state.loading, label = "AnimatedLoading") { loading ->
             if (loading) {
                 CircularProgressIndicator()
@@ -46,8 +47,8 @@ fun SampleComposeMultiplatformScreen(
                         modifier = Modifier.testTag(TestTags.SampleComposeMultiplatformScreen.SampleText),
                     )
 
-                    Button(onClick = { onIntent(SampleSharedIntent.OnButtonTapped) }) {
-                        Text(text = "Click me!")
+                    Button(onClick = { onIntent(SampleSharedIntent.OnNextButtonTapped) }) {
+                        Text(text = "Go to next screen")
                     }
                 }
             }

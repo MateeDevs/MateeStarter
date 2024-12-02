@@ -14,13 +14,15 @@ This repo contains our template for multiplatform mobile project. Both Android a
 implementations
 are present with shared modules containing all common business logic organized in Clean
 architecture.  
-The project contains three sample screens:
+The project contains four sample screens:
 
 - one with **native UI** and **native view model** (for Android Compose UI and view model in Kotlin,
   for iOS
   SwiftUI and view model in Swift)
 - second one with **native** (Compose and SwiftUI) **UI** and **shared view model**
-- and the third one with **shared Compose Multiplatform UI** and **shared view model**
+- the third one with **shared Compose Multiplatform UI** and **shared view models**
+- and the last one with **shared Compose Multiplatform UI** and **shared view models** and also *
+  *compose mutliplatform navigation**
 
 ## Architecture
 
@@ -68,23 +70,27 @@ As mentioned above, there are three options for how much code you want to share 
 
 If you choose not to share view models neither UI, you can go ahead and
 delete `samplesharedviewmodels` and `samplecomposemultiplatform` modules in both `shared`
-and `android` and create own repositories, use cases, sources, ... according to what you find in
-the `:shared:sample` module and UI and view models according to `:android:sample`. You can also
-remove compose multiplatform plugin from `libs.versions.toml`.
+and `android` and `samplecomposenavigation` only in `shared` and create own repositories, use cases,
+sources, ... according to what you find in the `:shared:sample` module and UI and view models
+according to `:android:sample`. You can also remove compose multiplatform plugin from
+`libs.versions.toml`.
 
 ### Native UI and shared view models
 
 If you choose to share view models, but use native UI, you can delete
-the `samplecomposemultiplatform` module in both `shared`and `android`. You can also remove compose
-multiplatform plugin from `libs.versions.toml`. Refactor base classes that you will need:
-move `samplesharedviewmodel/base` files in `:shared:samplesharedviewmodel` to the `:shared:base`
-module (from `commonMain` as well as `iosMain` and `androidMain`) to have base classes you can
-extend. Also in iOS project move `SampleSharedViewModel/Toolkit` to `UIToolkit`. Then you can write
-your shared view models in the same way as the `SampleSharedViewModel` is written and used (
-especially check the usage on iOS with helpful extension methods).
+the `samplecomposemultiplatform` module in both `shared`and `android` and `samplecomposenavigation`
+only in `shared`. You can also remove compose multiplatform plugin from `libs.versions.toml`.
+Refactor base classes that you will need: move `samplesharedviewmodel/base` files in
+`:shared:samplesharedviewmodel` to the `:shared:base` module (from `commonMain` as well as `iosMain`
+and `androidMain`) to have base classes you can extend. Also in iOS project move
+`SampleSharedViewModel/Toolkit` to `UIToolkit`. Then you can write your shared view models in the
+same way as the `SampleSharedViewModel` is written and used (especially check the usage on iOS with
+helpful extension methods).
 
-If you do not want to use shared view models inside SwiftUI views, you can remove the `expect` from `BaseScopedViewModel` (and the `actual` class), the
-whole `BaseIntentViewModel` interface and the whole `SwiftViewModelCoroutines`, to simplify the base view model.
+If you do not want to use shared view models inside SwiftUI views, you can remove the `expect` from
+`BaseScopedViewModel` (and the `actual` class), the
+whole `BaseIntentViewModel` interface and the whole `SwiftViewModelCoroutines`, to simplify the base
+view model.
 
 ### Shared UI and view models
 
@@ -92,6 +98,17 @@ If you go all out and decide to share both UI and view models, take inspiration
 from `SampleComposeMultiplatformScreenViewController` when calling you view from the swift code. For
 Android there are no changes needed, see in `:android:samplecomposemultiplatform` for yourself.
 You can move the classes in `ui/test` to shared module.
+
+### Shared material navigation
+
+Starting with `Compose multiplatform 1.7.0` (in combination with `androidx navigation-compose` and
+`compose material-navigation` libraries) we can use Material navigation in multiplatform. You can
+see a minimal example in `:shared:samplecomposenavigation`.
+
+> **Beware:** Using libraries mentioned above breaks swipe back navigation when using compose
+> multiplatform views inside UIKit navigation on iOS, so in case you want it working, downgrade
+`compose multiplatform` to 1.6.11 and remove `androidx navigation-compose` and
+`compose material-navigation` libraries.
 
 ## Creating new feature module in shared
 
@@ -105,8 +122,8 @@ You can move the classes in `ui/test` to shared module.
 
 ### Android
 
-There are UI tests prepared for all three screens in `android/app/androidTest`. You can take inspiration
-and write tests for own screens with prepared structure and extensions.
+There are UI tests prepared for all three screens in `android/app/androidTest`. You can take
+inspiration and write tests for own screens with prepared structure and extensions.
 
 ## Technologies
 

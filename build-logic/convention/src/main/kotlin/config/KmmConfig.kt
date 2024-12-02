@@ -58,6 +58,7 @@ fun KotlinMultiplatformExtension.kmm(
                 export(project(":shared:sample"))
                 export(project(":shared:samplesharedviewmodel"))
                 export(project(":shared:samplecomposemultiplatform"))
+                export(project(":shared:samplecomposenavigation"))
             }
         }
     }

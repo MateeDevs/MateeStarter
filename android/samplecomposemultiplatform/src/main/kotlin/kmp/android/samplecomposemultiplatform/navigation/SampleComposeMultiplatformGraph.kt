@@ -10,4 +10,8 @@ object SampleComposeMultiplatformGraph : FeatureGraph(parent = null) {
     data object Main : Destination(this) {
         override val routeDefinition: String = "main"
     }
+
+    data object Next : Destination(this) {
+        override val routeDefinition: String = "next"
+    }
 }

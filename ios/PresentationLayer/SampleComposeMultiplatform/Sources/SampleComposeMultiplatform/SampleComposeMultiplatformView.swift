@@ -19,17 +19,22 @@ struct SampleComposeMultiplatformView: View {
         self.flowController = flowController
     }
     
-    var body: some View {
-        ComposeViewController {
-            SampleComposeMultiplatformScreenViewControllerKt.SampleComposeMultiplatformScreenViewController(
-                onEvent: { event in
-                    switch onEnum(of: event) {
-                    case .showMessage(let message):
-                        toastData = ToastData(message.message, hideAfter: 2)
+    public var body: some View {
+        ZStack {
+            ComposeViewController {
+                SampleComposeMultiplatformScreenViewController(
+                    onEvent: { event in
+                        switch onEnum(of: event) {
+                        case .showMessage(let message):
+                            toastData = ToastData(message.message, hideAfter: 2)
+                        case .goToNext:
+                            flowController?.handleFlow(SampleComposeMultiplatformFlow.next)
+                        }
                     }
-                }
-            )
+                )
+            }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .toastView($toastData)
         .navigationTitle(MR.strings().bottom_bar_item_3.toLocalized())
     }

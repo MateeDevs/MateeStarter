@@ -37,6 +37,15 @@
 		cs = Compose Multiplatform
 		en = Compose Multiplatform
 		sk = Compose Multiplatform
+    [bottom_bar_item_4]
+        cs = Compose Navigation
+        en = Compose Navigation
+        sk = Compose Navigation
+[[Screens]]
+    [next_screen_title]
+        cs = Next
+        en = Next
+        sk = Next
 
 [[General navigation]]
 	[done]

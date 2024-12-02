@@ -27,6 +27,5 @@ dependencies {
     @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
     commonMainImplementation(compose.components.resources)
     commonMainImplementation(compose.components.uiToolingPreview)
-
     ktlintRuleset(libs.ktlint.composeRules)
 }

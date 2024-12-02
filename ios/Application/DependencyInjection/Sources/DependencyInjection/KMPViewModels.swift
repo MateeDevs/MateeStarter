@@ -10,7 +10,8 @@ import SharedDomain
 public extension Container {
     // Koin
     private var kmp: Factory<KMPDependency> { self { KMPKoinDependency() }.singleton }
-    
+
     // Sample
     var sampleSharedViewModel: Factory<SampleSharedViewModel> { self { self.kmp().get(SampleSharedViewModel.self) } }
+    var sampleNextViewModel: Factory<SampleNextViewModel> { self { self.kmp().get(SampleNextViewModel.self) } }
 }

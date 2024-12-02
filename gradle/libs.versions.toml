@@ -10,11 +10,13 @@ dateTime = "0.6.0"
 atomicFu = "0.23.2"
 koin = "4.0.0"
 androidXCore = "1.13.1"
+androidXNavigation = "2.8.0-alpha10"
 material = "1.12.0"
 lifecycle = "2.8.6"
 paging = "3.3.2"
 composeBom = "2024.09.02"
-jetbrains-composePlugin = "1.6.11"
+composeNavigation = "1.7.0-beta02"
+jetbrains-composePlugin = "1.7.0" # Downgrade to 1.6.11 if you want to use compose multiplatform with UIKit navigation (it fixes the swipe back)
 activity = "1.9.2"
 navigation = "2.8.1"
 accompanist = "0.34.0"
@@ -65,6 +67,7 @@ koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
 # AndroidX
 androidX-core = { module = "androidx.core:core-ktx", version.ref = "androidXCore" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+androidX-navigation = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "androidXNavigation" }
 # Material
 material = { module = "com.google.android.material:material", version.ref = "material" }
 # Lifecycle
@@ -81,6 +84,7 @@ compose-ui = { module = "androidx.compose.ui:ui" }
 compose-uiTooling = { module = "androidx.compose.ui:ui-tooling" }
 compose-foundation = { module = "androidx.compose.foundation:foundation" }
 compose-material = { module = "androidx.compose.material:material" }
+compose-materialNavigation = { module = "org.jetbrains.compose.material:material-navigation", version.ref = "composeNavigation" }
 compose-materialIconsCore = { module = "androidx.compose.material:material-icons-core" }
 compose-uiTest = { module = "androidx.compose.ui:ui-test-junit4" }
 # Activity
