@@ -6,6 +6,9 @@ plugins {
 
 android {
     namespace = "kmp.shared.samplecomposemultiplatform"
+    buildFeatures {
+        compose = true
+    }
 }
 
 ktlint {
@@ -27,6 +30,9 @@ dependencies {
     @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
     commonMainImplementation(compose.components.resources)
     commonMainImplementation(compose.components.uiToolingPreview)
+
+    androidMainImplementation(compose.preview)
+    androidMainImplementation(compose.uiTooling)
 
     ktlintRuleset(libs.ktlint.composeRules)
 }

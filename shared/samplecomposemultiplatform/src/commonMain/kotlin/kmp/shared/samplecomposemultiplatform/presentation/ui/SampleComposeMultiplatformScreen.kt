@@ -56,6 +56,7 @@ fun SampleComposeMultiplatformScreen(
 }
 
 // Previews do not work for Fleet version 1.38.89 https://slack-chats.kotlinlang.org/t/22778734/are-there-specific-kotlin-ksp-version-requirements-for-getti
+// Working preview is in androidMain
 @Preview
 @Composable
 private fun SampleComposeMultiplatformScreen_Preview() {
