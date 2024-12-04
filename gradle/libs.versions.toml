@@ -37,7 +37,7 @@ versions = "0.49.0"
 desugar = "2.1.2"
 uiautomator = "2.3.0"
 skie = "0.9.3"
-composeSwiftBridge = "0.1.0"
+composeSwiftBridge = "0.1.1"
 
 [libraries]
 # Kotlin

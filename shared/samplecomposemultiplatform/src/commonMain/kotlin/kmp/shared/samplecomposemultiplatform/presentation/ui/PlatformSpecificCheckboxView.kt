@@ -4,10 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import co.touchlab.compose.swift.bridge.ExpectSwiftView
 
-@ExpectSwiftView(
-    factoryName = "SampleComposeMultiplatformView",
-    keepStateCrossNavigation = true,
-)
+@ExpectSwiftView
 @Composable
 expect fun PlatformSpecificCheckboxView(
     text: String,
