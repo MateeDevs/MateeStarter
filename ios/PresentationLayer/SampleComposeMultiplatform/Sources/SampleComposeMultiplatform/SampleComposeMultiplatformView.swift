@@ -26,7 +26,6 @@ struct SampleComposeMultiplatformView: View {
                     switch onEnum(of: event) {
                     case .showMessage(let message):
                         toastData = ToastData(message.message, hideAfter: 2)
-                    }
                     case .goToNext:
                         flowController?.handleFlow(SampleComposeMultiplatformFlow.next)
                     }
