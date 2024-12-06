@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+@Suppress("konsist.every internal or public compose function has a modifier")
 @Composable
 actual fun PlatformSpecificCheckboxView(
     text: String,

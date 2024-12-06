@@ -10,7 +10,6 @@ plugins {
     alias(libs.plugins.mokoResources) apply false
     alias(libs.plugins.skie) apply false
     alias(libs.plugins.jetbrains.compose.compiler) apply false
-    alias(libs.plugins.google.ksp) apply false
     alias(libs.plugins.versions)
     alias(libs.plugins.versionCatalogUpdate)
 }

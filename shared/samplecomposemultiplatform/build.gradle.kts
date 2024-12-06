@@ -13,7 +13,6 @@ ktlint {
         exclude { entry ->
             entry.file.toString().contains("generated")
         }
-        include("**/kotlin/**")
     }
 }
 
