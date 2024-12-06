@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.ComposeUIViewController
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kmp.shared.samplecomposemultiplatform.presentation.common.AppTheme
@@ -34,6 +35,7 @@ fun SampleComposeMultiplatformScreenViewController(
 internal fun SampleComposeMultiplatformView(
     onEvent: (SampleSharedEvent) -> Unit,
     factory: SampleComposeMultiplatformViewFactory,
+    modifier: Modifier = Modifier,
 ) {
     val viewModel: SampleSharedViewModel = koinViewModel()
     val state by viewModel.state.collectAsStateWithLifecycle()
@@ -51,7 +53,11 @@ internal fun SampleComposeMultiplatformView(
         LocalSampleComposeMultiplatformViewFactory provides factory,
     ) {
         AppTheme {
-            SampleComposeMultiplatformScreen(state = state, onIntent = viewModel::onIntent)
+            SampleComposeMultiplatformScreen(
+                state = state,
+                onIntent = viewModel::onIntent,
+                modifier = modifier,
+            )
         }
     }
 }
