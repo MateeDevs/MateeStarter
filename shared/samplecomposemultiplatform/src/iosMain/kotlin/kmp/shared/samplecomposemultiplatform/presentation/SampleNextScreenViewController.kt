@@ -3,6 +3,7 @@ package kmp.shared.samplecomposemultiplatform.presentation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.ComposeUIViewController
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kmp.shared.samplecomposemultiplatform.presentation.common.AppTheme
@@ -26,6 +27,7 @@ fun SampleNextScreenViewController(
 @Composable
 internal fun SampleNextView(
     onEvent: (SampleNextEvent) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val viewModel: SampleNextViewModel = koinViewModel()
     val state by viewModel.state.collectAsStateWithLifecycle()
@@ -41,6 +43,10 @@ internal fun SampleNextView(
     }
 
     AppTheme {
-        SampleNextScreen(state = state, onIntent = viewModel::onIntent)
+        SampleNextScreen(
+            state = state,
+            onIntent = viewModel::onIntent,
+            modifier = modifier,
+        )
     }
 }
