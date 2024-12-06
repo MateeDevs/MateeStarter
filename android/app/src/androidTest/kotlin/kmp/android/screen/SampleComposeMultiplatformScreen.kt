@@ -44,7 +44,7 @@ private class SampleComposeMultiplatformScreenImpl<A : ComponentActivity>(
 
     override fun checkButtonClick() {
         with(testRule) {
-            onNodeWithText("Click me!")
+            onNodeWithText("Go to next screen")
                 .assertIsDisplayed()
                 .assertHasClickAction()
         }
