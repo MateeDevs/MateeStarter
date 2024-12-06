@@ -1,5 +1,6 @@
 package kmp.shared.samplecomposemultiplatform.presentation.common
 
+import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Colors
@@ -7,6 +8,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Shapes
 import androidx.compose.material.Typography
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.graphics.Color
 
 // https://coolors.co/f5ab00-b8a422-9aa133-7b9d44-d95700-e0e0e0-f0f0f0
@@ -66,10 +68,15 @@ val shapes = Shapes(
 @Composable
 fun AppTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
     val colors = if (darkTheme) darkColors else lightColors
-    MaterialTheme(
-        colors = colors,
-        typography = typography,
-        shapes = shapes,
-        content = content,
-    )
+    CompositionLocalProvider(
+        getPlatformSpecificRippleConfigurationProvidedValue(),
+        LocalIndication provides platformSpecificClickIndication,
+    ) {
+        MaterialTheme(
+            colors = colors,
+            typography = typography,
+            shapes = shapes,
+            content = content,
+        )
+    }
 }
