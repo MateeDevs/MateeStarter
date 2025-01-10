@@ -19,20 +19,19 @@ struct SampleComposeMultiplatformView: View {
         self.flowController = flowController
     }
     
-    public var body: some View {
-        ZStack {
-            ComposeViewController {
-                SampleComposeMultiplatformScreenViewController(
-                    onEvent: { event in
-                        switch onEnum(of: event) {
-                        case .showMessage(let message):
-                            toastData = ToastData(message.message, hideAfter: 2)
-                        case .goToNext:
-                            flowController?.handleFlow(SampleComposeMultiplatformFlow.next)
-                        }
+    var body: some View {
+        ComposeViewController {
+            SampleComposeMultiplatformScreenViewController(
+                onEvent: { event in
+                    switch onEnum(of: event) {
+                    case .showMessage(let message):
+                        toastData = ToastData(message.message, hideAfter: 2)
+                    case .goToNext:
+                        flowController?.handleFlow(SampleComposeMultiplatformFlow.next)
                     }
-                )
-            }
+                },
+                factory: SwiftUISampleComposeMultiplatformViewFactory()
+            )
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .toastView($toastData)
