@@ -6,6 +6,7 @@
 import DependencyInjection
 import Factory
 import KMPShared
+import SampleComposeMultiplatform
 import SwiftUI
 import UIToolkit
 
@@ -24,7 +25,8 @@ struct SampleComposeNavigationView: View {
             SampleWithComposeNavigationViewController(
                 showMessage: { message in
                     toastData = ToastData(message, hideAfter: 2)
-                }
+                },
+                factory: SwiftUISampleComposeMultiplatformViewFactory()
             )
         }
         .toastView($toastData)

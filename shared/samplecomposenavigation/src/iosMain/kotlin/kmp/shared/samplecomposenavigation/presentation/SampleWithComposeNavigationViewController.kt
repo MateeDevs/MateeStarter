@@ -1,8 +1,11 @@
 package kmp.shared.samplecomposenavigation.presentation
 
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.window.ComposeUIViewController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import kmp.shared.samplecomposemultiplatform.presentation.ui.LocalSampleComposeMultiplatformViewFactory
+import kmp.shared.samplecomposemultiplatform.presentation.ui.SampleComposeMultiplatformViewFactory
 import kmp.shared.samplecomposenavigation.presentation.navigation.SampleComposeNavigationGraph
 import kmp.shared.samplecomposenavigation.presentation.navigation.sampleComposeNavigationNavGraph
 import platform.UIKit.UIViewController
@@ -10,18 +13,23 @@ import platform.UIKit.UIViewController
 @Suppress("Unused", "FunctionName")
 fun SampleWithComposeNavigationViewController(
     showMessage: (String) -> Unit,
+    factory: SampleComposeMultiplatformViewFactory,
 ): UIViewController {
     return ComposeUIViewController {
         // Comment out this code if navigation is not available and uncomment the code below
-        val navController = rememberNavController()
-        NavHost(
-            navController = navController,
-            startDestination = SampleComposeNavigationGraph.rootPath,
+        CompositionLocalProvider(
+            LocalSampleComposeMultiplatformViewFactory provides factory,
         ) {
-            sampleComposeNavigationNavGraph(
-                navHostController = navController,
-                onShowMessage = showMessage,
-            )
+            val navController = rememberNavController()
+            NavHost(
+                navController = navController,
+                startDestination = SampleComposeNavigationGraph.rootPath,
+            ) {
+                sampleComposeNavigationNavGraph(
+                    navHostController = navController,
+                    onShowMessage = showMessage,
+                )
+            }
         }
 
         // View to show if navigation is not available
