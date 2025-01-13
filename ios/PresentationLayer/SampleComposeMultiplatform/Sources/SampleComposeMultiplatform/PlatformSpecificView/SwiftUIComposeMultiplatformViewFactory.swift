@@ -6,8 +6,11 @@
 import KMPShared
 import SwiftUI
 
-class SwiftUISampleComposeMultiplatformViewFactory: ComposeSampleComposeMultiplatformViewFactory {
-    func createPlatformSpecificCheckboxView(
+public class SwiftUISampleComposeMultiplatformViewFactory: ComposeSampleComposeMultiplatformViewFactory {
+    
+    public init() {}
+    
+    public func createPlatformSpecificCheckboxView(
         text: String,
         checked: Bool,
         onCheckedChanged: @escaping (KotlinBoolean) -> Void
