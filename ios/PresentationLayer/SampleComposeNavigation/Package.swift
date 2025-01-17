@@ -20,6 +20,7 @@ let package = Package(
         .package(name: "Utilities", path: "../../DomainLayer/Utilities"),
         .package(name: "SharedDomain", path: "../../DomainLayer/SharedDomain"),
         .package(name: "DependencyInjection", path: "../../Application/DependencyInjection"),
+        .package(name: "SampleComposeMultiplatform", path: "../SampleComposeMultiplatform"),
         .package(url: "https://github.com/hmlongco/Factory.git", .upToNextMajor(from: "2.3.0"))
     ],
     targets: [
@@ -33,6 +34,7 @@ let package = Package(
                 .product(name: "SharedDomain", package: "SharedDomain"),
                 .product(name: "DependencyInjection", package: "DependencyInjection"),
                 .product(name: "DependencyInjectionMocks", package: "DependencyInjection"),
+                .product(name: "SampleComposeMultiplatform", package: "SampleComposeMultiplatform"),
                 .product(name: "Factory", package: "Factory")
             ]
         ),
@@ -43,6 +45,7 @@ let package = Package(
                 .product(name: "UIToolkit", package: "UIToolkit"),
                 .product(name: "SharedDomain", package: "SharedDomain"),
                 .product(name: "DependencyInjection", package: "DependencyInjection"),
+                .product(name: "SampleComposeMultiplatform", package: "SampleComposeMultiplatform"),
                 .product(name: "Factory", package: "Factory")
             ]
         )

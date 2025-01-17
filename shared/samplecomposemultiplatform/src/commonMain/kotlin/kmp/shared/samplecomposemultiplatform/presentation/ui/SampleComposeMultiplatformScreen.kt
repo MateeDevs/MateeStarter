@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Button
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -21,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import kmp.shared.samplecomposemultiplatform.presentation.common.AppTheme
+import kmp.shared.samplecomposemultiplatform.presentation.common.StarterButton
 import kmp.shared.samplecomposemultiplatform.presentation.ui.test.TestTags
 import kmp.shared.samplecomposemultiplatform.presentation.ui.test.testTag
 import kmp.shared.samplesharedviewmodel.vm.SampleSharedIntent
@@ -61,7 +61,7 @@ fun SampleComposeMultiplatformScreen(
                         modifier = Modifier.fillMaxWidth().height(60.dp),
                     )
 
-                    Button(onClick = { onIntent(SampleSharedIntent.OnNextButtonTapped) }) {
+                    StarterButton(onClick = { onIntent(SampleSharedIntent.OnNextButtonTapped) }) {
                         Text(text = "Go to next screen")
                     }
                 }
