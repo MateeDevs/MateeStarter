@@ -21,7 +21,7 @@ class SampleSharedViewModel(
     override suspend fun applyIntent(intent: SampleSharedIntent) {
         when (intent) {
             SampleSharedIntent.OnAppeared -> loadSampleText()
-            SampleSharedIntent.OnButtonTapped -> _events.emit(SampleSharedEvent.ShowMessage("Button was tapped"))
+            SampleSharedIntent.OnButtonTapped -> showToast()
             SampleSharedIntent.OnNextButtonTapped -> _events.emit(SampleSharedEvent.GoToNext)
         }
     }
