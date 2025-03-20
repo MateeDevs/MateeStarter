@@ -31,8 +31,8 @@ final class KMPKoinDependency: KMPDependency {
         
         let koinApplication = KoinIOSKt.doInitKoinIos(
             doOnStartup: onStartup,
-            analyticsSource: Container.shared.analyticsProvider(),
-			config: ConfigImpl()
+            analyticsProvider: Container.shared.analyticsProvider(),
+            config: ConfigImpl()
         )
         _koin = koinApplication.koin
     }
