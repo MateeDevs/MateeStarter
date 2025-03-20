@@ -27,8 +27,7 @@ let package = Package(
             dependencies: [
                 .product(name: "SharedDomain", package: "SharedDomain"),
                 .product(name: "FirebaseAnalyticsWithoutAdIdSupport", package: "firebase-ios-sdk"),
-                .product(name: "FirebaseCrashlytics", package: "firebase-ios-sdk"),
-                .product(name: "FirebaseCore", package: "firebase-ios-sdk")
+                .product(name: "FirebaseCrashlytics", package: "firebase-ios-sdk")
             ]
         )
     ]
