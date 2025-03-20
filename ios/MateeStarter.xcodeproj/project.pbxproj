@@ -19,6 +19,8 @@
 		4597626F20FDF0810034DE29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4597626E20FDF0810034DE29 /* LaunchScreen.storyboard */; };
 		459C3707274B001B00536110 /* Atlantis in Frameworks */ = {isa = PBXBuildFile; productRef = 459C3706274B001B00536110 /* Atlantis */; };
 		45BCC8802AD057F000672401 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 45BCC87F2AD057F000672401 /* Factory */; };
+		7E277A062D8C65FA0035B990 /* GoogleService-Info-Prod.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E277A052D8C65FA0035B990 /* GoogleService-Info-Prod.plist */; };
+		7E277A082D8C663C0035B990 /* GoogleService-Info-Alpha.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E277A072D8C663C0035B990 /* GoogleService-Info-Alpha.plist */; };
 		A3009B982C5A6BA600806BA3 /* AnalyticsProvider in Frameworks */ = {isa = PBXBuildFile; productRef = A3009B972C5A6BA600806BA3 /* AnalyticsProvider */; };
 		A353123F2C5A71C6009E1A3D /* Sample in Frameworks */ = {isa = PBXBuildFile; productRef = A353123E2C5A71C6009E1A3D /* Sample */; };
 		A37BB4DE2C5CF770006C491D /* SampleSharedViewModel in Frameworks */ = {isa = PBXBuildFile; productRef = A37BB4DD2C5CF770006C491D /* SampleSharedViewModel */; };
@@ -40,8 +42,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		450392842256B29D0037BF42 /* GoogleService-Info-Alpha.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Alpha.plist"; sourceTree = "<group>"; };
-		450392882256B3C60037BF42 /* GoogleService-Info-Prod.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Prod.plist"; sourceTree = "<group>"; };
 		4508333128436EFB00BC9460 /* UIToolkit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UIToolkit; sourceTree = "<group>"; };
 		4508333228437BA500BC9460 /* AppFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowController.swift; sourceTree = "<group>"; };
 		4508333328437BA500BC9460 /* MainFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowController.swift; sourceTree = "<group>"; };
@@ -67,6 +67,8 @@
 		45DEBE3327A400410075C7E2 /* Prod.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Prod.entitlements; sourceTree = "<group>"; };
 		45DEBE3427A400410075C7E2 /* Alpha.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Alpha.entitlements; sourceTree = "<group>"; };
 		45FF99D92842B51800E32D9A /* Utilities */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Utilities; sourceTree = "<group>"; };
+		7E277A052D8C65FA0035B990 /* GoogleService-Info-Prod.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Prod.plist"; sourceTree = "<group>"; };
+		7E277A072D8C663C0035B990 /* GoogleService-Info-Alpha.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Alpha.plist"; sourceTree = "<group>"; };
 		A3009BAA2C5A6E5800806BA3 /* UserDefaultsProvider */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UserDefaultsProvider; sourceTree = "<group>"; };
 		A3221E882CD8A44200A4BAE1 /* SampleComposeNavigation */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SampleComposeNavigation; sourceTree = "<group>"; };
 		A37BB4DC2C5CD658006C491D /* SampleSharedViewModel */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SampleSharedViewModel; sourceTree = "<group>"; };
@@ -198,8 +200,8 @@
 		4575E61325F6F83600CCC003 /* GoogleService */ = {
 			isa = PBXGroup;
 			children = (
-				450392842256B29D0037BF42 /* GoogleService-Info-Alpha.plist */,
-				450392882256B3C60037BF42 /* GoogleService-Info-Prod.plist */,
+				7E277A072D8C663C0035B990 /* GoogleService-Info-Alpha.plist */,
+				7E277A052D8C65FA0035B990 /* GoogleService-Info-Prod.plist */,
 			);
 			path = GoogleService;
 			sourceTree = "<group>";
@@ -304,8 +306,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4575E65625F6FA7600CCC003 /* AppIcon.xcassets in Resources */,
+				7E277A062D8C65FA0035B990 /* GoogleService-Info-Prod.plist in Resources */,
 				453580EF284806FE007AEC9E /* strings.txt in Resources */,
 				454F6EC426CE8B3900C386B8 /* InfoPlist.strings in Resources */,
+				7E277A082D8C663C0035B990 /* GoogleService-Info-Alpha.plist in Resources */,
 				4597626F20FDF0810034DE29 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
