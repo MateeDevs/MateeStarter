@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.mateeStarter.android.application.compose)
+    alias(libs.plugins.google.services)
 }
 
 android {

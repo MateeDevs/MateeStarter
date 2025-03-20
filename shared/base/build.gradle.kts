@@ -17,3 +17,7 @@ ktlint {
         }
     }
 }
+
+dependencies {
+    androidMainImplementation(libs.firebase.analytics)
+}
