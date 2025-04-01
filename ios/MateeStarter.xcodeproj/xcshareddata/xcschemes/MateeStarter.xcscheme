@@ -38,6 +38,22 @@
                </EnvironmentBuildable>
             </ActionContent>
          </ExecutionAction>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Forcesign framework"
+               scriptText = "if [ -d &quot;${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/KMPShared.framework&quot; ]; then&#10;    codesign --force --deep --sign &quot;Apple Development: &lt;name&gt; (&lt;team-id&gt;)&quot; &quot;${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/KMPShared.framework&quot;&#10;fi&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "4558D30620FCC8FF005BC325"
+                     BuildableName = "MateeStarter.app"
+                     BlueprintName = "MateeStarter"
+                     ReferencedContainer = "container:MateeStarter.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
       </PreActions>
       <BuildActionEntries>
          <BuildActionEntry
