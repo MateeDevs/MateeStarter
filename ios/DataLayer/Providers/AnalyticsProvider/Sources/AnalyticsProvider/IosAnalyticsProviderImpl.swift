@@ -5,19 +5,21 @@
 
 import Firebase
 import FirebaseAnalytics
+import KMPShared
 
-public struct FirebaseAnalyticsProvider {
+/**
+ * iOS implementation of the AnalyticsSource from shared module
+ */
+public class IosAnalyticsProviderImpl: AnalyticsProvider {
+    
     public init() {
         // Start Firebase if not yet started
         if FirebaseApp.app() == nil {
             FirebaseApp.configure()
         }
     }
-}
-
-extension FirebaseAnalyticsProvider: AnalyticsProvider {
     
-    public func track(_ name: String, params: [String: AnyHashable]) {
-        Analytics.logEvent(name, parameters: params)
+    public func logEvent(event: AnalyticsEvent) {
+        Analytics.logEvent(event.eventName, parameters: event.parameters)
     }
 }

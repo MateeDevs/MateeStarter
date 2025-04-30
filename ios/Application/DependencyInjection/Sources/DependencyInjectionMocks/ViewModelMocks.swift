@@ -16,7 +16,7 @@ public extension Container {
         
         // Sample
         sampleSharedViewModel.register {
-            SampleSharedViewModel(getSampleText: self.getSampleTextUseCase())
+            SampleSharedViewModel(getSampleText: self.getSampleTextUseCase(), trackAnalyticsEventUseCase: self.trackAnalyticsEventUseCase())
         }
     }
 }

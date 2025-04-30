@@ -1,5 +1,9 @@
 package kmp.shared.samplesharedviewmodel.vm
 
+import kmp.shared.analytics.domain.model.ToastAnalytics
+import kmp.shared.analytics.domain.model.ToastAnalytics.ViewType
+import kmp.shared.analytics.domain.usecase.TrackAnalyticsEventUseCase
+import kmp.shared.analytics.domain.usecase.TrackAnalyticsEventUseCase.Params
 import kmp.shared.base.ErrorResult
 import kmp.shared.base.Result
 import kmp.shared.sample.domain.model.SampleText
@@ -11,12 +15,13 @@ import kmp.shared.samplesharedviewmodel.base.vm.VmState
 
 class SampleSharedViewModel(
     private val getSampleText: GetSampleTextUseCase,
+    private val trackAnalyticsEventUseCase: TrackAnalyticsEventUseCase,
 ) : BaseViewModel<SampleSharedState, SampleSharedIntent, SampleSharedEvent>(SampleSharedState()) {
 
     override suspend fun applyIntent(intent: SampleSharedIntent) {
         when (intent) {
             SampleSharedIntent.OnAppeared -> loadSampleText()
-            SampleSharedIntent.OnButtonTapped -> _events.emit(SampleSharedEvent.ShowMessage("Button was tapped"))
+            SampleSharedIntent.OnButtonTapped -> showToast()
             SampleSharedIntent.OnNextButtonTapped -> _events.emit(SampleSharedEvent.GoToNext)
         }
     }
@@ -27,6 +32,11 @@ class SampleSharedViewModel(
             is Result.Success -> update { copy(sampleText = result.data, loading = false) }
             is Result.Error -> update { copy(error = result.error, loading = false) }
         }
+    }
+
+    private suspend fun showToast() {
+        trackAnalyticsEventUseCase(Params(ToastAnalytics.ToastPresentedEvent(ViewType.SharedVM)))
+        _events.emit(SampleSharedEvent.ShowMessage("Button was tapped"))
     }
 }
 

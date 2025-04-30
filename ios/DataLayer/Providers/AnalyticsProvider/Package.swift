@@ -11,15 +11,12 @@ let package = Package(
         .library(
             name: "AnalyticsProvider",
             targets: ["AnalyticsProvider"]
-        ),
-        .library(
-            name: "AnalyticsProviderMocks",
-            targets: ["AnalyticsProviderMocks"]
         )
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
+        .package(name: "SharedDomain", path: "../../../DomainLayer/SharedDomain"),
         .package(url: "https://github.com/firebase/firebase-ios-sdk.git", .upToNextMajor(from: "10.0.0"))
     ],
     targets: [
@@ -28,14 +25,9 @@ let package = Package(
         .target(
             name: "AnalyticsProvider",
             dependencies: [
+                .product(name: "SharedDomain", package: "SharedDomain"),
                 .product(name: "FirebaseAnalyticsWithoutAdIdSupport", package: "firebase-ios-sdk"),
                 .product(name: "FirebaseCrashlytics", package: "firebase-ios-sdk")
-            ]
-        ),
-        .target(
-            name: "AnalyticsProviderMocks",
-            dependencies: [
-                "AnalyticsProvider"
             ]
         )
     ]

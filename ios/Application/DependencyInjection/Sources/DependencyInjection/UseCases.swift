@@ -7,10 +7,10 @@ import Factory
 import SharedDomain
 
 public extension Container {
-    // Analytics
-    var trackAnalyticsEventUseCase: Factory<TrackAnalyticsEventUseCase> { self {
-        TrackAnalyticsEventUseCaseImpl(
-            analyticsRepository: self.analyticsRepository()
-        )
-    }}
+//    Example of registering a use case
+//    var trackAnalyticsEventUseCase: Factory<TrackAnalyticsEventUseCase> { self {
+//        TrackAnalyticsEventUseCaseImpl(
+//            analyticsRepository: self.analyticsRepository()
+//        )
+//    }}
 }

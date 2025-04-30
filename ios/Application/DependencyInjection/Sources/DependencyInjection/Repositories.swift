@@ -3,14 +3,14 @@
 //  Copyright © 2023 Matee. All rights reserved.
 //
 
-import AnalyticsToolkit
 import Factory
 import SharedDomain
 
 public extension Container {
-    var analyticsRepository: Factory<AnalyticsRepository> { self {
-        AnalyticsRepositoryImpl(
-            analyticsProvider: self.analyticsProvider()
-        )
-    }}
+//    Example of registering a repository
+//    var analyticsRepository: Factory<AnalyticsRepository> { self {
+//        AnalyticsRepositoryImpl(
+//            analyticsProvider: self.analyticsProvider()
+//        )
+//    }}
 }

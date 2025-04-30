@@ -4,6 +4,10 @@ import kmp.android.shared.vm.BaseIntentViewModel
 import kmp.android.shared.vm.VmEvent
 import kmp.android.shared.vm.VmIntent
 import kmp.android.shared.vm.VmState
+import kmp.shared.analytics.domain.model.ToastAnalytics
+import kmp.shared.analytics.domain.model.ToastAnalytics.ViewType
+import kmp.shared.analytics.domain.usecase.TrackAnalyticsEventUseCase
+import kmp.shared.analytics.domain.usecase.TrackAnalyticsEventUseCase.Params
 import kmp.shared.base.ErrorResult
 import kmp.shared.base.Result
 import kmp.shared.sample.domain.model.SampleText
@@ -11,12 +15,13 @@ import kmp.shared.sample.domain.usecase.GetSampleTextUseCase
 
 class SampleViewModel(
     private val getSampleText: GetSampleTextUseCase,
+    private val trackAnalyticsEventUseCase: TrackAnalyticsEventUseCase,
 ) : BaseIntentViewModel<SampleState, SampleIntent, SampleEvent>(SampleState()) {
 
     override suspend fun applyIntent(intent: SampleIntent) {
         when (intent) {
             SampleIntent.OnAppeared -> loadSampleText()
-            SampleIntent.OnButtonTapped -> _events.emit(SampleEvent.ShowMessage("Button was tapped"))
+            SampleIntent.OnButtonTapped -> showToast()
         }
     }
 
@@ -26,6 +31,12 @@ class SampleViewModel(
             is Result.Success -> update { copy(sampleText = result.data, loading = false) }
             is Result.Error -> update { copy(error = result.error, loading = false) }
         }
+    }
+
+    private suspend fun showToast() {
+        trackAnalyticsEventUseCase(Params(ToastAnalytics.ToastPresentedEvent(ViewType.Native)))
+
+        _events.emit(SampleEvent.ShowMessage("Button was tapped"))
     }
 }
 
