@@ -31,6 +31,8 @@ jobs:
       group: matee-tartelets
     timeout-minutes: 60
     needs: generate-build-number
+    outputs:
+      VERSION: ${{ steps.retrieve-version.outputs.VERSION }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -55,6 +57,10 @@ jobs:
           SLACK_URL: ${{ secrets.FASTLANE_SLACK_URL }}
         working-directory: ios
         run: fastlane upload_testflight_alpha distribute_external:true
+      - id: retrieve-version
+        name: Retrieve App version
+        working-directory: ios
+        run: fastlane get_version_alpha
         
   deploy_production:
     name: Build & Deploy Production
@@ -63,6 +69,8 @@ jobs:
       group: matee-tartelets
     timeout-minutes: 60
     needs: generate-build-number
+    outputs:
+      VERSION: ${{ steps.retrieve-version.outputs.VERSION }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -87,6 +95,29 @@ jobs:
           SLACK_URL: ${{ secrets.FASTLANE_SLACK_URL }}
         working-directory: ios
         run: fastlane upload_testflight_production distribute_external:true
+      - id: retrieve-version
+        name: Retrieve App version
+        working-directory: ios
+        run: fastlane get_version_production
+    
+  tag:
+    name: Create and push git tag
+    needs:
+      - generate-build-number
+      - deploy_alpha
+      - deploy_production
+    if: always() && (needs.deploy_alpha.result == 'success' || needs.deploy_production.result == 'success')
+    runs-on:
+      group: matee-tartelets
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          clean: false
       - name: Create and push git tag
         working-directory: ios
-        run: fastlane tag alpha:false prod:true
+        env:
+          BUILD_NUMBER: ${{needs.generate-build-number.outputs.BUILD_NUMBER}}
+          VERSION: ${{needs.deploy_alpha.outputs.VERSION || needs.deploy_production.outputs.VERSION}}
+        run: fastlane tag

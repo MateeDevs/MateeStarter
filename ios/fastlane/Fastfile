@@ -199,15 +199,25 @@ platform :ios do
   end
 
   # GIT TAG
+  
+  desc "Get version of Alpha build"
+  lane :get_version_alpha do
+    version = get_ipa_info_plist_value(ipa: "./ipa/#{alpha[:output_name]}.ipa", key: "CFBundleShortVersionString")
+    sh("echo \"VERSION=#{version}\" >> $GITHUB_OUTPUT")
+    UI.success("Successfully set 'VERSION' output for GitHub Actions: #{version}")
+  end
+  
+  desc "Get version of Production build"
+  lane :get_version_production do
+    version = get_ipa_info_plist_value(ipa: "./ipa/#{production[:output_name]}.ipa", key: "CFBundleShortVersionString")
+    sh("echo \"VERSION=#{version}\" >> $GITHUB_OUTPUT")
+    UI.success("Successfully set 'VERSION' output for GitHub Actions: #{version}")
+  end
 
   desc "Create and push git tag"
-  lane :tag do |config|
-    if config[:alpha]
-      version = get_ipa_info_plist_value(ipa: "./ipa/#{alpha[:output_name]}.ipa", key: "CFBundleShortVersionString")
-    elsif config[:prod]
-      version = get_ipa_info_plist_value(ipa: "./ipa/#{production[:output_name]}.ipa", key: "CFBundleShortVersionString")
-    end
+  lane :tag do
     
+    version = ENV["VERSION"]
     build = ENV["BUILD_NUMBER"]
     
     add_git_tag(tag: "ios/#{version}.#{build}")
