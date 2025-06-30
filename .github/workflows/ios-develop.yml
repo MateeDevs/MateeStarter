@@ -12,7 +12,7 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on:
       group: matee-tartelets
-    timeout-minutes: 45
+    timeout-minutes: 60
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -31,29 +31,6 @@ jobs:
       - name: Create a new Alpha build
         working-directory: ios
         run: fastlane build_alpha
-      - name: Cache build output
-        uses: actions/cache@v4
-        with:
-          path: ios/ipa/
-          key: ios-build-${{ github.sha }}  # Unique key based on the commit SHA
-
-  deploy-alpha:
-    name: Deploy alpha
-    if: github.event.pull_request.merged == true
-    needs: build
-    runs-on:
-      group: matee-tartelets
-    timeout-minutes: 30
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-        with:
-          clean: false
-      - name: Restore cache for build output
-        uses: actions/cache@v4
-        with:
-          path: ios/ipa/
-          key: ios-build-${{ github.sha }}  # Unique key based on the commit SHA
       - name: Upload the Alpha build to the TestFlight
         env:
           APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_MATEE }}
