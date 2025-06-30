@@ -16,6 +16,9 @@
          <FileRef
             location = "group:../.github/workflows/ios-release.yml">
          </FileRef>
+         <FileRef
+            location = "container:../.github/workflows/ios_pr_build.yml">
+         </FileRef>
       </Group>
       <Group
          location = "container:fastlane"
