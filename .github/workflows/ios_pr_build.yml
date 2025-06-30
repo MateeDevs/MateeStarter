@@ -16,7 +16,6 @@ jobs:
         continue-on-error: true
         with:
           clean: false
-      - run: "java --version"
       - name: Setup Tools
         working-directory: ios
         run: |
