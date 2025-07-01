@@ -3,19 +3,19 @@ name: iOS - Build develop
 on:
   pull_request:
     branches:
-      - develop
+      - main
     types: [closed]
 
 jobs:
   build:
     name: Create new build
     if: github.event.pull_request.merged == true
-    runs-on: [self-hosted, ios-build]
-    timeout-minutes: 15
+    runs-on:
+      group: matee-tartelets
+    timeout-minutes: 60
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
-        continue-on-error: true
+        uses: actions/checkout@v4
         with:
           clean: false
       - name: Setup tools
@@ -29,18 +29,8 @@ jobs:
         working-directory: ios
         run: echo "$APP_STORE_CONNECT_API_KEY_CONTENT" > AuthKey_Matee.p8
       - name: Create a new Alpha build
-        env:
-          BUILD_NUMBER: $(echo `date +"%y%m%d%H%M"`)
         working-directory: ios
         run: fastlane build_alpha
-
-  deploy-alpha:
-    name: Deploy alpha
-    if: github.event.pull_request.merged == true
-    needs: build
-    runs-on: [self-hosted, ios-internal]
-    timeout-minutes: 15
-    steps:
       - name: Upload the Alpha build to the TestFlight
         env:
           APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_MATEE }}

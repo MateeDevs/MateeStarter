@@ -87,6 +87,22 @@ Run tests on Beta
 
 Run tests on Production
 
+### ios get_version_alpha
+
+```sh
+[bundle exec] fastlane ios get_version_alpha
+```
+
+Get version of Alpha build
+
+### ios get_version_production
+
+```sh
+[bundle exec] fastlane ios get_version_production
+```
+
+Get version of Production build
+
 ### ios tag
 
 ```sh
