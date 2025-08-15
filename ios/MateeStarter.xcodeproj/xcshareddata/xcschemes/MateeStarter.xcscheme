@@ -26,7 +26,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Embed and sign shared framework"
-               scriptText = "cd &quot;$SRCROOT/..&quot;&#10;./gradlew :shared:core:embedAndSignAppleFrameworkForXcode &lt; /dev/null&#10;">
+               scriptText = "cd &quot;$SRCROOT/..&quot;&#10;./gradlew :shared:core:embedAndSignAppleFrameworkForXcode &lt; /dev/null&#10;&#10;DERIVED_DATA_DIR=$(echo &quot;${TARGET_BUILD_DIR}&quot; | awk -F&apos;/Build/&apos; &apos;{print $1}&apos;)&#10;INDEXER_DATA_DIR=${DERIVED_DATA_DIR}/Index.noindex/Build/Products/Debug-$PLATFORM_NAME&#10;mkdir -p $INDEXER_DATA_DIR&#10;cp -R &quot;shared/core/build/xcode-frameworks/$CONFIGURATION/$SDK_NAME/&quot;* &quot;${INDEXER_DATA_DIR}&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
