@@ -5,6 +5,52 @@
       location = "group:README.md">
    </FileRef>
    <Group
+      location = "group:AI Guidelines"
+      name = "AI Guidelines">
+      <Group
+         location = "container:../AI Guidelines/Common"
+         name = "Common">
+         <FileRef
+            location = "group:PullRequest.md">
+         </FileRef>
+         <FileRef
+            location = "group:Commit.md">
+         </FileRef>
+      </Group>
+      <Group
+         location = "container:../AI Guidelines/iOS"
+         name = "iOS">
+         <FileRef
+            location = "group:Localize.md">
+         </FileRef>
+         <FileRef
+            location = "group:General.md">
+         </FileRef>
+         <FileRef
+            location = "group:UseCase.md">
+         </FileRef>
+         <Group
+            location = "group:Scripts"
+            name = "Scripts">
+            <FileRef
+               location = "group:sentiary_fetch.sh">
+            </FileRef>
+            <FileRef
+               location = "group:sentiary_upload.sh">
+            </FileRef>
+            <FileRef
+               location = "group:generate_header.sh">
+            </FileRef>
+         </Group>
+         <FileRef
+            location = "group:ViewModelRules.md">
+         </FileRef>
+         <FileRef
+            location = "group:FlowController.md">
+         </FileRef>
+      </Group>
+   </Group>
+   <Group
       location = "group:CI"
       name = "CI">
       <Group
