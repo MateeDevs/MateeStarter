@@ -6,7 +6,7 @@ on:
 
 jobs:
   test:
-    name: Build
+    name: Run tests
     runs-on:
       group: matee-tartelets
     timeout-minutes: 30
@@ -20,6 +20,6 @@ jobs:
         working-directory: ios
         run: |
           ./scripts/setup.sh
-      - name: Build iOS
+      - name: Run tests
         working-directory: ios
         run: fastlane test_alpha
