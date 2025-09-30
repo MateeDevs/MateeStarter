@@ -183,3 +183,8 @@ time since each view will be written only once and used on both platforms.
 ### iOS
 
 - More info in the [iOS readme](./ios/README.md)
+
+## AI Assistants
+- This repository contains a base set of rules for AI coding assitants to get better results. 
+- The rules in Markdown format are located in `AI Guidelines` folder, instruct your AI assitant to follow these guidelines.
+- Review the guidelines and modify them to match the new project requirements.
