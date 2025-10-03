@@ -20,4 +20,40 @@ public class SwiftUISampleComposeMultiplatformViewFactory: ComposeSampleComposeM
         
         return KotlinPair(first: viewController, second: observable)
     }
+    
+    public func createPlatformSpecificBottomBar(
+        items: [String],
+        selected: String,
+        onSelectedChanged: @escaping (String) -> Void,
+        onSizeChanged: @escaping (KotlinFloat, KotlinFloat) -> Void
+    ) -> KotlinPair<UIViewController, any PlatformSpecificBottomBarDelegate> {
+        let observable = PlatformSpecificBottomBarObservable(
+            items: items,
+            selected: selected,
+            onSelectedChanged: onSelectedChanged,
+            onSizeChanged: onSizeChanged
+        )
+        let viewController: UIViewController = TransparentHostingController(
+            rootView: BottomBarView(observable: observable)
+        )
+        
+        return KotlinPair(first: viewController, second: observable)
+    }
+    
+    public func createScreenWithPlatformSpecificBottomBar(
+        tabs: [String: UIViewController],
+        selectedTab: String,
+        onSelectedTabChanged: @escaping (String) -> Void
+    ) -> KotlinPair<UIViewController, any ScreenWithPlatformSpecificBottomBarDelegate> {
+        let observable = ScreenWithPlatformSpecificBottomBarObservable(
+            tabs: tabs,
+            selectedTab: selectedTab,
+            onSelectedTabChanged: onSelectedTabChanged
+        )
+        let viewController: UIViewController = UIHostingController(
+            rootView: ScreenWithBottomBarView(observable: observable)
+        )
+        
+        return KotlinPair(first: viewController, second: observable)
+    }
 }

@@ -8,9 +8,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeContentPadding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -38,33 +42,122 @@ fun SampleComposeMultiplatformScreen(
             if (loading) {
                 CircularProgressIndicator()
             } else {
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(16.dp),
-                    modifier = Modifier.padding(16.dp),
-                ) {
-                    Text(
-                        text = "This is a sample with compose multiplatform UI and shared VM",
-                        textAlign = TextAlign.Center,
-                    )
+//                Box(contentAlignment = Alignment.BottomCenter) {
+//                    Column(
+//                        horizontalAlignment = Alignment.CenterHorizontally,
+//                        verticalArrangement = Arrangement.spacedBy(16.dp),
+//                        modifier = Modifier
+//                            .verticalScroll(rememberScrollState())
+//                            .safeContentPadding()
+//                            .padding(16.dp),
+//                    ) {
+//                        repeat(10) {
+//                            Text(
+//                                text = "This is a sample with compose multiplatform UI and shared VM",
+//                                textAlign = TextAlign.Center,
+//                            )
+//
+//                            Text(
+//                                text = state.sampleText?.value ?: "",
+//                                modifier = Modifier.testTag(TestTags.SampleComposeMultiplatformScreen.SampleText),
+//                            )
+//
+//                            var isChecked by remember { mutableStateOf(false) }
+//                            PlatformSpecificCheckboxView(
+//                                text = "This is a view implemented in Compose on Android and SwiftUI on iOS",
+//                                checked = isChecked,
+//                                onCheckedChanged = { isChecked = it },
+//                                modifier = Modifier.fillMaxWidth().height(60.dp),
+//                            )
+//
+//                            StarterButton(onClick = { onIntent(SampleSharedIntent.OnNextButtonTapped) }) {
+//                                Text(text = "Go to next screen")
+//                            }
+//                        }
+//                    }
+//
+                var selected by remember { mutableStateOf("one") }
+//                    val tabs = listOf("one", "two", "three")
+//                    var size by remember { mutableStateOf(DpSize(10.dp, 10.dp)) }
+//                    PlatformSpecificBottomBar(
+//                        items = tabs,
+//                        selected = selected,
+//                        onSelectedChanged = { selected = it },
+//                        onSizeChanged = { size = it },
+//                        modifier = Modifier
+//                            .align(Alignment.BottomCenter)
+//                            .safeContentPadding()
+//                            .size(size),
+//                    )
+//                }
 
-                    Text(
-                        text = state.sampleText?.value ?: "",
-                        modifier = Modifier.testTag(TestTags.SampleComposeMultiplatformScreen.SampleText),
-                    )
 
-                    var isChecked by remember { mutableStateOf(false) }
-                    PlatformSpecificCheckboxView(
-                        text = "This is a view implemented in Compose on Android and SwiftUI on iOS",
-                        checked = isChecked,
-                        onCheckedChanged = { isChecked = it },
-                        modifier = Modifier.fillMaxWidth().height(60.dp),
-                    )
+                val factory = LocalSampleComposeMultiplatformViewFactory.current
+                ScreenWithPlatformSpecificBottomBar(
+                    tabs = mapOf(
+                        "Home::house.fill" to {
+                            CompositionLocalProvider(
+                                LocalSampleComposeMultiplatformViewFactory provides factory,
+                            ) {
+                                Content(state, onIntent)
+                            }
+                        },
+                        "Search::magnifyingglass" to {
+                            CompositionLocalProvider(
+                                LocalSampleComposeMultiplatformViewFactory provides factory,
+                            ) {
+                                Content(state, onIntent)
+                            }
+                        },
+                        "Profile::person.crop.circle" to {
+                            CompositionLocalProvider(
+                                LocalSampleComposeMultiplatformViewFactory provides factory,
+                            ) {
+                                Content(state, onIntent)
+                            }
+                        },
+                    ),
+                    selectedTab = selected,
+                    onSelectedTabChanged = { selected = it },
+                    modifier = Modifier.fillMaxSize(),
+                )
+            }
+        }
+    }
+}
 
-                    StarterButton(onClick = { onIntent(SampleSharedIntent.OnNextButtonTapped) }) {
-                        Text(text = "Go to next screen")
-                    }
-                }
+@Composable
+private fun Content(
+    state: SampleSharedState,
+    onIntent: (SampleSharedIntent) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+        modifier = modifier.verticalScroll(rememberScrollState()).padding(16.dp).safeContentPadding(),
+    ) {
+        repeat(10) {
+            Text(
+                text = "This is a sample with compose multiplatform UI and shared VM",
+                textAlign = TextAlign.Center,
+            )
+
+            Text(
+                text = state.sampleText?.value ?: "",
+                modifier = Modifier.testTag(TestTags.SampleComposeMultiplatformScreen.SampleText),
+            )
+
+            var isChecked by remember { mutableStateOf(false) }
+            PlatformSpecificCheckboxView(
+                text = "This is a view implemented in Compose on Android and SwiftUI on iOS",
+                checked = isChecked,
+                onCheckedChanged = { isChecked = it },
+                modifier = Modifier.fillMaxWidth().height(60.dp),
+            )
+
+            StarterButton(onClick = { onIntent(SampleSharedIntent.OnNextButtonTapped) }) {
+                Text(text = "Go to next screen")
             }
         }
     }
