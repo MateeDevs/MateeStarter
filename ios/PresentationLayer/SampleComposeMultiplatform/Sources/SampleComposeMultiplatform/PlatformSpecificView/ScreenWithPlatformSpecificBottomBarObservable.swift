@@ -6,38 +6,39 @@
 import KMPShared
 import SwiftUI
 
-class ScreenWithPlatformSpecificBottomBarObservable: NSObject, ObservableObject, ScreenWithPlatformSpecificBottomBarDelegate, UITabBarDelegate {
-
-    @Published var tabs: [String: UIViewController]
-    @Published var selectedTab: String
-    @Published var onSelectedTabChanged: (String) -> Void
-
+class ScreenWithPlatformSpecificBottomBarObservable:
+    ObservableObject,
+    ScreenWithPlatformSpecificBottomBarDelegate {
+    
+    @Published var tabs: [BottomBarTabForIos]
+    @Published var onSelectedTabChanged: (Int32) -> Void
+    @Published var selectedTab: Int32 {
+        didSet {
+            if oldValue != selectedTab {
+                onSelectedTabChanged(selectedTab)
+            }
+        }
+    }
+    
     init(
-        tabs: [String: UIViewController],
-        selectedTab: String,
-        onSelectedTabChanged: @escaping (String) -> Void
+        tabs: [BottomBarTabForIos],
+        selectedTab: Int32,
+        onSelectedTabChanged: @escaping (Int32) -> Void
     ) {
         self.tabs = tabs
         self.selectedTab = selectedTab
         self.onSelectedTabChanged = onSelectedTabChanged
     }
-
-    func updateTabs(tabs: [String: UIViewController]) {
+    
+    func updateTabs(tabs: [BottomBarTabForIos]) {
         self.tabs = tabs
     }
-
-    func updateOnSelectedTabChanged(onSelectedTabChanged: @escaping (String) -> Void) {
-        self.onSelectedTabChanged = onSelectedTabChanged
-    }
-
-    func updateSelectedTab(selectedTab: String) {
-        self.selectedTab = selectedTab
+    
+    func updateOnSelectedTabChanged(onSelectedTabChanged: @escaping (KotlinInt) -> Void) {
+        self.onSelectedTabChanged = { onSelectedTabChanged(KotlinInt(value: $0)) }
     }
     
-    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        let index = item.tag
-        let key = Array(tabs.keys)[index]
-        selectedTab = key
-        onSelectedTabChanged(key)
+    func updateSelectedTab(selectedTabPosition: Int32) {
+        self.selectedTab = selectedTabPosition
     }
 }

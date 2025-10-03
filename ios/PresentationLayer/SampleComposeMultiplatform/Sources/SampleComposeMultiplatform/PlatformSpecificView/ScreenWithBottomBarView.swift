@@ -12,60 +12,23 @@ struct ScreenWithBottomBarView: View {
 
     init(observable: ScreenWithPlatformSpecificBottomBarObservable) {
         self.observable = observable
-
-        let appearance = UITabBarAppearance()
-        appearance.configureWithTransparentBackground()
-        appearance.backgroundEffect = UIBlurEffect(style: .systemMaterial) // liquid glass
-        appearance.backgroundColor = .clear
-        appearance.shadowColor = nil
-        UITabBar.appearance().standardAppearance = appearance
-        if #available(iOS 15.0, *) {
-            UITabBar.appearance().scrollEdgeAppearance = appearance
-        }
     }
 
     var body: some View {
         TabView(selection: $observable.selectedTab) {
-            ForEach(Array(observable.tabs.keys), id: \.self) { key in
-                let parts = key.components(separatedBy: "::")
-                let title = parts[0]
-                let icon = parts[1]
-
+            ForEach(observable.tabs, id: \.position) { (tab: BottomBarTabForIos) in
                 ComposeViewController {
-                    observable.tabs[key]!
+                    tab.content
                 }
-                .ignoresSafeArea() // draw behind tab bar
-                .background(Color.clear)
-                .onAppear {
-                    // Disable scrolling only inside Compose content, not TabView itself
-                    if let vc = observable.tabs[key] {
-                        disableScrollsInCompose(vc.view)
-                    }
-                }
+                .ignoresSafeArea()
                 .tabItem {
-                    Label(title, systemImage: icon)
+                    if let uiImage = tab.icon.toUIImage() {
+                        Image(uiImage: uiImage)
+                    }
+                    Text(tab.title)
                 }
-                .tag(key)
+                .tag(tab.position)
             }
         }
-        .background(Color.clear)
-    }
-
-    private func disableScrollsInCompose(_ view: UIView?) {
-        guard let view = view else { return }
-
-        func recursiveDisable(_ v: UIView) {
-            for subview in v.subviews {
-                if let scroll = subview as? UIScrollView {
-                    scroll.bounces = false
-                    scroll.alwaysBounceVertical = false
-                    scroll.isScrollEnabled = false
-                } else {
-                    recursiveDisable(subview)
-                }
-            }
-        }
-
-        recursiveDisable(view)
     }
 }

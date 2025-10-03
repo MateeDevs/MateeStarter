@@ -8,6 +8,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -18,6 +19,7 @@ import dev.icerock.moko.resources.compose.stringResource
 import kmp.android.samplecomposemultiplatform.navigation.SampleComposeMultiplatformGraph
 import kmp.android.shared.navigation.composableDestination
 import kmp.shared.base.MR
+import kmp.shared.samplecomposemultiplatform.presentation.ui.LocalSampleComposeMultiplatformViewFactory
 import kmp.shared.samplecomposemultiplatform.presentation.ui.SampleComposeMultiplatformScreen
 import kmp.shared.samplesharedviewmodel.vm.SampleSharedEvent
 import kmp.shared.samplesharedviewmodel.vm.SampleSharedIntent
