@@ -29,7 +29,6 @@ internal object HttpClient {
 
     fun init(config: Config, engine: HttpClientEngine, authProvider: AuthProvider) = HttpClient(engine).config {
         expectSuccess = true
-        developmentMode = !config.isRelease
         followRedirects = false
 
         install(ContentNegotiation) {

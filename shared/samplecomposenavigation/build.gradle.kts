@@ -31,7 +31,7 @@ dependencies {
 
     // Remove these two dependencies for the iOS swipe back navigation to work
     commonMainImplementation(libs.androidX.navigation)
-    commonMainImplementation(libs.compose.materialNavigation)
+    commonMainImplementation(libs.compose.materialIconsCore)
 
     commonMainImplementation(libs.mokoResources.compose)
 
