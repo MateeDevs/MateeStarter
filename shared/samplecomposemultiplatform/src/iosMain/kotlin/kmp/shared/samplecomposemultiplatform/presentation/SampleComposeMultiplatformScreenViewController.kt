@@ -29,7 +29,7 @@ fun SampleComposeMultiplatformScreenViewController(
     return ComposeUIViewController(
         configure = {
             this.opaque = false
-        }
+        },
     ) {
         SampleComposeMultiplatformView(
             onEvent = onEvent,

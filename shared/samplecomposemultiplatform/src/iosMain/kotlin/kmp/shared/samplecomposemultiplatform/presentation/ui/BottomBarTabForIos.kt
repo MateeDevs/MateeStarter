@@ -1,6 +1,5 @@
 package kmp.shared.samplecomposemultiplatform.presentation.ui
 
-import androidx.compose.runtime.Composable
 import dev.icerock.moko.resources.ImageResource
 import platform.UIKit.UIViewController
 

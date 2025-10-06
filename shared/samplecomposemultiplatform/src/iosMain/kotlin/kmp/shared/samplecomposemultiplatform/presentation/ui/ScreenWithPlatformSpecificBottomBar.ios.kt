@@ -29,20 +29,7 @@ actual fun ScreenWithPlatformSpecificBottomBar(
     val viewModel = viewModel(key = key) {
         NativeViewHolderViewModel {
             factory.createScreenWithPlatformSpecificBottomBar(
-                tabs = tabs.map { tab ->
-                    BottomBarTabForIos(
-                        title = tab.title,
-                        icon = tab.icon,
-                        position = tab.position,
-                        content = ComposeUIViewController {
-                            CompositionLocalProvider(
-                                LocalSampleComposeMultiplatformViewFactory provides factory,
-                            ) {
-                                tab.content()
-                            }
-                        },
-                    )
-                },
+                tabs = tabs.map { it.toIosTab(factory) },
                 selectedTabPosition = selectedTabPosition,
                 onSelectedTabChanged = onSelectedTabChanged,
             )
@@ -51,24 +38,7 @@ actual fun ScreenWithPlatformSpecificBottomBar(
     val delegate = remember(viewModel) { viewModel.delegate }
     val view = remember(viewModel) { viewModel.view }
 
-    remember(tabs) {
-        delegate.updateTabs(
-            tabs.map { tab ->
-                BottomBarTabForIos(
-                    title = tab.title,
-                    icon = tab.icon,
-                    position = tab.position,
-                    content = ComposeUIViewController {
-                        CompositionLocalProvider(
-                            LocalSampleComposeMultiplatformViewFactory provides factory,
-                        ) {
-                            tab.content()
-                        }
-                    },
-                )
-            },
-        )
-    }
+    remember(tabs) { delegate.updateTabs(tabs.map { it.toIosTab(factory) }) }
     remember(selectedTabPosition) { delegate.updateSelectedTab(selectedTabPosition) }
     remember(onSelectedTabChanged) { delegate.updateOnSelectedTabChanged(onSelectedTabChanged) }
     UIKitViewController(
@@ -81,3 +51,17 @@ actual fun ScreenWithPlatformSpecificBottomBar(
         },
     )
 }
+
+private fun BottomBarTab.toIosTab(factory: ComposeSampleComposeMultiplatformViewFactory): BottomBarTabForIos =
+    BottomBarTabForIos(
+        title = title,
+        icon = icon,
+        position = position,
+        content = ComposeUIViewController {
+            CompositionLocalProvider(
+                LocalSampleComposeMultiplatformViewFactory provides factory,
+            ) {
+                content()
+            }
+        },
+    )
