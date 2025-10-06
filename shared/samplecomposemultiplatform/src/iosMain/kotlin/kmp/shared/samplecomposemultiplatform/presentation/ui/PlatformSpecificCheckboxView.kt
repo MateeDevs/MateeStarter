@@ -4,7 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.interop.UIKitViewController
+import androidx.compose.ui.viewinterop.UIKitInteropProperties
+import androidx.compose.ui.viewinterop.UIKitViewController
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlin.random.Random
@@ -38,7 +39,13 @@ actual fun PlatformSpecificCheckboxView(
     remember(checked) { delegate.updateChecked(checked) }
     remember(onCheckedChanged) { delegate.updateOnCheckedChanged(onCheckedChanged) }
     UIKitViewController(
-        modifier = modifier,
         factory = { view },
+        modifier = modifier,
+        update = {},
+        onRelease = {},
+        properties = UIKitInteropProperties(
+            isInteractive = true,
+            isNativeAccessibilityEnabled = true,
+        ),
     )
 }

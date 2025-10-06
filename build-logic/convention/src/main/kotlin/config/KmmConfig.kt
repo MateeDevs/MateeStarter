@@ -60,6 +60,9 @@ fun KotlinMultiplatformExtension.kmm(
                 export(project(":shared:samplecomposemultiplatform"))
                 export(project(":shared:samplecomposenavigation"))
             }
+            it.binaries {
+                compilerOptions.freeCompilerArgs.add("-Xbinary=bundleId=kmp.shared.$nativeName")
+            }
         }
     }
 }
