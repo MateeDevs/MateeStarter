@@ -16,11 +16,15 @@ struct ScreenWithBottomBarView: View {
 
     var body: some View {
         TabView(selection: $observable.selectedTab) {
-            ForEach(observable.tabs, id: \.position) { (tab: BottomBarTabForIos) in
-                ComposeViewController {
-                    tab.content
+            ForEach(observable.tabs, id: \.position) { tab in
+                Group {
+                    if #available(iOS 26.0, *) {
+                        ComposeViewController { tab.content }
+                            .ignoresSafeArea(.all, edges: .bottom)
+                    } else {
+                        ComposeViewController { tab.content }
+                    }
                 }
-                .ignoresSafeArea()
                 .tabItem {
                     if let uiImage = tab.icon.toUIImage() {
                         Image(uiImage: uiImage)
