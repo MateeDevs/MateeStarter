@@ -2,11 +2,15 @@ package kmp.shared.samplecomposemultiplatform.presentation.ui
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBars
+import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -24,11 +28,11 @@ actual fun ScreenWithPlatformSpecificBottomBar(
             selectedTab?.content?.invoke()
         }
 
-        BottomNavigation(
-            modifier = Modifier.fillMaxWidth(),
+        NavigationBar(
+            modifier = Modifier.fillMaxWidth()
         ) {
             tabs.forEach { tab ->
-                BottomNavigationItem(
+                NavigationBarItem(
                     selected = selectedTabPosition == tab.position,
                     icon = {
                         Icon(
@@ -40,6 +44,9 @@ actual fun ScreenWithPlatformSpecificBottomBar(
                     label = {
                         Text(tab.title)
                     },
+                    modifier = Modifier.padding(
+                        bottom = WindowInsets.systemBars.asPaddingValues().calculateBottomPadding()
+                    ),
                 )
             }
         }

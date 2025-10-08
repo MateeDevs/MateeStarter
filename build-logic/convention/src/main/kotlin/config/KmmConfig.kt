@@ -59,6 +59,7 @@ fun KotlinMultiplatformExtension.kmm(
                 export(project(":shared:samplesharedviewmodel"))
                 export(project(":shared:samplecomposemultiplatform"))
                 export(project(":shared:samplecomposenavigation"))
+                export(project(":shared:sampletabbar"))
             }
             it.binaries {
                 compilerOptions.freeCompilerArgs.add("-Xbinary=bundleId=kmp.shared.$nativeName")
