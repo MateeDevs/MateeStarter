@@ -12,7 +12,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.viewinterop.UIKitView
 import androidx.compose.ui.viewinterop.UIKitViewController
 import androidx.compose.ui.window.ComposeUIViewController
 import androidx.lifecycle.viewmodel.compose.viewModel

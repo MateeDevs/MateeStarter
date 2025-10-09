@@ -6,7 +6,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import dev.icerock.moko.resources.ImageResource
 
-
 @Composable
 expect fun NativeScaffold(
     modifier: Modifier = Modifier,

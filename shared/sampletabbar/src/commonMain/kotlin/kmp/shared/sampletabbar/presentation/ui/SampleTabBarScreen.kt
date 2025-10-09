@@ -60,7 +60,7 @@ fun SampleTabBarScreen(
                     position = ToolbarButtonPosition.Trailing,
                     tint = NativeColor(MaterialTheme.colorScheme.primary),
                 ),
-            )
+            ),
         ),
         tabs = state.tabs.map { tab ->
             TabItem(

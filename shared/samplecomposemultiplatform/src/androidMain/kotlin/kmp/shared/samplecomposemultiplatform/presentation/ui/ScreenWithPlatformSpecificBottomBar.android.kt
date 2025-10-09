@@ -29,7 +29,7 @@ actual fun ScreenWithPlatformSpecificBottomBar(
         }
 
         NavigationBar(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         ) {
             tabs.forEach { tab ->
                 NavigationBarItem(
@@ -45,7 +45,7 @@ actual fun ScreenWithPlatformSpecificBottomBar(
                         Text(tab.title)
                     },
                     modifier = Modifier.padding(
-                        bottom = WindowInsets.systemBars.asPaddingValues().calculateBottomPadding()
+                        bottom = WindowInsets.systemBars.asPaddingValues().calculateBottomPadding(),
                     ),
                 )
             }
