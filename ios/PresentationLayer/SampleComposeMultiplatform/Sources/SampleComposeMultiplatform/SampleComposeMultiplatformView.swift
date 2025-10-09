@@ -34,6 +34,7 @@ struct SampleComposeMultiplatformView: View {
             )
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .ignoresSafeArea()
         .toastView($toastData)
         .navigationTitle(MR.strings().bottom_bar_item_3.toLocalized())
     }

@@ -9,4 +9,10 @@ actual interface ComposeSampleComposeMultiplatformViewFactory {
         checked: Boolean,
         onCheckedChanged: (Boolean) -> Unit,
     ): Pair<UIViewController, PlatformSpecificCheckboxViewDelegate>
+
+    fun createScreenWithPlatformSpecificBottomBar(
+        tabs: List<BottomBarTabForIos>,
+        selectedTabPosition: Int,
+        onSelectedTabChanged: (Int) -> Unit,
+    ): Pair<UIViewController, ScreenWithPlatformSpecificBottomBarDelegate>
 }
