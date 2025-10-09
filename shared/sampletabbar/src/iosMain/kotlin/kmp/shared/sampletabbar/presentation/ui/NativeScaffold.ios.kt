@@ -37,7 +37,7 @@ actual fun NativeScaffold(
     val key = rememberSaveable { Random.nextInt().toString(16) }
 
     fun contentMapper(position: Int?): UIViewController =
-        ComposeUIViewController(configure = { opaque = false }) {
+        ComposeUIViewController {
             CompositionLocalProvider(
                 LocalViewFactory provides factory,
             ) {
