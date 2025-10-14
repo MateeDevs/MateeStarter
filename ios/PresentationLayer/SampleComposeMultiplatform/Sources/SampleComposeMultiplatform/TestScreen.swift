@@ -18,14 +18,23 @@ public struct TestScreen: View {
                     ForEach((0...2), id: \.self) { tab in
                         ScrollView {
                             ForEach((0...20), id: \.self) { index in
-                                Text("This is item number \(index)")
-                                    .font(.largeTitle)
-                                Text("And this is it's body")
+                                VStack(alignment: .leading) {
+                                    Text("This is item number \(index)")
+                                        .font(.largeTitle)
+                                        .padding([.top, .horizontal])
+
+                                    Text("And this is it's body")
+                                        .padding([.bottom, .horizontal])
+                                }
+                                .frame(maxWidth: .infinity)
+                                .background(.gray.opacity(0.5))
+                                .clipShape(.rect(cornerRadius: 8))
+                                .padding(.horizontal)
                             }
                         }
                         .tabItem {
-                            Image(systemName: "xmark")
-                            Text("Tab \(tab)")
+                            Image(systemName: image(index: tab))
+                            Text(text(index: tab))
                         }
                         .tag(tab)
                         
@@ -36,7 +45,7 @@ public struct TestScreen: View {
                 .toolbarBackground(.hidden, for: .navigationBar)
                 .toolbar {
                     ToolbarItemGroup(placement: .topBarLeading) {
-                        Button("First", systemImage: "search") {
+                        Button("First", systemImage: "magnifyingglass") {
                             
                         }
                         .tint(.red)
@@ -49,14 +58,31 @@ public struct TestScreen: View {
                     }
                     
                     ToolbarItemGroup(placement: .topBarTrailing) {
-                        Button("Second", systemImage: "person") {
+                        Button("Second", systemImage: "house") {
                             
                         }
+                        .tint(.yellow)
                     }
                 }
             }
         } else {
             // Fallback on earlier versions
+        }
+    }
+    
+    func image(index: Int) -> String {
+        switch index {
+        case 0: return "house"
+        case 1: return "magnifyingglass"
+        default: return "person"
+        }
+    }
+    
+    func text(index: Int) -> String {
+        switch index {
+        case 0: return "Numbers"
+        case 1: return "Sentences"
+        default: return "Images"
         }
     }
 }

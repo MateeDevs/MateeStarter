@@ -51,16 +51,15 @@ fun BlurredContainer(
                         ) {
                             progressive = HazeProgressive.verticalGradient(
                                 easing = LinearEasing,
-                                startIntensity = 0.2f,
+                                startIntensity = 0.3f,
                                 endIntensity = 0f,
                             )
                         }
                         .background(
                             Brush.verticalGradient(
-                                listOf(
-                                    backgroundColor.copy(alpha = 0.7f),
-                                    Color.Transparent,
-                                ),
+                                    0f to backgroundColor.copy(alpha = 0.85f),
+                                    0.8f to backgroundColor.copy(alpha = 0.75f),
+                                    1f to Color.Transparent,
                             ),
                         ),
                 )
