@@ -14,4 +14,5 @@ public extension Container {
     // Sample
     var sampleSharedViewModel: Factory<SampleSharedViewModel> { self { self.kmp().get(SampleSharedViewModel.self) } }
     var sampleNextViewModel: Factory<SampleNextViewModel> { self { self.kmp().get(SampleNextViewModel.self) } }
+    var sampleTabBarViewModel: Factory<SampleTabBarViewModel> { self { self.kmp().get(SampleTabBarViewModel.self) } }
 }

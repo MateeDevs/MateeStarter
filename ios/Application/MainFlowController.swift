@@ -3,6 +3,8 @@
 //  Copyright © 2019 Matee. All rights reserved.
 //
 
+import DependencyInjection
+import Factory
 import KMPShared
 import Sample
 import SampleComposeMultiplatform
@@ -23,9 +25,12 @@ enum MainTab: Int {
 final class MainFlowController: FlowController {
     
     override func setup() -> UIViewController {
-        let main = UITabBarController()
-        main.viewControllers = [setupSampleTab(), setupSampleSharedViewModelTab(), setupSampleComposeMultiplatformTab(), setupSampleComposeNavigationTab()]
-        return main
+        @Injected(\.sampleTabBarViewModel) var viewModel: KMPShared.SampleTabBarViewModel
+        return UIHostingController(rootView: SampleTabBarView(flowController: self))
+//        return UIHostingController(rootView: TestScreen())
+//        let main = UITabBarController()
+//        main.viewControllers = [setupSampleTab(), setupSampleSharedViewModelTab(), setupSampleComposeMultiplatformTab(), setupSampleComposeNavigationTab()]
+//        return main
     }
     
     private func setupSampleTab() -> UINavigationController {

@@ -39,4 +39,6 @@ dependencies {
     commonMainApi(project(":shared:samplesharedviewmodel"))
     commonMainApi(project(":shared:samplecomposemultiplatform"))
     commonMainApi(project(":shared:samplecomposenavigation"))
+    commonMainApi(project(":shared:sampletabbar"))
+    commonMainApi(project(":shared:sampletabbar"))
 }
