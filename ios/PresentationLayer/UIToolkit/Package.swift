@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "UIToolkit",
     defaultLocalization: "en",
-    platforms: [.iOS(.v15)],
+    platforms: [.iOS(.v16)],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
@@ -20,7 +20,8 @@ let package = Package(
         .package(name: "Utilities", path: "../../DomainLayer/Utilities"),
         .package(name: "SharedDomain", path: "../../DomainLayer/SharedDomain"),
         .package(url: "https://github.com/SwiftGen/SwiftGenPlugin", .upToNextMajor(from: "6.6.0")),
-        .package(url: "https://github.com/SFSafeSymbols/SFSafeSymbols.git", .upToNextMajor(from: "5.3.0"))
+        .package(url: "https://github.com/SFSafeSymbols/SFSafeSymbols.git", .upToNextMajor(from: "5.3.0")),
+        .package(url: "https://github.com/hmlongco/Navigator", exact: "1.3.1")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -30,7 +31,8 @@ let package = Package(
             dependencies: [
                 .product(name: "Utilities", package: "Utilities"),
                 .product(name: "SharedDomain", package: "SharedDomain"),
-                .product(name: "SFSafeSymbols", package: "SFSafeSymbols")
+                .product(name: "SFSafeSymbols", package: "SFSafeSymbols"),
+                .product(name: "NavigatorUI", package: "Navigator")
             ],
             exclude: [
                 "swiftgen-xcassets.stencil",

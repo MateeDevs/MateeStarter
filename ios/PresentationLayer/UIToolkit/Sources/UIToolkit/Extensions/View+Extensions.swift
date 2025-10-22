@@ -3,6 +3,7 @@
 //  Copyright © 2022 Matee. All rights reserved.
 //
 
+import NavigatorUI
 import SwiftUI
 
 @MainActor
@@ -29,6 +30,15 @@ public extension View {
     ) -> some View {
         redacted(reason: condition() ? .placeholder : [])
             .shimmering(active: condition(), duration: duration, bounce: bounce)
+    }
+    
+    /// Registers the navigation destination and adds a deeplink handler
+    func registerDestination<D: NavigationDestination>(_ destination: D.Type) -> some View {
+        navigationDestination(D.self)
+            .onNavigationReceive { (destination: D, navigator) in
+                navigator.navigate(to: destination)
+                return .auto
+            }
     }
 }
 

@@ -6,21 +6,18 @@
 import DependencyInjection
 import Factory
 import KMPShared
+import NavigatorUI
 import SampleComposeMultiplatform
 import SwiftUI
 import UIToolkit
 
-struct SampleComposeNavigationView: View {
-
-    private weak var flowController: FlowController?
+public struct SampleComposeNavigationView: View {
     
     @State private var toastData: ToastData?
     
-    init(flowController: FlowController?) {
-        self.flowController = flowController
-    }
+    public init() {}
     
-    var body: some View {
+    public var body: some View {
         ComposeViewController {
             SampleWithComposeNavigationViewController(
                 showMessage: { message in

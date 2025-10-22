@@ -11,43 +11,34 @@ import SharedDomainMocks
 import SwiftUI
 import UIToolkit
 
-final class SampleViewModel: UIToolkit.BaseViewModel, ViewModel, ObservableObject {
-    
-    // MARK: Dependencies
-    private weak var flowController: FlowController?
+public final class SampleViewModel: UIToolkit.BaseViewModel, ViewModel, ObservableObject {
     
     @Injected(\.getSampleTextUseCase) private(set) var getSampleTextUseCase
     @Injected(\.trackAnalyticsEventUseCase) private(set) var trackAnalyticsEventUseCase
-
-    // MARK: Init
-    init(flowController: FlowController?) {
-        self.flowController = flowController
-        super.init()
-    }
     
     // MARK: Lifecycle
     
-    override func onAppear() {
+    override public func onAppear() {
         super.onAppear()
         executeTask(Task { await loadSampleText() })
     }
     
     // MARK: State
     
-    @Published private(set) var state: State = State()
+    @Published public private(set) var state: State = State()
 
-    struct State {
+    public struct State {
         var sampleText: ViewData<SampleText> = .loading(mock: .stub)
         var toast: ToastData?
     }
     
     // MARK: Intent
-    enum Intent {
+    public enum Intent {
         case onButtonTapped
         case onToastChanged(data: ToastData?)
     }
 
-    func onIntent(_ intent: Intent) {
+    public func onIntent(_ intent: Intent) {
         executeTask(Task {
             switch intent {
             case .onButtonTapped: showToast(message: "Button was tapped")
