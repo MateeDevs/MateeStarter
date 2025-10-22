@@ -17,9 +17,9 @@ final class AppFlowController: FlowController {
     }
     
     func setupMain() {
-        let fc = MainFlowController(navigationController: navigationController)
-        let rootVC = startChildFlow(fc)
-        navigationController.viewControllers = [rootVC]
+//        let fc = MainFlowController(navigationController: navigationController)
+//        let rootVC = startChildFlow(fc)
+//        navigationController.viewControllers = [rootVC]
     }
     
     private func setupAppearance() {

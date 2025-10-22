@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "SharedDomain",
     platforms: [
-        .iOS(.v15),
+        .iOS(.v16),
         .macOS(.v10_15)
     ],
     products: [
@@ -23,7 +23,6 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(url: "https://github.com/Matejkob/swift-spyable", from: "0.1.0"),
         .package(path: "../Utilities")
     ],
     targets: [
@@ -32,8 +31,7 @@ let package = Package(
         .target(
             name: "SharedDomain",
             dependencies: [
-                "Utilities",
-                .product(name: "Spyable", package: "swift-spyable")
+                "Utilities"
             ],
             linkerSettings: [
                 .unsafeFlags(["-Xlinker", "-no_application_extension"])

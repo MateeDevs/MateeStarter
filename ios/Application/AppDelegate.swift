@@ -43,16 +43,14 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         // Register for remote notifications
         application.registerForRemoteNotifications()
         
-        // Init main window with navigation controller
-        let nc = BaseNavigationController()
-        nc.navigationBar.isHidden = true
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = nc
-        window?.makeKeyAndVisible()
+        // Root view
+        let view = AppRootView()
+        let vc = BaseHostingController(rootView: view)
         
-        // Init main flow controller and start the flow
-        flowController = AppFlowController(navigationController: nc)
-        flowController?.start()
+        // Init main window
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = vc
+        window?.makeKeyAndVisible()
         
         return true
     }
