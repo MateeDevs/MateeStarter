@@ -18,11 +18,9 @@ import UserDefaultsProvider
 import Utilities
 import WidgetKit
 
-@UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    private var flowController: AppFlowController?
     
     func application(
         _ application: UIApplication,
@@ -45,15 +43,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Setup appearance
         setupAppearance()
-        
-        // Root view
-        let view = AppRootView()
-        let vc = BaseHostingController(rootView: view)
-        
-        // Init main window
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = vc
-        window?.makeKeyAndVisible()
         
         return true
     }

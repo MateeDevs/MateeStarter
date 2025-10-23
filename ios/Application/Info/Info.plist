@@ -54,6 +54,13 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<false/>
+		<key>UISceneConfigurations</key>
+		<dict/>
+	</dict>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
 </dict>
