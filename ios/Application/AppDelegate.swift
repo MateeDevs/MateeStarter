@@ -43,6 +43,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         // Register for remote notifications
         application.registerForRemoteNotifications()
         
+        // Setup appearance
+        setupAppearance()
+        
         // Root view
         let view = AppRootView()
         let vc = BaseHostingController(rootView: view)
@@ -124,5 +127,22 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     private func setupCacheCapacity() {
         URLCache.shared.memoryCapacity = 10_000_000 // ~10 MB memory space
         URLCache.shared.diskCapacity = 1_000_000_000 // ~1GB disk cache space
+    }
+    
+    // MARK: Setup appearance
+    private func setupAppearance() {
+        // Navigation bar
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = UIColor(AppTheme.Colors.navBarBackground)
+        appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(AppTheme.Colors.navBarTitle)]
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().tintColor = UIColor(AppTheme.Colors.navBarTitle)
+
+        // Tab bar
+        UITabBar.appearance().tintColor = UIColor(AppTheme.Colors.primaryColor)
+
+        // UITextField
+        UITextField.appearance().tintColor = UIColor(AppTheme.Colors.primaryColor)
     }
 }
