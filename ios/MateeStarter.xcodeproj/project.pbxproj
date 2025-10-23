@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		4508332A28435E7800BC9460 /* SharedDomain in Frameworks */ = {isa = PBXBuildFile; productRef = 4508332928435E7800BC9460 /* SharedDomain */; };
 		4508333028435E7900BC9460 /* Utilities in Frameworks */ = {isa = PBXBuildFile; productRef = 4508332F28435E7900BC9460 /* Utilities */; };
-		4508333528437BA500BC9460 /* AppFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4508333228437BA500BC9460 /* AppFlowController.swift */; };
 		4508333728437BB700BC9460 /* UIToolkit in Frameworks */ = {isa = PBXBuildFile; productRef = 4508333628437BB700BC9460 /* UIToolkit */; };
 		453580EF284806FE007AEC9E /* strings.txt in Resources */ = {isa = PBXBuildFile; fileRef = 453580EE284806FE007AEC9E /* strings.txt */; };
 		454F6EC426CE8B3900C386B8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 454F6EC226CE8B3500C386B8 /* InfoPlist.strings */; };
@@ -25,6 +24,7 @@
 		A37BB4DE2C5CF770006C491D /* SampleSharedViewModel in Frameworks */ = {isa = PBXBuildFile; productRef = A37BB4DD2C5CF770006C491D /* SampleSharedViewModel */; };
 		A37BB4E12C5D1129006C491D /* SampleComposeMultiplatform in Frameworks */ = {isa = PBXBuildFile; productRef = A37BB4E02C5D1129006C491D /* SampleComposeMultiplatform */; };
 		A38D916A2CC670DF00859170 /* SampleComposeNavigation in Frameworks */ = {isa = PBXBuildFile; productRef = A38D91692CC670DF00859170 /* SampleComposeNavigation */; };
+		E21B465C2EAAD052003ADB5E /* MateeStarterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21B465B2EAAD04F003ADB5E /* MateeStarterApp.swift */; };
 		E2D834AA2EA930BD00DA3A9F /* AppRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D834A92EA930BB00DA3A9F /* AppRootView.swift */; };
 		E2D834AD2EA9310600DA3A9F /* NavigatorUI in Frameworks */ = {isa = PBXBuildFile; productRef = E2D834AC2EA9310600DA3A9F /* NavigatorUI */; };
 /* End PBXBuildFile section */
@@ -44,7 +44,6 @@
 
 /* Begin PBXFileReference section */
 		4508333128436EFB00BC9460 /* UIToolkit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UIToolkit; sourceTree = "<group>"; };
-		4508333228437BA500BC9460 /* AppFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowController.swift; sourceTree = "<group>"; };
 		45238BDC2ACD7A5D0084E7E5 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		4534C1C42603D6AD0022ACF4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		453580EE284806FE007AEC9E /* strings.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = strings.txt; path = ../../twine/strings.txt; sourceTree = "<group>"; };
@@ -76,6 +75,7 @@
 		A3F048832C5A43E100B9A3F3 /* Sample */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Sample; sourceTree = "<group>"; };
 		A3F048842C5A587700B9A3F3 /* KeychainProvider */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = KeychainProvider; sourceTree = "<group>"; };
 		A3F048852C5A587700B9A3F3 /* NetworkProvider */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = NetworkProvider; sourceTree = "<group>"; };
+		E21B465B2EAAD04F003ADB5E /* MateeStarterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MateeStarterApp.swift; sourceTree = "<group>"; };
 		E2D834A92EA930BB00DA3A9F /* AppRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -159,8 +159,8 @@
 				4575E61225F6F82C00CCC003 /* Entitlements */,
 				456E73DC25F817CF007D9A6D /* Info */,
 				4575E61325F6F83600CCC003 /* GoogleService */,
+				E21B465B2EAAD04F003ADB5E /* MateeStarterApp.swift */,
 				4558D30A20FCC8FF005BC325 /* AppDelegate.swift */,
-				4508333228437BA500BC9460 /* AppFlowController.swift */,
 				E2D834A92EA930BB00DA3A9F /* AppRootView.swift */,
 				4575E65525F6FA7600CCC003 /* AppIcon.xcassets */,
 				4597626E20FDF0810034DE29 /* LaunchScreen.storyboard */,
@@ -389,7 +389,7 @@
 			files = (
 				E2D834AA2EA930BD00DA3A9F /* AppRootView.swift in Sources */,
 				4558D30B20FCC8FF005BC325 /* AppDelegate.swift in Sources */,
-				4508333528437BA500BC9460 /* AppFlowController.swift in Sources */,
+				E21B465C2EAAD052003ADB5E /* MateeStarterApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
