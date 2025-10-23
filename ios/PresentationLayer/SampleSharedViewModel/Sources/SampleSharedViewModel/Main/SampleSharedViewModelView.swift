@@ -37,6 +37,7 @@ public struct SampleSharedViewModelView: View {
                 }
             }
             .navigationTitle(MR.strings().bottom_bar_item_2.toLocalized())
+            .navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 viewModel.onIntent(intent: SampleSharedIntentOnAppeared())
             }

@@ -32,8 +32,9 @@ public struct SampleView: View {
                 }
             }
             .registerSampleNavigationDestinations()
+            .navigationTitle(MR.strings().bottom_bar_item_1.toLocalized())
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .navigationTitle(MR.strings().bottom_bar_item_1.toLocalized())
         .toastView(Binding<ToastData?>(
             get: { viewModel.state.toast },
             set: { toast in viewModel.onIntent(.onToastChanged(data: toast)) }
