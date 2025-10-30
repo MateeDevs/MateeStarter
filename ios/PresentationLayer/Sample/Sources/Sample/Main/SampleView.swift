@@ -40,11 +40,6 @@ public struct SampleView: View {
             set: { toast in viewModel.onIntent(.onToastChanged(data: toast)) }
         ))
         .lifecycle(viewModel)
-        .tabItem {
-            Text(MR.strings().bottom_bar_item_1.toLocalized())
-            
-            Image(uiImage: AppTheme.Images.person)
-        }
     }
 
     private func contentView(
