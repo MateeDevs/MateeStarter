@@ -14,6 +14,8 @@ import UIToolkit
 
 struct AppRootView: View {
     
+    @StateObject private var sampleViewModel = SampleViewModel()
+    
     private let navigator = Navigator(
         configuration: NavigationConfiguration()
     )
@@ -33,8 +35,7 @@ struct AppRootView: View {
     
     @ViewBuilder
     private var sampleTab: some View {
-        let vm = SampleViewModel()
-        SampleView(viewModel: vm)
+        SampleView(viewModel: sampleViewModel)
             .tabItem {
                 Image(uiImage: AppTheme.Images.person)
                 Text(MR.strings().bottom_bar_item_1.toLocalized())
