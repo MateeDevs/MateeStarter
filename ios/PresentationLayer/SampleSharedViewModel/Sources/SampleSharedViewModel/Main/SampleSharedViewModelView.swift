@@ -64,9 +64,9 @@ import DependencyInjectionMocks
 import Factory
 
  #Preview {
-    _ = fixMokoResourcesForPreviews()
-    _ = Container.shared.registerUseCaseMocks()
-    _ = Container.shared.registerViewModelMocks()
+    let _ = fixMokoResourcesForPreviews()
+    let _ = Container.shared.registerUseCaseMocks()
+    let _ = Container.shared.registerViewModelMocks()
     
     SampleSharedViewModelView()
  }
