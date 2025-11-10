@@ -63,11 +63,11 @@ public struct SampleSharedViewModelView: View {
 import DependencyInjectionMocks
 import Factory
 
-// #Preview {
-//    fixMokoResourcesForPreviews()
-//    Container.shared.registerUseCaseMocks()
-//    Container.shared.registerViewModelMocks()
-//    
-//    return SampleSharedViewModelView(flowController: nil)
-// }
+ #Preview {
+    _ = fixMokoResourcesForPreviews()
+    _ = Container.shared.registerUseCaseMocks()
+    _ = Container.shared.registerViewModelMocks()
+    
+    SampleSharedViewModelView()
+ }
 #endif

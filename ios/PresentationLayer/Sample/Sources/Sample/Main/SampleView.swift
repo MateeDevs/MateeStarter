@@ -60,11 +60,11 @@ public struct SampleView: View {
 import DependencyInjectionMocks
 import Factory
 
-// #Preview {
-//    _ = fixMokoResourcesForPreviews()
-//    _ = Container.shared.registerUseCaseMocks()
-//
-//    let vm = SampleViewModel()
-//    SampleView(viewModel: vm)
-// }
+ #Preview {
+    _ = fixMokoResourcesForPreviews()
+    _ = Container.shared.registerUseCaseMocks()
+
+    let vm = SampleViewModel()
+    SampleView(viewModel: vm)
+ }
 #endif
