@@ -1,4 +1,4 @@
-./gradlew :shared:core:embedAndSignAppleFrameworkForXcode < /dev/null
+./gradlew :shared:core:embedAndSignAppleFrameworkForXcode < /dev/null | ./ios/scripts/kmp-beautify.sh
 
 # Copy the framework to indexer directory to support Xcode hinting/autocomplete
 DERIVED_DATA_DIR="$(echo "${TARGET_BUILD_DIR}" | awk -F'/Build/' '{print $1}')"
