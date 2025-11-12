@@ -55,10 +55,7 @@ fun KotlinMultiplatformExtension.kmm(
                 isStatic = false
                 export(libs.mokoResources)
                 export(project(":shared:base"))
-                export(project(":shared:sample"))
-                export(project(":shared:samplesharedviewmodel"))
-                export(project(":shared:samplecomposemultiplatform"))
-                export(project(":shared:samplecomposenavigation"))
+                export(project(":shared:samplefeature"))
             }
             it.binaries {
                 compilerOptions.freeCompilerArgs.add("-Xbinary=bundleId=kmp.shared.$nativeName")

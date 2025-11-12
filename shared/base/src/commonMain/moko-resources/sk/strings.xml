@@ -11,14 +11,8 @@
 	<string name="language_en">EN</string>
 	<string name="language_en_fullname">Angličtina</string>
 
-	<!-- SECTION: Bottom bar view -->
-	<string name="bottom_bar_item_1">Classic</string>
-	<string name="bottom_bar_item_2">Shared VMs</string>
-	<string name="bottom_bar_item_3">Compose Multiplatform</string>
-	<string name="bottom_bar_item_4">Compose Navigation</string>
-
 	<!-- SECTION: Screens -->
-	<string name="next_screen_title">Next</string>
+	<string name="sample_feature_title">Sample feature</string>
 
 	<!-- SECTION: General navigation -->
 	<string name="done">Hotovo</string>

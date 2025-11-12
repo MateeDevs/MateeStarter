@@ -2,9 +2,9 @@ package kmp.shared.analytics.domain.usecase
 
 import kmp.shared.analytics.domain.model.AnalyticsEvent
 import kmp.shared.analytics.domain.repository.AnalyticsRepository
-import kmp.shared.base.Result
-import kmp.shared.base.usecase.UseCaseResult
-import kmp.shared.base.util.extension.success
+import kmp.shared.base.domain.model.Result
+import kmp.shared.base.domain.usecase.UseCaseResult
+import kmp.shared.base.domain.util.extension.success
 
 /**
  * Use case to track an analytics event.
