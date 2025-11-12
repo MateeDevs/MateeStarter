@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "kmp.shared.samplecomposemultiplatform"
+    namespace = "kmp.shared.sampletabbar"
 }
 
 ktlint {
@@ -20,6 +20,7 @@ dependencies {
     commonMainImplementation(project(":shared:base"))
     commonMainImplementation(project(":shared:sample"))
     commonMainImplementation(project(":shared:samplesharedviewmodel"))
+    commonMainImplementation(project(":shared:samplecomposemultiplatform"))
 
     commonMainImplementation(compose.runtime)
     commonMainImplementation(compose.foundation)
@@ -29,4 +30,10 @@ dependencies {
     commonMainImplementation(compose.components.resources)
     commonMainImplementation(compose.components.uiToolingPreview)
     ktlintRuleset(libs.ktlint.composeRules)
+
+    commonMainImplementation(libs.coil)
+    androidMainImplementation(libs.coil.okhttp)
+    iosMainImplementation(libs.coil.ktor)
+    commonMainImplementation(libs.haze)
+    commonMainImplementation(libs.haze.materials)
 }

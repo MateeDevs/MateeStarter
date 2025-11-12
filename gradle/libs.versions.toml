@@ -16,7 +16,7 @@ material-icons = "1.7.3"
 lifecycle = "2.9.3"
 paging = "3.3.6"
 composeBom = "2025.08.01"
-jetbrains-composePlugin = "1.8.2" # Downgrade to 1.6.11 if you want to use compose multiplatform with UIKit navigation (it fixes the swipe back)
+jetbrains-composePlugin = "1.9.0"
 activity = "1.10.1"
 navigation = "2.9.3"
 accompanist = "0.36.0"
@@ -40,6 +40,8 @@ uiautomator = "2.3.0"
 skie = "0.10.6"
 firebase = "22.5.0"
 googleServices = "4.4.3"
+coil = "3.3.0"
+haze = "1.6.10"
 
 [libraries]
 # Kotlin
@@ -93,8 +95,11 @@ activity-compose = { module = "androidx.activity:activity-compose", version.ref 
 # Navigation
 navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
 # Accompanist
-accompanist-coil = { module = "com.google.accompanist:accompanist-coil", version.ref = "accompanist" }
 accompanist-navigationMaterial = { module = "com.google.accompanist:accompanist-navigation-material", version.ref = "accompanist" }
+# Coil
+coil = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
+coil-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }
+coil-ktor = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "coil" }
 # Ktor
 ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
@@ -127,6 +132,9 @@ androidx-uiautomator = { group = "androidx.test.uiautomator", name = "uiautomato
 skie-annotations = { module = "co.touchlab.skie:configuration-annotations", version.ref = "skie" }
 # Firebase
 firebase-analytics = { module = "com.google.firebase:firebase-analytics-ktx", version.ref = "firebase" }
+# Haze
+haze = { module = "dev.chrisbanes.haze:haze", version.ref = "haze" }
+haze-materials = { module = "dev.chrisbanes.haze:haze-materials", version.ref = "haze" }
 
 [bundles]
 settings = [

@@ -29,7 +29,7 @@ internal class ComposeTest {
                     .withType { it.name == "Modifier" }
                     .let { params ->
                         params.size == 1 &&
-                            params.all { param -> param.hasDefaultValue() && param.name == "modifier" }
+                            params.all { param -> (param.hasDefaultValue() || fn.hasActualModifier) && param.name == "modifier" }
                     }
             }
     }

@@ -2,8 +2,10 @@ package kmp.shared.samplecomposemultiplatform.presentation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.ComposeUIViewController
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -18,12 +20,17 @@ import kotlinx.coroutines.flow.collectLatest
 import org.koin.compose.viewmodel.koinViewModel
 import platform.UIKit.UIViewController
 
+@OptIn(ExperimentalComposeApi::class, ExperimentalComposeUiApi::class)
 @Suppress("Unused", "FunctionName")
 fun SampleComposeMultiplatformScreenViewController(
     onEvent: (SampleSharedEvent) -> Unit,
     factory: SampleComposeMultiplatformViewFactory,
 ): UIViewController {
-    return ComposeUIViewController {
+    return ComposeUIViewController(
+        configure = {
+            this.opaque = false
+        },
+    ) {
         SampleComposeMultiplatformView(
             onEvent = onEvent,
             factory = factory,

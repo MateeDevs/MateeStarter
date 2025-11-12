@@ -7,6 +7,7 @@ import kmp.shared.sample.di.sampleModule
 import kmp.shared.samplecomposemultiplatform.di.sampleComposeMultiplatformModule
 import kmp.shared.samplecomposenavigation.di.sampleComposeNavigationModule
 import kmp.shared.samplesharedviewmodel.di.sampleSharedViewModelModule
+import kmp.shared.sampletabbar.di.sampleTabBarModule
 import org.koin.core.KoinApplication
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
@@ -22,6 +23,7 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}): KoinApplication {
             analyticsModule,
             sampleComposeMultiplatformModule,
             sampleComposeNavigationModule,
+            sampleTabBarModule,
         )
     }
 
