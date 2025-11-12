@@ -37,19 +37,19 @@ internal class KoinTest {
         Konsist
             .scopeFromProject()
             .classes()
-            .withPackage("..infrastructure..")
+            .withPackage("..data..")
             .withParent { it.hasNameEndingWith("Source") }
             .withoutModifier(KoModifier.ABSTRACT)
             .assertIsDefinedInKoinModule()
     }
 
     @Test
-    fun `every 'Api' has a declaration in Koin's module`() {
+    fun `every 'Service' has a declaration in Koin's module`() {
         Konsist
             .scopeFromProject()
             .classes()
-            .withPackage("..infrastructure..")
-            .withParent { it.hasNameEndingWith("Api") }
+            .withPackage("..data..")
+            .withParent { it.hasNameEndingWith("Service") }
             .withoutModifier(KoModifier.ABSTRACT)
             .assertIsDefinedInKoinModule()
     }
