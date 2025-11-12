@@ -21,13 +21,8 @@ rootProject.name = "MateeStarter"
 
 include(":android:app")
 include(":android:shared")
-include(":android:sample")
-include(":android:samplesharedviewmodel")
-include(":android:samplecomposemultiplatform")
+include(":android:samplefeature")
 
-include(":shared:core")
+include(":shared:umbrella")
 include(":shared:base")
-include(":shared:sample")
-include(":shared:samplesharedviewmodel")
-include(":shared:samplecomposemultiplatform")
-include(":shared:samplecomposenavigation")
+include(":shared:samplefeature")

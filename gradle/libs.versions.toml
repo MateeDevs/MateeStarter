@@ -16,7 +16,7 @@ material-icons = "1.7.3"
 lifecycle = "2.9.3"
 paging = "3.3.6"
 composeBom = "2025.08.01"
-jetbrains-composePlugin = "1.8.2" # Downgrade to 1.6.11 if you want to use compose multiplatform with UIKit navigation (it fixes the swipe back)
+jetbrains-composePlugin = "1.8.2"
 activity = "1.10.1"
 navigation = "2.9.3"
 accompanist = "0.36.0"
@@ -57,13 +57,10 @@ dateTime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "d
 atomicFu = { module = "org.jetbrains.kotlinx:atomicfu", version.ref = "atomicFu" }
 # Koin
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
-# Can be removed in case you do not use compose multiplatform
 koin-core-viewModel = { module = "io.insert-koin:koin-core-viewmodel", version.ref = "koin" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
-# Can be removed in case you do not use compose multiplatform
 koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koin" }
-# Can be removed in case you do not use compose multiplatform
 koin-compose-viewModel = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koin" }
 koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
 # AndroidX
@@ -88,6 +85,7 @@ compose-foundation = { module = "androidx.compose.foundation:foundation" }
 compose-material = { module = "androidx.compose.material:material" }
 compose-uiTest = { module = "androidx.compose.ui:ui-test-junit4" }
 compose-materialIconsCore = { module = "org.jetbrains.compose.material:material-icons-core", version.ref = "material-icons" }
+compose-gradlePlugin = { module = "org.jetbrains.compose:org.jetbrains.compose.gradle.plugin", version.ref = "jetbrains-composePlugin" }
 # Activity
 activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity" }
 # Navigation
@@ -127,6 +125,8 @@ androidx-uiautomator = { group = "androidx.test.uiautomator", name = "uiautomato
 skie-annotations = { module = "co.touchlab.skie:configuration-annotations", version.ref = "skie" }
 # Firebase
 firebase-analytics = { module = "com.google.firebase:firebase-analytics-ktx", version.ref = "firebase" }
+# Ktlint
+ktlint-gradlePlugin = { module = "org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin", version.ref = "ktLint" }
 
 [bundles]
 settings = [
@@ -155,15 +155,15 @@ versionCatalogUpdate = { id = "nl.littlerobots.version-catalog-update", version.
 versions = { id = "com.github.ben-manes.versions", version.ref = "versions" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktLint" }
 mokoResources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "mokoResources" }
-jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "jetbrains-composePlugin" }
 skie = { id = "co.touchlab.skie", version.ref = "skie" }
 google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
-# Can be removed in case you do not use compose multiplatform
+jetbrains-compose-plugin = { id = "org.jetbrains.compose", version.ref = "jetbrains-composePlugin" }
 jetbrains-compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 # Convention plugins
 mateeStarter-android-application-compose = "android-application-compose:none"
 mateeStarter-android-application-core = "android-application:none"
 mateeStarter-android-library-compose = "android-library-compose:none"
 mateeStarter-android-library-core = "android-library:none"
-mateeStarter-kmm-library = "kmm-library:none"
-mateeStarter-kmm-xcframework-library = "kmm-xcframework-library:none"
+mateeStarter-kmp-library-core = "kmp-library:none"
+mateeStarter-kmp-library-compose = "kmp-library-compose:none"
+mateeStarter-kmp-framework-library = "kmp-framework-library:none"

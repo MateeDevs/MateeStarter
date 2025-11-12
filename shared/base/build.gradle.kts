@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.mateeStarter.kmm.library)
+    alias(libs.plugins.mateeStarter.kmp.library.compose)
 }
 
 android {
@@ -8,14 +8,6 @@ android {
 
 multiplatformResources {
     resourcesPackage.set("kmp.shared.base")
-}
-
-ktlint {
-    filter {
-        exclude { entry ->
-            entry.file.toString().contains("generated")
-        }
-    }
 }
 
 dependencies {

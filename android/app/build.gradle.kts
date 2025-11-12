@@ -8,9 +8,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":shared:core"))
+    implementation(project(":shared:umbrella"))
     implementation(project(":android:shared"))
-    implementation(project(":android:sample"))
-    implementation(project(":android:samplesharedviewmodel"))
-    implementation(project(":android:samplecomposemultiplatform"))
+    implementation(project(":android:samplefeature"))
 }

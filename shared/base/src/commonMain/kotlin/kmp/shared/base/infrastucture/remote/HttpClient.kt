@@ -17,9 +17,9 @@ import io.ktor.http.URLProtocol
 import io.ktor.http.contentType
 import io.ktor.http.encodedPath
 import io.ktor.serialization.kotlinx.json.json
+import kmp.shared.base.domain.system.ApiVariant
+import kmp.shared.base.domain.system.Config
 import kmp.shared.base.infrastucture.provider.AuthProvider
-import kmp.shared.base.system.ApiVariant
-import kmp.shared.base.system.Config
 import kotlin.native.concurrent.ThreadLocal
 import co.touchlab.kermit.Logger as KermitLogger
 import kotlinx.serialization.json.Json as JsonConfig
@@ -27,60 +27,61 @@ import kotlinx.serialization.json.Json as JsonConfig
 internal object HttpClient {
     private val unauthorizedEndpoints = listOf("/api/auth/login", "/api/auth/registration")
 
-    fun init(config: Config, engine: HttpClientEngine, authProvider: AuthProvider) = HttpClient(engine).config {
-        expectSuccess = true
-        followRedirects = false
+    fun init(config: Config, engine: HttpClientEngine, authProvider: AuthProvider) =
+        HttpClient(engine).config {
+            expectSuccess = true
+            followRedirects = false
 
-        install(ContentNegotiation) {
-            json(globalJson)
-        }
-
-        if (!config.isRelease) {
-            install(Logging) {
-                logger = object : Logger {
-                    override fun log(message: String) {
-                        KermitLogger.d { message }
-                    }
-                }
-                level = LogLevel.ALL
+            install(ContentNegotiation) {
+                json(globalJson)
             }
-        }
 
-        install(Auth) {
-            // Use if your authentication method is a bearer token (other options are `basic` and `digest`)
-            bearer {
-                loadTokens {
-                    authProvider.token?.let { token ->
-                        // Use your access and refresh tokens here (you can use access token for both if you don't use refresh token)
-                        BearerTokens(token, token)
+            if (!config.isRelease) {
+                install(Logging) {
+                    logger = object : Logger {
+                        override fun log(message: String) {
+                            KermitLogger.d { message }
+                        }
                     }
-                }
-
-                refreshTokens {
-                    authProvider.token?.let { token ->
-                        // Use your access and refresh tokens here (you can use access token for both if you don't use refresh token)
-                        BearerTokens(token, token)
-                    }
-                }
-
-                sendWithoutRequest { request ->
-                    unauthorizedEndpoints.any(request.url.encodedPath::equals)
+                    level = LogLevel.ALL
                 }
             }
-        }
 
-        defaultRequest {
-            url {
-                protocol = URLProtocol.HTTPS
-                // Set your host URLs
-                host = when (config.apiVariant) {
-                    ApiVariant.Alpha -> "devstack-server-production.up.railway.app"
-                    ApiVariant.Production -> "devstack-server-production.up.railway.app"
+            install(Auth) {
+                // Use if your authentication method is a bearer token (other options are `basic` and `digest`)
+                bearer {
+                    loadTokens {
+                        authProvider.token?.let { token ->
+                            // Use your access and refresh tokens here (you can use access token for both if you don't use refresh token)
+                            BearerTokens(token, token)
+                        }
+                    }
+
+                    refreshTokens {
+                        authProvider.token?.let { token ->
+                            // Use your access and refresh tokens here (you can use access token for both if you don't use refresh token)
+                            BearerTokens(token, token)
+                        }
+                    }
+
+                    sendWithoutRequest { request ->
+                        unauthorizedEndpoints.any(request.url.encodedPath::equals)
+                    }
                 }
             }
-            contentType(ContentType.Application.Json)
+
+            defaultRequest {
+                url {
+                    protocol = URLProtocol.HTTPS
+                    // Set your host URLs
+                    host = when (config.apiVariant) {
+                        ApiVariant.Alpha -> "official-joke-api.appspot.com"
+                        ApiVariant.Production -> "official-joke-api.appspot.com"
+                    }
+                }
+                contentType(ContentType.Application.Json)
+            }
         }
-    }
 }
 
 /**

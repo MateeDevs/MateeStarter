@@ -11,11 +11,15 @@ import org.gradle.api.plugins.PluginManager
 import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.DependencyHandlerScope
 import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.the
 import org.gradle.plugin.use.PluginDependency
+import org.jetbrains.compose.ComposeExtension
+import org.jetbrains.compose.ComposePlugin
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
+import org.jlleitschuh.gradle.ktlint.KtlintExtension
 
 val Project.libs get() = the<org.gradle.accessors.dm.LibrariesForLibs>()
 
@@ -65,3 +69,16 @@ fun Project.kotlin(configure: KotlinProjectExtension.() -> Unit) =
     extensions.configure<KotlinProjectExtension> {
         configure()
     }
+
+val Project.compose: ComposePlugin.Dependencies
+    get() = extensions.getByType<ComposeExtension>().dependencies
+
+fun Project.ktlint(
+    configure: Action<KtlintExtension>,
+) {
+    extensions.configure(KtlintExtension::class.java, configure)
+}
+
+fun Project.ktlintRuleset(dependencyNotation: Any): org.gradle.api.artifacts.Dependency? {
+    return dependencies.add("ktlintRuleset", dependencyNotation)
+}
