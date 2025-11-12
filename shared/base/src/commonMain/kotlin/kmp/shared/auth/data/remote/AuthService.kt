@@ -1,4 +1,4 @@
-package kmp.shared.auth.infrastructure.remote
+package kmp.shared.auth.data.remote
 
 import io.ktor.client.HttpClient
 import kmp.shared.base.domain.model.Result

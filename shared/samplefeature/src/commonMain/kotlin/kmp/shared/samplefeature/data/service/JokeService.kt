@@ -1,4 +1,4 @@
-package kmp.shared.samplefeature.infrastructure.service
+package kmp.shared.samplefeature.data.service
 
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -13,3 +13,4 @@ internal class JokeService(private val client: HttpClient) {
         client.get("/random_joke").body()
     }
 }
+

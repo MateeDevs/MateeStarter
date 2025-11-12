@@ -67,7 +67,6 @@ internal class UseCaseTest {
     }
 
     @Test
-    @Ignore("Once the project is prepared for this, enable it!")
     fun `interfaces extending 'UseCase' with params should have 'Params' data class that is used as param`() {
         Konsist
             .scopeFromProject()
@@ -86,7 +85,7 @@ internal class UseCaseTest {
 
                 val implementationHasParams = implementation
                     .functions()
-                    .withName("doWork")
+                    .withName("invoke")
                     .withParameters { params ->
                         val param = params.first()
                         param.type.fullyQualifiedName == paramDateClass.fullyQualifiedName

@@ -1,6 +1,6 @@
 package kmp.shared.auth.di
 
-import kmp.shared.auth.infrastructure.remote.AuthService
+import kmp.shared.auth.data.remote.AuthService
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 

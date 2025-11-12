@@ -44,7 +44,7 @@ internal fun SampleFeatureMainRoute(
     }
 
     val context = LocalContext.current
-    LaunchedEffect(key1 = viewModel) {
+    LaunchedEffect(viewModel) {
         viewModel.events.collectLatest { event ->
             when (event) {
                 is SampleFeatureEvent.ShowMessage -> Toast.makeText(
