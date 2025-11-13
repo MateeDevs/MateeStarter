@@ -99,11 +99,11 @@ To create a new feature, follow the structure demonstrated in `samplefeature`:
      ```kotlin
      commonMainImplementation(project(":shared:myfeature"))
      ```
-   - **If you need to use the module from iOS code**, use `commonMainApi` and also add it to `KmmConfig`:
+   - **If you need to use the module from iOS code**, use `commonMainApi` and also add it to `KmpConfig`:
      ```kotlin
      commonMainApi(project(":shared:myfeature"))
      ```
-     Then add it to the export list in `build-logic/convention/src/main/kotlin/config/KmmConfig.kt`:
+     Then add it to the export list in `build-logic/convention/src/main/kotlin/config/KmpConfig.kt`:
      ```kotlin
      export(project(":shared:myfeature"))
      ```

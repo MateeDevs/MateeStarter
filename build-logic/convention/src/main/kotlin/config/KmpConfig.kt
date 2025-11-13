@@ -6,9 +6,9 @@ import org.gradle.api.Project
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
-object KmmConfig {
+object KmpConfig {
     private fun includeX86(project: Project): Boolean =
-        getBooleanProperty(project, "X86", true)
+        getBooleanProperty(project, "X86", false)
 
     private fun includeArm64(project: Project): Boolean =
         getBooleanProperty(project, "ARM64", true)
@@ -36,14 +36,14 @@ object KmmConfig {
 }
 
 fun KotlinMultiplatformExtension.getIosTargets(project: Project, tvOSEnabled: Boolean = false): List<KotlinNativeTarget> =
-    KmmConfig.getSupportedMobilePlatforms(this, project) +
+    KmpConfig.getSupportedMobilePlatforms(this, project) +
         if (tvOSEnabled) {
-            KmmConfig.getSupportedTvPlatforms(this, project)
+            KmpConfig.getSupportedTvPlatforms(this, project)
         } else {
             emptyList()
         }
 
-fun KotlinMultiplatformExtension.kmm(
+fun KotlinMultiplatformExtension.kmp(
     project: Project,
     nativeName: String,
     tvOSEnabled: Boolean = false,
