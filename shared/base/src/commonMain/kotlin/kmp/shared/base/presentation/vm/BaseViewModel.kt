@@ -4,6 +4,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 abstract class BaseViewModel<S : VmState, I : VmIntent, E : VmEvent>(initialState: S) :
@@ -21,7 +22,7 @@ abstract class BaseViewModel<S : VmState, I : VmIntent, E : VmEvent>(initialStat
     }
 
     protected fun update(body: S.() -> S) {
-        state.value = body(state.value)
+        state.update { body(state.value) }
     }
 
     protected abstract suspend fun applyIntent(intent: I)

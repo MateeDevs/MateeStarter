@@ -1,6 +1,6 @@
 package plugin
 
-import config.kmm
+import config.kmp
 import constants.ProjectConstants
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -16,7 +16,7 @@ class KmpFrameworkLibraryConventionPlugin : Plugin<Project> {
             apply<KmpLibraryConventionPlugin>()
 
             extensions.configure<KotlinMultiplatformExtension> {
-                kmm(
+                kmp(
                     project = project,
                     nativeName = ProjectConstants.iosShared,
                 )
