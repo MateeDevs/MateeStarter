@@ -101,6 +101,7 @@ The project uses Clean Architecture with shared business logic across platforms:
 2. Open the project in Android Studio
 3. Sync Gradle files
 4. For iOS: Open \`ios/${new_name}.xcworkspace\` in Xcode
+5. **⚠️ Important**: Replace \`MockTokenRefresher\` in \`shared/auth/src/commonMain/kotlin/kmp/shared/auth/di/AuthModule.kt\` with a real implementation using your authentication service (FirebaseAuth, Auth0, etc.)
 
 ### Building
 
@@ -138,6 +139,8 @@ Open the workspace in Xcode and build from there.
 
 - \`shared/\` - Shared Kotlin Multiplatform modules
   - \`base/\` - Base classes and utilities
+  - \`auth/\` - Authentication module
+  - \`analytics/\` - Analytics tracking module
   - \`umbrella/\` - Main shared module combining all features
   - \`samplefeature/\` - Example feature module
 - \`android/\` - Android-specific modules

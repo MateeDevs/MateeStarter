@@ -13,6 +13,7 @@ plugins {
     alias(libs.plugins.jetbrains.compose.compiler) apply false
     alias(libs.plugins.versions)
     alias(libs.plugins.versionCatalogUpdate)
+    alias(libs.plugins.jetbrains.kotlin.jvm) apply false
 }
 
 fun String.isNonStable(): Boolean {

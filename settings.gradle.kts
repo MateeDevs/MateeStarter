@@ -25,4 +25,6 @@ include(":android:samplefeature")
 
 include(":shared:umbrella")
 include(":shared:base")
+include(":shared:analytics")
 include(":shared:samplefeature")
+include(":shared:auth")

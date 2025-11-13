@@ -8,4 +8,5 @@ android {
 
 dependencies {
     commonMainImplementation(project(":shared:base"))
+    commonMainImplementation(project(":shared:analytics"))
 }

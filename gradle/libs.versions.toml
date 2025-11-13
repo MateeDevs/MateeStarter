@@ -40,6 +40,7 @@ uiautomator = "2.3.0"
 skie = "0.10.6"
 firebase = "22.5.0"
 googleServices = "4.4.3"
+jetbrainsKotlinJvm = "2.2.10"
 
 [libraries]
 # Kotlin
@@ -165,3 +166,4 @@ mateeStarter-android-library-core = "android-library:none"
 mateeStarter-kmp-library-core = "kmp-library:none"
 mateeStarter-kmp-library-compose = "kmp-library-compose:none"
 mateeStarter-kmp-framework-library = "kmp-framework-library:none"
+jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }

@@ -10,6 +10,8 @@ multiplatformResources {
     resourcesPackage.set("kmp.shared.base")
 }
 
-dependencies {
-    androidMainImplementation(libs.firebase.analytics)
+ktlint {
+    filter {
+        exclude("**/KeychainAccessibleAfterFirstUnlockSettings.kt")
+    }
 }
