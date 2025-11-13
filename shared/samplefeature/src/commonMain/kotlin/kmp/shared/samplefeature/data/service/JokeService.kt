@@ -13,4 +13,3 @@ internal class JokeService(private val client: HttpClient) {
         client.get("/random_joke").body()
     }
 }
-

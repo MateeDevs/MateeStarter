@@ -6,7 +6,6 @@ import com.lemonappdev.konsist.api.ext.list.withName
 import com.lemonappdev.konsist.api.ext.list.withParameters
 import com.lemonappdev.konsist.api.ext.list.withParent
 import com.lemonappdev.konsist.api.verify.assertTrue
-import org.junit.Ignore
 import org.junit.Test
 
 internal class UseCaseTest {

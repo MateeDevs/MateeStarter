@@ -118,9 +118,7 @@ mokoResources-compose = { module = "dev.icerock.moko:resources-compose", version
 konsist = { module = "com.lemonappdev:konsist", version.ref = "konsist" }
 # Tests
 junit = { module = "junit:junit", version.ref = "junit" }
-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
-androidx-uiautomator = { group = "androidx.test.uiautomator", name = "uiautomator", version.ref = "uiautomator" }
+kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
 # Skie
 skie-annotations = { module = "co.touchlab.skie:configuration-annotations", version.ref = "skie" }
 # Firebase
