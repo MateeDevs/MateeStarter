@@ -28,4 +28,7 @@ multiplatformResources {
 dependencies {
     commonMainApi(project(":shared:base"))
     commonMainApi(project(":shared:samplefeature"))
+
+    commonMainImplementation(project(":shared:analytics"))
+    commonMainImplementation(project(":shared:auth"))
 }

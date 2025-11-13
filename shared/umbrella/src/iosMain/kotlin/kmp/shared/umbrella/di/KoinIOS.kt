@@ -2,7 +2,7 @@
 
 package kmp.shared.umbrella.di
 
-import kmp.shared.analytics.data.provider.AnalyticsProvider
+import kmp.shared.base.data.provider.AnalyticsProvider
 import kmp.shared.base.domain.system.Config
 import kotlinx.cinterop.BetaInteropApi
 import kotlinx.cinterop.ObjCClass

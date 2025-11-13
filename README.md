@@ -50,6 +50,17 @@ Contains all base classes and common utilities needed across feature modules:
 - **Base Models**: `Result`, `ErrorResult` for error handling
 - Common utilities, error handling, and infrastructure providers
 
+#### `:shared:auth`
+Authentication module providing:
+- **AuthService**: Service for authentication operations (e.g., logout)
+- **TokenRefresher**: Interface for token refresh functionality
+- **MockTokenRefresher**: Mock implementation that returns a mock token (⚠️ **must be replaced with a real implementation**)
+
+> **⚠️ Important**: The `MockTokenRefresher` in `AuthModule.kt` is a placeholder implementation that returns a hardcoded "mockToken". You **must** replace it with a real `TokenRefresher` implementation that uses your authentication service (FirebaseAuth, Auth0, etc.) to refresh tokens. See the [Implementing Token Refresh](#implementing-token-refresh) section below.
+
+#### `:shared:analytics`
+Analytics module providing analytics tracking functionality across platforms.
+
 #### `:shared:umbrella`
 Combines all feature modules and generates `Framework` for iOS. This is the main module imported in Android modules and provides the Koin initialization.
 
@@ -398,6 +409,54 @@ We are using DI library Factory.
 Accessing network is usually the most used IO operation for mobile apps so Ktor was used for it's
 simple and extensible API and because it's multiplatform capable with different engines for each
 platform.
+
+### Authentication & Token Storage
+
+The project includes secure token storage for authentication tokens. The `AuthProvider` interface and its implementation (`AuthProviderImpl`) handle token storage and refresh logic.
+
+#### How Tokens Are Stored
+
+Tokens are stored securely using platform-specific secure storage mechanisms:
+
+- **Android**: Tokens are encrypted using `SecureSharedPreferences`, which uses Android KeyStore with AES/GCM encryption. The encryption key is stored in the hardware-backed Android KeyStore, ensuring tokens are protected at rest.
+- **iOS**: Tokens are stored in the iOS Keychain.
+
+The `AuthProvider` interface provides:
+- `token: String?` - Property to get/set the current authentication token
+- `refreshToken(): String?` - Suspending function to refresh the token when it expires
+
+#### Who Should Store Tokens
+
+You should use **FirebaseAuth** or any other authentication service (e.g., Auth0, AWS Cognito, custom backend) to handle user authentication and receive tokens. Once you receive the authentication token from your authentication service, store it in the `AuthProvider`.
+
+The `AuthProvider` is responsible for securely storing and managing authentication tokens. It's configured in the dependency injection modules:
+
+- **Android**: Configured in `BaseModule.android.kt` using `SharedPreferencesFactory` with `SharedPreferencesType.ENCRYPTED` to ensure secure storage.
+- **iOS**: Configured in `BaseModule.ios.kt` using `KeychainFactory` to store tokens in the iOS Keychain.
+
+The `HttpClient` is automatically configured to use `AuthProvider` for bearer token authentication, including automatic token refresh when requests fail with 401 Unauthorized.
+
+#### Implementing Token Refresh
+
+> **⚠️ Important**: The project includes a `MockTokenRefresher` in `:shared:auth` module that returns a hardcoded mock token. This is only for development/testing purposes and **must be replaced** with a real implementation before production.
+
+The `AuthProviderImpl` requires a `TokenRefresher` implementation to handle token refresh. You **must** replace the `MockTokenRefresher` with a real implementation:
+
+**1. Create your `TokenRefresher` implementation:**
+
+Use your authentication service (FirebaseAuth, Auth0, etc.) to refresh the token.
+
+**2. Replace `MockTokenRefresher` in `AuthModule.kt`:**
+
+Update `shared/auth/src/commonMain/kotlin/kmp/shared/auth/di/AuthModule.kt` to use your implementation:
+
+**1. Implement the `TokenRefresher` interface:**
+
+Use your authentication service (FirebaseAuth, Auth0, etc.) to refresh the token.
+
+**2. Provide the `TokenRefresher` in your DI modules:**
+
+The `AuthProviderImpl` will automatically use the provided `TokenRefresher` when `refreshToken()` is called, ensuring that concurrent refresh requests are deduplicated and handled efficiently. After refreshing, the new token will be automatically stored in `AuthProvider` and used for subsequent API requests.
 
 ### Resources
 
