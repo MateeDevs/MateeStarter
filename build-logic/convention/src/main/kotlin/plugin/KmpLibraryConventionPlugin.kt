@@ -3,7 +3,6 @@ package plugin
 import com.android.build.api.dsl.LibraryExtension
 import config.configureBuildVariants
 import config.configureKotlinAndroid
-import config.configureTests
 import config.getIosTargets
 import extensions.apply
 import extensions.ktlint
@@ -84,9 +83,18 @@ class KmpLibraryConventionPlugin : Plugin<Project> {
                         implementation(libs.ktor.auth)
                     }
 
+                    commonTest.dependencies {
+                        implementation(libs.junit)
+                        implementation(libs.kotlin.test)
+                    }
+
                     androidMain.dependencies {
                         implementation(libs.ktor.android)
                         implementation(libs.lifecycle.viewModel)
+                    }
+
+                    androidUnitTest.dependencies {
+                        implementation(libs.konsist)
                     }
 
                     iosMain.dependencies {
@@ -97,7 +105,6 @@ class KmpLibraryConventionPlugin : Plugin<Project> {
 
             extensions.configure<LibraryExtension> {
                 configureKotlinAndroid(this)
-                configureTests()
             }
         }
     }
