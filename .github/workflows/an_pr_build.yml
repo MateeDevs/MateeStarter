@@ -3,6 +3,14 @@ name: Android – PR Check
 on:
   pull_request:
     types: [ opened, synchronize ]
+    paths:
+      - 'android/**'
+      - 'shared/**'
+      - '.github/workflows/an_pr_build.yml'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   lint:
@@ -23,7 +31,7 @@ jobs:
 
       - name: Run architecture tests
         run: |
-          ./gradlew :shared:core:testAlphaDebugUnitTest --tests "konsistTest.*" --no-build-cache --no-configuration-cache
+          ./gradlew :shared:umbrella:testAlphaDebugUnitTest --tests "konsistTest.*" --no-build-cache --no-configuration-cache
 
       - name: Run tests
         run: |
