@@ -1,15 +1,13 @@
 package kmp.android
 
 import android.os.Bundle
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.view.WindowCompat
-import kmp.android.di.initDependencyInjection
-import kmp.android.shared.core.system.BaseActivity
-import kmp.android.shared.style.AppTheme
 import kmp.android.ui.Root
-import org.koin.core.context.GlobalContext
+import kmp.shared.base.presentation.ui.AppTheme
 
-class MainActivity : BaseActivity() {
+class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

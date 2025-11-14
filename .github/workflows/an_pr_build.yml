@@ -3,6 +3,14 @@ name: Android – PR Check
 on:
   pull_request:
     types: [ opened, synchronize ]
+    paths:
+      - 'android/**'
+      - 'shared/**'
+      - '.github/workflows/an_pr_build.yml'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   lint:
@@ -21,22 +29,21 @@ jobs:
         run: |
           ./gradlew ktlintCheck
 
-      - name: Run architecture lint
+      - name: Run architecture tests
         run: |
-          ./gradlew :shared:core:testAlphaDebugUnitTest --tests "konsistTest.*" --no-build-cache --no-configuration-cache
+          ./gradlew :shared:umbrella:testAlphaDebugUnitTest --tests "konsistTest.*" --no-build-cache --no-configuration-cache
+
+      - name: Run tests
+        run: |
+          ./gradlew testAlphaDebugUnitTest --no-build-cache --no-configuration-cache
 
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v4
         if: success() || failure()
         with:
-          report_paths: '**/build/test-results/testAlphaDebugUnitTest/TEST-*.xml'
+          report_paths: '**/build/test-results/**/TEST-*.xml'
 
       - name: Build
         run: |
           ./gradlew generateTwine
           ./gradlew :android:app:bundleDebug
-          
-#      - name: UI tests
-#        run: |
-#          start_emu_headless.sh
-#          ./gradlew :android:app:connectedCheck

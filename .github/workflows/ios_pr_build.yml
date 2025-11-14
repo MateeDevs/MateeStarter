@@ -3,6 +3,14 @@ name: iOS – PR check
 on:
   pull_request:
     types: [ opened, synchronize ]
+    paths:
+      - 'ios/**'
+      - 'shared/**'
+      - '.github/workflows/an_pr_build.yml'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   test:

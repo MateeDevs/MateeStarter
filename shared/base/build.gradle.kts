@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.mateeStarter.kmm.library)
+    alias(libs.plugins.mateeStarter.kmp.library.compose)
 }
 
 android {
@@ -12,12 +12,6 @@ multiplatformResources {
 
 ktlint {
     filter {
-        exclude { entry ->
-            entry.file.toString().contains("generated")
-        }
+        exclude("**/KeychainAccessibleAfterFirstUnlockSettings.kt")
     }
-}
-
-dependencies {
-    androidMainImplementation(libs.firebase.analytics)
 }
