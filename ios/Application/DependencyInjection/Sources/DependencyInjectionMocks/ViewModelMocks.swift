@@ -10,13 +10,16 @@ import Factory
 import KMPShared
 @testable import SharedDomain
 import SharedDomainMocks
+import Utilities
 
 public extension Container {
     func registerViewModelMocks() {
         
         // Sample
         sampleSharedViewModel.register {
-            SampleSharedViewModel(getSampleText: self.getSampleTextUseCase(), trackAnalyticsEventUseCase: self.trackAnalyticsEventUseCase())
+            SharedViewModel(
+                SampleSharedViewModel(getSampleText: self.getSampleTextUseCase(), trackAnalyticsEventUseCase: self.trackAnalyticsEventUseCase())
+            )
         }
     }
 }

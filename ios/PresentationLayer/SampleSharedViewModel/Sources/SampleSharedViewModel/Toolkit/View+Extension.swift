@@ -9,7 +9,7 @@ import SwiftUI
 @MainActor
 public extension View {
     @inlinable func bindViewModel<S: VmState, I: VmIntent, E: VmEvent>(
-        _ viewModel: BaseViewModel<S, I, E>,
+        _ viewModel: BaseScopedViewModel<S, I, E>,
         stateBinding: Binding<S>,
         onEvent: @escaping (E) -> Void
     ) -> some View {

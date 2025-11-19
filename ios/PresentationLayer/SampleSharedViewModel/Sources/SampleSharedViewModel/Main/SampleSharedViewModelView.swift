@@ -41,17 +41,12 @@ public struct SampleSharedViewModelRootView: View {
 
 public struct SampleSharedViewModelView: View {
     
-    @State private var viewModel: SampleSharedViewModel
-    @State private var clearer: SharedViewModelClearer
+    @State private var viewModel = Container.shared.sampleSharedViewModel()
     @State private var state = SampleSharedState()
     
     @State private var toastData: ToastData?
     
-    public init() {
-        let vm = Container.shared.sampleSharedViewModel()
-        self._viewModel = State(initialValue: vm)
-        self._clearer = State(initialValue: SharedViewModelClearer { vm.clearScope() })
-    }
+    public init() {}
     
     public var body: some View {
         ManagedNavigationStack { _ in
@@ -65,7 +60,7 @@ public struct SampleSharedViewModelView: View {
                         Text(state.sampleText?.value ?? "")
                         
                         Button("Click me!") {
-                            viewModel.onIntent(intent: SampleSharedIntentOnButtonTapped())
+                            viewModel.onIntent(SampleSharedIntentOnButtonTapped())
                         }
                     }
                 }
@@ -73,11 +68,11 @@ public struct SampleSharedViewModelView: View {
             .navigationTitle(MR.strings().bottom_bar_item_2.toLocalized())
             .navigationBarTitleDisplayMode(.inline)
             .onAppear {
-                viewModel.onIntent(intent: SampleSharedIntentOnAppeared())
+                viewModel.onIntent(SampleSharedIntentOnAppeared())
             }
             .registerSampleSharedViewModelDestinations()
             .bindViewModel(
-                viewModel,
+                viewModel.viewModel,
                 stateBinding: $state,
                 onEvent: { event in
                     switch onEnum(of: event) {
