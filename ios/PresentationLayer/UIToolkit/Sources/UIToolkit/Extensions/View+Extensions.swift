@@ -33,11 +33,14 @@ public extension View {
     }
     
     /// Registers the navigation destination and adds a deeplink handler
-    func registerDestination<D: NavigationDestination>(_ destination: D.Type) -> some View {
+    func registerDestination<D: NavigationDestination>(
+        _ destination: D.Type,
+        resumeType: NavigationReceiveResumeType = .auto
+    ) -> some View {
         navigationDestination(D.self)
             .onNavigationReceive { (destination: D, navigator) in
                 navigator.navigate(to: destination)
-                return .auto
+                return resumeType
             }
     }
 }

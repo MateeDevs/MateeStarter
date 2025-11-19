@@ -10,14 +10,48 @@ import NavigatorUI
 import SwiftUI
 import UIToolkit
 
+class SharedViewModelClearer {
+    
+    private let onClear: () -> Void
+    
+    init(onClear: @escaping () -> Void) {
+        self.onClear = onClear
+    }
+    
+    deinit {
+        onClear()
+    }
+}
+
+public struct SampleSharedViewModelRootView: View {
+    
+    @State private var presented = false
+    
+    public init() {}
+    
+    public var body: some View {
+        Button("Click me to navigate") {
+            presented = true
+        }
+        .sheet(isPresented: $presented) {
+            SampleSharedViewModelView()
+        }
+    }
+}
+
 public struct SampleSharedViewModelView: View {
     
-    @Injected(\.sampleSharedViewModel) private var viewModel: KMPShared.SampleSharedViewModel
+    @State private var viewModel: SampleSharedViewModel
+    @State private var clearer: SharedViewModelClearer
     @State private var state = SampleSharedState()
     
     @State private var toastData: ToastData?
     
-    public init() {}
+    public init() {
+        let vm = Container.shared.sampleSharedViewModel()
+        self._viewModel = State(initialValue: vm)
+        self._clearer = State(initialValue: SharedViewModelClearer { vm.clearScope() })
+    }
     
     public var body: some View {
         ManagedNavigationStack { _ in
