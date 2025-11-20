@@ -72,6 +72,7 @@ class KmmLibraryConventionPlugin : Plugin<Project> {
                         implementation(libs.bundles.ktor.common)
                         implementation(libs.kermit)
                         implementation(libs.ktor.auth)
+                        implementation(libs.molecule.runtime)
                     }
 
                     androidMain.dependencies {

@@ -40,6 +40,14 @@ public extension View {
                 return .auto
             }
     }
+    
+    /// onDismiss modifier. Provided action is called when the View is removed from the hierarchy
+    func onDismiss(perform handler: (() -> Void)? = nil) -> some View {
+        background {
+            OnDismissRepresentable(onDismiss: handler)
+                .allowsHitTesting(false)
+        }
+    }
 }
 
 public extension View {

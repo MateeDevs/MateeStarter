@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.mateeStarter.kmm.library)
+    alias(libs.plugins.jetbrains.compose.compiler)
 }
 
 android {

@@ -31,20 +31,20 @@ public struct SampleSharedViewModelView: View {
                         Text(state.sampleText?.value ?? "")
                         
                         Button("Click me!") {
-                            viewModel.onIntent(intent: SampleSharedIntentOnButtonTapped())
+                            viewModel.onIntent(.OnButtonTapped())
                         }
                     }
                 }
             }
             .navigationTitle(MR.strings().bottom_bar_item_2.toLocalized())
             .navigationBarTitleDisplayMode(.inline)
-            .onAppear {
-                viewModel.onIntent(intent: SampleSharedIntentOnAppeared())
+            .onDismiss {
+                viewModel.clearScope()
             }
             .registerSampleSharedViewModelDestinations()
             .bindViewModel(
                 viewModel,
-                stateBinding: $state,
+                state: $state,
                 onEvent: { event in
                     switch onEnum(of: event) {
                     case .showMessage(let message):
