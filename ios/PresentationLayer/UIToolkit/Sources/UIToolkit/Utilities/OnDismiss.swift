@@ -5,6 +5,7 @@
 
 import SwiftUI
 
+/// Taken from https://swiftaddict.com/blog/on-dismiss
 struct OnDismissRepresentable: UIViewControllerRepresentable {
     let onDismiss: (() -> Void)?
 
