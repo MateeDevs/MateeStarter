@@ -22,6 +22,7 @@ trailing_whitespace:
 
 disabled_rules:
   - identifier_name
+  - redundant_discardable_let
 
 opt_in_rules:
   - array_init

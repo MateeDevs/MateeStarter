@@ -5,6 +5,20 @@
 
 import SwiftUI
 
+public extension ButtonStyle where Self == PrimaryButtonStyle {
+    
+    static var primary: Self {
+        .primary()
+    }
+    
+    static func primary(
+        isLarge: Bool = true,
+        isLoading: Bool = false
+    ) -> Self {
+        self.init(isLarge: isLarge, isLoading: isLoading)
+    }
+}
+
 public struct PrimaryButtonStyle: ButtonStyle {
     
     private let isLarge: Bool

@@ -4,37 +4,48 @@
 //
 
 import KMPShared
+import NavigatorUI
 import SwiftUI
 import UIToolkit
 
-struct SampleView: View {
+public struct SampleView: View {
 
-    @ObservedObject private var viewModel: SampleViewModel
+    @StateObject private var viewModel = SampleViewModel()
 
-    init(viewModel: SampleViewModel) {
-        self.viewModel = viewModel
-    }
+    public init() {}
 
-    var body: some View {
-        Group {
-            switch viewModel.state.sampleText {
-            case let .data(text), let .loading(text):
-                contentView(sampleText: text) {
-                    viewModel.onIntent(.onButtonTapped)
+    public var body: some View {
+        ManagedNavigationStack { navigator in
+            ZStack {
+                switch viewModel.state.sampleText {
+                case let .data(text), let .loading(text):
+                    contentView(sampleText: text) {
+                        viewModel.onIntent(.onButtonTapped)
+                    }
+                    .skeleton(viewModel.state.sampleText.isLoading)
+                case let .error(error):
+                    ErrorView(error: error)
+                case .empty:
+                    EmptyView()
                 }
-                .skeleton(viewModel.state.sampleText.isLoading)
-            case let .error(error):
-                ErrorView(error: error)
-            case .empty:
-                EmptyView()
+            }
+            .navigationTitle(MR.strings().bottom_bar_item_1.toLocalized())
+            .navigationBarTitleDisplayMode(.inline)
+            .toastView(Binding<ToastData?>(
+                get: { viewModel.state.toast },
+                set: { toast in viewModel.onIntent(.onToastChanged(data: toast)) }
+            ))
+            .task { await bindEvents(navigator: navigator) }
+            .lifecycle(viewModel)
+        }
+    }
+    
+    private func bindEvents(navigator: Navigator) async {
+        for await event in viewModel.events {
+            switch event {
+            case .showNextScreen: navigator.navigate(to: SampleDestination.next)
             }
         }
-        .navigationTitle(MR.strings().bottom_bar_item_1.toLocalized())
-        .toastView(Binding<ToastData?>(
-            get: { viewModel.state.toast },
-            set: { toast in viewModel.onIntent(.onToastChanged(data: toast)) }
-        ))
-        .lifecycle(viewModel)
     }
 
     private func contentView(
@@ -47,6 +58,10 @@ struct SampleView: View {
             Text(sampleText.value)
 
             Button("Click me!", action: onButtonTapped)
+            
+            Button("Show next") {
+                viewModel.onIntent(.onNextTapped)
+            }
         }
     }
 }
@@ -55,11 +70,10 @@ struct SampleView: View {
 import DependencyInjectionMocks
 import Factory
 
-#Preview {
-    fixMokoResourcesForPreviews()
-    Container.shared.registerUseCaseMocks()
+ #Preview {
+    let _ = fixMokoResourcesForPreviews()
+    let _ = Container.shared.registerUseCaseMocks()
 
-    let vm = SampleViewModel(flowController: nil)
-    return SampleView(viewModel: vm)
-}
+    SampleView()
+ }
 #endif

@@ -37,6 +37,7 @@ versionCatalogueUpdate = "0.8.1"
 versions = "0.49.0"
 desugar = "2.1.2"
 uiautomator = "2.3.0"
+molecule = "2.1.0"
 skie = "0.10.6"
 firebase = "22.5.0"
 googleServices = "4.4.3"
@@ -125,6 +126,8 @@ espresso-core = { group = "androidx.test.espresso", name = "espresso-core", vers
 androidx-uiautomator = { group = "androidx.test.uiautomator", name = "uiautomator", version.ref = "uiautomator" }
 # Skie
 skie-annotations = { module = "co.touchlab.skie:configuration-annotations", version.ref = "skie" }
+# Molecule
+molecule-runtime = { module = "app.cash.molecule:molecule-runtime", version.ref = "molecule" }
 # Firebase
 firebase-analytics = { module = "com.google.firebase:firebase-analytics-ktx", version.ref = "firebase" }
 

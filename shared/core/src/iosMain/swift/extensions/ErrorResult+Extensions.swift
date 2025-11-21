@@ -29,3 +29,5 @@ public extension Swift.Error {
         }
     }
 }
+
+extension ErrorResult: Swift.Error {}

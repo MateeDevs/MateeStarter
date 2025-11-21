@@ -46,7 +46,7 @@ internal fun SampleSharedViewModelMainRoute(
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     LaunchedEffect(key1 = viewModel) {
-        viewModel.onIntent(SampleSharedIntent.OnAppeared)
+        viewModel.onViewAppeared()
     }
 
     val context = LocalContext.current

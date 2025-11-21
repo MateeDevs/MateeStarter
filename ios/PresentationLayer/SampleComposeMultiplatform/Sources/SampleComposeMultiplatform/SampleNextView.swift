@@ -6,18 +6,15 @@
 import DependencyInjection
 import Factory
 import KMPShared
+import NavigatorUI
 import SwiftUI
 import UIToolkit
 
 public struct SampleNextView: View {
-
-    private var goBack: () -> Void
     
     @State private var toastData: ToastData?
     
-    public init(goBack: @escaping () -> Void) {
-        self.goBack = goBack
-    }
+    @Environment(\.navigator) private var navigator
     
     public var body: some View {
         // Wrap compose multiplatform view in ZStack for the swipe back to work reliably
@@ -31,8 +28,7 @@ public struct SampleNextView: View {
                         switch onEnum(of: event) {
                         case .showMessage(let message):
                             toastData = ToastData(message.message, hideAfter: 2)
-                        case .navigateBack:
-                            goBack()
+                        case .navigateBack: navigator.pop()
                         }
                     }
                 )

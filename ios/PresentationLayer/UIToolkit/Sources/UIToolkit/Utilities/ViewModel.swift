@@ -17,3 +17,5 @@ public protocol ViewModel {
     associatedtype Intent
     func onIntent(_ intent: Intent)
 }
+
+public protocol ViewModelEvent: Sendable, Equatable {}

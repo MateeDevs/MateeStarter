@@ -6,35 +6,36 @@
 import DependencyInjection
 import Factory
 import KMPShared
+import NavigatorUI
 import SwiftUI
 import UIToolkit
 
-struct SampleComposeMultiplatformView: View {
-
-    private weak var flowController: FlowController?
+public struct SampleComposeMultiplatformView: View {
     
     @State private var toastData: ToastData?
     
-    init(flowController: FlowController?) {
-        self.flowController = flowController
-    }
+    public init() {}
     
-    var body: some View {
-        ComposeViewController {
-            SampleComposeMultiplatformScreenViewController(
-                onEvent: { event in
-                    switch onEnum(of: event) {
-                    case .showMessage(let message):
-                        toastData = ToastData(message.message, hideAfter: 2)
-                    case .goToNext:
-                        flowController?.handleFlow(SampleComposeMultiplatformFlow.next)
-                    }
-                },
-                factory: SwiftUISampleComposeMultiplatformViewFactory()
-            )
+    public var body: some View {
+        ManagedNavigationStack { navigator in
+            ComposeViewController {
+                SampleComposeMultiplatformScreenViewController(
+                    onEvent: { event in
+                        switch onEnum(of: event) {
+                        case .showMessage(let message):
+                            toastData = ToastData(message.message, hideAfter: 2)
+                        case .goToNext:
+                            navigator.navigate(to: SampleComposeMultiplatformDestination.next)
+                        }
+                    },
+                    factory: SwiftUISampleComposeMultiplatformViewFactory()
+                )
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .toastView($toastData)
+            .navigationTitle(MR.strings().bottom_bar_item_3.toLocalized())
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .toastView($toastData)
-        .navigationTitle(MR.strings().bottom_bar_item_3.toLocalized())
+        .tint(AppTheme.Colors.navBarTitle) // Back button color
     }
 }
