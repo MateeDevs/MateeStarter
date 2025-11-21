@@ -32,10 +32,26 @@ public final class SampleViewModel: UIToolkit.BaseViewModel, ViewModel, Observab
         var toast: ToastData?
     }
     
+    // MARK: Events
+    
+    public enum Event: ViewModelEvent {
+        case showNextScreen
+    }
+    
+    public var events: AsyncStream<Event> {
+        AsyncStream { continuation in
+            self._events = continuation
+        }
+    }
+    
+    private var _events: AsyncStream<Event>.Continuation?
+    
     // MARK: Intent
+    
     public enum Intent {
         case onButtonTapped
         case onToastChanged(data: ToastData?)
+        case onNextTapped
     }
 
     public func onIntent(_ intent: Intent) {
@@ -43,6 +59,7 @@ public final class SampleViewModel: UIToolkit.BaseViewModel, ViewModel, Observab
             switch intent {
             case .onButtonTapped: showToast(message: "Button was tapped")
             case .onToastChanged(let data): state.toast = data
+            case .onNextTapped: _events?.yield(.showNextScreen)
             }
         })
     }

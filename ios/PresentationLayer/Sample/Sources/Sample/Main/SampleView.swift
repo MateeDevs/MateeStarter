@@ -10,14 +10,12 @@ import UIToolkit
 
 public struct SampleView: View {
 
-    @ObservedObject private var viewModel: SampleViewModel
+    @StateObject private var viewModel = SampleViewModel()
 
-    public init(viewModel: SampleViewModel) {
-        self.viewModel = viewModel
-    }
+    public init() {}
 
     public var body: some View {
-        ManagedNavigationStack { _ in
+        ManagedNavigationStack { navigator in
             ZStack {
                 switch viewModel.state.sampleText {
                 case let .data(text), let .loading(text):
@@ -33,12 +31,21 @@ public struct SampleView: View {
             }
             .navigationTitle(MR.strings().bottom_bar_item_1.toLocalized())
             .navigationBarTitleDisplayMode(.inline)
+            .toastView(Binding<ToastData?>(
+                get: { viewModel.state.toast },
+                set: { toast in viewModel.onIntent(.onToastChanged(data: toast)) }
+            ))
+            .task { await bindEvents(navigator: navigator) }
+            .lifecycle(viewModel)
         }
-        .toastView(Binding<ToastData?>(
-            get: { viewModel.state.toast },
-            set: { toast in viewModel.onIntent(.onToastChanged(data: toast)) }
-        ))
-        .lifecycle(viewModel)
+    }
+    
+    private func bindEvents(navigator: Navigator) async {
+        for await event in viewModel.events {
+            switch event {
+            case .showNextScreen: navigator.navigate(to: SampleDestination.next)
+            }
+        }
     }
 
     private func contentView(
@@ -51,6 +58,10 @@ public struct SampleView: View {
             Text(sampleText.value)
 
             Button("Click me!", action: onButtonTapped)
+            
+            Button("Show next") {
+                viewModel.onIntent(.onNextTapped)
+            }
         }
     }
 }
@@ -63,7 +74,6 @@ import Factory
     let _ = fixMokoResourcesForPreviews()
     let _ = Container.shared.registerUseCaseMocks()
 
-    let vm = SampleViewModel()
-    SampleView(viewModel: vm)
+    SampleView()
  }
 #endif

@@ -7,13 +7,19 @@ import NavigatorUI
 import SwiftUI
 
 enum SampleDestination {
-    case sample
+    case next
 }
 
 extension SampleDestination: NavigationDestination {
     var body: some View {
         switch self {
-        case .sample: EmptyView()
+        case .next: NextView()
+        }
+    }
+    
+    var method: NavigationMethod {
+        switch self {
+        case .next: .sheet
         }
     }
 }
