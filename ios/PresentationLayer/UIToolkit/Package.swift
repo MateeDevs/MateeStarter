@@ -21,7 +21,7 @@ let package = Package(
         .package(name: "SharedDomain", path: "../../DomainLayer/SharedDomain"),
         .package(url: "https://github.com/SwiftGen/SwiftGenPlugin", .upToNextMajor(from: "6.6.0")),
         .package(url: "https://github.com/SFSafeSymbols/SFSafeSymbols.git", .upToNextMajor(from: "5.3.0")),
-        .package(url: "https://github.com/hmlongco/Navigator", exact: "1.3.1")
+        .package(url: "https://github.com/hmlongco/Navigator", .upToNextMajor(from: "1.3.1"))
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
