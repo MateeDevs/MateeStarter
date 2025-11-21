@@ -44,7 +44,7 @@ struct AppRootView: View {
     
     @ViewBuilder
     private var sampleSharedViewModelTab: some View {
-        SampleSharedViewModelView()
+        SampleSharedViewModelRootView()
             .tabItem {
                 Image(uiImage: AppTheme.Images.personCirle)
                 

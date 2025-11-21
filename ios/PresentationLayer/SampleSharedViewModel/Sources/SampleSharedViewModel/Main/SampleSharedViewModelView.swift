@@ -20,42 +20,37 @@ public struct SampleSharedViewModelView: View {
     public init() {}
     
     public var body: some View {
-        ManagedNavigationStack { _ in
-            ZStack(alignment: .center) {
-                if state.loading {
-                    PrimaryProgressView()
-                } else {
-                    VStack(spacing: AppTheme.Dimens.spaceMedium) {
-                        Text("This is a sample with SwiftUI and shared VM")
-                        
-                        Text(state.sampleText?.value ?? "")
-                        
-                        Button("Click me!") {
-                            viewModel.onIntent(.OnButtonTapped())
-                        }
+        ZStack(alignment: .center) {
+            if state.loading {
+                PrimaryProgressView()
+            } else {
+                VStack(spacing: AppTheme.Dimens.spaceMedium) {
+                    Text("This is a sample with SwiftUI and shared VM")
+                    
+                    Text(state.sampleText?.value ?? "")
+                    
+                    Button("Click me!") {
+                        viewModel.onIntent(.OnButtonTapped())
                     }
                 }
             }
-            .navigationTitle(MR.strings().bottom_bar_item_2.toLocalized())
-            .navigationBarTitleDisplayMode(.inline)
-            .onDismiss {
-                viewModel.clearScope()
-            }
-            .registerSampleSharedViewModelDestinations()
-            .bindViewModel(
-                viewModel,
-                state: $state,
-                onEvent: { event in
-                    switch onEnum(of: event) {
-                    case .showMessage(let message):
-                        toastData = ToastData(message.message, hideAfter: 2)
-                    case .goToNext:
-                        print("Should navigate to next screen")
-                    }
-                }
-            )
-            .toastView($toastData)
         }
+        .onDismiss {
+            viewModel.clearScope()
+        }
+        .bindViewModel(
+            viewModel,
+            state: $state,
+            onEvent: { event in
+                switch onEnum(of: event) {
+                case .showMessage(let message):
+                    toastData = ToastData(message.message, hideAfter: 2)
+                case .goToNext:
+                    print("Should navigate to next screen")
+                }
+            }
+        )
+        .toastView($toastData)
     }
 }
 

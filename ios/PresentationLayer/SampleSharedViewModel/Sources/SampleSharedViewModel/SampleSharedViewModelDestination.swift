@@ -13,7 +13,7 @@ enum SampleSharedViewModelDestination {
 extension SampleSharedViewModelDestination: NavigationDestination {
     var body: some View {
         switch self {
-        case .sample: EmptyView()
+        case .sample: SampleSharedViewModelView()
         }
     }
 }
