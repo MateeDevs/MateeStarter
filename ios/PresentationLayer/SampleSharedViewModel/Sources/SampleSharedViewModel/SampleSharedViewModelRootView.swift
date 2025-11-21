@@ -24,7 +24,6 @@ public struct SampleSharedViewModelRootView: View {
                 
                 Spacer()
             }
-            .registerSampleSharedViewModelDestinations()
             .navigationTitle(MR.strings().bottom_bar_item_2.toLocalized())
             .navigationBarTitleDisplayMode(.inline)
         }

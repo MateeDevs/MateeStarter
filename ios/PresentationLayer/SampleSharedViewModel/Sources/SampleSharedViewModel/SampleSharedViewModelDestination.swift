@@ -17,10 +17,3 @@ extension SampleSharedViewModelDestination: NavigationDestination {
         }
     }
 }
-
-public extension View {
-    func registerSampleSharedViewModelDestinations() -> some View {
-        self
-            .registerDestination(SampleSharedViewModelDestination.self)
-    }
-}

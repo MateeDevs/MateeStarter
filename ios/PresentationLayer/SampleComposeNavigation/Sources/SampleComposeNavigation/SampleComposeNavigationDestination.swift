@@ -17,10 +17,3 @@ extension SampleComposeNavigationDestination: NavigationDestination {
         }
     }
 }
-
-public extension View {
-    func registerSampleComposeNavigationDestinations() -> some View {
-        self
-            .registerDestination(SampleComposeNavigationDestination.self)
-    }
-}

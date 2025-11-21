@@ -32,15 +32,6 @@ public extension View {
             .shimmering(active: condition(), duration: duration, bounce: bounce)
     }
     
-    /// Registers the navigation destination and adds a deeplink handler
-    func registerDestination<D: NavigationDestination>(_ destination: D.Type) -> some View {
-        navigationDestination(D.self)
-            .onNavigationReceive { (destination: D, navigator) in
-                navigator.navigate(to: destination)
-                return .auto
-            }
-    }
-    
     /// onDismiss modifier. Provided action is called when the View is removed from the hierarchy
     func onDismiss(perform handler: (() -> Void)? = nil) -> some View {
         background {

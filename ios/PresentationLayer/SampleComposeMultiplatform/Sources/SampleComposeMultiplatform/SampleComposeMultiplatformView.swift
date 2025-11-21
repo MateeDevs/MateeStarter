@@ -35,7 +35,6 @@ public struct SampleComposeMultiplatformView: View {
             .toastView($toastData)
             .navigationTitle(MR.strings().bottom_bar_item_3.toLocalized())
             .navigationBarTitleDisplayMode(.inline)
-            .registerSampleComposeMultiplatformDestinations()
         }
         .tint(AppTheme.Colors.navBarTitle) // Back button color
     }

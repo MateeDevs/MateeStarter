@@ -17,10 +17,3 @@ extension SampleComposeMultiplatformDestination: NavigationDestination {
         }
     }
 }
-
-public extension View {
-    func registerSampleComposeMultiplatformDestinations() -> some View {
-        self
-            .registerDestination(SampleComposeMultiplatformDestination.self)
-    }
-}

@@ -17,11 +17,3 @@ extension SampleDestination: NavigationDestination {
         }
     }
 }
-
-public extension View {
-    func registerSampleNavigationDestinations() -> some View {
-        self
-            .registerDestination(SampleDestination.self)
-//            .registerSubDestinations()
-    }
-}

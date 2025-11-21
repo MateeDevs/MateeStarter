@@ -31,7 +31,6 @@ public struct SampleView: View {
                     EmptyView()
                 }
             }
-            .registerSampleNavigationDestinations()
             .navigationTitle(MR.strings().bottom_bar_item_1.toLocalized())
             .navigationBarTitleDisplayMode(.inline)
         }
