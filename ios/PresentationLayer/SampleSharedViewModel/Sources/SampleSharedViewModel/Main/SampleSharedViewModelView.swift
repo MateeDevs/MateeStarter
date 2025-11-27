@@ -35,9 +35,6 @@ public struct SampleSharedViewModelView: View {
                 }
             }
         }
-        .onDismiss {
-            viewModel.clearScope()
-        }
         .bindViewModel(
             viewModel,
             state: $state,

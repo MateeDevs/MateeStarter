@@ -1,3 +1,5 @@
+import extensions.libs
+
 plugins {
     alias(libs.plugins.mateeStarter.kmm.library)
     alias(libs.plugins.jetbrains.compose.compiler)
@@ -18,4 +20,5 @@ ktlint {
 dependencies {
     commonMainImplementation(project(":shared:base"))
     commonMainImplementation(project(":shared:sample"))
+    commonMainImplementation(libs.molecule.runtime)
 }

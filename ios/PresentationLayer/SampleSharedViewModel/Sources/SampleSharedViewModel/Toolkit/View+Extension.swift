@@ -5,6 +5,7 @@
 
 import KMPShared
 import SwiftUI
+import UIToolkit
 
 @MainActor
 public extension View {
@@ -27,6 +28,9 @@ public extension View {
                 for await event in viewModel.events {
                     onEvent(event)
                 }
+            }
+            .onDismiss {
+                viewModel.clearScope()
             }
     }
 }
