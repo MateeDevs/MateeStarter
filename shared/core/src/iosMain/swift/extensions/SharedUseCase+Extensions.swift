@@ -1,6 +1,8 @@
 // swiftlint:disable file_length
+// swiftlint:disable force_cast
 
 import Foundation
+import KMPShared
 
 private class JobWrapper {
     var job: Kotlinx_coroutines_coreJob?
@@ -11,12 +13,12 @@ private class JobWrapper {
 }
 
 /// `SkieSwiftFlow` does not propagate exceptions to Swift, we need custom handling
-public extension UseCaseFlowNoParams {
-    func execute<Out>() -> AsyncThrowingStream<Out, Error> {
-        let jobWrapper: JobWrapper = JobWrapper()
-        return AsyncThrowingStream<Out, Error> { continuation in
-            let coroutineJob = subscribe { data in
-                let value: Out = data as! Out // swiftlint:disable:this force_cast
+public extension UseCaseFlow {
+    func execute<In: Any, Out>(params: In) -> AsyncThrowingStream<Out, Swift.Error> {
+        let jobWrapper = JobWrapper()
+        return AsyncThrowingStream<Out, Swift.Error> { continuation in
+            let coroutineJob = subscribe(params) { data in
+                let value: Out = data as! Out
                 continuation.yield(value)
             } onComplete: {
                 continuation.finish()
@@ -24,42 +26,37 @@ public extension UseCaseFlowNoParams {
                 continuation.finish(throwing: error.asError())
             }
             jobWrapper.setJob(coroutineJob)
-            continuation.onTermination = { _ in
-                coroutineJob.cancel(cause: nil)
-            }
         }
     }
 }
 
-// returns unwrapped result, for try await should be wrapped in do-catch block
 /// `SkieSwiftFlow` does not propagate exceptions to Swift, we need custom handling
+public extension UseCaseFlowNoParams {
+    func execute<Out>() -> AsyncThrowingStream<Out, Swift.Error> {
+        let jobWrapper = JobWrapper()
+        return AsyncThrowingStream<Out, Swift.Error> { continuation in
+            let coroutineJob = subscribe { data in
+                let value: Out = data as! Out
+                continuation.yield(value)
+            } onComplete: {
+                continuation.finish()
+            } onThrow: { error in
+                continuation.finish(throwing: error.asError())
+            }
+            jobWrapper.setJob(coroutineJob)
+        }
+    }
+}
+
+/// `UseCaseFlowResult` does not automatically convert to `SkieSwiftFlow`, we need manual conversion
 public extension UseCaseFlowResult {
-    func execute<In: Any, Out>(params: In) -> AsyncThrowingStream<Out, Error> {
-        let jobWrapper: JobWrapper = JobWrapper()
-        return AsyncThrowingStream<Out, Error> { continuation in
-            let coroutineJob = subscribe(params: params) { result in
+    func execute<In: Any, Out>(params: In) -> AsyncThrowingStream<Out, Swift.Error> {
+        let jobWrapper = JobWrapper()
+        return AsyncThrowingStream<Out, Swift.Error> { continuation in
+            let coroutineJob = subscribe(params) { result in
                 switch onEnum(of: result) {
-                case .success(let resultSuccess):
-                    // if new possible type is needed, it can be added to this switch
-                    // swiftlint:disable force_cast
-                    switch resultSuccess.data {
-                    case let array as NSArray:
-                        let arrayValue = (array as? [Any]) as! Out
-                        continuation.yield(arrayValue)
-                    case let boolean as KotlinBoolean:
-                        let boolValue = boolean.boolValue as! Out
-                        continuation.yield(boolValue)
-                    default:
-                        continuation.yield(resultSuccess as! Out)
-                    }
-                case .error(let resultError):
-                    let resultError = resultError.error
-                    continuation.finish(
-                        throwing: KmmLocalizedError(
-                            errorResult: resultError,
-                            localizedMessage: resultError.localizedMessage.localized()
-                        )
-                    )
+                case let .success(success): continuation.yield(success.data as! Out)
+                case let .error(error): continuation.finish(throwing: error.error)
                 }
             } onComplete: {
                 continuation.finish()
@@ -67,59 +64,102 @@ public extension UseCaseFlowResult {
                 continuation.finish(throwing: error.asError())
             }
             jobWrapper.setJob(coroutineJob)
-            continuation.onTermination = { _ in
-                coroutineJob.cancel(cause: nil)
+        }
+    }
+}
+
+/// `UseCaseFlowResultNoParams` does not automatically convert to `SkieSwiftFlow`, we need manual conversion
+public extension UseCaseFlowResultNoParams {
+    func execute<Out>() -> AsyncThrowingStream<Out, Swift.Error> {
+        let jobWrapper = JobWrapper()
+        return AsyncThrowingStream<Out, Swift.Error> { continuation in
+            let coroutineJob = subscribe { result in
+                switch onEnum(of: result) {
+                case let .success(success): continuation.yield(success.data as! Out)
+                case let .error(error): continuation.finish(throwing: error.error)
+                }
+            } onComplete: {
+                continuation.finish()
+            } onThrow: { error in
+                continuation.finish(throwing: error.asError())
             }
+            jobWrapper.setJob(coroutineJob)
         }
     }
 }
 
 public extension UseCaseResult {
     func execute<In: Any, Out>(params: In) async throws -> Out {
-        let res = try await invoke(params: params)
-
-        switch onEnum(of: res) {
-        case .error(let resultError):
-            throw KmmLocalizedError(errorResult: resultError.error, localizedMessage: resultError.error.localizedMessage.localized())
-        case .success(let resultSuccess):
-            return resultSuccess.data as! Out
+        let result = try await invoke(params: params)
+        switch onEnum(of: result) {
+        case let .success(success): return success.data as! Out
+        case let .error(error): throw error.error
         }
     }
 
+    // Void returning UC
     func execute<In: Any>(params: In) async throws {
-        let res = try await invoke(params: params)
-
-        switch onEnum(of: res) {
-        case .error(let resultError):
-            throw KmmLocalizedError(errorResult: resultError.error, localizedMessage: resultError.error.localizedMessage.localized())
-        case .success(let resultSuccess):
-            return resultSuccess.data as! Void
+        let result = try await invoke(params: params)
+        switch onEnum(of: result) {
+        case let .success(success): return
+        case let .error(error): throw error.error
         }
     }
 }
 
 public extension UseCaseResultNoParams {
     func execute<Out>() async throws -> Out {
-        let res = try await invoke()
-
-        switch onEnum(of: res) {
-        case .error(let resultError):
-            throw KmmLocalizedError(errorResult: resultError.error, localizedMessage: resultError.error.localizedMessage.localized())
-        case .success(let resultSuccess):
-            return resultSuccess.data as! Out
+        let result = try await invoke()
+        switch onEnum(of: result) {
+        case let .success(success): return success.data as! Out
+        case let .error(error): throw error.error
         }
     }
 
-
-    // Void returining UC
+    // Void returning UC
     func execute() async throws {
-        let res = try await invoke()
+        let result = try await invoke()
+        switch onEnum(of: result) {
+        case let .success(success): return
+        case let .error(error): throw error.error
+        }
+    }
+}
 
-        switch onEnum(of: res) {
-        case .error(let resultError):
-            throw KmmLocalizedError(errorResult: resultError.error, localizedMessage: resultError.error.localizedMessage.localized())
-        case .success(let resultSuccess):
-            return resultSuccess.data as! Void
+public extension UseCaseSynchronousResult {
+    func execute<In: Any, Out>(params: In) throws -> Out {
+        let result = try invoke(params: params)
+        switch onEnum(of: result) {
+        case let .success(success): return success.data as! Out
+        case let .error(error): throw error.error
+        }
+    }
+
+    // Void returning UC
+    func execute<In: Any>(params: In) throws {
+        let result = try invoke(params: params)
+        switch onEnum(of: result) {
+        case let .success(success): return
+        case let .error(error): throw error.error
+        }
+    }
+}
+
+public extension UseCaseSynchronousResultNoParams {
+    func execute<Out>() throws -> Out {
+        let result = try invoke()
+        switch onEnum(of: result) {
+        case let .success(success): return success.data as! Out
+        case let .error(error): throw error.error
+        }
+    }
+
+    // Void returning UC
+    func execute() throws {
+        let result = try invoke()
+        switch onEnum(of: result) {
+        case let .success(success): return
+        case let .error(error): throw error.error
         }
     }
 }

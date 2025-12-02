@@ -5,6 +5,12 @@
 
 import SwiftUI
 
+public extension ButtonStyle where Self == SecondaryButtonStyle {
+    static var secondary: Self {
+        self.init()
+    }
+}
+
 public struct SecondaryButtonStyle: ButtonStyle {
     
     public init() {}

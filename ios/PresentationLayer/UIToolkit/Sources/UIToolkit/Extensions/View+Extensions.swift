@@ -3,6 +3,7 @@
 //  Copyright © 2022 Matee. All rights reserved.
 //
 
+import NavigatorUI
 import SwiftUI
 
 @MainActor
@@ -29,6 +30,14 @@ public extension View {
     ) -> some View {
         redacted(reason: condition() ? .placeholder : [])
             .shimmering(active: condition(), duration: duration, bounce: bounce)
+    }
+    
+    /// onDismiss modifier. Provided action is called when the View is removed from the hierarchy
+    func onDismiss(perform handler: (() -> Void)? = nil) -> some View {
+        background {
+            OnDismissRepresentable(onDismiss: handler)
+                .allowsHitTesting(false)
+        }
     }
 }
 

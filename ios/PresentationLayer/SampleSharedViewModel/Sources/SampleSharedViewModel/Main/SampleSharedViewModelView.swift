@@ -6,23 +6,20 @@
 import DependencyInjection
 import Factory
 import KMPShared
+import NavigatorUI
 import SwiftUI
 import UIToolkit
 
-struct SampleSharedViewModelView: View {
+public struct SampleSharedViewModelView: View {
     
     @Injected(\.sampleSharedViewModel) private var viewModel: KMPShared.SampleSharedViewModel
     @State private var state = SampleSharedState()
     
     @State private var toastData: ToastData?
     
-    private weak var flowController: FlowController?
+    public init() {}
     
-    init(flowController: FlowController?) {
-        self.flowController = flowController
-    }
-    
-    var body: some View {
+    public var body: some View {
         ZStack(alignment: .center) {
             if state.loading {
                 PrimaryProgressView()
@@ -33,23 +30,19 @@ struct SampleSharedViewModelView: View {
                     Text(state.sampleText?.value ?? "")
                     
                     Button("Click me!") {
-                        viewModel.onIntent(intent: SampleSharedIntentOnButtonTapped())
+                        viewModel.onIntent(.OnButtonTapped())
                     }
                 }
             }
         }
-        .navigationTitle(MR.strings().bottom_bar_item_2.toLocalized())
-        .onAppear {
-            viewModel.onIntent(intent: SampleSharedIntentOnAppeared())
-        }
         .bindViewModel(
             viewModel,
-            stateBinding: $state,
+            state: $state,
             onEvent: { event in
                 switch onEnum(of: event) {
                 case .showMessage(let message):
                     toastData = ToastData(message.message, hideAfter: 2)
-                case .goToNext(let data):
+                case .goToNext:
                     print("Should navigate to next screen")
                 }
             }
@@ -62,11 +55,11 @@ struct SampleSharedViewModelView: View {
 import DependencyInjectionMocks
 import Factory
 
-#Preview {
-    fixMokoResourcesForPreviews()
-    Container.shared.registerUseCaseMocks()
-    Container.shared.registerViewModelMocks()
+ #Preview {
+    let _ = fixMokoResourcesForPreviews()
+    let _ = Container.shared.registerUseCaseMocks()
+    let _ = Container.shared.registerViewModelMocks()
     
-    return SampleSharedViewModelView(flowController: nil)
-}
+    SampleSharedViewModelView()
+ }
 #endif

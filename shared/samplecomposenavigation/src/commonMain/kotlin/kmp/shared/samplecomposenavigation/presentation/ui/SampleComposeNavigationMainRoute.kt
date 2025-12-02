@@ -41,7 +41,7 @@ internal fun SampleComposeNavigationMainRoute(
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     LaunchedEffect(viewModel) {
-        viewModel.onIntent(SampleSharedIntent.OnAppeared)
+        viewModel.onViewAppeared()
     }
 
     LaunchedEffect(viewModel) {

@@ -5,29 +5,32 @@
 
 import KMPShared
 import SwiftUI
+import UIToolkit
 
 @MainActor
 public extension View {
-    @inlinable func bindViewModel<S: VmState, I: VmIntent, E: VmEvent>(
-        _ viewModel: BaseViewModel<S, I, E>,
-        stateBinding: Binding<S>,
+    @inlinable func bindViewModel<S: VmState & Sendable, I: VmIntent, E: VmEvent & Sendable>(
+        _ viewModel: BaseScopedViewModel<S, I, E>,
+        state: Binding<S>,
         onEvent: @escaping (E) -> Void
     ) -> some View {
-        var eventObservingTask: Task<(), Error>?
-        var onFinishStateObserving: (() -> Void)?
-        return self
-            .onAppear {
-                onFinishStateObserving = viewModel.bindState(stateBinding: stateBinding)
-                eventObservingTask = Task {
-                    for try await newEvent: E in viewModel.asyncStreamFromEvents() {
-                        onEvent(newEvent)
-                    }
-                    eventObservingTask!.cancel()
+        self
+            .task {
+                for await value in viewModel.state {
+                    state.wrappedValue = value
                 }
             }
-            .onDisappear {
+            .task {
+                // Make sure that onViewAppeared will be called after event subcsription
+                Task {
+                    viewModel.onViewAppeared()
+                }
+                for await event in viewModel.events {
+                    onEvent(event)
+                }
+            }
+            .onDismiss {
                 viewModel.clearScope()
-                onFinishStateObserving?()
             }
     }
 }
