@@ -15,3 +15,7 @@ ktlint {
         exclude("**/KeychainAccessibleAfterFirstUnlockSettings.kt")
     }
 }
+
+dependencies {
+    commonMainImplementation(libs.molecule.runtime)
+}

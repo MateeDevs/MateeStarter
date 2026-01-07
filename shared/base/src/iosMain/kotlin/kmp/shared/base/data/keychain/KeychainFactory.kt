@@ -8,7 +8,6 @@ import kotlinx.cinterop.ExperimentalForeignApi
 import platform.Foundation.CFBridgingRetain
 import platform.Security.kSecAttrAccessible
 import platform.Security.kSecAttrAccessibleAfterFirstUnlock
-import platform.Security.kSecAttrService
 
 class KeychainFactory {
 

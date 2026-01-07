@@ -3,6 +3,7 @@
 //  Copyright © 2025 Matee. All rights reserved.
 //
 
+import SampleFeature
 import SwiftUI
 import WidgetKit
 
@@ -15,7 +16,7 @@ struct MateeStarterApp: App {
     
     var body: some Scene {
         WindowGroup {
-            AppRootView()
+            SampleFeatureView()
         }
         .onChange(of: scenePhase) { phase in
             switch phase {

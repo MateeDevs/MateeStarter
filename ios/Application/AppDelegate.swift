@@ -9,12 +9,10 @@ import Atlantis
 
 import DependencyInjection
 import Factory
-import KeychainProvider
 import OSLog
 import SharedDomain
 import UIKit
 import UIToolkit
-import UserDefaultsProvider
 import Utilities
 import WidgetKit
 
@@ -28,9 +26,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         
         setupEnvironment()
-        
-        // Clear keychain on first run
-        clearKeychain()
         
         // Setup firebase for debug
         firebaseDebugSetup()
@@ -63,18 +58,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         #else
         Environment.build = .release
         #endif
-    }
-    
-    // MARK: Clear keychain
-    private func clearKeychain() {
-        do {
-            let _: Bool = try Container.shared.userDefaultsProvider().read(.hasRunBefore)
-        } catch UserDefaultsProviderError.valueForKeyNotFound {
-            do {
-                try Container.shared.keychainProvider().deleteAll()
-                try Container.shared.userDefaultsProvider().update(.hasRunBefore, value: true)
-            } catch {}
-        } catch {}
     }
     
     // MARK: Firebase debug setup

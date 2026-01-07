@@ -3,6 +3,7 @@
 //  Copyright © 2023 Matee. All rights reserved.
 //
 
+import AnalyticsProvider
 import Factory
 import Foundation
 import KMPShared
@@ -31,8 +32,12 @@ final class KMPKoinDependency: KMPDependency {
         
         let koinApplication = KoinIOSKt.doInitKoinIos(
             doOnStartup: onStartup,
-            analyticsProvider: Container.shared.analyticsProvider(),
-            config: ConfigImpl()
+            analyticsProvider: { () -> any AnalyticsProvider in
+                IosAnalyticsProviderImpl()
+            },
+            config: { () -> any Config in
+                ConfigImpl()
+            }
         )
         _koin = koinApplication.koin
     }

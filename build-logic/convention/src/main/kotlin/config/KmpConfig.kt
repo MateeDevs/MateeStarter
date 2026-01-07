@@ -55,6 +55,7 @@ fun KotlinMultiplatformExtension.kmp(
                 isStatic = false
                 export(libs.mokoResources)
                 export(project(":shared:base"))
+                export(project(":shared:analytics"))
                 export(project(":shared:samplefeature"))
             }
             it.binaries {

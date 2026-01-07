@@ -2,7 +2,7 @@
 
 package kmp.shared.umbrella.di
 
-import kmp.shared.base.data.provider.AnalyticsProvider
+import kmp.shared.analytics.data.provider.AnalyticsProvider
 import kmp.shared.base.domain.system.Config
 import kotlinx.cinterop.BetaInteropApi
 import kotlinx.cinterop.ObjCClass
@@ -16,14 +16,14 @@ import org.koin.dsl.module
 @Suppress("unused")
 fun initKoinIos(
     doOnStartup: () -> Unit,
-    analyticsProvider: AnalyticsProvider,
-    config: Config,
+    analyticsProvider: () -> AnalyticsProvider,
+    config: () -> Config,
 ) = initKoin {
     modules(
         module {
             single { doOnStartup }
-            single { analyticsProvider }
-            single { config }
+            single<AnalyticsProvider> { analyticsProvider() }
+            single<Config> { config() }
         },
     )
 }
