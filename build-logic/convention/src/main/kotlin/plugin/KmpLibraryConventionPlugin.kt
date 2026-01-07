@@ -86,6 +86,7 @@ class KmpLibraryConventionPlugin : Plugin<Project> {
                     commonTest.dependencies {
                         implementation(libs.junit)
                         implementation(libs.kotlin.test)
+                        implementation(libs.kotlinx.coroutines.test)
                     }
 
                     androidMain.dependencies {

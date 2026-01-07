@@ -29,6 +29,7 @@ ktLint-rules = "0.3.8"
 kotlinxImmutableCollections = "0.4.0"
 konsist = "0.13.0"
 junit = "4.13.2"
+coroutine-test = "1.8.1"
 mokoResources = "0.25.0"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
@@ -121,6 +122,7 @@ konsist = { module = "com.lemonappdev:konsist", version.ref = "konsist" }
 # Tests
 junit = { module = "junit:junit", version.ref = "junit" }
 kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutine-test" }
 # Skie
 skie-annotations = { module = "co.touchlab.skie:configuration-annotations", version.ref = "skie" }
 # Molecule
