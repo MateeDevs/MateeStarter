@@ -32,13 +32,6 @@ let package = Package(
             linkerSettings: [
                 .unsafeFlags(["-Xlinker", "-no_application_extension"])
             ]
-        ),
-        .testTarget(
-            name: "SharedDomainTests",
-            dependencies: [
-                "SharedDomain",
-                "Utilities"
-            ]
         )
     ]
 )

@@ -26,11 +26,13 @@ public struct SampleFeatureView: View {
         }
         .tint(AppTheme.Colors.navBarTitle) // Back button color
         .toastView($toastData)
-        .bindViewModel(viewModel, onEvent: { event in
-            switch onEnum(of: event) {
-            case .showMessage(let data):
-                toastData = ToastData(data.message, hideAfter: 2)
-            }
-        })
+        .bindViewModel(viewModel, onEvent: onEvent)
+    }
+    
+    private func onEvent(_ event: SampleFeatureEvent) {
+        switch onEnum(of: event) {
+        case .showMessage(let data):
+            toastData = ToastData(data.message, hideAfter: 2)
+        }
     }
 }
