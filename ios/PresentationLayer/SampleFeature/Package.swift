@@ -36,6 +36,16 @@ let package = Package(
                 .product(name: "Factory", package: "Factory"),
                 .product(name: "NavigatorUI", package: "Navigator")
             ]
+        ),
+        .testTarget(
+            name: "SampleFeatureTests",
+            dependencies: [
+                "SampleFeature",
+                .product(name: "UIToolkit", package: "UIToolkit"),
+                .product(name: "SharedDomain", package: "SharedDomain"),
+                .product(name: "DependencyInjection", package: "DependencyInjection"),
+                .product(name: "Factory", package: "Factory")
+            ]
         )
     ]
 )
