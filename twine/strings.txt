@@ -24,28 +24,11 @@
 		en = English
 		sk = Angličtina
 
-[[Bottom bar view]]
-	[bottom_bar_item_1]
-		cs = Classic
-		en = Classic
-		sk = Classic
-	[bottom_bar_item_2]
-		cs = Shared VMs
-		en = Shared VMs
-		sk = Shared VMs
-	[bottom_bar_item_3]
-		cs = Compose Multiplatform
-		en = Compose Multiplatform
-		sk = Compose Multiplatform
-    [bottom_bar_item_4]
-        cs = Compose Navigation
-        en = Compose Navigation
-        sk = Compose Navigation
 [[Screens]]
-    [next_screen_title]
-        cs = Next
-        en = Next
-        sk = Next
+    [sample_feature_title]
+        cs = Sample feature
+        en = Sample feature
+        sk = Sample feature
 
 [[General navigation]]
 	[done]

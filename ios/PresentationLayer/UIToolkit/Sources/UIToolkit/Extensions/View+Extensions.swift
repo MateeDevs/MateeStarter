@@ -3,35 +3,11 @@
 //  Copyright © 2022 Matee. All rights reserved.
 //
 
+import KMPShared
 import NavigatorUI
 import SwiftUI
 
-@MainActor
 public extension View {
-    @inlinable func lifecycle(_ viewModel: BaseViewModel) -> some View {
-        self
-            .onAppear {
-                viewModel.onAppear()
-            }
-            .onDisappear {
-                viewModel.onDisappear()
-            }
-    }
-}
-
-public extension View {
-    /// Redact a view with a shimmering effect aka show a skeleton
-    /// - Inspiration taken from [Redacted View Modifier](https://www.avanderlee.com/swiftui/redacted-view-modifier/)
-    @ViewBuilder
-    func skeleton(
-        _ condition: @autoclosure () -> Bool,
-        duration: Double = 1.5,
-        bounce: Bool = false
-    ) -> some View {
-        redacted(reason: condition() ? .placeholder : [])
-            .shimmering(active: condition(), duration: duration, bounce: bounce)
-    }
-    
     /// onDismiss modifier. Provided action is called when the View is removed from the hierarchy
     func onDismiss(perform handler: (() -> Void)? = nil) -> some View {
         background {
@@ -58,5 +34,27 @@ public extension View {
                         .padding(.bottom, 64)
                 }
             )
+    }
+}
+
+@MainActor
+public extension View {
+    @inlinable func bindViewModel<S: VmState & Sendable, I: VmIntent, E: VmEvent & Sendable>(
+        _ viewModel: BaseScopedViewModel<S, I, E>,
+        onEvent: @escaping (E) -> Void
+    ) -> some View {
+        self
+            .task {
+                // Make sure that onViewAppeared will be called after event subcsription
+                Task {
+                    viewModel.onViewAppeared()
+                }
+                for await event in viewModel.events {
+                    onEvent(event)
+                }
+            }
+            .onDismiss {
+                viewModel.clearScope()
+            }
     }
 }

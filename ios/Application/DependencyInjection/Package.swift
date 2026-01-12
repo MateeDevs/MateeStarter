@@ -11,10 +11,6 @@ let package = Package(
         .library(
             name: "DependencyInjection",
             targets: ["DependencyInjection"]
-        ),
-        .library(
-            name: "DependencyInjectionMocks",
-            targets: ["DependencyInjectionMocks"]
         )
     ],
     dependencies: [
@@ -24,14 +20,7 @@ let package = Package(
         .package(url: "https://github.com/hmlongco/Factory.git", .upToNextMajor(from: "2.3.0")),
         .package(name: "SharedDomain", path: "../../DomainLayer/SharedDomain"),
         .package(name: "Utilities", path: "../../DomainLayer/Utilities"),
-        
-        // Toolkits
-        
-        // Providers
-        .package(name: "AnalyticsProvider", path: "../../DataLayer/Providers/AnalyticsProvider"),
-        .package(name: "KeychainProvider", path: "../../DataLayer/Providers/KeychainProvider"),
-        .package(name: "NetworkProvider", path: "../../DataLayer/Providers/NetworkProvider"),
-        .package(name: "UserDefaultsProvider", path: "../../DataLayer/Providers/UserDefaultsProvider")
+        .package(name: "AnalyticsProvider", path: "../../DataLayer/Providers/AnalyticsProvider")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -42,23 +31,7 @@ let package = Package(
                 .product(name: "Factory", package: "Factory"),
                 .product(name: "SharedDomain", package: "SharedDomain"),
                 .product(name: "Utilities", package: "Utilities"),
-                
-                // Toolkits
-                
-                // Providers
-                .product(name: "AnalyticsProvider", package: "AnalyticsProvider"),
-                .product(name: "KeychainProvider", package: "KeychainProvider"),
-                .product(name: "NetworkProvider", package: "NetworkProvider"),
-                .product(name: "UserDefaultsProvider", package: "UserDefaultsProvider")
-            ]
-        ),
-        .target(
-            name: "DependencyInjectionMocks",
-            dependencies: [
-                "DependencyInjection",
-                .product(name: "Factory", package: "Factory"),
-                .product(name: "SharedDomain", package: "SharedDomain"),
-                .product(name: "SharedDomainMocks", package: "SharedDomain")
+                .product(name: "AnalyticsProvider", package: "AnalyticsProvider")
             ]
         )
     ]

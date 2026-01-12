@@ -19,7 +19,8 @@ public class IosAnalyticsProviderImpl: AnalyticsProvider {
         }
     }
     
-    public func logEvent(event: AnalyticsEvent) {
+    public func logEvent(event: AnalyticsEvent) -> Result<KotlinUnit> {
         Analytics.logEvent(event.eventName, parameters: event.parameters)
+        return ResultSuccess(data: KotlinUnit())
     }
 }

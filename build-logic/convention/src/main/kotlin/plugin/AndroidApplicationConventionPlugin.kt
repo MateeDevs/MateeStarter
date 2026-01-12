@@ -30,7 +30,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
             }
 
             apply<KotlinConventionPlugin>()
-            apply<TestsConventionPlugin>()
+            apply<AndroidTestsConventionPlugin>()
 
             extensions.configure<BaseAppModuleExtension> {
                 configureKotlinAndroid(this)
