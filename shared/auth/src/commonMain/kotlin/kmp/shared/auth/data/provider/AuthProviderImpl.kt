@@ -4,11 +4,10 @@ import com.russhwolf.settings.Settings
 import com.russhwolf.settings.set
 import kmp.shared.auth.data.remote.TokenRefresher
 import kmp.shared.base.data.provider.AuthProvider
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.async
-import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
+import kotlinx.coroutines.withContext
 
 internal class AuthProviderImpl(
     private val settings: Settings,
@@ -20,29 +19,17 @@ internal class AuthProviderImpl(
         set(value) = settings.set(TOKEN_KEY, value)
 
     private val mutex = Mutex()
-    private var inFlight: Deferred<String?>? = null
 
-    override suspend fun refreshToken(): String? = coroutineScope {
+    override suspend fun refreshToken(): String? {
+        val oldToken = token
+
         mutex.withLock {
-            inFlight?.let { return@coroutineScope it.await() }
-
-            val task = async {
-                val fresh = tokenRefresher.refresh()
-                token = fresh
-                fresh
-            }
-            inFlight = task
-            task
-        }.let { task ->
-            try {
-                task.await()
-            } finally {
-                mutex.withLock {
-                    if (inFlight === task) {
-                        inFlight = null
-                    }
+            if (oldToken == token) {
+                withContext(NonCancellable) {
+                    token = tokenRefresher.refresh()
                 }
             }
+            return token
         }
     }
 
