@@ -72,7 +72,7 @@ The plugin is configured to automatically generate two formats simultaneously wh
 ### Moko
 
 Strings are shared via [Moko Resources](https://github.com/icerockdev/moko-resources), so
-that we can use the strings in the shared code 
+that we can use the strings in the shared code
 
 ## Debug
 
