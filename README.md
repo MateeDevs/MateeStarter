@@ -471,11 +471,8 @@ The plugin is configured to automatically generate two formats simultaneously wh
 
 #### Moko
 
-Error messages are shared via [Moko Resources](https://github.com/icerockdev/moko-resources), so
-that we can use the strings in the shared code and avoid duplicities when converting errors to
-string messages. Error strings are stored in the `twine/errors.txt` file. Gradle task
-`generateErrorsTwine` first generates `strings.xml` files from `errors.txt` and then gradle task
-`generateMRCommonMain` generates `MR` class that can be used in the common code.
+Strings are shared via [Moko Resources](https://github.com/icerockdev/moko-resources), so
+that we can use the strings in the shared code
 
 ### UI - Compose Multiplatform
 

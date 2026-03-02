@@ -23,7 +23,7 @@ dependencies {
     commonMainImplementation(libs.molecule.runtime)
 }
 
-tasks.named("generateMRcommonMain") {
+tasks.named("prepareComposeResourcesTaskForCommonMain") {
     dependsOn("sentiaryUpdateLocalizations")
 }
 
