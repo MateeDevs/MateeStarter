@@ -460,13 +460,13 @@ The `AuthProviderImpl` will automatically use the provided `TokenRefresher` when
 
 ### Resources
 
-#### Twine
+#### Sentiary
+All strings and localizations in the application are managed via the [Sentiary](https://sentiary.com/) platform.
+We use the Sentiary Gradle Plugin to automatically fetch the latest translations during the build process.
 
-All strings in the application are localized and shared with the iOS team
-via [Twine](https://github.com/scelis/twine). Strings are stored in the `twine/strings.txt` file.
-TwinePlugin then generates appropriate `strings.xml` files from the mentioned `strings.txt` file.
-When modifying `strings.txt` it is required to comply with the specified syntax and to pull/push all
-the changes frequently
+The plugin is configured to automatically generate two formats simultaneously whenever you build the app:
+- **Compose Resources**: Generated into the `commonMain` module for Android.
+- **Apple Strings**: Native iOS `.strings` files (e.g., `Localizable.strings`) exported directly into the Xcode project structure.
 
 #### Moko
 
