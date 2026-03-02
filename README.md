@@ -356,7 +356,7 @@ The project uses Gradle convention plugins (located in `build-logic/convention`)
 #### Android Modules
 - **`android-application-compose`** - For Android application modules with Compose support
   - Applies Android application plugin, Compose compiler, and Compose dependencies
-  - Configures build variants (alpha/production), signing, and Twine string generation
+  - Configures build variants (alpha/production), signing
 - **`android-application-core`** - For Android application modules without Compose
   - Same as above but without Compose configuration
 - **`android-library-compose`** - For Android library modules with Compose support
@@ -461,6 +461,7 @@ The `AuthProviderImpl` will automatically use the provided `TokenRefresher` when
 ### Resources
 
 #### Sentiary
+
 All strings and localizations in the application are managed via the [Sentiary](https://sentiary.com/) platform.
 We use the Sentiary Gradle Plugin to automatically fetch the latest translations during the build process.
 

@@ -60,7 +60,8 @@
 
 ## Localization
 
-#### Sentiary
+### Sentiary
+
 All strings and localizations in the application are managed via the [Sentiary](https://sentiary.com/) platform.
 We use the Sentiary Gradle Plugin to automatically fetch the latest translations during the build process.
 

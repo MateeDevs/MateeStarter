@@ -18,7 +18,7 @@
     <string name="image_picker_subtitle">Vyberte, odkud chcete fotografii nahrát.</string>
     <string name="error_no_internet_connection">Nejsi připojen k internetu.</string>
     <string name="ok">Ok</string>
-    <string name="sample_feature_title">Sample feature</string>
+    <string name="sample_feature_title">Ukázková funkcionalita</string>
     <string name="language_cs_fullname">Čeština</string>
     <string name="back">Zpět</string>
     <string name="not_authorized">Uživatel není autorizován</string>
