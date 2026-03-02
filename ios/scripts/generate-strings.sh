@@ -5,8 +5,5 @@ cd "$(dirname "$0")"
 
 cd ../..
 
-echo "Generating Localizable files"
-./gradlew generateTwine < /dev/null
-
 echo "Generating MR resources from .xml files"
 ./gradlew :shared:base:generateMRcommonMain < /dev/null
