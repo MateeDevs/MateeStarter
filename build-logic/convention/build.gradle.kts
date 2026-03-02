@@ -17,6 +17,7 @@ dependencies {
     compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.compose.gradlePlugin)
     compileOnly(libs.ktlint.gradlePlugin)
+    compileOnly(libs.sentiary.gradlePlugin)
 }
 
 gradlePlugin {
@@ -48,6 +49,10 @@ gradlePlugin {
         plugin(
             dependency = libs.plugins.mateeStarter.kmp.framework.library,
             pluginName = "KmpFrameworkLibraryConventionPlugin",
+        )
+        plugin(
+            dependency = libs.plugins.mateeStarter.kmp.sentiary,
+            pluginName = "SentiaryConvention",
         )
     }
 }

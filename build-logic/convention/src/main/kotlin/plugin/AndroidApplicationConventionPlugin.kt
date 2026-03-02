@@ -5,7 +5,6 @@ import config.configureApplicationVariants
 import config.configureBuildVariants
 import config.configureKotlinAndroid
 import config.configureSingingConfigs
-import config.configureTwine
 import constants.Application
 import extensions.apply
 import extensions.implementation
@@ -58,8 +57,6 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                 configureSingingConfigs(this)
                 configureApplicationVariants()
             }
-
-            configureTwine()
 
             dependencies {
                 implementation(libs.material)

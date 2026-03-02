@@ -43,6 +43,7 @@ skie = "0.10.6"
 firebase = "22.5.0"
 googleServices = "4.4.3"
 jetbrainsKotlinJvm = "2.2.10"
+sentiary = "1.0.1"
 
 [libraries]
 # Kotlin
@@ -131,6 +132,8 @@ molecule-runtime = { module = "app.cash.molecule:molecule-runtime", version.ref 
 firebase-analytics = { module = "com.google.firebase:firebase-analytics-ktx", version.ref = "firebase" }
 # Ktlint
 ktlint-gradlePlugin = { module = "org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin", version.ref = "ktLint" }
+# Sentiary
+sentiary-gradlePlugin = { module = "com.sentiary:gradle-plugin", version.ref = "sentiary" }
 
 [bundles]
 settings = [
@@ -163,6 +166,8 @@ skie = { id = "co.touchlab.skie", version.ref = "skie" }
 google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
 jetbrains-compose-plugin = { id = "org.jetbrains.compose", version.ref = "jetbrains-composePlugin" }
 jetbrains-compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+sentiary = { id = "com.sentiary.gradle", version.ref = "sentiary" }
+
 # Convention plugins
 mateeStarter-android-application-compose = "android-application-compose:none"
 mateeStarter-android-application-core = "android-application:none"
@@ -171,4 +176,5 @@ mateeStarter-android-library-core = "android-library:none"
 mateeStarter-kmp-library-core = "kmp-library:none"
 mateeStarter-kmp-library-compose = "kmp-library-compose:none"
 mateeStarter-kmp-framework-library = "kmp-framework-library:none"
+mateeStarter-kmp-sentiary = "kmp-sentiary-library-convention:none"
 jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }

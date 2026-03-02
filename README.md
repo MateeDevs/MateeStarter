@@ -356,7 +356,7 @@ The project uses Gradle convention plugins (located in `build-logic/convention`)
 #### Android Modules
 - **`android-application-compose`** - For Android application modules with Compose support
   - Applies Android application plugin, Compose compiler, and Compose dependencies
-  - Configures build variants (alpha/production), signing, and Twine string generation
+  - Configures build variants (alpha/production), signing
 - **`android-application-core`** - For Android application modules without Compose
   - Same as above but without Compose configuration
 - **`android-library-compose`** - For Android library modules with Compose support
@@ -460,21 +460,19 @@ The `AuthProviderImpl` will automatically use the provided `TokenRefresher` when
 
 ### Resources
 
-#### Twine
+#### Sentiary
 
-All strings in the application are localized and shared with the iOS team
-via [Twine](https://github.com/scelis/twine). Strings are stored in the `twine/strings.txt` file.
-TwinePlugin then generates appropriate `strings.xml` files from the mentioned `strings.txt` file.
-When modifying `strings.txt` it is required to comply with the specified syntax and to pull/push all
-the changes frequently
+All strings and localizations in the application are managed via the [Sentiary](https://sentiary.com/) platform.
+We use the Sentiary Gradle Plugin to automatically fetch the latest translations during the build process.
+
+The plugin is configured to automatically generate two formats simultaneously whenever you build the app:
+- **Compose Resources**: Generated into the `commonMain` module for Android.
+- **Apple Strings**: Native iOS `.strings` files (e.g., `Localizable.strings`) exported directly into the Xcode project structure.
 
 #### Moko
 
-Error messages are shared via [Moko Resources](https://github.com/icerockdev/moko-resources), so
-that we can use the strings in the shared code and avoid duplicities when converting errors to
-string messages. Error strings are stored in the `twine/errors.txt` file. Gradle task
-`generateErrorsTwine` first generates `strings.xml` files from `errors.txt` and then gradle task
-`generateMRCommonMain` generates `MR` class that can be used in the common code.
+Strings are shared via [Moko Resources](https://github.com/icerockdev/moko-resources), so
+that we can use the strings in the shared code
 
 ### UI - Compose Multiplatform
 
