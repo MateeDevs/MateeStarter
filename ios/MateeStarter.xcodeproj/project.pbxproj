@@ -10,7 +10,6 @@
 		4508332A28435E7800BC9460 /* SharedDomain in Frameworks */ = {isa = PBXBuildFile; productRef = 4508332928435E7800BC9460 /* SharedDomain */; };
 		4508333028435E7900BC9460 /* Utilities in Frameworks */ = {isa = PBXBuildFile; productRef = 4508332F28435E7900BC9460 /* Utilities */; };
 		4508333728437BB700BC9460 /* UIToolkit in Frameworks */ = {isa = PBXBuildFile; productRef = 4508333628437BB700BC9460 /* UIToolkit */; };
-		453580EF284806FE007AEC9E /* strings.txt in Resources */ = {isa = PBXBuildFile; fileRef = 453580EE284806FE007AEC9E /* strings.txt */; };
 		454F6EC426CE8B3900C386B8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 454F6EC226CE8B3500C386B8 /* InfoPlist.strings */; };
 		4558D30B20FCC8FF005BC325 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4558D30A20FCC8FF005BC325 /* AppDelegate.swift */; };
 		4575E65625F6FA7600CCC003 /* AppIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4575E65525F6FA7600CCC003 /* AppIcon.xcassets */; };
@@ -42,7 +41,6 @@
 		4508333128436EFB00BC9460 /* UIToolkit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UIToolkit; sourceTree = "<group>"; };
 		45238BDC2ACD7A5D0084E7E5 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		4534C1C42603D6AD0022ACF4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		453580EE284806FE007AEC9E /* strings.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = strings.txt; path = ../../twine/strings.txt; sourceTree = "<group>"; };
 		453C8807283FAB4C0027BDFB /* SharedDomain */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SharedDomain; sourceTree = "<group>"; };
 		454F6EC326CE8B3500C386B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		454F6EC526CE8B4100C386B8 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -92,7 +90,6 @@
 			children = (
 				A3C5389B2F0EA941008A995E /* SampleFeature */,
 				4508333128436EFB00BC9460 /* UIToolkit */,
-				453580EE284806FE007AEC9E /* strings.txt */,
 			);
 			path = PresentationLayer;
 			sourceTree = "<group>";
@@ -279,7 +276,6 @@
 			files = (
 				4575E65625F6FA7600CCC003 /* AppIcon.xcassets in Resources */,
 				7E277A062D8C65FA0035B990 /* GoogleService-Info-Prod.plist in Resources */,
-				453580EF284806FE007AEC9E /* strings.txt in Resources */,
 				454F6EC426CE8B3900C386B8 /* InfoPlist.strings in Resources */,
 				7E277A082D8C663C0035B990 /* GoogleService-Info-Alpha.plist in Resources */,
 				4597626F20FDF0810034DE29 /* LaunchScreen.storyboard in Resources */,
