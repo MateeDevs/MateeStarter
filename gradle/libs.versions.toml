@@ -10,11 +10,8 @@ dateTime = "0.7.1"
 atomicFu = "0.32.1"
 koin = "4.2.1"
 androidXCore = "1.18.0"
-material = "1.13.0"
-compose-material3 = "1.4.0"
 lifecycle = "2.10.0"
 paging = "3.4.2"
-composeBom = "2026.03.01"
 jetbrains-composePlugin = "1.11.0-beta01" # Note: version 1.11.X fixes iOS lags
 activity = "1.13.0"
 navigation3 = "1.0.1"
@@ -31,7 +28,6 @@ coroutine-test = "1.10.2"
 mokoResources = "0.26.3"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
-appcompat = "1.7.1"
 versionCatalogueUpdate = "1.1.0"
 versions = "0.53.0"
 desugar = "2.1.5"
@@ -66,9 +62,6 @@ koin-compose-viewModel = { module = "io.insert-koin:koin-compose-viewmodel", ver
 koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
 # AndroidX
 androidX-core = { module = "androidx.core:core-ktx", version.ref = "androidXCore" }
-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
-# Material
-material = { module = "com.google.android.material:material", version.ref = "material" }
 # Lifecycle
 lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
 lifecycle-common = { module = "androidx.lifecycle:lifecycle-common-java8", version.ref = "lifecycle" }
@@ -79,13 +72,6 @@ lifecycle-viewModel-navigation3 = { module = "androidx.lifecycle:lifecycle-viewm
 paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "paging" }
 paging-compose = { module = "androidx.paging:paging-compose", version.ref = "paging" }
 # Compose
-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
-compose-ui = { module = "androidx.compose.ui:ui" }
-compose-uiTooling = { module = "androidx.compose.ui:ui-tooling" }
-compose-foundation = { module = "androidx.compose.foundation:foundation" }
-compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "compose-material3" }
-compose-animation = { module = "androidx.compose.animation:animation" }
-compose-uiTest = { module = "androidx.compose.ui:ui-test-junit4" }
 compose-gradlePlugin = { module = "org.jetbrains.compose:org.jetbrains.compose.gradle.plugin", version.ref = "jetbrains-composePlugin" }
 # Activity
 activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity" }
