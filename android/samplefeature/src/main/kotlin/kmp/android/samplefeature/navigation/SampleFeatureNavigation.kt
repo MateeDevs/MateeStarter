@@ -1,17 +1,16 @@
 package kmp.android.samplefeature.navigation
 
-import androidx.navigation.NavGraphBuilder
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.navigation
-import kmp.android.samplefeature.ui.sampleFeatureMainRoute
+import androidx.navigation3.runtime.EntryProviderScope
+import androidx.navigation3.runtime.NavKey
+import kmp.android.samplefeature.ui.SampleFeatureMainRoute
+import kmp.android.shared.navigation.Navigator
 
-fun NavGraphBuilder.sampleFeatureNavGraph(
-    navHostController: NavHostController,
+fun EntryProviderScope<NavKey>.sampleFeatureEntries(
+    navigator: Navigator,
 ) {
-    navigation(
-        startDestination = SampleFeatureGraph.Main.route,
-        route = SampleFeatureGraph.rootPath,
-    ) {
-        sampleFeatureMainRoute()
-    }
+  entry<SampleFeatureHome> {
+      SampleFeatureMainRoute(
+          // Use provided `navigator` to navigate to other screens
+      )
+  }
 }

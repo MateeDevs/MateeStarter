@@ -41,6 +41,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
                 implementation(libs.koin.core)
                 implementation(libs.koin.android)
                 implementation(libs.mokoResources.compose)
+                implementation(libs.kermit)
             }
         }
     }
