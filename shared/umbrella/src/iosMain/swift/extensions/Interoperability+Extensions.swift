@@ -46,13 +46,13 @@ public extension Optional where Wrapped == KotlinLong {
     }
  }
 
- public extension Optional where Wrapped == Kotlinx_datetimeInstant {
+ public extension Optional where Wrapped == KotlinInstant {
     var asDate: Date? {
         Date(timeIntervalSince1970: TimeInterval(self?.epochSeconds ?? 0))
     }
  }
 
- public extension Kotlinx_datetimeInstant {
+ public extension KotlinInstant {
     var asDate: Date {
         Date(timeIntervalSince1970: TimeInterval(self.epochSeconds))
     }
@@ -89,7 +89,7 @@ public extension Optional where Wrapped == KotlinLong {
  }
 
  public extension Date {
-    var asInstant: Kotlinx_datetimeInstant {
+    var asInstant: KotlinInstant {
         KotlinDateTimeKt.toInstant(self)
     }
     var asLocalDate: Kotlinx_datetimeLocalDate {
