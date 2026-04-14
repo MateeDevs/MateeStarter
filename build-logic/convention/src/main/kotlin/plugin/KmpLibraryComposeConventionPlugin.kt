@@ -1,7 +1,6 @@
 package plugin
 
 import extensions.apply
-import extensions.compose
 import extensions.debugImplementation
 import extensions.ktlintRuleset
 import extensions.libs
@@ -34,6 +33,9 @@ class KmpLibraryComposeConventionPlugin : Plugin<Project> {
                         implementation(libs.jetbrains.compose.material3)
                         implementation(libs.jetbrains.compose.uiUtil)
                         implementation(libs.jetbrains.compose.uiToolingPreview)
+                        implementation(libs.mokoResources.compose)
+                        implementation(libs.haze)
+                        implementation(libs.haze.materials)
                         ktlintRuleset(libs.ktlint.composeRules)
                     }
                 }

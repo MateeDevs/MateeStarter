@@ -11,28 +11,26 @@ import SwiftUI
 import UIToolkit
 
 public struct SampleFeatureView: View {
-    
+
     @State private var toastData: ToastData?
-    @Injected(\.sampleFeatureViewModel) private var viewModel: SampleFeatureViewModel
-    
+    @InjectedObject(\.sampleFeatureViewModel) private var viewModel: SampleFeatureViewModel
+
     public init() {}
-    
+
     public var body: some View {
         ManagedNavigationStack { _ in
             ComposeViewController {
-                SampleFeatureMainScreenViewController(viewModel: viewModel)
+                SampleFeatureMainScreenViewController(
+                    viewModel: viewModel,
+                    onShowMessage: { message in
+                        toastData = ToastData(message, hideAfter: 2)
+                    }
+                )
             }
+            .ignoresSafeArea()
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .bindViewModel(viewModel)
         }
-        .tint(AppTheme.Colors.navBarTitle) // Back button color
         .toastView($toastData)
-        .bindViewModel(viewModel, onEvent: onEvent)
-    }
-    
-    private func onEvent(_ event: SampleFeatureEvent) {
-        switch onEnum(of: event) {
-        case .showMessage(let data):
-            toastData = ToastData(data.message, hideAfter: 2)
-        }
     }
 }

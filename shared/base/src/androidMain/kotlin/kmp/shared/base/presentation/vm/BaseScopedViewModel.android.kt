@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import app.cash.molecule.AndroidUiDispatcher
 import app.cash.molecule.RecompositionMode
 import app.cash.molecule.launchMolecule
+import kmp.shared.base.presentation.ui.Toolbar
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -17,6 +18,9 @@ actual abstract class BaseScopedViewModel<S : VmState, I : VmIntent, E : VmEvent
     @Composable
     protected actual abstract fun getState(): S
 
+    @Composable
+    protected actual open fun getToolbar(): Toolbar? = null
+
     @Suppress("VariableNaming")
     protected actual val _events = MutableSharedFlow<E>()
     actual override val events = _events.asSharedFlow()
@@ -27,12 +31,21 @@ actual abstract class BaseScopedViewModel<S : VmState, I : VmIntent, E : VmEvent
             context = AndroidUiDispatcher.Main,
         ) { getState() }
     }
+
+    actual override val toolbar: StateFlow<Toolbar?> by lazy(LazyThreadSafetyMode.NONE) {
+        viewModelScope.launchMolecule(
+            mode = RecompositionMode.ContextClock,
+            context = AndroidUiDispatcher.Main,
+        ) { getToolbar() }
+    }
 }
 
 @Stable
 actual interface BaseIntentViewModel<S : VmState, I : VmIntent, E : VmEvent> {
     actual val state: StateFlow<S>
     actual val events: SharedFlow<E>
+
+    actual val toolbar: StateFlow<Toolbar?>
 
     actual fun onIntent(intent: I)
 

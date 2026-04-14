@@ -9,7 +9,9 @@ import kmp.shared.analytics.domain.model.ToastAnalytics
 import kmp.shared.analytics.domain.model.ToastAnalytics.ViewType
 import kmp.shared.analytics.domain.usecase.TrackAnalyticsEventUseCase
 import kmp.shared.analytics.domain.usecase.TrackAnalyticsEventUseCase.Params
+import kmp.shared.base.MR
 import kmp.shared.base.domain.model.ErrorResult
+import kmp.shared.base.presentation.ui.Toolbar
 import kmp.shared.base.domain.util.extension.alsoOnError
 import kmp.shared.base.domain.util.extension.alsoOnSuccess
 import kmp.shared.base.presentation.vm.BaseScopedViewModel
@@ -37,6 +39,13 @@ class SampleFeatureViewModel(
             error = error,
         )
     }
+
+    @Composable
+    override fun getToolbar(): Toolbar =
+        Toolbar(
+            title = MR.strings.sample_feature_title,
+            headerLogo = MR.images.toolbar_brand_logo,
+        )
 
     override fun onIntent(intent: SampleFeatureIntent) {
         viewModelScope.launch {

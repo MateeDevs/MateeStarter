@@ -12,7 +12,7 @@ koin = "4.2.1"
 androidXCore = "1.18.0"
 lifecycle = "2.10.0"
 paging = "3.4.2"
-jetbrains-compose = "1.11.0-beta01" # Note: version 1.11.X fixes iOS lags
+jetbrains-compose = "1.11.0-alpha03" # Note: version 1.11.X fixes iOS lags, `haze` supports alpha03
 jetbrains-compose-material3 = "1.9.0"
 activity = "1.13.0"
 navigation3 = "1.0.1"
@@ -38,6 +38,7 @@ skie = "0.10.11"
 firebase = "22.5.0"
 googleServices = "4.4.4"
 sentiary = "1.0.1"
+haze = "1.7.2"
 
 [libraries]
 # Kotlin
@@ -125,6 +126,9 @@ firebase-analytics = { module = "com.google.firebase:firebase-analytics-ktx", ve
 ktlint-gradlePlugin = { module = "org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin", version.ref = "ktLint" }
 # Sentiary
 sentiary-gradlePlugin = { module = "com.sentiary:gradle-plugin", version.ref = "sentiary" }
+# Haze
+haze = { module = "dev.chrisbanes.haze:haze", version.ref = "haze" }
+haze-materials = { module = "dev.chrisbanes.haze:haze-materials", version.ref = "haze" }
 
 [bundles]
 settings = [

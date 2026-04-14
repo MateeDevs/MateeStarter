@@ -1,64 +1,20 @@
 package kmp.android.samplefeature.ui
 
 import android.widget.Toast
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.consumeWindowInsets
-import androidx.compose.foundation.layout.displayCutout
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import dev.icerock.moko.resources.compose.stringResource
-import kmp.shared.base.MR
-import kmp.shared.samplefeature.presentation.ui.SampleFeatureMainScreen
-import kmp.shared.samplefeature.presentation.vm.SampleFeatureEvent
-import kmp.shared.samplefeature.presentation.vm.SampleFeatureIntent
+import kmp.shared.samplefeature.presentation.ui.SampleFeatureRoute
 import kmp.shared.samplefeature.presentation.vm.SampleFeatureViewModel
-import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.koinViewModel
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun SampleFeatureMainRoute(
-    viewModel: SampleFeatureViewModel = koinViewModel(),
-) {
-    val state by viewModel.state.collectAsStateWithLifecycle()
-
-    LaunchedEffect(key1 = viewModel) {
-        viewModel.onViewAppeared()
-    }
-
+internal fun SampleFeatureMainRoute(viewModel: SampleFeatureViewModel = koinViewModel()) {
     val context = LocalContext.current
-    LaunchedEffect(viewModel) {
-        viewModel.events.collectLatest { event ->
-            when (event) {
-                is SampleFeatureEvent.ShowMessage -> Toast.makeText(
-                    context,
-                    event.message,
-                    Toast.LENGTH_SHORT,
-                ).show()
-            }
-        }
-    }
 
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text(text = stringResource(MR.strings.sample_feature_title)) },
-                windowInsets = WindowInsets.displayCutout,
-            )
+    SampleFeatureRoute(
+        viewModel = viewModel,
+        onShowMessage = { message ->
+            Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
         },
-    ) { padding ->
-        SampleFeatureMainScreen(
-            state = state,
-            onIntent = { viewModel.onIntent(it) },
-            modifier = Modifier.consumeWindowInsets(padding),
-        )
-    }
+    )
 }
