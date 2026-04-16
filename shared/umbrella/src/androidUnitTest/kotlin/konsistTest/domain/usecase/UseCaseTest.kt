@@ -6,14 +6,14 @@ import com.lemonappdev.konsist.api.ext.list.withName
 import com.lemonappdev.konsist.api.ext.list.withParameters
 import com.lemonappdev.konsist.api.ext.list.withParent
 import com.lemonappdev.konsist.api.verify.assertTrue
+import konsistTest.scopeFromProjectExcludingIos
 import org.junit.Test
 
 internal class UseCaseTest {
 
     @Test
     fun `implementations of use cases are internal`() {
-        Konsist
-            .scopeFromProject()
+        scopeFromProjectExcludingIos()
             .classes()
             .withParent { parent ->
                 parent.hasNameContaining("UseCase")
@@ -23,8 +23,7 @@ internal class UseCaseTest {
 
     @Test
     fun `interfaces extending 'UseCase' should have 'UseCase' suffix`() {
-        Konsist
-            .scopeFromProject()
+        scopeFromProjectExcludingIos()
             .interfaces()
             .withParent { it.name.isUseCase() }
             .assertTrue { it.name.endsWith("UseCase") }
@@ -32,8 +31,7 @@ internal class UseCaseTest {
 
     @Test
     fun `interfaces extending 'UseCase' reside in the 'domain' and 'usecase' package`() {
-        Konsist
-            .scopeFromProject()
+        scopeFromProjectExcludingIos()
             .interfaces()
             .withParent { it.name.isUseCase() }
             .assertTrue { it.resideInPackage("..domain..usecase..") }
@@ -41,8 +39,7 @@ internal class UseCaseTest {
 
     @Test
     fun `classes extending 'UseCase' that have their own functions must be private`() {
-        Konsist
-            .scopeFromProject()
+        scopeFromProjectExcludingIos()
             .classes()
             .withParent { it.hasNameContaining("UseCase") }
             .assertTrue { klass ->
@@ -55,8 +52,7 @@ internal class UseCaseTest {
 
     @Test
     fun `classes extending 'UseCase' must have all properties private`() {
-        Konsist
-            .scopeFromProject()
+        scopeFromProjectExcludingIos()
             .classes()
             .withParent { it.hasNameContaining("UseCase") }
             .properties(includeNested = false, includeLocal = false)
@@ -67,8 +63,7 @@ internal class UseCaseTest {
 
     @Test
     fun `interfaces extending 'UseCase' with params should have 'Params' data class that is used as param`() {
-        Konsist
-            .scopeFromProject()
+        scopeFromProjectExcludingIos()
             .interfaces()
             .withParent { parent -> parent.name.isUseCaseWithParams() }
             .assertTrue { useCaseInterface ->

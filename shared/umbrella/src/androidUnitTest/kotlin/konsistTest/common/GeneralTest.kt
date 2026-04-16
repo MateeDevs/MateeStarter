@@ -1,17 +1,16 @@
 package konsistTest.common
 
 import com.lemonappdev.konsist.api.KoModifier
-import com.lemonappdev.konsist.api.Konsist
 import com.lemonappdev.konsist.api.verify.assertFalse
 import com.lemonappdev.konsist.api.verify.assertTrue
+import konsistTest.scopeFromProjectExcludingIos
 import org.junit.Ignore
 import org.junit.Test
 
 internal class GeneralTest {
     @Test
     fun `companion objects are last declarations in the class`() {
-        Konsist
-            .scopeFromProject()
+        scopeFromProjectExcludingIos()
             .classes()
             .assertTrue {
                 val companionObjects = it.objects(
@@ -32,24 +31,21 @@ internal class GeneralTest {
 
     @Test
     fun `no empty files allowed`() {
-        Konsist
-            .scopeFromProject()
+        scopeFromProjectExcludingIos()
             .files
             .assertFalse { it.text.isEmpty() }
     }
 
     @Test
     fun `package name must match file path`() {
-        Konsist
-            .scopeFromProject()
+        scopeFromProjectExcludingIos()
             .packages
             .assertTrue { it.hasMatchingPath }
     }
 
     @Test
     fun `no wildcard imports allowed`() {
-        Konsist
-            .scopeFromProject()
+        scopeFromProjectExcludingIos()
             .imports
             .assertFalse { it.isWildcard }
     }
@@ -57,8 +53,7 @@ internal class GeneralTest {
     @Ignore("DevStack currently uses android log...")
     @Test
     fun `no class should use Android util logging`() {
-        Konsist
-            .scopeFromProject()
+        scopeFromProjectExcludingIos()
             .files
             .assertFalse { it.hasImport { import -> import.name == "android.util.Log" } }
     }

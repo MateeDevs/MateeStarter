@@ -52,7 +52,7 @@ fun KotlinMultiplatformExtension.kmp(
         getIosTargets(project, tvOSEnabled).forEach {
             it.binaries.framework {
                 baseName = nativeName
-                isStatic = false
+                isStatic = true
                 export(libs.mokoResources)
                 export(project(":shared:base"))
                 export(project(":shared:analytics"))

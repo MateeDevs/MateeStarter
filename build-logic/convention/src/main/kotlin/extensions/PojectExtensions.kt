@@ -58,7 +58,7 @@ inline fun <reified T : Any> Project.extension(name: String, block: Action<T>) {
     extensions.configure(name, block)
 }
 
-fun <BuildTypeT> NamedDomainObjectContainer<BuildTypeT>.demo(action: BuildTypeT.() -> Unit) {
+fun <BuildTypeT : Any> NamedDomainObjectContainer<BuildTypeT>.demo(action: BuildTypeT.() -> Unit) {
     create("demo", action)
 }
 
