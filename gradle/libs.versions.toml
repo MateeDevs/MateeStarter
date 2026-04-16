@@ -12,7 +12,8 @@ koin = "4.2.1"
 androidXCore = "1.18.0"
 lifecycle = "2.10.0"
 paging = "3.4.2"
-jetbrains-composePlugin = "1.11.0-beta01" # Note: version 1.11.X fixes iOS lags
+jetbrains-compose = "1.11.0-beta01" # Note: version 1.11.X fixes iOS lags
+jetbrains-compose-material3 = "1.9.0"
 activity = "1.13.0"
 navigation3 = "1.0.1"
 ktor = "3.4.2"
@@ -72,7 +73,16 @@ lifecycle-viewModel-navigation3 = { module = "androidx.lifecycle:lifecycle-viewm
 paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "paging" }
 paging-compose = { module = "androidx.paging:paging-compose", version.ref = "paging" }
 # Compose
-compose-gradlePlugin = { module = "org.jetbrains.compose:org.jetbrains.compose.gradle.plugin", version.ref = "jetbrains-composePlugin" }
+jetbrains-compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "jetbrains-compose" }
+jetbrains-compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "jetbrains-compose" }
+jetbrains-compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "jetbrains-compose" }
+jetbrains-compose-material3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "jetbrains-compose-material3" }
+jetbrains-compose-animation = { module = "org.jetbrains.compose.animation:animation", version.ref = "jetbrains-compose" }
+jetbrains-compose-uiUtil = { module = "org.jetbrains.compose.ui:ui-util", version.ref = "jetbrains-compose" }
+jetbrains-compose-uiTooling = { module = "org.jetbrains.compose.ui:ui-tooling", version.ref = "jetbrains-compose" }
+jetbrains-compose-uiToolingPreview = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref = "jetbrains-compose" }
+jetbrains-compose-uiTest = { module = "org.jetbrains.compose.ui:ui-test", version.ref = "jetbrains-compose" }
+jetbrains-compose-gradlePlugin = { module = "org.jetbrains.compose:org.jetbrains.compose.gradle.plugin", version.ref = "jetbrains-compose" }
 # Activity
 activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity" }
 # === Navigation 3 ===
@@ -145,7 +155,7 @@ ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktLint" }
 mokoResources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "mokoResources" }
 skie = { id = "co.touchlab.skie", version.ref = "skie" }
 google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
-jetbrains-compose-plugin = { id = "org.jetbrains.compose", version.ref = "jetbrains-composePlugin" }
+jetbrains-compose-plugin = { id = "org.jetbrains.compose", version.ref = "jetbrains-compose" }
 jetbrains-compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 sentiary = { id = "com.sentiary.gradle", version.ref = "sentiary" }
 

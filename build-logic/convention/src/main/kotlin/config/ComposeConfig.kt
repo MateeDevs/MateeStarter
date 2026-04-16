@@ -11,7 +11,6 @@ import extensions.pluginManager
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.dependencies
-import org.jetbrains.compose.ExperimentalComposeLibrary
 
 internal fun Project.configureComposeCompiler(
     commonExtension: CommonExtension<*, *, *, *, *, *>,
@@ -25,22 +24,21 @@ internal fun Project.configureComposeCompiler(
     }
 }
 
-@OptIn(ExperimentalComposeLibrary::class)
 internal fun Project.configureComposeDependencies() {
     dependencies {
         implementation(libs.androidX.core)
-        implementation(compose.ui)
-        implementation(compose.animation)
-        implementation(compose.foundation)
-        implementation(compose.material3)
-        implementation(compose.uiTooling)
+        implementation(libs.jetbrains.compose.ui)
+        implementation(libs.jetbrains.compose.animation)
+        implementation(libs.jetbrains.compose.foundation)
+        implementation(libs.jetbrains.compose.material3)
+        implementation(libs.jetbrains.compose.uiTooling)
         implementation(libs.activity.compose)
         implementation(libs.navigation3.runtime)
         implementation(libs.navigation3.ui)
         implementation(libs.lifecycle.viewModel.navigation3)
         implementation(libs.koin.android)
         implementation(libs.koin.androidx.compose)
-        androidTestImplementation(compose.uiTest)
+        androidTestImplementation(libs.jetbrains.compose.uiTest)
     }
 }
 
