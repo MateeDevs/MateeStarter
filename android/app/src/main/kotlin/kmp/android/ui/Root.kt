@@ -7,13 +7,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.navigation3.ui.NavDisplay
-import kmp.android.shared.navigation.LocalNavigator
 import kmp.android.samplefeature.navigation.SampleFeatureNavKey
 import kmp.android.samplefeature.navigation.sampleFeatureEntries
 import kmp.android.shared.navigation.mateePopTransitionSpec
 import kmp.android.shared.navigation.mateePredictivePopTransitionSpec
 import kmp.android.shared.navigation.mateeTransitionSpec
-import kmp.android.shared.navigation.rememberNavigator
+import kmp.shared.base.presentation.navigation.LocalNavigator
+import kmp.shared.base.presentation.navigation.rememberNavigator
 
 @Composable
 fun Root(modifier: Modifier = Modifier) {

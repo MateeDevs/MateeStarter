@@ -5,10 +5,22 @@
 
 import Foundation
 import KMPShared
+import SwiftUI
 
 public extension StringResource {
-    
     func toLocalized() -> String {
-        return self.desc().localized()
+        self.desc().localized()
+    }
+}
+
+public extension StringDesc {
+    func toLocalized() -> String {
+        localized()
+    }
+}
+
+public extension Image {
+    init(_ resource: KMPShared.ImageResource) {
+        self.init(resource.assetImageName, bundle: resource.bundle)
     }
 }

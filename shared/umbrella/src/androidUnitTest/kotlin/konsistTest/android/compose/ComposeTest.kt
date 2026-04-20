@@ -47,6 +47,7 @@ internal class ComposeTest {
             "Override",
             "Theme",
             "NavigateUpHandler",
+            "NativeScaffold",
         )
     }
 }

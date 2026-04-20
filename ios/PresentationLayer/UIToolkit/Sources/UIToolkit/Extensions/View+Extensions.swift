@@ -40,21 +40,33 @@ public extension View {
 @MainActor
 public extension View {
     func bindViewModel<S: VmState & Sendable, I: VmIntent, E: VmEvent & Sendable>(
-        _ viewModel: BaseScopedViewModel<S, I, E>,
-        onEvent: @escaping (E) -> Void
+        _ viewModel: BaseScopedViewModel<S, I, E>
     ) -> some View {
         self
-            .task {
-                // Make sure that onViewAppeared will be called after event subcsription
-                Task {
-                    viewModel.onViewAppeared()
-                }
-                for await event in viewModel.events {
-                    onEvent(event)
-                }
-            }
+            .modifier(ToolbarBindingModifier(viewModel: viewModel))
             .onDismiss {
                 viewModel.clearScope()
             }
+    }
+}
+
+private struct ToolbarBindingModifier<S: VmState & Sendable, I: VmIntent, E: VmEvent & Sendable>: ViewModifier {
+    let viewModel: BaseScopedViewModel<S, I, E>
+
+    @State private var toolbar: Toolbar?
+
+    init(viewModel: BaseScopedViewModel<S, I, E>) {
+        self.viewModel = viewModel
+        _toolbar = State(initialValue: viewModel.toolbar.value)
+    }
+
+    func body(content: Content) -> some View {
+        content
+            .task {
+                for await toolbar in viewModel.toolbar {
+                    self.toolbar = toolbar
+                }
+            }
+            .toolbar(toolbar)
     }
 }

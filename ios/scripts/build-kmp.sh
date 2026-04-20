@@ -1,3 +1,9 @@
+if [ "$ACTION" = "clean" ]; then
+  echo "Running Gradle clean for Xcode clean"
+  ./gradlew clean < /dev/null
+  exit $?
+fi
+
 ./gradlew :shared:umbrella:embedAndSignAppleFrameworkForXcode < /dev/null | ./ios/scripts/kmp-beautify.sh
 
 # Copy the framework to indexer directory to support Xcode hinting/autocomplete
