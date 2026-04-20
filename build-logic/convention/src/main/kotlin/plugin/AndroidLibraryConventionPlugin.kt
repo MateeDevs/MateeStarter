@@ -22,6 +22,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
                 apply(libs.plugins.ktlint)
                 apply(libs.plugins.android.library)
                 apply(libs.plugins.kotlin.android)
+                apply(libs.plugins.jetbrains.compose.plugin)
             }
 
             apply<KotlinConventionPlugin>()
@@ -41,6 +42,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
                 implementation(libs.koin.core)
                 implementation(libs.koin.android)
                 implementation(libs.mokoResources.compose)
+                implementation(libs.kermit)
             }
         }
     }

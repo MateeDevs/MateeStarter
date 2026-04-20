@@ -26,6 +26,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                 apply(libs.plugins.ktlint)
                 apply(libs.plugins.android.application)
                 apply(libs.plugins.kotlin.android)
+                apply(libs.plugins.jetbrains.compose.plugin)
             }
 
             apply<KotlinConventionPlugin>()
@@ -59,7 +60,6 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
             }
 
             dependencies {
-                implementation(libs.material)
                 implementation(libs.androidX.core)
                 implementation(libs.lifecycle.runtime)
                 implementation(libs.koin.core)

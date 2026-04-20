@@ -24,8 +24,6 @@ class AndroidTestsConventionPlugin : Plugin<Project> {
                 testImplementation(libs.konsist)
 
                 debugImplementation(libs.koin.test)
-                debugImplementation(platform(libs.compose.bom))
-                androidTestImplementation(platform(libs.compose.bom))
             }
         }
     }

@@ -15,7 +15,7 @@ dependencies {
     implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
     compileOnly(libs.androidTools.gradle)
     compileOnly(libs.kotlin.gradlePlugin)
-    compileOnly(libs.compose.gradlePlugin)
+    compileOnly(libs.jetbrains.compose.gradlePlugin)
     compileOnly(libs.ktlint.gradlePlugin)
     compileOnly(libs.sentiary.gradlePlugin)
 }

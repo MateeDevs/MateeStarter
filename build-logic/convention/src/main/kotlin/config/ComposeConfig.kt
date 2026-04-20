@@ -3,6 +3,7 @@ package config
 import com.android.build.api.dsl.CommonExtension
 import extensions.androidTestImplementation
 import extensions.apply
+import extensions.compose
 import extensions.implementation
 import extensions.ktlintRuleset
 import extensions.libs
@@ -25,19 +26,19 @@ internal fun Project.configureComposeCompiler(
 
 internal fun Project.configureComposeDependencies() {
     dependencies {
-        implementation(platform(libs.compose.bom))
         implementation(libs.androidX.core)
-        implementation(libs.compose.ui)
-        implementation(libs.compose.foundation)
-        implementation(libs.compose.material)
-        implementation(libs.compose.materialIconsCore)
-        implementation(libs.compose.uiTooling)
+        implementation(libs.jetbrains.compose.ui)
+        implementation(libs.jetbrains.compose.animation)
+        implementation(libs.jetbrains.compose.foundation)
+        implementation(libs.jetbrains.compose.material3)
+        implementation(libs.jetbrains.compose.uiTooling)
         implementation(libs.activity.compose)
-        implementation(libs.navigation.compose)
+        implementation(libs.navigation3.runtime)
+        implementation(libs.navigation3.ui)
+        implementation(libs.lifecycle.viewModel.navigation3)
         implementation(libs.koin.android)
         implementation(libs.koin.androidx.compose)
-        implementation(libs.accompanist.navigationMaterial)
-        androidTestImplementation(libs.compose.uiTest)
+        androidTestImplementation(libs.jetbrains.compose.uiTest)
     }
 }
 
