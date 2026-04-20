@@ -78,7 +78,9 @@ fun NavigateUpHandler(
 internal class NavigateUpHandlerEntry(
     var isEnabled: Boolean,
     val onNavigateUp: () -> Unit,
-)
+) {
+    var isHandlingNavigateUp: Boolean = false
+}
 
 /**
  * Stable wrapper around the app's Nav3 back stack.
@@ -120,10 +122,18 @@ class Navigator private constructor(
         }
     }
 
-    /** Run the last enabled navigate-up handler or pop the top entry when none are registered. */
+    /**
+     * Run the last enabled navigate-up handler that is not already handling navigate-up, or pop
+     * the top entry when none are available.
+     */
     fun navigateUp(): Boolean {
-        navigateUpHandlers.lastOrNull { it.isEnabled }?.let { handler ->
-            handler.onNavigateUp()
+        navigateUpHandlers.lastOrNull { it.isEnabled && !it.isHandlingNavigateUp }?.let { handler ->
+            handler.isHandlingNavigateUp = true
+            try {
+                handler.onNavigateUp()
+            } finally {
+                handler.isHandlingNavigateUp = false
+            }
             return true
         }
         return popBackStack()
@@ -139,7 +149,7 @@ class Navigator private constructor(
     val currentKey: NavKey? get() = backStack.lastOrNull()
 
     /** Pop the top entry without consulting navigate-up handlers. Returns false at the root. */
-    fun popBackStack(): Boolean {
+    private fun popBackStack(): Boolean {
         if (backStack.size > 1) {
             backStack.removeAt(backStack.lastIndex)
             return true
