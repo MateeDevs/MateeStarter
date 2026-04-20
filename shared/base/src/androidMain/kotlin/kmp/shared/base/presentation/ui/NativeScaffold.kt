@@ -11,6 +11,7 @@ import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
@@ -27,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.res.painterResource as androidPainterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -36,6 +38,8 @@ import dev.chrisbanes.haze.hazeSource
 import dev.chrisbanes.haze.rememberHazeState
 import dev.icerock.moko.resources.compose.painterResource
 import dev.icerock.moko.resources.compose.stringResource
+import kmp.shared.base.MR
+import kmp.shared.base.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -145,8 +149,31 @@ private fun ToolbarButton(
     hazeState: HazeState?,
 ) {
     val tint = button.tint?.composeColor
+    val backContentDescription = stringResource(MR.strings.back)
 
     when {
+        button.isBackButton -> {
+            val backTint = tint ?: LocalContentColor.current
+
+            if (hazeState != null) {
+                HazeIconButton(
+                    painter = androidPainterResource(R.drawable.ic_back_arrow),
+                    tint = backTint,
+                    contentDescription = backContentDescription,
+                    onClick = button.onClick,
+                    hazeState = hazeState,
+                )
+            } else {
+                IconButton(onClick = button.onClick) {
+                    Icon(
+                        painter = androidPainterResource(R.drawable.ic_back_arrow),
+                        contentDescription = backContentDescription,
+                        tint = backTint,
+                    )
+                }
+            }
+        }
+
         button.icon != null && button.label == null -> {
             if (hazeState != null) {
                 HazeIconButton(

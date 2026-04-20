@@ -25,6 +25,7 @@ private val ButtonSize = 36.dp
 internal fun HazeIconButton(
     painter: Painter,
     tint: Color?,
+    contentDescription: String? = null,
     onClick: () -> Unit,
     hazeState: HazeState,
     modifier: Modifier = Modifier,
@@ -42,7 +43,7 @@ internal fun HazeIconButton(
         ) {
             Image(
                 painter = painter,
-                contentDescription = null,
+                contentDescription = contentDescription,
                 colorFilter = tint?.let { ColorFilter.tint(it) },
             )
         }
