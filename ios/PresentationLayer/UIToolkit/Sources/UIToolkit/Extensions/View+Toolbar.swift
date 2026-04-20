@@ -12,7 +12,7 @@ public extension View {
     func toolbar(_ toolbar: Toolbar?) -> some View {
         if let toolbar {
             self
-                .navigationTitle(toolbar.title?.toLocalized().uppercased() ?? "")
+                .navigationTitle(toolbar.title?.toLocalized() ?? "")
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarBackButtonHidden(!toolbar.buttons.contains { $0.isBackButton })
                 .navigationBarTitleColor(toolbar.titleColor.map { Color(kmpColor: $0) })
@@ -106,6 +106,7 @@ private struct ToolbarMenuButton: View {
         } label: {
             menu.buttonContent
         }
+        .tint(menu.tint.map { Color(kmpColor: $0) } ?? .primary)
     }
 }
 

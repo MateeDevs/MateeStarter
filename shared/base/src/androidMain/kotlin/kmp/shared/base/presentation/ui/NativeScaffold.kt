@@ -29,10 +29,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource as androidPainterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.hazeSource
 import dev.chrisbanes.haze.rememberHazeState
@@ -53,6 +51,10 @@ actual fun NativeScaffold(
 ) {
     val hazeState = if (toolbar != null && toolbar.anBackgroundColor == null) rememberHazeState() else null
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
+    val toolbarButtons = toolbar?.buttons.orEmpty()
+    val (leadingButtons, trailingButtons) = remember(toolbarButtons) {
+        toolbarButtons.partition { it.position == ToolbarButtonPosition.Leading }
+    }
 
     Scaffold(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -62,13 +64,11 @@ actual fun NativeScaffold(
                     title = {
                         toolbar.title?.let { title ->
                             Text(
-                                text = stringResource(title).uppercase(),
+                                text = stringResource(title),
                                 color = toolbar.titleColor?.composeColor ?: MaterialTheme.colorScheme.primary,
-                                style = MaterialTheme.typography.displayLarge,
-                                fontWeight = FontWeight.ExtraBold,
+                                style = MaterialTheme.typography.titleLarge,
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis,
-                                fontSize = 32.sp,
                             )
                         }
                     },
@@ -89,26 +89,22 @@ actual fun NativeScaffold(
                                     .height(HEADER_IMAGE_HEIGHT),
                             )
                         }
-                        toolbar.buttons
-                            .filter { it.position == ToolbarButtonPosition.Leading }
-                            .forEach { button ->
-                                when (button) {
-                                    is ToolbarButtonData.BackButton -> ToolbarBackButton(button, hazeState)
-                                    is ToolbarButtonData.Button -> ToolbarButton(button, hazeState)
-                                    is ToolbarButtonData.Menu -> ToolbarMenuButton(button, hazeState)
-                                }
+                        leadingButtons.forEach { button ->
+                            when (button) {
+                                is ToolbarButtonData.BackButton -> ToolbarBackButton(button, hazeState)
+                                is ToolbarButtonData.Button -> ToolbarButton(button, hazeState)
+                                is ToolbarButtonData.Menu -> ToolbarMenuButton(button, hazeState)
                             }
+                        }
                     },
                     actions = {
-                        toolbar.buttons
-                            .filter { it.position == ToolbarButtonPosition.Trailing }
-                            .forEach { button ->
-                                when (button) {
-                                    is ToolbarButtonData.BackButton -> ToolbarBackButton(button, hazeState)
-                                    is ToolbarButtonData.Button -> ToolbarButton(button, hazeState)
-                                    is ToolbarButtonData.Menu -> ToolbarMenuButton(button, hazeState)
-                                }
+                        trailingButtons.forEach { button ->
+                            when (button) {
+                                is ToolbarButtonData.BackButton -> ToolbarBackButton(button, hazeState)
+                                is ToolbarButtonData.Button -> ToolbarButton(button, hazeState)
+                                is ToolbarButtonData.Menu -> ToolbarMenuButton(button, hazeState)
                             }
+                        }
                     },
                     scrollBehavior = scrollBehavior,
                 )
