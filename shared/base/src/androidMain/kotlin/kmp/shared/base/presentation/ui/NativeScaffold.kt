@@ -40,6 +40,7 @@ import dev.icerock.moko.resources.compose.painterResource
 import dev.icerock.moko.resources.compose.stringResource
 import kmp.shared.base.MR
 import kmp.shared.base.R
+import kmp.shared.base.presentation.navigation.LocalNavigator
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -50,9 +51,8 @@ actual fun NativeScaffold(
     contentWindowInsets: WindowInsets,
     content: @Composable (contentPadding: PaddingValues) -> Unit,
 ) {
-    val hazeState = if (toolbar?.isTransparent == true) rememberHazeState() else null
+    val hazeState = if (toolbar != null && toolbar.anBackgroundColor == null) rememberHazeState() else null
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
-    val hasToolbarBackground = toolbar?.title != null || toolbar?.headerLogo != null
 
     Scaffold(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -73,22 +73,8 @@ actual fun NativeScaffold(
                         }
                     },
                     colors = TopAppBarDefaults.topAppBarColors(
-                        containerColor = toolbar.backgroundColor?.composeColor
-                            ?: if (hasToolbarBackground) {
-                                if (toolbar.isTransparent) {
-                                    MaterialTheme.colorScheme.surface.copy(alpha = 0f)
-                                } else {
-                                    MaterialTheme.colorScheme.surface
-                                }
-                            } else {
-                                Color.Transparent
-                            },
-                        scrolledContainerColor = toolbar.backgroundColor?.composeColor
-                            ?: if (hasToolbarBackground) {
-                                MaterialTheme.colorScheme.surface
-                            } else {
-                                Color.Transparent
-                            },
+                        containerColor = toolbar.anBackgroundColor?.composeColor ?: Color.Transparent,
+                        scrolledContainerColor = toolbar.anBackgroundColor?.composeColor ?: Color.Transparent,
                         navigationIconContentColor = Color.Unspecified,
                         titleContentColor = Color.Unspecified,
                         actionIconContentColor = Color.Unspecified,
@@ -107,6 +93,7 @@ actual fun NativeScaffold(
                             .filter { it.position == ToolbarButtonPosition.Leading }
                             .forEach { button ->
                                 when (button) {
+                                    is ToolbarButtonData.BackButton -> ToolbarBackButton(button, hazeState)
                                     is ToolbarButtonData.Button -> ToolbarButton(button, hazeState)
                                     is ToolbarButtonData.Menu -> ToolbarMenuButton(button, hazeState)
                                 }
@@ -117,6 +104,7 @@ actual fun NativeScaffold(
                             .filter { it.position == ToolbarButtonPosition.Trailing }
                             .forEach { button ->
                                 when (button) {
+                                    is ToolbarButtonData.BackButton -> ToolbarBackButton(button, hazeState)
                                     is ToolbarButtonData.Button -> ToolbarButton(button, hazeState)
                                     is ToolbarButtonData.Menu -> ToolbarMenuButton(button, hazeState)
                                 }
@@ -144,36 +132,41 @@ actual fun NativeScaffold(
 }
 
 @Composable
+private fun ToolbarBackButton(
+    button: ToolbarButtonData.BackButton,
+    hazeState: HazeState?,
+) {
+    val backContentDescription = stringResource(MR.strings.back)
+    val backTint = button.tint?.composeColor ?: LocalContentColor.current
+    val navigator = LocalNavigator.current
+
+    if (hazeState != null) {
+        HazeIconButton(
+            painter = androidPainterResource(R.drawable.ic_back_arrow),
+            tint = backTint,
+            contentDescription = backContentDescription,
+            onClick = navigator::navigateUp,
+            hazeState = hazeState,
+        )
+    } else {
+        IconButton(onClick = navigator::navigateUp) {
+            Icon(
+                painter = androidPainterResource(R.drawable.ic_back_arrow),
+                contentDescription = backContentDescription,
+                tint = backTint,
+            )
+        }
+    }
+}
+
+@Composable
 private fun ToolbarButton(
     button: ToolbarButtonData.Button,
     hazeState: HazeState?,
 ) {
     val tint = button.tint?.composeColor
-    val backContentDescription = stringResource(MR.strings.back)
 
-    when {
-        button.isBackButton -> {
-            val backTint = tint ?: LocalContentColor.current
-
-            if (hazeState != null) {
-                HazeIconButton(
-                    painter = androidPainterResource(R.drawable.ic_back_arrow),
-                    tint = backTint,
-                    contentDescription = backContentDescription,
-                    onClick = button.onClick,
-                    hazeState = hazeState,
-                )
-            } else {
-                IconButton(onClick = button.onClick) {
-                    Icon(
-                        painter = androidPainterResource(R.drawable.ic_back_arrow),
-                        contentDescription = backContentDescription,
-                        tint = backTint,
-                    )
-                }
-            }
-        }
-
+    when  {
         button.icon != null && button.label == null -> {
             if (hazeState != null) {
                 HazeIconButton(
@@ -239,10 +232,13 @@ private fun ToolbarMenuButton(
     modifier: Modifier = Modifier,
 ) {
     var expanded by remember { mutableStateOf(false) }
+
     ToolbarButton(
         button = ToolbarButtonData.Button(
             icon = menu.icon,
             label = menu.label,
+            position = menu.position,
+            tint = menu.tint,
             onClick = { expanded = true },
         ),
         hazeState = hazeState,

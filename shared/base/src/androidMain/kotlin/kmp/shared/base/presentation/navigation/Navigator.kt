@@ -1,4 +1,4 @@
-package kmp.android.shared.navigation
+package kmp.shared.base.presentation.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect

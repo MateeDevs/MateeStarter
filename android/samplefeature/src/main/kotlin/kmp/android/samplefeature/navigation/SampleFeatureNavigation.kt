@@ -3,7 +3,7 @@ package kmp.android.samplefeature.navigation
 import androidx.navigation3.runtime.EntryProviderScope
 import androidx.navigation3.runtime.NavKey
 import kmp.android.samplefeature.ui.SampleFeatureMainRoute
-import kmp.android.shared.navigation.Navigator
+import kmp.shared.base.presentation.navigation.Navigator
 
 fun EntryProviderScope<NavKey>.sampleFeatureEntries(
     navigator: Navigator,

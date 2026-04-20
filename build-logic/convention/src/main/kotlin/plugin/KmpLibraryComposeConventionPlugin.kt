@@ -38,6 +38,10 @@ class KmpLibraryComposeConventionPlugin : Plugin<Project> {
                         implementation(libs.haze.materials)
                         ktlintRuleset(libs.ktlint.composeRules)
                     }
+                    androidMain.dependencies {
+                        implementation(libs.navigation3.runtime)
+                        implementation(libs.lifecycle.viewModel.navigation3)
+                    }
                 }
             }
 

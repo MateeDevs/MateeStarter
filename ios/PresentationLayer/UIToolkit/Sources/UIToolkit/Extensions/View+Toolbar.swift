@@ -14,7 +14,7 @@ public extension View {
             self
                 .navigationTitle(toolbar.title?.toLocalized().uppercased() ?? "")
                 .navigationBarTitleDisplayMode(.inline)
-                .navigationBarBackButtonHidden(!toolbar.buttons.contains { $0.checkIsBackButton() })
+                .navigationBarBackButtonHidden(!toolbar.buttons.contains { $0.isBackButton })
                 .navigationBarTitleColor(toolbar.titleColor.map { Color(kmpColor: $0) })
                 .toolbar { toolbarContent(toolbar) }
         } else {
@@ -24,8 +24,8 @@ public extension View {
     
     @ToolbarContentBuilder
     private func toolbarContent(_ toolbar: Toolbar) -> some ToolbarContent {
-        let leading = toolbar.buttons.filter { $0.position == .leading && !$0.checkIsBackButton() }
-        let trailing = toolbar.buttons.filter { $0.position == .trailing && !$0.checkIsBackButton() }
+        let leading = toolbar.buttons.filter { $0.position == .leading && !$0.isBackButton }
+        let trailing = toolbar.buttons.filter { $0.position == .trailing && !$0.isBackButton }
 
         if !leading.isEmpty {
             ToolbarItemGroup(placement: .topBarLeading) {
@@ -127,13 +127,8 @@ private extension Color {
 }
 
 private extension ToolbarButtonData {
-    func checkIsBackButton() -> Bool {
-        switch self {
-        case let button as ToolbarButtonData.Button:
-            button.isBackButton
-        default:
-            false
-        }
+    var isBackButton: Bool {
+        self is ToolbarButtonData.BackButton
     }
 
     var buttonContent: some View {
