@@ -46,6 +46,7 @@ internal class ComposeTest {
             "Provider",
             "Override",
             "Theme",
+            "NavigateUpHandler",
         )
     }
 }
