@@ -8,7 +8,7 @@ import kmp.android.shared.navigation.Navigator
 fun EntryProviderScope<NavKey>.sampleFeatureEntries(
     navigator: Navigator,
 ) {
-  entry<SampleFeatureHome> {
+  entry<SampleFeatureNavKey.Home> {
       SampleFeatureMainRoute(
           // Use provided `navigator` to navigate to other screens
       )
