@@ -28,7 +28,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.res.painterResource as androidPainterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import dev.chrisbanes.haze.HazeState
@@ -39,6 +38,7 @@ import dev.icerock.moko.resources.compose.stringResource
 import kmp.shared.base.MR
 import kmp.shared.base.R
 import kmp.shared.base.presentation.navigation.LocalNavigator
+import androidx.compose.ui.res.painterResource as androidPainterResource
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -162,7 +162,7 @@ private fun ToolbarButton(
 ) {
     val tint = button.tint?.composeColor
 
-    when  {
+    when {
         button.icon != null && button.label == null -> {
             if (hazeState != null) {
                 HazeIconButton(
