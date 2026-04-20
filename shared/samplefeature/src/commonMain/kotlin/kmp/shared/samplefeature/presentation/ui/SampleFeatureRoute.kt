@@ -9,10 +9,11 @@ import kmp.shared.base.presentation.ui.AppTheme
 import kmp.shared.samplefeature.presentation.vm.SampleFeatureEvent
 import kmp.shared.samplefeature.presentation.vm.SampleFeatureViewModel
 import kotlinx.coroutines.flow.onSubscription
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun SampleFeatureRoute(
-    viewModel: SampleFeatureViewModel,
+    viewModel: SampleFeatureViewModel = koinViewModel(),
     onShowMessage: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
