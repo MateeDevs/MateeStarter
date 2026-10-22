@@ -1,20 +1,19 @@
 package konsistTest.di
 
 import com.lemonappdev.konsist.api.KoModifier
-import com.lemonappdev.konsist.api.Konsist
 import com.lemonappdev.konsist.api.ext.list.modifierprovider.withoutModifier
 import com.lemonappdev.konsist.api.ext.list.withNameEndingWith
 import com.lemonappdev.konsist.api.ext.list.withPackage
 import com.lemonappdev.konsist.api.ext.list.withParent
 import com.lemonappdev.konsist.api.provider.KoFullyQualifiedNameProvider
 import com.lemonappdev.konsist.api.verify.assertTrue
+import konsistTest.scopeFromProjectExcludingIos
 import org.junit.Test
 
 internal class KoinTest {
     @Test
     fun `every 'ViewModel' has a declaration in Koin's module`() {
-        Konsist
-            .scopeFromProject()
+        scopeFromProjectExcludingIos()
             .classes()
             .withoutModifier(KoModifier.ABSTRACT)
             .withNameEndingWith("ViewModel")
@@ -23,8 +22,7 @@ internal class KoinTest {
 
     @Test
     fun `every 'Repository' has a declaration in Koin's module`() {
-        Konsist
-            .scopeFromProject()
+        scopeFromProjectExcludingIos()
             .classes()
             .withPackage("..data..")
             .withParent { it.hasNameEndingWith("Repository") }
@@ -34,8 +32,7 @@ internal class KoinTest {
 
     @Test
     fun `every 'Source' has a declaration in Koin's module`() {
-        Konsist
-            .scopeFromProject()
+        scopeFromProjectExcludingIos()
             .classes()
             .withPackage("..data..")
             .withParent { it.hasNameEndingWith("Source") }
@@ -45,8 +42,7 @@ internal class KoinTest {
 
     @Test
     fun `every 'Service' has a declaration in Koin's module`() {
-        Konsist
-            .scopeFromProject()
+        scopeFromProjectExcludingIos()
             .classes()
             .withPackage("..data..")
             .withParent { it.hasNameEndingWith("Service") }
@@ -56,8 +52,7 @@ internal class KoinTest {
 
     @Test
     fun `every 'UseCase' has a declaration in Koin's module`() {
-        Konsist
-            .scopeFromProject()
+        scopeFromProjectExcludingIos()
             .classes()
             .withPackage("..domain..")
             .withParent { it.hasNameEndingWith("UseCase") }
@@ -70,8 +65,7 @@ internal class KoinTest {
         this.assertTrue { modules.any { file -> file.hasImportWithName(it.fullyQualifiedName) } }
     }
 
-    private fun getKoinModules() = Konsist
-        .scopeFromProject()
+    private fun getKoinModules() = scopeFromProjectExcludingIos()
         .properties()
         .withNameEndingWith("Module", "module")
         .filter { it.text.contains("= module {") }

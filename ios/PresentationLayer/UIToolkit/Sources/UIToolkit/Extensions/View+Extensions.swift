@@ -39,7 +39,7 @@ public extension View {
 
 @MainActor
 public extension View {
-    @inlinable func bindViewModel<S: VmState & Sendable, I: VmIntent, E: VmEvent & Sendable>(
+    func bindViewModel<S: VmState & Sendable, I: VmIntent, E: VmEvent & Sendable>(
         _ viewModel: BaseScopedViewModel<S, I, E>,
         onEvent: @escaping (E) -> Void
     ) -> some View {

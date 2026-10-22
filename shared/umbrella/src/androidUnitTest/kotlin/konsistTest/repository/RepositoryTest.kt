@@ -1,16 +1,15 @@
 package konsistTest.repository
 
-import com.lemonappdev.konsist.api.Konsist
 import com.lemonappdev.konsist.api.ext.list.withNameContaining
 import com.lemonappdev.konsist.api.verify.assertTrue
+import konsistTest.scopeFromProjectExcludingIos
 import org.junit.Test
 
 @Suppress("konsist.all repositories inherit from a corresponding interface")
 class RepositoryTest {
     @Test
     fun `all repositories inherit from a corresponding interface`() {
-        Konsist
-            .scopeFromProject()
+        scopeFromProjectExcludingIos()
             .classes()
             .withNameContaining("Repository")
             .assertTrue { klass ->
@@ -23,8 +22,7 @@ class RepositoryTest {
 
     @Test
     fun `'Repository' implementation classes should reside in 'data' and 'repository' package`() {
-        Konsist
-            .scopeFromProject()
+        scopeFromProjectExcludingIos()
             .classes()
             .withNameContaining("Repository")
             .filter { it.numParents == 1 }
@@ -33,8 +31,7 @@ class RepositoryTest {
 
     @Test
     fun `'Repository' interfaces should reside in 'domain' and 'repository' package`() {
-        Konsist
-            .scopeFromProject()
+        scopeFromProjectExcludingIos()
             .interfaces()
             .withNameContaining("Repository")
             .assertTrue { it.resideInPackage("..domain.repository..") }

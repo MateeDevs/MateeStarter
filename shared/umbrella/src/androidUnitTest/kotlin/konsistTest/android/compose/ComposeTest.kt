@@ -1,18 +1,17 @@
 package konsistTest.android.compose
 
-import com.lemonappdev.konsist.api.Konsist
 import com.lemonappdev.konsist.api.ext.list.modifierprovider.withInternalModifier
 import com.lemonappdev.konsist.api.ext.list.modifierprovider.withPublicOrDefaultModifier
 import com.lemonappdev.konsist.api.ext.list.withAnnotation
 import com.lemonappdev.konsist.api.ext.list.withType
 import com.lemonappdev.konsist.api.verify.assertTrue
+import konsistTest.scopeFromProjectExcludingIos
 import org.junit.Test
 
 internal class ComposeTest {
     @Test
     fun `every internal or public compose function has a modifier`() {
-        Konsist
-            .scopeFromProject()
+        scopeFromProjectExcludingIos()
             .functions()
             .let { fns ->
                 fns.withPublicOrDefaultModifier() +
