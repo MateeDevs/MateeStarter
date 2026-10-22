@@ -65,7 +65,7 @@ internal object HttpClient {
                     }
 
                     sendWithoutRequest { request ->
-                        unauthorizedEndpoints.any(request.url.encodedPath::equals)
+                        unauthorizedEndpoints.none(request.url.encodedPath::equals)
                     }
                 }
             }
