@@ -29,8 +29,16 @@ jobs:
         working-directory: ios
         run: echo "$APP_STORE_CONNECT_API_KEY_CONTENT" > AuthKey_Matee.p8
       - name: Create a new Alpha build
+        id: build_alpha
         working-directory: ios
         run: fastlane build_alpha
+      - name: Upload Alpha Xcode build log
+        if: failure() && steps.build_alpha.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: alpha-xcode-log-${{ github.run_attempt }}
+          path: ~/Library/Logs/gym/*-MateeStarter_Alpha.log
+          retention-days: 7
       - name: Upload the Alpha build to the TestFlight
         env:
           APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_MATEE }}
